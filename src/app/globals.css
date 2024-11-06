@@ -83,6 +83,8 @@ nav{
 .shake-animation {
   display: inline-block;
   animation: shake 0.5s ease-in-out;
+}
+
 /* Chrome, Safari, and Opera */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
