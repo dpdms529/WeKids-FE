@@ -11,6 +11,12 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        mainColor: "var(--maincolor)",
+        colorBombom: "var(--colorBombom)",
+        colorDalbo: "var(--colorDalbo)",
+        colorDuji: "var(--colorDuji)",
+        colorKu: "var(--colorKu)",
+        colorPudding: "var(--colorPudding)",
       },
     },
   },

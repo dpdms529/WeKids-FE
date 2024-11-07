@@ -1,5 +1,5 @@
-import React from 'react';
-import Upload from '../Upload';
+import React from "react";
+import Upload from "../../../../../public/icons/Upload";
 
 const SHARE_BUTTON_DEFAULT = {
   width: "w-[76px]",
@@ -9,7 +9,7 @@ const SHARE_BUTTON_DEFAULT = {
   radius: "rounded-[10px]"
 };
 
-const ShareButton = ({ 
+const ShareButton = ({
   onClick,
   width = SHARE_BUTTON_DEFAULT.width,
   height = SHARE_BUTTON_DEFAULT.height,
@@ -18,7 +18,7 @@ const ShareButton = ({
   radius = SHARE_BUTTON_DEFAULT.radius
 }) => {
   return (
-    <button 
+    <button
       onClick={onClick}
       className={`
         ${width}
@@ -31,7 +31,7 @@ const ShareButton = ({
         justify-center
       `}
     >
-       <div>
+      <div>
         <Upload />
       </div>
     </button>

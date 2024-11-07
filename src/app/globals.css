@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #b2d7f8;
-  --foreground: #171717;
+  --background:#b2d7f8;
+  --foreground:#171717;
+  --maincolor: #2483C5;
+  --colorBombom: #EFB4CA;  
+  --colorDalbo: #E2BD48;   
+  --colorDuji: #A78770;    
+  --colorKu: #b07f9a;      
+  --colorPudding: #9FB3D4; 
 }
 
 @media (prefers-color-scheme: dark) {
@@ -88,6 +94,7 @@ nav{
 /* Chrome, Safari, and Opera */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
 }
 
 /* IE, Edge, and Firefox */
