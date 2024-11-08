@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import ShareButton from "@/src/ui/components/atoms/ShareButton";
+import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { urlPath } from "@/src/constants/common";
 import { useRouter } from "next/navigation";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
