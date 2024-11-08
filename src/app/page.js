@@ -1,5 +1,5 @@
 import Header from "../ui/layout/Header";
-import MainHome from "./_home/page";
+import MainHome from "./(home)/page";
 import "./globals.css";
 
 export default function Home() {

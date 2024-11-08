@@ -71,9 +71,7 @@ export default function Page() {
     }
   };
 
-  if (!selectedAccount.id) {
-    redirect(urlPath.ACCOUNT_LIST);
-  }
+  if (!selectedAccount) redirect(urlPath.ACCOUNT_LIST);
 
   const handleUserChange = (e) => {
     const selectedName = e.target.value;
