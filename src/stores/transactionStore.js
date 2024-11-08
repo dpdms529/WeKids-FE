@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 // useTransactionStore
 export const useTransactionStore = create((set) => ({
-  selectedAccount: null,
+  selectedAccount: {},
   transferAmount: 0,
   setSelectedAccount: (account) => set({ selectedAccount: account }),
   setTransferAmount: (amount) => set({ transferAmount: amount }),

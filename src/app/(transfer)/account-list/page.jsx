@@ -27,8 +27,15 @@ export default function Page() {
       name: user.name,
       account: user.account,
     });
-    router.push(urlPath.TRANSFER);
+
+    console.log(selectedAccount);
   };
+
+  // useEffect(() => {
+  //   if (selectedAccount) {
+  //     router.push(urlPath.TRANSFER);
+  //   }
+  // }, [selectedAccount]);
 
   return (
     <div className="max-w-md mx-auto bg-gray-100 shadow-lg h-screen flex flex-col">
