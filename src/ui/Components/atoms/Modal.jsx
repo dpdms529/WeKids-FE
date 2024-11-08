@@ -19,7 +19,7 @@ export default function Modal({ isOpen, onClose, children, width = '30%', height
                 style={{ width, height, transform: `translateY(${translateY})` }}
             >
                 <div className="flex justify-end items-center mb-4">
-                {delete_button && <button onClick={onClose} className="text-gray-500">X</button>}
+                {delete_button && <button onClick={onClose} className="text-gray-500">✕</button>}
                 
                 </div>
                 <div onClick={(e) => e.stopPropagation()}>{children}</div>
