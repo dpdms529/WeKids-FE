@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import TransactionList from "@/src/ui/components/atoms/TransferItem";
+import TransferItem from "@/src/ui/components/atoms/TransferItem";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import { urlPath } from "@/src/constants/common";
 
@@ -31,16 +31,16 @@ export default function Page() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-gray-100 shadow-lg h-screen flex flex-col">
+    <div className="max-w-md mx-auto bg-white shadow-lg h-screen flex flex-col">
       <div className="flex justify-between p-4">
-        <h1 className="text-lg font-bold">이체</h1>
-        <button className="text-gray-500" onClick={() => router.push(urlPath.HOME)}>
+        <h1 className="text-B-22 text-black/80">이체</h1>
+        <button className="text-neutral-400 text-R-20" onClick={() => router.push(urlPath.HOME)}>
           닫기
         </button>
       </div>
-      <div className="flex-1 overflow-y-auto scrollbar-hide">
+      <div className="flex-1 overflow-y-auto scrollbar-hide border-white">
         {dummyData.map((user) => (
-          <TransactionList // 추후에 사진을 넣어야함
+          <TransferItem // 추후에 사진을 넣어야함
             key={user.id}
             name={user.name}
             account={user.account}

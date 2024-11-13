@@ -43,12 +43,12 @@ const TransferAmountDisplay = ({
         <div className="flex flex-col items-center w-full p-4 absolute h-3/5">
             <div className="flex justify-between items-center w-full mb-4">
             <Box onClick={() => btnHandler("back")}>
-          <ArrowLeftIcon className="w-5 h-5 text-black cursor-pointer" />
+          <ArrowLeftIcon className="w-5 h-5 text-black/80 cursor-pointer" />
             </Box>
                 <div className="text-center">
                     <div>
                         <select
-                            className="bg-gray-100 cursor-pointer"
+                            className="cursor-pointer text-black/80 text-B-14"
                             value={selectedAccount.name}
                             onChange={handleUserChange}
                         >
@@ -59,14 +59,14 @@ const TransferAmountDisplay = ({
                             ))}
                         </select>
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-R-12 text-neutral-400">
                         {"우리은행"} {selectedAccount.account}
                     </div>
                 </div>
-                <button className="text-lg" onClick={() => btnHandler("cancel")}>취소</button>
+                <button className="text-R-14 text-black/80" onClick={() => btnHandler("cancel")}>취소</button>
             </div>
             <div className="flex flex-col items-center justify-center h-1/2 mt-8">
-                <div className={`text-4xl font-bold ${isShaking ? 'text-red-600 shake-animation' : 'text-slate-900'}`}>
+                <div className={`text-4xl font-bold ${isShaking ? 'text-red-600 shake-animation' : 'text-black/80'}`}>
                     {transferAmount.toLocaleString()}원
                 </div>
                 <div className="text-red-600 mt-2">
