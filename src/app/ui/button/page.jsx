@@ -1,9 +1,38 @@
+"use client";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import React from "react";
+import InputTextBox from "@/src/ui/Components/atoms/InputTextBox";
+import PopupMessage from "@/src/ui/Components/molecules/PopupMessage";
+import { useState } from "react";
 
 const Page = () => {
+  const [placeholderValue, setPlaceholderValue] = useState("값을 입력하세요");
+  const handlePlaceholderChange = (newPlaceholder) => {
+    setPlaceholderValue(newPlaceholder);
+  };
+  const handleButtonClick = () => {
+    // 버튼 클릭 시 실행되는 함수 구현
+  };
   return (
     <>
+      <div className="p-6">
+        <h1 className="text-2xl mb-4">Example Usage of CommonComponent</h1>
+        <InputTextBox
+          height={60}
+          placeholder={placeholderValue}
+          onPlaceholderChange={handlePlaceholderChange}
+        />
+      </div>
+
+      <div>
+        <PopupMessage
+          title="메시지 등록 완료"
+          message="메시지 등록이 완료되었습니다."
+          buttonText="확인"
+          onButtonClick={handleButtonClick}
+          height="208px"
+        />
+      </div>
+
       {/* large */}
       <div>
         <div className="bg-white w-full flex flex-col items-center justify-center space-y-3 py-5 border-b-2 border-black">
