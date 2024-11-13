@@ -1,29 +1,30 @@
-'use client'
+"use client";
 
-import Assign from "@/src/ui/Components/atoms/signup/Assign";
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import Top from "@/src/ui/Components/atoms/signup/Top"
-import React from "react";
-import {assigndata} from "@/src/constants/assign";
-
-
+import Bottom from "@/src/ui/Components/atoms/signup/Bottom"
+import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import React, { useState} from "react";
 
 
 export default function Page() {
+    const [topChecked, setTopChecked] = useState(false);
+    const [bottomChecked, setBottomChecked] = useState(false);
+
+
+    
+
+    
     return (
         <div className="fl  ex flex-col w-[393px] h-screen overflow-y-auto scrollbar-hide bg-white">
-            <Top />
+            <Top setAllChecked={setTopChecked}/>
+            <Bottom setAllChecked={setBottomChecked}/>
             <div className="px-10 py-5">
-                <h2>약관동의</h2>
-                <div className="border-black border-2 h-68 rounded-lg">
-                    {assigndata.map((text, idx)=>(
-                        <Assign idx={idx} text={text} />
-                    ))}
-                </div>
-            </div>
-            <div className="px-10 py-5">
-                <CustomButton rounded = "true" className="w-full" >
-                    {"다음"}
+                <CustomButton 
+                    rounded="true" 
+                    className={`w-full ${(topChecked == true && bottomChecked == true)  ? "bg-main02" : "bg-stone-300"}`} 
+                    disabled={!(topChecked == true && bottomChecked == true)}
+                >
+                    다음
                 </CustomButton>
             </div>
         </div>
