@@ -29,14 +29,14 @@ const Page = () => {
           <p className="text-B-28">
             {transferData.amount.toLocaleString()}원 보냈어요
           </p>
-          <div className="flex items-center justify-center gap-1 text-R-14 text-neutral-400">
+          <div className="flex items-center justify-center gap-1 text-R-14 text-neutral-300">
             {transferData.bankName} {transferData.accountNumber}
-            <ChevronRightIcon width="16" height="16" stroke="text-neutral-400" strokeWidth={0.5} />
+            <ChevronRightIcon width="16" height="16" stroke="text-neutral-300" strokeWidth={0.5} />
           </div>
         </div>
 
         {/* 메모 영역 */}
-        <div className="bg-stone-200 px-4 py-2 rounded-full text-R-14 text-neutral-400">
+        <div className="bg-stone-200 px-4 py-2 rounded-full text-R-14 text-neutral-300">
           {transferData.memo}
         </div>
       </div>
