@@ -25,18 +25,18 @@ const Page = () => {
 
         {/* 텍스트 영역 */}
         <div className="text-center space-y-2 mb-4">
-          <p className="text-[16px]">{transferData.receiverName}님에게</p>
-          <p className="text-[24px] font-bold text-black">
+          <p className="text-B-28">{transferData.receiverName}님에게</p>
+          <p className="text-B-28">
             {transferData.amount.toLocaleString()}원 보냈어요
           </p>
-          <div className="flex items-center justify-center gap-1 text-[14px] text-[#666666]">
+          <div className="flex items-center justify-center gap-1 text-R-14 text-[#666666]">
             {transferData.bankName} {transferData.accountNumber}
             <ChevronRightIcon width="16" height="16" stroke="#666666" strokeWidth={0.5} />
           </div>
         </div>
 
         {/* 메모 영역 */}
-        <div className="bg-[#F5F5F5] px-4 py-2 rounded-full text-[14px] text-[#666666]">
+        <div className="bg-[#F5F5F5] px-4 py-2 rounded-full text-R-14 text-[#666666]">
           {transferData.memo}
         </div>
       </div>
@@ -46,7 +46,7 @@ const Page = () => {
         <div className="flex gap-2">
           <ShareButton rounded={true} />
           <CustomButton rounded={true} onClick={() => router.push(urlPath.HOME)}>
-            확인
+              <span className="text-R-20">확인</span>
           </CustomButton>
         </div>
       </div>
