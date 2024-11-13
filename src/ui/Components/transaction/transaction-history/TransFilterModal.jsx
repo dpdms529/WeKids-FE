@@ -14,8 +14,8 @@ export const TransFilterModal = ({ onClose }) => {
       align="end"
       className="fixed top-0 bottom-0 left-0 right-0 z-50 bg-black bg-opacity-50"
     >
-      <Box className="w-[395px] max-w-md p-4 bg-white rounded-t-[50px]">
-        <Flex justify="between" className="p-5 mb-4 text-black">
+      <Box className="w-[393px] max-w-md p-4 bg-white rounded-t-[50px]">
+        <Flex justify="between" className="p-5 mb-4 text-black/80">
           <Button onClick={onClose}>✕</Button>
           <Button variant="ghost" onClick={onClose}>
             확인
@@ -23,7 +23,7 @@ export const TransFilterModal = ({ onClose }) => {
         </Flex>
         <Box>
           <Flex align="center" direction="column">
-            <Text className="text-sm font-bold text-gray-500">조회기간</Text>
+            <Text className="text-R-14 text-black/80">조회기간</Text>
             <RadioGroup.Root
               value={range}
               onValueChange={(value) => setRange(value)}
@@ -33,9 +33,9 @@ export const TransFilterModal = ({ onClose }) => {
                 <RadioGroup.Item
                   key={label}
                   value={label}
-                  className={`text-black text-sm w-[90px] h-10 border ${
+                  className={`text-black text-R-14 w-[90px] h-10 border ${
                     index < Object.values(RangeEnum).length - 1 ? "border-r-0" : ""
-                  } border-gray-500 text-gray-700 bg-gray-200 data-[state=checked]:bg-white data-[state=checked]:border-black transition-colors`}
+                  } border-black/40 text-black/80 bg-black/10 data-[state=checked]:bg-white data-[state=checked]:border-black transition-colors`}
                 >
                   {label}
                 </RadioGroup.Item>
@@ -47,7 +47,7 @@ export const TransFilterModal = ({ onClose }) => {
               direction="row"
               align="center"
               justify="between"
-              className="p-2 text-black border border-gray-300"
+              className="p-2 text-black/80 border border-neutral-400"
             >
               <Box>
                 <input
@@ -68,7 +68,7 @@ export const TransFilterModal = ({ onClose }) => {
           )}
         </Box>
         <Flex align="center" direction="column" className="pt-5">
-          <Text className="text-sm font-bold text-gray-500">유형선택</Text>
+          <Text className="text-R-14 text-black/80">유형선택</Text>
           <RadioGroup.Root
             value={type}
             onValueChange={(value) => setType(value)}
@@ -78,9 +78,9 @@ export const TransFilterModal = ({ onClose }) => {
               <RadioGroup.Item
                 key={label}
                 value={label}
-                className={`text-black text-sm w-[120px] h-10 border ${
+                className={`text-black text-R-14 w-[120px] h-10 border ${
                   index < Object.values(TypeEnum).length - 1 ? "border-r-0" : ""
-                } border-gray-500 text-gray-700 bg-gray-200 data-[state=checked]:bg-white data-[state=checked]:border-black transition-colors`}
+                } border-black/40 text-black/80 bg-black/10 data-[state=checked]:bg-white data-[state=checked]:border-black transition-colors`}
               >
                 {label}
               </RadioGroup.Item>
@@ -88,7 +88,7 @@ export const TransFilterModal = ({ onClose }) => {
           </RadioGroup.Root>
         </Flex>
         <Flex align="center" direction="column" className="pt-5">
-          <Text className="text-sm font-bold text-gray-500">정렬선택</Text>
+          <Text className="text-R-14 text-black/80">정렬선택</Text>
           <RadioGroup.Root
             value={sortingType}
             onValueChange={(value) => setSortingType(value)}
@@ -98,9 +98,9 @@ export const TransFilterModal = ({ onClose }) => {
               <RadioGroup.Item
                 key={label}
                 value={label}
-                className={`text-black text-sm w-[180px] h-10 border ${
+                className={`text-black text-R-14 w-[180px] h-10 border ${
                   index < Object.values(SortEnum).length - 1 ? "border-r-0" : ""
-                } border-gray-500 text-gray-700 bg-gray-200 data-[state=checked]:bg-white data-[state=checked]:border-black transition-colors`}
+                } border-black/40 text-black/80 bg-black/10 data-[state=checked]:bg-white data-[state=checked]:border-black transition-colors`}
               >
                 {label}
               </RadioGroup.Item>

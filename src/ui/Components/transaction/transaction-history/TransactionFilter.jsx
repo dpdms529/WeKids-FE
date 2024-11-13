@@ -23,10 +23,10 @@ export const TransactionFilter = () => {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full placeholder-gray-400 bg-transparent border-none outline-none text-slate-500"
+            className="w-[180px] placeholder-black/40 bg-transparent border-none outline-none text-black/40"
           />
         </Flex>
-        <Box onClick={() => setIsModalOpen(true)} className="text-xs font-medium text-gray-700">
+        <Box onClick={() => setIsModalOpen(true)} className="text-R-12 text-black/80">
           {`${range} · ${type} · ${sortingType} ▼`}
         </Box>
       </Flex>
