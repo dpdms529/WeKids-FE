@@ -39,15 +39,15 @@ const BlueCardBox = () => {
       {console.log("div " + backgroundColorClass)}
       <div className="text-left px-5">
         <div className="flex items-center space-x-2 mt-[25px]">
-          <Text className="wooridaumB text-sm">{selectedAccount.accountNumber}</Text>
+          <Text className="text-R-14">{selectedAccount.accountNumber}</Text>
           <CopyIcon />
         </div>
-        <Text className="wooridaumB text-xl mt-[32px]">{selectedAccount.name}</Text>
+        <Text className="text-R-20 mt-[32px]">{selectedAccount.name}</Text>
       </div>
       <div className="absolute right-0 top-0 ">
         <img src="/images/accountWeebeeImg.svg" alt="Mascot" />
       </div>
-      <Text className="wooridaumB text-[28px] mt-[48px] text-right">
+      <Text className="text-B-28 mt-[48px] text-right">
         {selectedAccount.balance.toLocaleString()} 원
       </Text>
       <div className="mt-auto">

@@ -69,7 +69,7 @@ export const TransactionsView = () => {
         loadMore={loadMore}
         hasMore={hasMore}
         loader={
-          <div className="loader" key={0}>
+          <div className="loader text-black/80 text-R-20" key={0}>
             Loading ...
           </div>
         }
