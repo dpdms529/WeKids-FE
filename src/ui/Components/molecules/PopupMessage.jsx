@@ -1,4 +1,4 @@
-// MessageBox.js
+// PopupMessage.js
 
 const PopupMessage = ({
   title,
@@ -7,7 +7,7 @@ const PopupMessage = ({
   onButtonClick,
   width,
   height,
-  onClose, // X 버튼 클릭 시 팝업을 닫는 함수
+  onClose, // X 버튼이나 확인 버튼 클릭 시 호출될 함수
 }) => {
   return (
     <div
@@ -29,7 +29,7 @@ const PopupMessage = ({
     >
       {/* 왼쪽 상단 X 버튼 */}
       <button
-        onClick={onClose} // onClose 함수 호출하여 팝업 닫기
+        onClick={onClose} // X 버튼 클릭 시 onClose 호출
         style={{
           position: "absolute",
           top: "10px", // 상단 10px
@@ -47,7 +47,10 @@ const PopupMessage = ({
       <h3>{title}</h3>
       <p>{message}</p>
       <button
-        onClick={onButtonClick}
+        onClick={() => {
+          onButtonClick(); // 확인 버튼 클릭 시 onButtonClick 호출
+          onClose(); // 클릭 후 팝업 닫기
+        }}
         style={{
           backgroundColor: "#007bff",
           color: "white",
