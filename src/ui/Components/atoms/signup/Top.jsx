@@ -10,13 +10,8 @@ export default function Top ({setAllChecked}){
     const [name, setName] = useState("");
     
     useEffect(() => {
-        if(email != "" && name!= "" && phoneChecked == false){
-            setAllChecked(true);
-        }
-        else{
-            setAllChecked(false);
-        }
-    }, [phoneChecked, email, name]);
+        setAllChecked(email !== "" && name !== "" && !phoneChecked);
+    }, [phoneChecked, email, name, setAllChecked]);
 
     return(
         <>
@@ -30,7 +25,7 @@ export default function Top ({setAllChecked}){
             </div>
             <div className="px-10 py-5">
                 <h2>휴대폰 인증</h2>
-                <CustomButton key={phoneChecked} rounded = "true" className={`w-full ${phoneChecked ? "bg-main02" : "bg-stone-300"}`} onClick={() => setphoneChecked(!phoneChecked)}>
+                <CustomButton key={phoneChecked} rounded = "true" className={`w-full ${phoneChecked ? "bg-main02" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"}`} onClick={() => setphoneChecked(false)}>
                      휴대폰 인증하기
                 </CustomButton> 
             </div>
