@@ -15,15 +15,18 @@ export default function Top ({setAllChecked}){
 
     return(
         <>
-            <div className="px-10 py-5">
+            <div className="px-5 py-2">
+                <h2>개인정보 입력</h2>
+            </div>
+            <div className="px-10 py-4">
                 <h2>이메일</h2>
                 <input className="rounded-lg w-full border-black border-2 p-2 mt-1" onChange={() => setEmail(event.target.value)}></input>
             </div>
-            <div className="px-10 py-5">
+            <div className="px-10 py-4">
                 <h2>이름</h2>
                 <input className="rounded-lg w-full border-black border-2 p-2 mt-1" onChange={() => setName(event.target.value)}></input>
             </div>
-            <div className="px-10 py-5">
+            <div className="px-10 py-4">
                 <h2>휴대폰 인증</h2>
                 <CustomButton key={phoneChecked} rounded = "true" className={`w-full ${phoneChecked ? "bg-main02" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"}`} onClick={() => setphoneChecked(false)}>
                      휴대폰 인증하기

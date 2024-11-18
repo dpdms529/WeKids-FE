@@ -23,7 +23,7 @@ export default function Bottom ({setAllChecked}){
 
     return(
         <>
-        <div className="px-10 py-5">
+        <div className="px-10 py-4">
                 <h2>약관동의</h2>
                 <div className="border-black border-2 h-68 rounded-lg">
                     {assigndata.map((text, idx)=>(

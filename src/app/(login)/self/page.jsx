@@ -14,7 +14,7 @@ export default function Page() {
     const router = useRouter();
 
     return (
-        <div className="fl  ex flex-col w-[393px] h-screen overflow-y-auto scrollbar-hide bg-white">
+        <div className="flex flex-col w-[393px] h-screen overflow-y-auto scrollbar-hide bg-white">
             <Top setAllChecked={setTopChecked}/>
             <Bottom setAllChecked={setBottomChecked}/>
             <div className="px-10 py-5">
