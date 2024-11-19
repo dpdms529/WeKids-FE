@@ -13,7 +13,6 @@ const TransferModal = ({ isModalOpen, closeModal, selectedAccount, transferAmoun
       onClose={closeModal}
       width="393px"
       height="47vh"
-      translateY="0%"
       delete_button={true}
     >
       <div className="flex flex-col items-center mt-4 p-8 ">
