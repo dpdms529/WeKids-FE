@@ -3,13 +3,13 @@ import { EnvelopeClosedIcon, PersonIcon } from "@radix-ui/react-icons";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center px-5 py-3 bg-gray-100 border-b border-gray-300">
-      <img src="/images/logoImg.svg" alt="Logo" className="h-6 w-auto" />
-      <div className="flex space-x-4">
+    <header className="flex justify-between items-center pr-7 pl-6 ">
+      <img src="/images/logoImg.svg" alt="Logo" className="mr-5 mt-5" />
+      <div className="flex space-x-4 items-baseline mt-10">
         {/* 알람 아이콘 */}
-        <EnvelopeClosedIcon className="h-6 w-6 cursor-pointer" />
+        <EnvelopeClosedIcon className="h-5 w-5 cursor-pointer" />
         {/* 프로필 아이콘 */}
-        <PersonIcon className="h-6 w-6 cursor-pointer" />
+        <PersonIcon className="h-5 w-5 mr-4 cursor-pointer" />
       </div>
     </header>
   );
