@@ -1,16 +1,17 @@
 'use client';
 
 import ConfirmButton from "@/src/ui/Components/transaction/detail/ConfirmButton";
+import CustomButton from "@/src/ui/Components/atoms/CustomButton"
 import React, {useState} from "react";
 import ParentChildSelector from "@/src/ui/Components/atoms/signup/ParentChildSelector";
-
-
+import { urlPath } from "@/src/constants/common";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
 
     const [isParentClicked, setParentClicked] = useState(false);
     const [isChildClicked, setChildClicked] = useState(false);
-
+    const router = useRouter();
 
     return(
         <div className="flex flex-col h-screen bg-white overflow-y-auto w-[393px] items-center px-10"> 
@@ -34,7 +35,7 @@ export default function Page() {
                     />
             </div>
             <div className="fixed bottom-5">
-                <ConfirmButton />
+                <CustomButton onClick={() => router.push(urlPath.HOME)}>확인</CustomButton>
             </div>
         </div>
     )
