@@ -12,7 +12,6 @@ const Page = () => {
       <div className="p-6">
         <h1 className="text-2xl mb-4">Example Usage of CommonComponent</h1>
         <InputTextBox
-          height={60}
           placeholder={placeholderValue}
           onPlaceholderChange={handlePlaceholderChange}
         />

@@ -6,13 +6,13 @@ const InputTextBox = ({
   height = 51,
   placeholder = "값을 입력하세요",
   onPlaceholderChange,
+  radius = 12, // default value for radius
 }) => {
   const [value, setValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
   const handleChange = (e) => {
     console.log(value);
-
     setValue(e.target.value);
   };
 
@@ -33,11 +33,12 @@ const InputTextBox = ({
 
   const borderColor = isFocused || value ? "black" : "gray"; // 입력 값에 따라 border 색상 변경
   const textColor = value ? "black" : "gray"; // 값에 따라 텍스트 색상 변경
-  const boxShadow = isFocused ? "0 0 5px rgba(0, 0, 0, 0.2)" : "none"; // 포커스 시 그림자
+  const boxShadow = isFocused ? "0 0 5px rgba(0, 0, 0, 0.1)" : "none"; // 포커스 시 그림자
 
   return (
     <div style={{ width, height }}>
       <input
+        className="text-R-14"
         type="text"
         value={value}
         onChange={handleChange}
@@ -48,8 +49,10 @@ const InputTextBox = ({
           width: "100%",
           height: "100%",
           border: `2px solid ${borderColor}`,
-          borderRadius: "4px",
-          padding: "10px",
+          borderRadius: `${radius}px`, // radius 값 적용
+          paddingTop: 18,
+          paddingBottom: 18,
+          paddingLeft: 12,
           boxSizing: "border-box",
           color: textColor,
           boxShadow: boxShadow,
