@@ -15,7 +15,6 @@ const Page = () => {
         <InputTextBox
           value={inputValue} // 부모에서 관리하는 값
           onChange={handleInputChange} // 부모에서 관리하는 onChange 함수
-          className
         ></InputTextBox>
         <p>입력한 값: {inputValue}</p> {/* 입력한 값을 출력 */}
       </div>
