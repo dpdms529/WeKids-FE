@@ -7,7 +7,8 @@ export default function ParentChildSelector({
         onClick = () => {},  
         width = "w-full", 
         height="h-20", 
-        selectedColor = "bg-sky-200" }) {
+        selectedColor = "bg-main04 bg-opacity-50",
+        className }) {
         
 return(
                 <div className={`rounded-xl 
