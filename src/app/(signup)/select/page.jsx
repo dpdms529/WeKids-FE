@@ -2,9 +2,10 @@
 
 import CustomButton from "@/src/ui/Components/atoms/CustomButton"
 import React, {useState} from "react";
-import ParentChildSelector from "@/src/ui/Components/atoms/signup/ParentChildSelector";
+import ParentChildSelector from "@/src/ui/Components/signup/ParentChildSelector";
 import { urlPath } from "@/src/constants/common";
 import { useRouter } from "next/navigation";
+import SelectorItem from "@/src/ui/Components/signup/SelectorItem";
 
 export default function Page() {
 
@@ -22,16 +23,23 @@ export default function Page() {
                         setParentClicked(true);
                         setChildClicked(false);
                     }}
-                    text="부모입니다."
-                    description="자녀에게 용돈을 줄거에요."
-                    />
+                    >
+                        <SelectorItem 
+                        isSelected={isParentClicked}
+                        text="부모입니다."
+                        description="자녀에게 용돈을 줄거에요."/>
+                    </ParentChildSelector>
+                    
                 <ParentChildSelector isSelected={isChildClicked} onClick={() => {
                         setParentClicked(false);
                         setChildClicked(true);
                     }}
-                    text="자녀입니다."
-                    description="용돈을 받고 금융도 배울거에요."
-                    />
+                    >
+                        <SelectorItem 
+                        isSelected={isChildClicked}
+                        text="자녀입니다."
+                        description="용돈을 받고 금융도 배울거에요."/>
+                    </ParentChildSelector>
             </div>
             <div className="fixed bottom-5">
                 <CustomButton className={`${isParentClicked || isChildClicked ? "bg-main01": "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`} 
