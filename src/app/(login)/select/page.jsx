@@ -1,6 +1,5 @@
 'use client';
 
-import ConfirmButton from "@/src/ui/Components/transaction/detail/ConfirmButton";
 import CustomButton from "@/src/ui/Components/atoms/CustomButton"
 import React, {useState} from "react";
 import ParentChildSelector from "@/src/ui/Components/atoms/signup/ParentChildSelector";
@@ -35,7 +34,12 @@ export default function Page() {
                     />
             </div>
             <div className="fixed bottom-5">
-                <CustomButton onClick={() => router.push(urlPath.HOME)}>확인</CustomButton>
+                <CustomButton className={`${isParentClicked || isChildClicked ? "bg-main01": "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`} 
+                onClick={() => {
+                    if (isParentClicked || isChildClicked) {
+                        router.push(urlPath.HOME);
+                    }
+                }}>확인</CustomButton>
             </div>
         </div>
     )
