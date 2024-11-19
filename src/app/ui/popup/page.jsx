@@ -14,6 +14,9 @@ const Page = () => {
       {isPopupOpen && (
         <PopupMessage
           isOpen={isPopupOpen}
+          title="배송지 등록 완료"
+          message="배송지 등록이 완료되었습니다."
+          buttonText="확인"
           onButtonClick={handleClose}
           onClose={handleClose}
         />

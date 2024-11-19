@@ -2,8 +2,8 @@ import CustomButton from "../atoms/CustomButton";
 
 const PopupMessage = ({
   isOpen,
-  title = "배송지 등록 완료",
-  message = "배송지 등록이 완료되었습니다.",
+  title = "제목",
+  message = "문구",
   buttonText = "확인",
   onClose,
   width = "375px",
