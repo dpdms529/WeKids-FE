@@ -1,71 +1,50 @@
-// PopupMessage.js
+import CustomButton from "../atoms/CustomButton";
 
 const PopupMessage = ({
-  title,
-  message,
-  buttonText,
-  onButtonClick,
-  width,
-  height,
-  onClose, // X 버튼이나 확인 버튼 클릭 시 호출될 함수
+  isOpen,
+  title = "배송지 등록 완료",
+  message = "배송지 등록이 완료되었습니다.",
+  buttonText = "확인",
+  onClose,
+  width = "375px",
+  height = "208px",
 }) => {
   return (
     <div
-      style={{
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        backgroundColor: "white",
-        padding: "24px",
-        border: "1px solid #ccc",
-        borderRadius: "10px", // border-radius 10px 적용
-        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-        width: width || "358px",
-        height: height || "auto",
-        textAlign: "center",
-        position: "relative", // 부모 요소에 relative 위치 설정
-      }}
+      className={`fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-300 ${
+        isOpen ? "bg-black bg-opacity-40" : "opacity-0 pointer-events-none"
+      }`}
     >
-      {/* 왼쪽 상단 X 버튼 */}
-      <button
-        onClick={onClose} // X 버튼 클릭 시 onClose 호출
-        style={{
-          position: "absolute",
-          top: "10px", // 상단 10px
-          left: "10px", // 왼쪽 10px
-          background: "transparent", // 배경 없애기
-          border: "none", // 테두리 없애기
-          color: "#000", // 글자색 검정
-          fontSize: "20px", // 아이콘 크기
-          cursor: "pointer", // 마우스 커서 손 모양으로 변경
-        }}
+      <div
+        className="bg-white rounded-xl shadow-lg relative"
+        style={{ width, height }}
       >
-        X
-      </button>
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 left-3 text-neutral-400 hover:text-gray-400"
+        >
+          ×
+        </button>
 
-      <h3>{title}</h3>
-      <p>{message}</p>
-      <button
-        onClick={() => {
-          onButtonClick(); // 확인 버튼 클릭 시 onButtonClick 호출
-          onClose(); // 클릭 후 팝업 닫기
-        }}
-        style={{
-          backgroundColor: "#007bff",
-          color: "white",
-          border: "none",
-          padding: "8px 16px",
-          borderRadius: "4px", // button의 border-radius
-          cursor: "pointer",
-          position: "absolute", // 버튼을 절대 위치로 설정
-          bottom: "18px", // 바닥에서 18px 위로 위치
-          left: "50%", // 버튼을 가로로 중앙 정렬
-          transform: "translateX(-50%)", // 버튼을 중앙으로 정렬
-        }}
-      >
-        {buttonText}
-      </button>
+        {/* Content container */}
+        <div className="p-6 flex flex-col h-full justify-center items-center text-center">
+          {/* Title */}
+          <h2 className="text-R-20">{title}</h2>
+
+          {/* Message */}
+          <p className="p-5 text-R-14">{message}</p>
+
+          <CustomButton
+            size="mediumLarge"
+            rounded={true}
+            onClick={onClose}
+            className="w-full rounded-md mt-4 border border-black"
+          >
+            {buttonText}
+          </CustomButton>
+        </div>
+      </div>
     </div>
   );
 };
