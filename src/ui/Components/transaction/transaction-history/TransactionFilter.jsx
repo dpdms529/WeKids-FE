@@ -42,7 +42,7 @@ export const TransactionFilter = () => {
         </div>
         <Box
           onClick={() => setIsModalOpen(true)}
-          className="text-R-12 text-black/80"
+          className="text-R-12 text-black/60"
         >
           {`${range} · ${type} · ${sortingType} ▼`}
         </Box>
