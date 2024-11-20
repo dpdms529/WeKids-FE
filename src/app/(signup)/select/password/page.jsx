@@ -21,7 +21,14 @@ export default function Page() {
                 
         
             </div>
-            
+            <div className="flex flex-col h-1/5 p-10 ">
+                    <CustomButton rounded = "true" className="mt-auto w-full">
+                        확인
+                    </ CustomButton>
+                </div>
+            <div className="flex flex-col mt-auto w-[393px]">
+                <KeyPad />
+            </div>
         </div>
     );
 }
