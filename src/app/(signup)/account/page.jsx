@@ -18,7 +18,7 @@ export default function Page() {
         <div className="flex flex-col bg-white h-screen max-w-[393px] overflow-y-hidden">
             <Header />
             <AccountItem selectedIndex = {selectedIndex} setSelectedIndex = {setSelectedIndex} />
-            <div className="flex">
+            <div className="flex h-1/5 pt-10 items-center">
                 <CustomButton onClick={() => {router.push(urlPath.HOME)}} >
                     가져오기
                 </CustomButton>
