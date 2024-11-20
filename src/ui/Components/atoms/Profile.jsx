@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Image from "next/image";
 
 const PROFILE_DEFAULT = {
@@ -7,7 +6,7 @@ const PROFILE_DEFAULT = {
   height: "h-[60px]",
   bgColor: "bg-white",
   borderColor: "border-2 border-gray-200",
-  imagePath: "/images/avatarImg.svg",
+  imagePath: "/images/chachaping_img.svg",
   radius: "rounded-full",
 };
 
@@ -19,6 +18,7 @@ const Profile = ({
   imagePath = PROFILE_DEFAULT.imagePath,
   radius = PROFILE_DEFAULT.radius,
   onClick,
+  className = "",
 }) => {
   return (
     <div
@@ -32,9 +32,15 @@ const Profile = ({
           rounded-full
           overflow-hidden
           relative
+          ${className}
         `}
     >
-      <Image src={imagePath} alt="profile image" fill className="object-cover" />
+      <Image
+        src={imagePath}
+        alt="profile image"
+        fill
+        className="object-cover"
+      />
     </div>
   );
 };
