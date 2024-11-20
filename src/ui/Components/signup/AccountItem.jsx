@@ -10,16 +10,12 @@ const dummyData = [
     { id: 4, name: "모임 통장", account: "444-4444-444", balance: 1000000 },
   ];
 
-export default function AccountItem({}) {
+export default function AccountItem({selectedIndex, setSelectedIndex}) {
 
-    const [selectedAccounts, setSelectedAccounts] = useState(
-        dummyData.map(() => false)
-      );
+    
       
       const toggleAccountSelection = (index) => {
-        setSelectedAccounts((prev) =>
-          prev.map((isSelected, idx) => (idx == index ? !isSelected : isSelected))
-        );
+        setSelectedIndex((prev) => (prev === index ? null : index));
       };
 
       const totalBalance = dummyData.reduce((acc, item) => acc + item.balance, 0);
@@ -43,7 +39,7 @@ return(
         {dummyData.map((account, index) => (
             <ParentChildSelector
             key={account.id}
-            isSelected={selectedAccounts[index]}
+            isSelected={selectedIndex == index}
             className="my-4"
             onClick={() => toggleAccountSelection(index)}
         >
