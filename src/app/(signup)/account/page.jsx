@@ -46,6 +46,11 @@ export default function Page() {
                     </ParentChildSelector>   
                 </div>
             </div>
+            <div className="flex">
+                <CustomButton >
+                    가져오기
+                </CustomButton>
+            </div>
         </div>
     );
 }
