@@ -1,7 +1,7 @@
 "use client";
 
-import Top from "@/src/ui/Components/atoms/signup/Top"
-import Bottom from "@/src/ui/Components/atoms/signup/Bottom"
+import Top from "@/src/ui/Components/signup/Top"
+import Bottom from "@/src/ui/Components/signup/Bottom"
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";

@@ -1,6 +1,6 @@
 "use client";
 
-import Assign from "@/src/ui/Components/atoms/signup/Assign";
+import Assign from "@/src/ui/Components/signup/Assign";
 import {assigndata} from "@/src/constants/assign";
 import React, {useState, useEffect} from "react";
 
