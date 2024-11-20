@@ -1,8 +1,24 @@
 "use client"
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import KeyPad from "@/src/ui/Components/atoms/KeyPad";
+import {useEffect, useState} from "react";
 
 export default function Page() {
+    const [isInput, setIsInput] = useState([false, false, false, false, false, false]);
+
+
+    const inputHandler = (num) => {
+        if (num !== '⌫') {
+            const updateInput = [...isInput];
+            const index = updateInput.indexOf(false);
+            if (index != -1) {
+                updateInput[index] = true;
+            }
+            setIsInput(updateInput);
+        }
+        
+    }
+
     return (
         <div className="flex flex-col h-screen max-w-[393px] bg-white overflow-auto">
             
@@ -11,12 +27,12 @@ export default function Page() {
                     <p className="text-B-20">간편 비밀번호를 <br /> 등록해 주세요.</p>
                 </div>
                 <div className="flex flex-row gap-[21px] justify-center h-1/5">
-                    <div className="rounded-full w-[31px] h-[31px] bg-main01" />
-                    <div className="rounded-full w-[31px] h-[31px] bg-sub01" />
-                    <div className="rounded-full w-[31px] h-[31px] bg-main01" />
-                    <div className="rounded-full w-[31px] h-[31px] bg-sub01" />
-                    <div className="rounded-full w-[31px] h-[31px] bg-main01" />
-                    <div className="rounded-full w-[31px] h-[31px] bg-sub01" />
+                <div className={`rounded-full w-[31px] h-[31px] ${isInput[0] === false ? "bg-white border-2" : "bg-main01"} `} />
+                <div className={`rounded-full w-[31px] h-[31px] ${isInput[1] === false ? "bg-white border-2" : "bg-sub01"} `} />
+                <div className={`rounded-full w-[31px] h-[31px] ${isInput[2] === false ? "bg-white border-2" : "bg-main01"} `} />
+                <div className={`rounded-full w-[31px] h-[31px] ${isInput[3] === false ? "bg-white border-2" : "bg-sub01"} `} />
+                <div className={`rounded-full w-[31px] h-[31px] ${isInput[4] === false ? "bg-white border-2" : "bg-main01"} `} />
+                <div className={`rounded-full w-[31px] h-[31px] ${isInput[5] === false ? "bg-white border-2" : "bg-sub01"} `} />
                 </div>
                 
         
@@ -27,7 +43,7 @@ export default function Page() {
                     </ CustomButton>
                 </div>
             <div className="flex flex-col mt-auto w-[393px]">
-                <KeyPad />
+                <KeyPad number={() => inputHandler()}/>
             </div>
         </div>
     );
