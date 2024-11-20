@@ -1,10 +1,21 @@
 "use client"
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import KeyPad from "@/src/ui/Components/atoms/KeyPad";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function Page() {
-    const [isInput, setIsInput] = useState([false, false, false, false, false, false]);
+    const [isInput, setIsInput] = useState(Array(6).fill(false));
+    const [check, setChecked] = useState(false);
+
+    useEffect(() => {
+        if(isInput[5] === true && check === false){
+            setChecked(true);
+            setIsInput((prev) => prev.map(() => false));
+        }
+        else if(isInput[5] === true && check === true){
+            
+        }
+    }, [isInput[5]]);
 
 
     const inputHandler = (num) => {
@@ -33,7 +44,7 @@ export default function Page() {
             
             <div className="flex flex-col h-3/5 p-10 w-full">
                 <div className="flex items-center h-3/5">
-                    <p className="text-B-20">간편 비밀번호를 <br/> 등록해 주세요.</p>
+                    {check ? <p className="text-B-20">간편 비밀번호를 <br/> 다시 입력해 주세요.</p> : <p className="text-B-20">간편 비밀번호를 <br/> 등록해 주세요.</p>}
                 </div>
                 <div className="flex flex-row gap-[21px] justify-center h-1/5">
                 <div className={`rounded-full w-[31px] h-[31px] ${isInput[0] === false ? "bg-white border-2" : "bg-main01"} `} />
@@ -50,7 +61,7 @@ export default function Page() {
                     </ CustomButton>
                 </div>
             <div className="flex flex-col mt-auto w-[393px]">
-                <KeyPad number={inputHandler}/>
+                <KeyPad isDoubleButton={false} number={inputHandler}/>
             </div>
         </div>
     );
