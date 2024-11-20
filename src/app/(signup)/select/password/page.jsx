@@ -5,17 +5,30 @@ import {useEffect, useState} from "react";
 
 export default function Page() {
     const [isInput, setIsInput] = useState(Array(6).fill(false));
-    const [check, setChecked] = useState(false);
+    const [check, setChecked] = useState(0);
+    const [isShaking, setIsShaking] = useState(true);
+    const [pwd, setPwd] = useState("");
 
     useEffect(() => {
-        if(isInput[5] === true && check === false){
-            setChecked(true);
+        if(isInput[5] === true && check === 0){
+            setChecked(1);
             setIsInput((prev) => prev.map(() => false));
         }
-        else if(isInput[5] === true && check === true){
+        else if(isInput[5] === true && check === 1){
+            const firstValue = pwd.slice(0,6);
+            const secondValue = pwd.slice(6,12);
             
         }
     }, [isInput[5]]);
+
+    useEffect(() => {
+        if (isShaking) {
+          const timeout = setTimeout(() => {
+            setIsShaking(false);
+          }, 500);
+          return () => clearTimeout(timeout);
+        }
+      }, [isShaking]);
 
 
     const inputHandler = (num) => {
@@ -26,6 +39,7 @@ export default function Page() {
                 updateInput[index] = true;
             }
             setIsInput(updateInput);
+            setPwd(pwd + num);
         }
         else{
             const updateInput = [...isInput];
@@ -34,6 +48,7 @@ export default function Page() {
                 updateInput[index] = false;
             }
             setIsInput(updateInput);
+            setPwd(pwd.slice(0, -1));
         }
         
         
@@ -43,8 +58,9 @@ export default function Page() {
         <div className="flex flex-col h-screen max-w-[393px] bg-white overflow-auto">
             
             <div className="flex flex-col h-3/5 p-10 w-full">
-                <div className="flex items-center h-3/5">
+                <div className="flex flex-col justify-center h-3/5">
                     {check ? <p className="text-B-20">간편 비밀번호를 <br/> 다시 입력해 주세요.</p> : <p className="text-B-20">간편 비밀번호를 <br/> 등록해 주세요.</p>}
+                    {isShaking ? <p className=" text-red-600 shake-animation">다시 비밀번호가 일치하지 않아요.</p> : ""}
                 </div>
                 <div className="flex flex-row gap-[21px] justify-center h-1/5">
                 <div className={`rounded-full w-[31px] h-[31px] ${isInput[0] === false ? "bg-white border-2" : "bg-main01"} `} />
