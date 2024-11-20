@@ -15,7 +15,11 @@ export default function Page() {
                         <span className="text-R-20">간편 비밀번호가 등록 되었어요.</span>
                     </div>
                 </div>
-                
+                <div className="flex h-1/6 w-full items-end pb-[3px]">
+                    <CustomButton rounded={true}>
+                            확인
+                    </CustomButton>
+                </div>
             </div>
         </div>
     );
