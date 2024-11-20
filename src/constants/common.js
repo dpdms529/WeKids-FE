@@ -40,4 +40,7 @@ export const urlPath = {
   ACCOUNT_LIST: "/account-list",
   TRANSFER: "/transfer",
   DONE: "/transfer/done",
+  SIGNUP_SELECT: "/select",
+  SIGNUP_SELF: "/select/self",
+  SIGNUP_PHONE: "/select/phone"
 };

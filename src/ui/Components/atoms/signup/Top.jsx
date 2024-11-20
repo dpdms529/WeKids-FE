@@ -3,19 +3,39 @@
 import React, {useState, useEffect} from "react";
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import InputTextBox from "../InputTextBox";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { urlPath } from "@/src/constants/common";
 
 export default function Top ({setAllChecked}){
 
-    const [phoneChecked, setphoneChecked] = useState(true);
+    const [phoneChecked, setphoneChecked] = useState(false);
+    const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
+    const router = useRouter();
     
     useEffect(() => {
-        setAllChecked(email !== "" && name !== "" && !phoneChecked);
-    }, [phoneChecked, email, name, setAllChecked]);
+        console.log(email)
+        console.log(name)
+        email != "" && name != "" ? setphoneChecked(true) : setphoneChecked(false) 
+        
+        console.log(phoneChecked);
+        setAllChecked(email !== "" && name !== "" && phoneChecked);
+        
+    }, [phone, email, name, setAllChecked]);
+
+    const notify = () => {
+        toast('빈칸을 채워주세요!');
+      };
+
+    const PhoneClickListener = () =>{
+        router.push(urlPath.SIGNUP_PHONE); // 추후에 혹시라도 zustand 쓸수도 있어서 함수로
+    }
 
     return(
         <>
+            <Toaster position="top-center" />   
             <div className="px-5 py-2">
                 <h2>개인정보 입력</h2>
             </div>
@@ -29,7 +49,7 @@ export default function Top ({setAllChecked}){
             </div>
             <div className="px-10 py-4">
                 <h2>휴대폰 인증</h2>
-                <CustomButton key={phoneChecked} rounded = "true" className={`w-full ${phoneChecked ? "bg-main02" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"}`} onClick={() => setphoneChecked(false)}>
+                <CustomButton key={phoneChecked} rounded = "true" className={`w-full ${phoneChecked ? "bg-main02" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"}`} onClick={PhoneClickListener}>
                      휴대폰 인증하기
                 </CustomButton> 
             </div>
