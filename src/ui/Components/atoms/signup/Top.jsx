@@ -2,6 +2,7 @@
 
 import React, {useState, useEffect} from "react";
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import InputTextBox from "../InputTextBox";
 
 export default function Top ({setAllChecked}){
 
@@ -20,11 +21,11 @@ export default function Top ({setAllChecked}){
             </div>
             <div className="px-10 py-4">
                 <h2>이메일</h2>
-                <input className="rounded-lg w-full border-black border-2 p-2 mt-1 focus:shadow-xl focus:ring-black" onChange={() => setEmail(event.target.value)}></input>
+                <InputTextBox value={email} onChange={setEmail}/>
             </div>
             <div className="px-10 py-4">
                 <h2>이름</h2>
-                <input className="rounded-lg w-full border-black border-2 p-2 mt-1 focus:shadow-xl focus:ring-black" onChange={() => setName(event.target.value)}></input>
+                <InputTextBox value={name} onChange={setName}/>
             </div>
             <div className="px-10 py-4">
                 <h2>휴대폰 인증</h2>
