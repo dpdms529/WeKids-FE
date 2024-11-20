@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 export default function Page() {
     const [isInput, setIsInput] = useState(Array(6).fill(false));
     const [check, setChecked] = useState(0);
-    const [isShaking, setIsShaking] = useState(true);
+    const [isShaking, setIsShaking] = useState(false);
     const [pwd, setPwd] = useState("");
 
     useEffect(() => {
@@ -15,9 +15,10 @@ export default function Page() {
             setIsInput((prev) => prev.map(() => false));
         }
         else if(isInput[5] === true && check === 1){
+            console.log(pwd);
             const firstValue = pwd.slice(0,6);
             const secondValue = pwd.slice(6,12);
-            
+            firstValue == secondValue ? "" : setIsShaking(true);
         }
     }, [isInput[5]]);
 
@@ -32,24 +33,25 @@ export default function Page() {
 
 
     const inputHandler = (num) => {
-        if (num !== "⌫") {
-            const updateInput = [...isInput];
-            const index = updateInput.indexOf(false);
-            if (index != -1) {
-                updateInput[index] = true;
-            }
-            setIsInput(updateInput);
-            setPwd(pwd + num);
-        }
-        else{
+        if(num == "⌫"){
             const updateInput = [...isInput];
             const index = updateInput.lastIndexOf(true);
             if (index != -1) {
                 updateInput[index] = false;
             }
             setIsInput(updateInput);
-            setPwd(pwd.slice(0, -1));
+            pwd.length % 6 != 0 ? setPwd(pwd.slice(0, -1)) : "";
         }
+        else if(num != "") {
+            const updateInput = [...isInput];
+            const index = updateInput.indexOf(false);
+            if (index != -1) {
+                updateInput[index] = true;
+            }
+            setIsInput(updateInput);
+            pwd.length != 12 ? setPwd(pwd + num) : "";
+        }
+        
         
         
     }
@@ -60,7 +62,7 @@ export default function Page() {
             <div className="flex flex-col h-3/5 p-10 w-full">
                 <div className="flex flex-col justify-center h-3/5">
                     {check ? <p className="text-B-20">간편 비밀번호를 <br/> 다시 입력해 주세요.</p> : <p className="text-B-20">간편 비밀번호를 <br/> 등록해 주세요.</p>}
-                    {isShaking ? <p className=" text-red-600 shake-animation">다시 비밀번호가 일치하지 않아요.</p> : ""}
+                    {isShaking ? <p className=" text-red-600 shake-animation">비밀번호가 일치하지 않아요.</p> : ""}
                 </div>
                 <div className="flex flex-row gap-[21px] justify-center h-1/5">
                 <div className={`rounded-full w-[31px] h-[31px] ${isInput[0] === false ? "bg-white border-2" : "bg-main01"} `} />
