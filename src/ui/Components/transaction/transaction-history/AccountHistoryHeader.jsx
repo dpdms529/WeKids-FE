@@ -4,6 +4,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const account = {
   childId: 1,
@@ -18,6 +19,7 @@ const account = {
 };
 
 export default function AccountHistoryHeader({ name, balance, accountNumber }) {
+  const router = useRouter();
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)
@@ -27,6 +29,10 @@ export default function AccountHistoryHeader({ name, balance, accountNumber }) {
 
   const handleSettingsClick = () => {
     alert("설정 버튼 클릭됨");
+  };
+  const handleNavigate = () => {
+    router.replace(urlPath.HOME, { scroll: false });
+    // 페이지 이동 후 필요한 상태 업데이트나 데이터 로딩을 수행
   };
 
   return (
@@ -42,9 +48,9 @@ export default function AccountHistoryHeader({ name, balance, accountNumber }) {
         direction="row"
         className="w-full pt-8 pl-3 pr-3"
       >
-        <Link href={urlPath.HOME}>
+        <div onClick={handleNavigate} className="cursor-pointer">
           <ArrowLeftIcon className="w-5 h-5 text-black/80" />
-        </Link>
+        </div>
         <h1 className="text-black/80 text-R-14">{name}의 통장</h1>
         <Box>
           <GearIcon className="w-5 h-5 text-black/80" />
