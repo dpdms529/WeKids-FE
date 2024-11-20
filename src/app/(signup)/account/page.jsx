@@ -1,6 +1,7 @@
 'use client'
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import ParentChildSelector from "@/src/ui/Components/signup/ParentChildSelector";
+import SelectorAccount from "@/src/ui/Components/signup/SelectorAccount";
 import Header from "@/src/ui/layout/Header";
 import Image from "next/image";
 import {useState} from "react";
@@ -26,23 +27,7 @@ export default function Page() {
             </div>
                 <div className="flex flex-col my-4 w-full overflow-y-auto scrollbar-hide">
                     <ParentChildSelector  isSelected={isSelected} className="my-4" onClick={() => {setIsSelected(!isSelected)}}>
-                        <div className="flex flex-row w-full h-20 pt-1 gap-2">
-                            <div className="flex flex-col justify-start w-1/5">
-                                <Image src="/images/woorisvg.svg" alt="woori" width={68} height={68} />
-                            </div>
-                            <div className="flex flex-col w-2/5 items-start justify-start pt-2">
-                                <div>
-                                    <span className="text-R-20">입출금 통장</span>
-                                </div>
-                                <div>
-                                    <span className="text-R-10 text-stone-300">111-222-333</span>
-                                </div>
-                            </div>
-                            <div className="flex flex-col w-2/5 justify-end items-end pb-3 pr-3">
-                                    <span>10,000원</span>
-                            </div>
-
-                        </div>
+                        <SelectorAccount />
                     </ParentChildSelector>   
                 </div>
             </div>
