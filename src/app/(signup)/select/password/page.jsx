@@ -29,7 +29,8 @@ export default function Page() {
           const timeout = setTimeout(() => {
             setIsShaking(false);
             setIsInput((prev) => prev.map(() => false));
-            setPwd(pwd.slice(0, -6));
+            setPwd("");
+            setChecked(0);
           }, 500);
           return () => clearTimeout(timeout);
         }
@@ -80,7 +81,12 @@ export default function Page() {
             <div className="flex flex-col h-1/5 p-10 ">
                     <CustomButton rounded = "true" 
                     className={`mt-auto w-full ${(pwd.length == 12)  ? "bg-main02" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"}`}
-                    disabled={!(pwd.length == 12)}>
+                    disabled={!(pwd.length == 12)}
+                    onClick={() => {
+                        if (pwd.length == 12) {
+                            router.push(urlPath.HOME);
+                        }
+                    }}>
                         확인
                     </ CustomButton>
                 </div>
