@@ -11,7 +11,9 @@ export default function Page() {
                             <CheckIcon className="flex w-[49px] h-[43px] text-white "/>
                         </div>
                     </div>
-                    
+                    <div>
+                        <span className="text-R-20">간편 비밀번호가 등록 되었어요.</span>
+                    </div>
                 </div>
                 
             </div>
