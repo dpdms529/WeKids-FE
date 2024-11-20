@@ -18,6 +18,8 @@ export default function Page() {
             console.log(pwd);
             const firstValue = pwd.slice(0,6);
             const secondValue = pwd.slice(6,12);
+            console.log(firstValue);
+            console.log(secondValue);
             firstValue == secondValue ? "" : setIsShaking(true);
         }
     }, [isInput[5]]);
@@ -26,6 +28,8 @@ export default function Page() {
         if (isShaking) {
           const timeout = setTimeout(() => {
             setIsShaking(false);
+            setIsInput((prev) => prev.map(() => false));
+            setPwd(pwd.slice(0, -6));
           }, 500);
           return () => clearTimeout(timeout);
         }
@@ -40,7 +44,7 @@ export default function Page() {
                 updateInput[index] = false;
             }
             setIsInput(updateInput);
-            pwd.length % 6 != 0 ? setPwd(pwd.slice(0, -1)) : "";
+            pwd.length != 6 ? setPwd(pwd.slice(0, -1)) : "";
         }
         else if(num != "") {
             const updateInput = [...isInput];
@@ -74,7 +78,9 @@ export default function Page() {
                 </div>
             </div>
             <div className="flex flex-col h-1/5 p-10 ">
-                    <CustomButton rounded = "true" className="mt-auto w-full">
+                    <CustomButton rounded = "true" 
+                    className={`mt-auto w-full ${(pwd.length == 12)  ? "bg-main02" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"}`}
+                    disabled={!(pwd.length == 12)}>
                         확인
                     </ CustomButton>
                 </div>
