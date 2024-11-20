@@ -11,8 +11,6 @@ export default function Bottom ({setAllChecked, option = 3}){
 
     useEffect(() => {
         const items = checkedItems.slice(0, option);
-        console.log(items);
-        console.log(checkedItems);
         setAllChecked(items.every((isChecked) => isChecked));
         if (checkedItems.some((item) => item === false)) {
             setAllCheck(false);
@@ -45,12 +43,12 @@ export default function Bottom ({setAllChecked, option = 3}){
                 <h2>약관동의</h2>
                 <div className="border-black border-2 h-68 rounded-lg">
                     <div className="flex flex-col space-y-2 p-3 items-start">
-                    <div className="flex flex-row justify-between w-full">
-                        <input type="checkbox" className="ml-2" checked={allCheck}
-                        onChange={(isChecked) => handleCheckboxChange(-1, isChecked)}/>
-                    <div className="text-R-14 ml-5 flex-grow">전체 동의</div>
-                    </div>
-                </div> 
+                        <div className="flex flex-row justify-between w-full">
+                            <input type="checkbox" className="ml-2" checked={allCheck}
+                            onChange={(isChecked) => handleCheckboxChange(-1, isChecked)}/>
+                        <div className="text-R-14 ml-5 flex-grow">전체 동의</div>
+                        </div>
+                    </div> 
                     {assigndata.map((text, idx)=>(
                         <Assign key={idx} text={text} isChecked={ checkedItems[idx] } 
                         onChange={(isChecked) => handleCheckboxChange(idx, isChecked)} option={idx < option} />
