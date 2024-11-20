@@ -1,11 +1,13 @@
 "use client";
+import { urlPath } from "@/src/constants/common";
 import { AccountTransactionTypeEnum } from "@/src/constants/transaction";
 import { useTransFilterStore } from "@/src/stores/transactionStore";
 import { Flex } from "@radix-ui/themes";
+import Link from "next/link";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 
-export const TransactionsView = () => {
+export const TransactionsView = ({ transactionId }) => {
   const [transactions, setTransactions] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const { search, sortingType } = useTransFilterStore();
@@ -62,54 +64,56 @@ export const TransactionsView = () => {
 
   return (
     <Flex direction="column" className="bg-white h-[53vh] overflow-auto">
-      <InfiniteScroll
-        pageStart={0}
-        loadMore={loadMore}
-        hasMore={hasMore}
-        loader={
-          <div className="loader text-black/80 text-R-20" key={0}>
-            Loading ...
-          </div>
-        }
-        useWindow={false}
-      >
-        {filteredTransactions.map((transaction, index) => (
-          <div key={index} className="border-b border-gray-100 p-4">
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col">
-                <div className="flex gap-4">
-                  <span className="text-gray-600 text-R-14">
-                    {formatDate(transaction.create_at)}
-                  </span>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-R-14">{transaction.title}</span>
-                    <span className="text-main01 text-R-10 mt-2">
-                      #{transaction.type}
+      <Link href={`${urlPath.TRANSACTION_HISTORY}/${transactionId}`}>
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={loadMore}
+          hasMore={hasMore}
+          loader={
+            <div className="loader text-black/80 text-R-20" key={0}>
+              Loading ...
+            </div>
+          }
+          useWindow={false}
+        >
+          {filteredTransactions.map((transaction, index) => (
+            <div key={index} className="border-b border-gray-100 p-4">
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
+                  <div className="flex gap-4">
+                    <span className="text-gray-600 text-R-14">
+                      {formatDate(transaction.create_at)}
                     </span>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-R-14">{transaction.title}</span>
+                      <span className="text-main01 text-R-10 mt-2">
+                        #{transaction.type}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-col items-end">
-                <span
-                  className={`text-R-18 ${
-                    transaction.type === AccountTransactionTypeEnum.DEPOSIT
-                      ? "text-main01"
-                      : ""
-                  }`}
-                >
-                  {transaction.type === AccountTransactionTypeEnum.WITHDRAWAL
-                    ? "-"
-                    : ""}
-                  {transaction.amount.toLocaleString()}원
-                </span>
-                <span className="text-neutral-400 text-R-14 mt-2">
-                  {transaction.balance.toLocaleString()}원
-                </span>
+                <div className="flex flex-col items-end">
+                  <span
+                    className={`text-R-18 ${
+                      transaction.type === AccountTransactionTypeEnum.DEPOSIT
+                        ? "text-main01"
+                        : ""
+                    }`}
+                  >
+                    {transaction.type === AccountTransactionTypeEnum.WITHDRAWAL
+                      ? "-"
+                      : ""}
+                    {transaction.amount.toLocaleString()}원
+                  </span>
+                  <span className="text-neutral-400 text-R-14 mt-2">
+                    {transaction.balance.toLocaleString()}원
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </InfiniteScroll>
+          ))}
+        </InfiniteScroll>
+      </Link>
     </Flex>
   );
 };
