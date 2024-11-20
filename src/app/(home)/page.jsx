@@ -17,7 +17,7 @@ const childAccounts = [
   {
     id: 2,
     accountNumber: "3333-0073-0030-04",
-    balance: 450000,
+    balance: 450,
     name: "이준호",
     state: "inactive",
     designType: "GOGOPING",
@@ -25,7 +25,7 @@ const childAccounts = [
   {
     id: 3,
     accountNumber: "3333-0073-0030-05",
-    balance: 120000,
+    balance: 0,
     name: "김민수",
     state: "ACTIVE",
     designType: "HEARTSPRING",
@@ -49,13 +49,23 @@ export default function MainHome() {
     <div className={`flex flex-col h-full`}>
       <div className="flex space-x-3 mb-6 ml-8 mt-4">
         {childAccounts.map((account) => (
-          <Profile
+          <div
             key={account.id}
-            accountInfo={account}
-            imagePath={characterInfoMap[account.designType].imagePath}
-            onClick={() => handleProfileClick(account)} // onClick이 제대로 전달되었는지 확인
-            className="w-10 h-10"
-          />
+            className="relative cursor-pointer"
+            onClick={() => handleProfileClick(account)}
+          >
+            <Profile
+              accountInfo={account}
+              imagePath={characterInfoMap[account.designType].imagePath}
+              className="w-10 h-10 relative z-10 ring-1 ring-black/60"
+            />
+            {selectedAccount?.id !== account.id && (
+              <div
+                className="absolute inset-0 bg-black/50 rounded-full pointer-events-none"
+                style={{ zIndex: 20 }}
+              />
+            )}
+          </div>
         ))}
       </div>
       <div className="flex justify-center">
