@@ -3,12 +3,26 @@ import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import ParentChildSelector from "@/src/ui/Components/signup/ParentChildSelector";
 import SelectorAccount from "@/src/ui/Components/signup/SelectorAccount";
 import Header from "@/src/ui/layout/Header";
-import Image from "next/image";
 import {useState} from "react";
+
+const dummyData = [
+    { id: 1, name: "입출금 통장", account: 111-111-111, balance: 1000000 },
+    { id: 2, name: "적금 통장", account: 222-222-222, balance: 1000000 },
+    { id: 3, name: "예금 통장", account: 333-333-333, balance: 1000000 },
+    { id: 4, name: "모임 통장", account: 444-4444-444, balance: 1000000 },
+  ];
 
 export default function Page() {
 
-    const [isSelected, setIsSelected] = useState(false);
+    const [selectedAccounts, setSelectedAccounts] = useState(
+        dummyData.map(() => false)
+      );
+      
+      const toggleAccountSelection = (index) => {
+        setSelectedAccounts((prev) =>
+          prev.map((isSelected, idx) => (idx === index ? !isSelected : isSelected))
+        );
+      };
 
     return (
         <div className="flex flex-col bg-white h-screen max-w-[393px] overflow-y-hidden">
@@ -26,9 +40,16 @@ export default function Page() {
                 </div>
             </div>
                 <div className="flex flex-col my-4 w-full overflow-y-auto scrollbar-hide">
-                    <ParentChildSelector  isSelected={isSelected} className="my-4" onClick={() => {setIsSelected(!isSelected)}}>
-                        <SelectorAccount />
-                    </ParentChildSelector>   
+                {dummyData.map((account, index) => (
+                    <ParentChildSelector
+                    key={account.id}
+                    isSelected={selectedAccounts[index]} // 선택 상태
+                    className="my-4"
+                    onClick={() => toggleAccountSelection(index)} // 클릭 이벤트
+                >
+                    <SelectorAccount name={account.name} account={account.account} balance={account.balance} />
+                </ParentChildSelector>
+                ))}      
                 </div>
             </div>
             <div className="flex">
