@@ -5,16 +5,16 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
 
-const TransferModal = ({ isModalOpen, closeModal, selectedAccount, transferAmount }) => {
+const TransferModal = ({ isModalOpen, modalHandler, selectedAccount, transferAmount }) => {
   const router = useRouter();
   return (
     <Modal
       isOpen={isModalOpen}
-      onClose={closeModal}
+      modalHandler={modalHandler}
       width="393px"
       height="47vh"
       translateY="0%"
-      delete_button={true}
+      deletebutton={true}
     >
       <div className="flex flex-col items-center mt-4">
         <Profile />
@@ -26,7 +26,7 @@ const TransferModal = ({ isModalOpen, closeModal, selectedAccount, transferAmoun
         <p className="text-R-12 mt-5 text-gray-400">받는계좌 : 우리은행 {selectedAccount.account}</p>
       </div>
       <div className="flex space-x-3 mt-7">
-        <CustomButton size="small" color="gray" rounded={true} onClick={closeModal}>
+        <CustomButton size="small" color="gray" rounded={true} onClick={modalHandler}>
           취소
         </CustomButton>
         <CustomButton size="medium" rounded={true} onClick={() => router.push(urlPath.DONE)}>
