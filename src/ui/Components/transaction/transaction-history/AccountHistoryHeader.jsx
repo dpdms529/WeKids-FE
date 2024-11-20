@@ -61,7 +61,7 @@ export default function AccountHistoryHeader({ name, balance, accountNumber }) {
       <div className="flex-1 flex items-center">
         <Flex direction="column" align="center">
           <p
-            className="text-R-14 underline text-black/80"
+            className="text-R-14 underline text-black/40"
             style={{ textUnderlineOffset: "6px" }}
           >
             {accountNumber}
