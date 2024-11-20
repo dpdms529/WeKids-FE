@@ -18,7 +18,9 @@ export default function Page() {
           <TransactionFilter />
         </Box>
         <Box>
-          <TransactionsView />
+          {/* todo 여기에 AccountHistoryHead에 들어가는
+          더미 불러올 때 받아오는 id 값 넣어주면 됨 */}
+          <TransactionsView id="1" />
         </Box>
       </Flex>
     </section>
