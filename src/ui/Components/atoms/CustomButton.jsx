@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
-
 const sizes = {
   small: "w-[131px] h-[60px]",
   medium: "w-[262px] h-[60px]",
+  mediumLarge: "w-[313px] h-[53px]",
   large: "w-[393px] h-[60px]",
 };
 
@@ -27,9 +26,9 @@ const CustomButton = ({
 }) => {
   return (
     <button
-      className={`flex items-center justify-center text-R-20 ${colors[color]} ${sizes[size]} ${
-        rounded ? "rounded-[11px]" : "rounded-none"
-      } ${className}`}
+      className={`flex items-center justify-center text-R-20 ${colors[color]} ${
+        sizes[size]
+      } ${rounded ? "rounded-[11px]" : "rounded-none"} ${className}`}
       onClick={onClick}
     >
       {children}

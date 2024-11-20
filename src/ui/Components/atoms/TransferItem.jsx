@@ -1,18 +1,18 @@
 import React from "react";
 import Profile from "./Profile";
 
-const TransactionList = ({ name, account, bank, isSelected, onClick }) => {
+const TransferItem = ({ name, account, bank, isSelected, onClick }) => {
   return (
     <div
       onClick={onClick}
       className={`cursor-pointer flex items-center p-4 border ${
-        isSelected ? "border-black bg-gray-400" : "border-transparent"
+        isSelected ? "border-black " : "border-stone-300"
       }`}
     >
       <Profile height={"h-[50px]"} width={"w-[50px]"} />
       <div className="ml-4">
-        <p className="font-bold">{name}</p>
-        <p className="text-gray-500 text-sm">
+        <p className="text-B-14">{name}</p>
+        <p className="text-neutral-400 text-R-14">
           {bank} {account}
         </p>
       </div>
@@ -20,4 +20,4 @@ const TransactionList = ({ name, account, bank, isSelected, onClick }) => {
   );
 };
 
-export default TransactionList;
+export default TransferItem;

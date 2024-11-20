@@ -82,7 +82,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-gray-100">
+    <div className="flex flex-col h-screen overflow-hidden bg-white">
       <TransferAmountDisplay
         selectedAccount={selectedAccount}
         transferAmount={transferAmount}
