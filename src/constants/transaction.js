@@ -18,5 +18,5 @@ export const SortEnum = {
 
 export const AccountTransactionTypeEnum = {
     DEPOSIT: "입금",
-    WITHDRAWAL: "출력",
+    WITHDRAWAL: "출금",
 };
