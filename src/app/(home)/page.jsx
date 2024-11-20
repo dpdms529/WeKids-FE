@@ -60,10 +60,7 @@ export default function MainHome() {
               className="w-10 h-10 relative z-10 ring-1 ring-black/60"
             />
             {selectedAccount?.id !== account.id && (
-              <div
-                className="absolute inset-0 bg-black/50 rounded-full pointer-events-none"
-                style={{ zIndex: 20 }}
-              />
+              <div className="absolute inset-0 bg-black/50 rounded-full pointer-events-none z-20" />
             )}
           </div>
         ))}
