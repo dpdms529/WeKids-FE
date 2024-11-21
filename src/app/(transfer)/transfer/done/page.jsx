@@ -29,7 +29,7 @@ const Page = () => {
           <p className="text-B-28">
             {transferData.amount.toLocaleString()}원 보냈어요
           </p>
-          <div className="flex items-center justify-center gap-1 text-R-14 text-neutral-300 mt-2">
+          <div className="flex items-center justify-center text-R-14 text-neutral-300 pt-4">
             {transferData.bankName} {transferData.accountNumber}
             <ChevronRightIcon
               width="16"
