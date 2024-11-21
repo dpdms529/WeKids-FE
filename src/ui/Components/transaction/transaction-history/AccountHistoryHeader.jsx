@@ -31,8 +31,9 @@ export default function AccountHistoryHeader({ name, balance, accountNumber }) {
     alert("설정 버튼 클릭됨");
   };
   const handleNavigate = () => {
-    router.replace(urlPath.HOME, { scroll: false });
-    // 페이지 이동 후 필요한 상태 업데이트나 데이터 로딩을 수행
+    // router.replace(urlPath.HOME, { scroll: false });
+    // // 페이지 이동 후 필요한 상태 업데이트나 데이터 로딩을 수행
+    window.location.replace(urlPath.HOME);
   };
 
   return (
