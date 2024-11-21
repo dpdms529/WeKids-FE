@@ -21,26 +21,26 @@ export const TransFilterModal = ({ onClose }) => {
       className="fixed top-0 bottom-0 left-0 right-0 z-50 bg-black bg-opacity-50"
     >
       <Box className="w-[393px] max-w-md bg-white rounded-t-[50px] p-6">
-        <Flex justify="between" align="center" className="mb-8">
+        <Flex justify="between" align="center" className="mb-1">
           <Cross1Icon onClick={onClose} className="w-5 h-5 cursor-pointer" />
-          <Text className="text-center text-R-16 flex-1">조회기간</Text>
-          <button onClick={onClose} className="text-R-14 text-black">
+          <button onClick={onClose} className="text-R-16 text-black">
             확인
           </button>
         </Flex>
 
         <Box className="space-y-8">
-          <Box>
+          <Box className="items-center text-center">
+            <Text className="text-R-16 block mb-3">조회기간</Text>
             <RadioGroup.Root
               value={range}
               onValueChange={(value) => setRange(value)}
-              className="grid grid-cols-4 w-full border border-gray-200 rounded-lg overflow-hidden"
+              className="grid grid-cols-4 w-full border border-gray-300 rounded-lg overflow-hidden"
             >
               {Object.values(RangeEnum).map((label) => (
                 <RadioGroup.Item
                   key={label}
                   value={label}
-                  className="p-3 text-center border-r last:border-r-0 border-gray-200 bg-gray-50 data-[state=checked]:bg-white data-[state=checked]:font-medium"
+                  className="text-R-14 p-3 text-center border-r last:border-r-0 border-gray-300 bg-gray-200 data-[state=checked]:bg-white data-[state=checked]:font-medium"
                 >
                   {label}
                 </RadioGroup.Item>
@@ -52,7 +52,7 @@ export const TransFilterModal = ({ onClose }) => {
                 direction="row"
                 align="center"
                 justify="between"
-                className="mt-4 p-4 border border-gray-200 rounded-lg"
+                className="mt-4 p-4 border border-gray-300 rounded-lg"
               >
                 <Box className="flex-1">
                   <input
@@ -76,17 +76,17 @@ export const TransFilterModal = ({ onClose }) => {
           </Box>
 
           <Box className="text-center">
-            <Text className="text-center items-center mb-4">유형선택</Text>
+            <Text className="text-center items-center block mb-3">유형선택</Text>
             <RadioGroup.Root
               value={type}
               onValueChange={(value) => setType(value)}
-              className="grid grid-cols-3 w-full border border-gray-200 rounded-lg overflow-hidden"
+              className="grid grid-cols-3 w-full border border-gray-300 rounded-lg overflow-hidden"
             >
               {Object.values(TypeEnum).map((label) => (
                 <RadioGroup.Item
                   key={label}
                   value={label}
-                  className="p-3 text-center border-r last:border-r-0 border-gray-200 bg-gray-50 data-[state=checked]:bg-white data-[state=checked]:font-medium"
+                  className="text-R-14 p-3 text-center border-r last:border-r-0 border-gray-300 bg-gray-200 data-[state=checked]:bg-white data-[state=checked]:font-medium"
                 >
                   {label}
                 </RadioGroup.Item>
@@ -94,18 +94,18 @@ export const TransFilterModal = ({ onClose }) => {
             </RadioGroup.Root>
           </Box>
 
-          <Box className="text-center">
-            <Text className="text-center mb-4">정렬선택</Text>
+          <Box>
+            <Text className="text-center block mb-3">정렬선택</Text>
             <RadioGroup.Root
               value={sortingType}
               onValueChange={(value) => setSortingType(value)}
-              className="grid grid-cols-2 w-full border border-gray-200 rounded-lg overflow-hidden"
+              className="grid grid-cols-2 w-full border border-gray-300 rounded-lg overflow-hidden mb-5"
             >
               {Object.values(SortEnum).map((label) => (
                 <RadioGroup.Item
                   key={label}
                   value={label}
-                  className="p-3 text-center border-r last:border-r-0 border-gray-200 bg-gray-50 data-[state=checked]:bg-white data-[state=checked]:font-medium"
+                  className="text-R-14 p-3 text-center border-r last:border-r-0 border-gray-300 bg-gray-200 data-[state=checked]:bg-white data-[state=checked]:font-medium"
                 >
                   {label}
                 </RadioGroup.Item>
