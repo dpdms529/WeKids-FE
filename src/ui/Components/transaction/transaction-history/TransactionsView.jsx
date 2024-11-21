@@ -21,7 +21,7 @@ export const TransactionsView = ({ transactionId }) => {
     const newTransactions = [
       {
         accountTransactionId: 1,
-        title: "카카오페이",
+        title: "조예은",
         type: "출금",
         amount: 1000,
         balance: 50000,
@@ -64,20 +64,23 @@ export const TransactionsView = ({ transactionId }) => {
 
   return (
     <Flex direction="column" className="bg-white h-[53vh] overflow-auto">
-      <Link href={`${urlPath.TRANSACTION_HISTORY}/${transactionId}`}>
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={loadMore}
-          hasMore={hasMore}
-          loader={
-            <div className="loader text-black/80 text-R-20" key={0}>
-              Loading ...
-            </div>
-          }
-          useWindow={false}
-        >
-          {filteredTransactions.map((transaction, index) => (
-            <div key={index} className="border-b border-gray-100 p-4">
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={loadMore}
+        hasMore={hasMore}
+        loader={
+          <div className="loader text-black/80 text-R-20" key={0}>
+            Loading ...
+          </div>
+        }
+        useWindow={false}
+      >
+        {filteredTransactions.map((transaction, index) => (
+          <Link
+            key={index}
+            href={`${urlPath.TRANSACTION_HISTORY}/${transaction.accountTransactionId}`}
+          >
+            <div className="border-b border-gray-100 p-4">
               <div className="flex justify-between items-center">
                 <div className="flex flex-col">
                   <div className="flex gap-4">
@@ -111,9 +114,9 @@ export const TransactionsView = ({ transactionId }) => {
                 </div>
               </div>
             </div>
-          ))}
-        </InfiniteScroll>
-      </Link>
+          </Link>
+        ))}
+      </InfiniteScroll>
     </Flex>
   );
 };
