@@ -1,12 +1,14 @@
 "use client";
 
+import { characterInfoMap, urlPath } from "@/src/constants/common"; // 상대 경로로 불러오기
 import { useAccountInfoStore } from "@/src/stores/accountStore";
-import { characterInfoMap } from "@/src/constants/common"; // 상대 경로로 불러오기
-import { Text } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
 import { CopyIcon } from "@radix-ui/react-icons";
+import { Text } from "@radix-ui/themes";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { urlPath } from "@/src/constants/common";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast"; // Toaster 및 toast 불러오기
 
 const BlueCardBox = () => {
   const { selectedAccount } = useAccountInfoStore(); // Zustand에서 selectedAccount 가져오기
@@ -15,16 +17,12 @@ const BlueCardBox = () => {
 
   useEffect(() => {
     if (selectedAccount) {
-      console.log("selectedAccount.desginType: " + selectedAccount.designType);
-      const accountCharacterInfo = characterInfoMap[selectedAccount.designType] || [];
-
-      console.log("accountCharacterInfo.name " + accountCharacterInfo.name);
+      const accountCharacterInfo =
+        characterInfoMap[selectedAccount.designType] || [];
 
       const bgClass = accountCharacterInfo.colorClass
         ? `${accountCharacterInfo.colorClass}` // 예: bg-color-dalbo
         : "bg-main02"; // colorClass가 없으면 기본값을 bg-main02로 설정
-
-      console.log("bgClass " + bgClass);
 
       setBackgroundColorClass(bgClass); // 상태 업데이트
     }
@@ -32,33 +30,72 @@ const BlueCardBox = () => {
 
   if (!selectedAccount) return <div>계좌를 선택해주세요.</div>;
 
+  const handleCopy = async () => {
+    if (selectedAccount) {
+      try {
+        await navigator.clipboard.writeText(selectedAccount.accountNumber); // 계좌번호 복사
+        toast.success("복사가 완료되었습니다!"); // 토스트 메시지 표시
+      } catch (err) {
+        toast.error("복사에 실패했습니다."); // 복사 실패 시 메시지 표시
+        console.error("복사 실패:", err);
+      }
+    }
+  };
+
   return (
     <div
-      className={`${backgroundColorClass} w-[330px] h-[252px] text-white rounded-[10px] flex flex-col justify-between relative`}
+      className={`${backgroundColorClass} w-[330px] h-[252px] text-black rounded-[10px] relative overflow-hidden`}
     >
-      {console.log("div " + backgroundColorClass)}
-      <div className="text-left px-5">
-        <div className="flex items-center space-x-2 mt-[25px]">
-          <Text className="text-R-14">{selectedAccount.accountNumber}</Text>
-          <CopyIcon />
+      {/* Toaster 컴포넌트 */}
+      <Toaster position="bottom-center" reverseOrder={false} />
+
+      <div className="p-5">
+        <div className="w-[180px]">
+          <div className="flex items-center space-x-2 mt-3">
+            <Text className="text-R-10">{selectedAccount.accountNumber}</Text>
+            <CopyIcon onClick={handleCopy} className="cursor-pointer" />
+          </div>
+          <Text className="text-B-28 mt-9">{selectedAccount.name}</Text>
         </div>
-        <Text className="text-R-20 mt-[32px]">{selectedAccount.name}</Text>
       </div>
-      <div className="absolute right-0 top-0 ">
-        <img src="/images/accountWeebeeImg.svg" alt="Mascot" />
+
+      {/* 금액 위치 중앙 고정 */}
+      <div className="absolute w-full bottom-20 text-right pr-7">
+        <Text className="text-R-28">
+          {selectedAccount.balance.toLocaleString()} 원
+        </Text>
       </div>
-      <Text className="text-B-28 mt-[48px] text-right">
-        {selectedAccount.balance.toLocaleString()} 원
-      </Text>
-      <div className="mt-auto">
-        <div className="w-full h-[1px] bg-white/20"></div>
-        <div className="flex text-white">
-          <button className="flex-1 py-4 text-center border-r border-white/20 hover:bg-white/10 transition-colors" onClick={() => router.push(urlPath.TRANSACTION_HISTORY)}>
-            조회
-          </button>
-          <button className="flex-1 py-4 text-center hover:bg-white/10 transition-colors" onClick={() => router.push(urlPath.ACCOUNT_LIST)}>
-            이체
-          </button>
+
+      {/* 캐릭터 이미지 컨테이너 수정 */}
+      <div className="absolute right-0 bottom-[75px] w-[180px] h-[180px] overflow-hidden">
+        <Image
+          width={0}
+          height={0}
+          src={characterInfoMap[selectedAccount.designType].imagePath}
+          alt="Mascot"
+          className="w-full h-full object-cover"
+          style={{
+            objectPosition: "top right",
+            clipPath: "polygon(0 0, 100% 0, 100% 75%, 0 75%)",
+          }}
+        />
+      </div>
+
+      <div className="absolute bottom-0 w-full">
+        <div className="w-full h-[1px] bg-black"></div>
+        <div className="flex text-black">
+          <Link
+            href={urlPath.TRANSACTION_HISTORY}
+            className="flex-1 py-4 text-center text-R-20 border-r border-black hover:bg-white/10 transition-colors"
+          >
+            <button>조회</button>
+          </Link>
+          <Link
+            href={urlPath.TRANSFER}
+            className="flex-1 py-4 text-center text-R-20 hover:bg-white/10 transition-colors"
+          >
+            <button>이체</button>
+          </Link>
         </div>
       </div>
     </div>
