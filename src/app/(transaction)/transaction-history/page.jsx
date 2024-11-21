@@ -1,4 +1,4 @@
-import AccountHistoryHeader from "@/src/ui/Components/transaction/transaction-history/AccountHistoryHeader";
+import AccountHistoryHeader from "@/src/ui/components/transaction/transaction-history/AccountHistoryHeader";
 import { TransactionFilter } from "@/src/ui/components/transaction/transaction-history/TransactionFilter";
 import { TransactionsView } from "@/src/ui/components/transaction/transaction-history/TransactionsView";
 import { Box, Flex } from "@radix-ui/themes";
