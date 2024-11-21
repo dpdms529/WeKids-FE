@@ -29,7 +29,7 @@ const Page = () => {
           <p className="text-B-28">
             {transferData.amount.toLocaleString()}원 보냈어요
           </p>
-          <div className="flex items-center justify-center gap-1 text-R-14 text-neutral-300">
+          <div className="flex items-center justify-center gap-1 text-R-14 text-neutral-300 mt-2">
             {transferData.bankName} {transferData.accountNumber}
             <ChevronRightIcon
               width="16"
@@ -38,11 +38,6 @@ const Page = () => {
               strokeWidth={0.5}
             />
           </div>
-        </div>
-
-        {/* 메모 영역 */}
-        <div className="bg-stone-200 px-4 py-2 rounded-full text-R-14 text-neutral-300">
-          {transferData.memo}
         </div>
       </div>
 
