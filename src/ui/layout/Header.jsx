@@ -1,19 +1,11 @@
 "use client";
-import { urlPath } from "@/src/constants/common";
 import { EnvelopeClosedIcon, PersonIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 
 export default function Header() {
   return (
     <header className="flex justify-between items-center pr-7 pl-6">
-      <div
-        onClick={history.replaceState(
-          { data: "testData2" },
-          null,
-          urlPath.HOME
-        )}
-        className="cursor-pointer"
-      >
+      <div className="cursor-pointer">
         <Image
           width={0}
           height={0}
