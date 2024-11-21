@@ -14,7 +14,7 @@ export default function Page() {
             accountNumber="1111-11-111111"
           />
         </Box>
-        <Box>
+        <Box className="cursor-pointer">
           <TransactionFilter />
         </Box>
         <Box>
