@@ -15,7 +15,17 @@ const Page = () => {
                 </div>
                     
                 </div>
-                
+                <div className="flex flex-col w-full h-1/6 items-center gap-6">
+                    <div>
+                        <span className="text-white">이대로 진행할까요?</span>
+                    </div>
+                    <div className="flex w-full justify-center">
+                        <CustomButton size="mediumLarge" rounded={true} className="bg-main02">
+                            확인
+                        </CustomButton>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     )
