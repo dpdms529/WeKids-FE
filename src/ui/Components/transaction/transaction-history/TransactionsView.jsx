@@ -2,6 +2,7 @@
 import { urlPath } from "@/src/constants/common";
 import { AccountTransactionTypeEnum } from "@/src/constants/transaction";
 import { useTransFilterStore } from "@/src/stores/transactionStore";
+import { formatDate } from "@/src/util/dateUtils";
 import { Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import { useState } from "react";
@@ -38,14 +39,6 @@ export const TransactionsView = ({ transactionId }) => {
     ];
 
     setTransactions((prev) => [...prev, ...newTransactions]);
-  };
-
-  // 날짜 포맷 함수
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return `${String(date.getMonth() + 1).padStart(2, "0")}.${String(
-      date.getDate()
-    ).padStart(2, "0")}`;
   };
 
   // 검색어에 따라 필터링된 트랜잭션
