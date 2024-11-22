@@ -27,7 +27,7 @@ export default function Top ({setAllChecked}){
     return(
         <> 
             <div className="px-5 py-2">
-            <a className="flex text-R-20 text-black/80 mb-3">개인정보 입력</a>
+            <a className="flex text-R-20 text-black/80 mb-10">개인정보 입력</a>
             </div>
             <div className="px-10 py-4">
             <a className="flex text-R-20 text-black/80 mb-3">이메일</a>
@@ -39,7 +39,7 @@ export default function Top ({setAllChecked}){
             </div>
             <div className="px-10 py-4">
             <a className="flex text-R-20 text-black/80 mb-3">휴대폰 인증</a>
-                <CustomButton key={phoneChecked} rounded = "true" className={`w-full  border border-black/80 ${phoneChecked ? "bg-main01" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"}`} onClick={PhoneClickListener}>
+                <CustomButton key={phoneChecked} rounded = "true" className={`w-full border border-black/80 ${phoneChecked ? "bg-main01" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"}`} onClick={PhoneClickListener}>
                      휴대폰 인증하기
                 </CustomButton> 
             </div>
