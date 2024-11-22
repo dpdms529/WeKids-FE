@@ -51,7 +51,7 @@ export default function Bottom ({setAllChecked, option = 3}){
                           : <CheckIcon className="text-neutral-400 w-4 h-4" />}
                           </div>
                            
-                        <div className="text-R-14 ml-5 flex-grow">전체 동의</div>
+                        <div className={`text-R-14 ml-5 flex-grow ${allCheck ? "text-black/80" : "text-neutral-400"}`}>전체 동의</div>
                         </div>
                     </div> 
                     {assigndata.map((text, idx)=>(
