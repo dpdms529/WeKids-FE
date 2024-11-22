@@ -12,8 +12,6 @@ const dummyData = [
 
 export default function AccountItem({selectedIndex, setSelectedIndex}) {
 
-    
-      
       const toggleAccountSelection = (index) => {
         setSelectedIndex((prev) => (prev === index ? null : index));
       };
@@ -26,21 +24,21 @@ return(
     <div className="flex flex-col h-4/5 mx-7">
     <div className="flex flex-col gap-5">
         <div className="pt-5">
-            <span className="flex text-R-28">내 계좌</span>
+            <span className="flex text-R-28 text-black/80">내 계좌</span>
         </div>
         <div className="flex">
-        <CustomButton rounded={true} color={"gray"} className="pointer-events-none h-10 flex items-center justify-between px-4" >
+        <dev className="pointer-events-none text-black/80 h-10 w-full flex text-R-20 bg-stone-300 hover:bg-neutral-400 rounded-[11px] items-center justify-between px-4 my-4" >
             <span className="text-left">총 {itemCount} 개</span>
             <span className="text-right">{totalBalance}원</span>
-        </CustomButton>
+        </dev>
         </div>
     </div>
-        <div className="flex flex-col my-4 w-full overflow-y-auto scrollbar-hide">
+        <div className="flex flex-col w-full overflow-y-auto scrollbar-hide">
         {dummyData.map((account, index) => (
             <ParentChildSelector
             key={account.id}
             isSelected={selectedIndex == index}
-            className="my-4"
+            className="my-2"
             onClick={() => toggleAccountSelection(index)}
         >
             <SelectorAccount name={account.name} account={account.account} balance={account.balance} />

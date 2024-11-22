@@ -13,14 +13,14 @@ export default function SelectorAccount({
                             </div>
                             <div className="flex flex-col w-2/5 items-start justify-start pt-2">
                                 <div>
-                                    <span className="text-R-20">{name}</span>
+                                    <span className="text-R-20 text-black/80">{name}</span>
                                 </div>
                                 <div>
                                     <span className="text-R-10 text-stone-300">{account}</span>
                                 </div>
                             </div>
                             <div className="flex flex-col w-2/5 justify-end items-end pb-3 pr-3">
-                                    <span>{balance}</span>
+                                    <span className="text-black/80">{balance}</span>
                             </div>
 
                         </div>
