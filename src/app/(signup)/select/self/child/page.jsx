@@ -23,25 +23,25 @@ export default function Page() {
     return (
       <div className="flex flex-col w-[393px] h-screen overflow-y-auto scrollbar-hide bg-white">
         <Toaster position="top-center" />   
-        <div className="flex flex-col px-10 w-full">
-          <div className="flex flex-col">
-            <span className="flex flex-row items-start">
+        <div className="flex flex-col px-10 w-full pt-12 gap-7">
+          <div className="flex flex-col gap-5">
+            <div className="flex flex-row items-start">
               특정 금융정보법에 따라<br/> 아이의 기본 정보가 필요해요
-            </span>
+            </div>
             <div>
-              <InputTextBox />
+              <InputTextBox placeholder={"이름"} />
             </div>
           </div>
-          <div className="flex flex-col">
-            <span className="flex flex-row items-start">
+          <div className="flex flex-col gap-5">
+            <div className="flex flex-row items-start">
               자녀의 주민등록번호
-            </span>
-            <div className="flex flex-row w-full gap-2">
-              <InputTextBox />
-              <span className="flex flex-col justify-center">-</span>
-              <InputTextBox />
             </div>
-            <div>
+            <div className="flex flex-row w-full gap-2">
+              <InputTextBox placeholder={"주민등록번호"} />
+              <div className="flex flex-col justify-center">-</div>
+              <InputTextBox placeholder={""} />
+            </div>
+            <div className="flex flex-col mt-3 gap-3">
               <div className="text-R-14 text-stone-300">000님이 000님의 <br /> 법정대리인이 맞는지 확인하기 위해 </div>
               <div>가족관계증명서와 <br /> 기본증명서를 발급할게요 </div>
               <div>
@@ -49,15 +49,15 @@ export default function Page() {
               </div>
               <CustomButton 
               rounded="true" 
-              className="w-full">
-              다음
-          </CustomButton>
+              className="w-full mt-3">
+              발급하기
+              </CustomButton>
             </div>
           </div>
         </div>
-        <div className="px-10">아이의 계좌를 만들기 위해 <br /> OOO님의 동의가 필요해요</div>
+        <div className="px-10 mt-12 mb-1">아이의 계좌를 만들기 위해 <br /> OOO님의 동의가 필요해요</div>
         <Bottom setAllChecked={setBottomChecked}/>
-        <div className="flex flex-col px-10 py-5 gap-2">
+        <div className="flex flex-col px-10 py-5 gap-6">
           <CustomButton 
               rounded="true" 
               className={`w-full ${(topChecked == true && bottomChecked == true)  ? "bg-main02" : "bg-stone-300 hover:bg-stone-300"}`} 
