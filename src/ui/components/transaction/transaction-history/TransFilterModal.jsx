@@ -76,7 +76,9 @@ export const TransFilterModal = ({ onClose }) => {
           </Box>
 
           <Box className="text-center">
-            <Text className="text-center items-center block mb-3">유형선택</Text>
+            <Text className="text-center items-center block mb-3">
+              유형선택
+            </Text>
             <RadioGroup.Root
               value={type}
               onValueChange={(value) => setType(value)}

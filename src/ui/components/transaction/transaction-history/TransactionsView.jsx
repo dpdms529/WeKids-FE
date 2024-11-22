@@ -44,7 +44,7 @@ export const TransactionsView = ({ transactionId }) => {
   // 검색어에 따라 필터링된 트랜잭션
   const filteredTransactions = transactions
     .filter((transaction) =>
-      transaction.title.toLowerCase().includes(search.toLowerCase())
+      transaction.title.toLowerCase().includes(search.toLowerCase()),
     )
     .sort((a, b) => {
       // 날짜 정렬 적용

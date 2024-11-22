@@ -1,7 +1,14 @@
 import React from "react";
 import Profile from "./Profile";
 
-const TransferItem = ({ imgPath, name, account, bank, isSelected, onClick }) => {
+const TransferItem = ({
+  imgPath,
+  name,
+  account,
+  bank,
+  isSelected,
+  onClick,
+}) => {
   return (
     <div
       onClick={onClick}
