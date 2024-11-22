@@ -104,7 +104,7 @@ export default function MainHome() {
         </div>
       ) : (
         <div className="flex items-center justify-center">
-          <OneButtonAccountCard />
+          <OneButtonAccountCard height="532px" />
         </div>
       )}
     </div>
