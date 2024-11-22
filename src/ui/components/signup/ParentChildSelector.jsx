@@ -12,7 +12,7 @@ return(
             <div className={`rounded-xl 
             ${isSelected ? `${bordercolor} ${selectedColor} shadow-xl` : "border-neutral-400 bg-white"} 
             ${width} 
-            ${height} border-2 my-7 cursor-pointer ${className}`}>
+            ${height} border-2 my-4 cursor-pointer ${className}`}>
                     <div className="flex flex-row"onClick={onClick}>
                             {children}      
                     </div>
