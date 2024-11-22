@@ -3,6 +3,7 @@
 import Assign from "@/src/ui/Components/signup/Assign";
 import {assigndata} from "@/src/constants/assign";
 import React, {useState, useEffect} from "react";
+import { CheckIcon } from "@radix-ui/react-icons";
 
 export default function Bottom ({setAllChecked, option = 3}){
 
@@ -41,11 +42,15 @@ export default function Bottom ({setAllChecked, option = 3}){
         <div className="px-10 py-4">
                 
                 <h2>약관동의</h2>
-                <div className="border-black border-2 h-68 rounded-lg mt-3">
+                <div className="border-stone-300 border-2 h-68 rounded-lg mt-3">
                     <div className="flex flex-col space-y-2 p-3 items-start">
                         <div className="flex flex-row justify-between w-full">
-                            <input type="checkbox" className="ml-2" checked={allCheck}
-                            onChange={(isChecked) => handleCheckboxChange(-1, isChecked)}/>
+                          <div className={`flex flex-row ${allCheck ? "border-black" : "border-stone-300"} border bg-black/10 rounded cursor-pointer`}
+                            onClick={(isChecked) => handleCheckboxChange(-1, isChecked)}>
+                          {allCheck ? <CheckIcon className="text-black w-4 h-4" />
+                          : <CheckIcon className="text-neutral-400 w-4 h-4" />}
+                          </div>
+                           
                         <div className="text-R-14 ml-5 flex-grow">전체 동의</div>
                         </div>
                     </div> 
