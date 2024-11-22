@@ -44,7 +44,22 @@ const CardDesignSelector = () => {
             </div>
           </div>
 
-
+          <div className="text-center mb-4">
+            <h3 className="text-md mb-2">카드 캐릭터</h3>
+            <div className="flex justify-center">
+            <div className="grid grid-cols-2 gap-2">
+              {Object.keys(characterInfoMap).map((character) => (
+                <CharacterButton
+                  key={character}
+                  character={character}
+                  imagePath={characterInfoMap[character].imagePath}
+                  className="w-12 h-12 cursor-pointer"
+                  onClick={() => handleCharacterClick(character)}
+                />
+              ))}
+            </div>
+            </div>
+          </div>
 
         </div>
 
