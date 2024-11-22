@@ -13,10 +13,9 @@ const TransferModal = ({ isModalOpen, closeModal, selectedAccount, transferAmoun
       onClose={closeModal}
       width="393px"
       height="47vh"
-      translateY="0%"
       delete_button={true}
     >
-      <div className="flex flex-col items-center mt-4">
+      <div className="flex flex-col items-center mt-4 p-8 ">
         <Profile />
         <p className="text-base mt-2">
           <span className="text-B-22">{selectedAccount.name}</span>님에게
@@ -25,7 +24,7 @@ const TransferModal = ({ isModalOpen, closeModal, selectedAccount, transferAmoun
         <p className="text-R-20 mt-1">이체하시겠습니까?</p>
         <p className="text-R-12 mt-5 text-gray-400">받는계좌 : 우리은행 {selectedAccount.account}</p>
       </div>
-      <div className="flex space-x-3 mt-7">
+      <div className="flex flex-row space-x-2 mt-2 p-4 max-w-[393px]">
         <CustomButton size="small" color="gray" rounded={true} onClick={closeModal}>
           취소
         </CustomButton>

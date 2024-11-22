@@ -2,7 +2,7 @@
 
 import React, {useState, useEffect} from "react";
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import InputTextBox from "../InputTextBox";
+import InputTextBox from "../atoms/InputTextBox";
 
 export default function Top ({setAllChecked}){
 
