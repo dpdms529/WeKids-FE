@@ -1,7 +1,7 @@
 "use client";
 
-import Top from "@/src/ui/Components/atoms/signup/Top"
-import Bottom from "@/src/ui/Components/atoms/signup/Bottom"
+import Top from "@/src/ui/Components/signup/SignUpHeader"
+import Bottom from "@/src/ui/Components/signup/SignUpFooter"
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -28,7 +28,7 @@ export default function Page() {
             <div className="px-10 py-5">
                 <CustomButton 
                     rounded="true" 
-                    className={`w-full ${(topChecked == true && bottomChecked == true)  ? "bg-main02" : "bg-stone-300 hover:bg-stone-300"}`} 
+                    className={`w-full ${(topChecked == true && bottomChecked == true)  ? "bg-main01" : "bg-stone-300 hover:bg-stone-300"}`} 
                     onClick={() => {
                        topChecked && bottomChecked ? router.push(urlPath.HOME) : notify()
                     }}

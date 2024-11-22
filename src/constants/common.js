@@ -40,7 +40,7 @@ export const urlPath = {
   ACCOUNT_LIST: "/account-list",
   TRANSFER: "/transfer",
   DONE: "/transfer/done",
-  SIGNUP_SELECT: "/select",
-  SIGNUP_SELF: "/select/self",
-  SIGNUP_PHONE: "/select/phone"
+  SIGNUP_SELECT: "/select", // 부모 자녀 선택(임시)
+  SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)
+  SIGNUP_PHONE: "/select/phone" //(PASS 사진)
 };
