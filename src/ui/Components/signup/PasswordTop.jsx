@@ -36,12 +36,14 @@ export default function PasswordTop({isInput, pwd, setIsInput, setPwd, setAllowe
                     {isShaking ? <p className=" text-red-600 shake-animation">비밀번호가 일치하지 않아요.</p> : ""}
                 </div>
                 <div className="flex flex-row gap-[21px] justify-center h-1/5">
-                <div className={`rounded-full w-[31px] h-[31px] ${isInput[0] === false ? "bg-white border-2" : "bg-main01"} `} />
-                <div className={`rounded-full w-[31px] h-[31px] ${isInput[1] === false ? "bg-white border-2" : "bg-sub01"} `} />
-                <div className={`rounded-full w-[31px] h-[31px] ${isInput[2] === false ? "bg-white border-2" : "bg-main01"} `} />
-                <div className={`rounded-full w-[31px] h-[31px] ${isInput[3] === false ? "bg-white border-2" : "bg-sub01"} `} />
-                <div className={`rounded-full w-[31px] h-[31px] ${isInput[4] === false ? "bg-white border-2" : "bg-main01"} `} />
-                <div className={`rounded-full w-[31px] h-[31px] ${isInput[5] === false ? "bg-white border-2" : "bg-sub01"} `} />
+                {isInput.map((input, index) => (
+                  <div
+                  key={index}
+                  className={`rounded-full w-[31px] h-[31px] ${
+                  input ? (index % 2 === 0 ? "bg-main01" : "bg-sub01") : "bg-white border-2"
+                  }`}
+                />
+                ))}
                 </div>
         </div>
     );

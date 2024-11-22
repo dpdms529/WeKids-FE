@@ -3,7 +3,7 @@ import KeyPad from "@/src/ui/Components/atoms/KeyPad";
 
 export default function Page({pwd, isInput, allow, setIsInput, setPwd, setAllowed}) {
     const inputHandler = (num) => {
-        if(num == "⌫"){
+        if(num === "⌫"){
             const updateInput = [...isInput];
             const index = updateInput.lastIndexOf(true);
             if (index != -1) {
@@ -22,8 +22,6 @@ export default function Page({pwd, isInput, allow, setIsInput, setPwd, setAllowe
             setIsInput(updateInput);
             pwd.length != 12 ? setPwd(pwd + num) : "";
         }
-        
-        
         
     }
     return (
