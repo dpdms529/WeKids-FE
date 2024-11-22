@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
 import toast, { Toaster } from "react-hot-toast";
 import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
+import { FileTextIcon } from "@radix-ui/react-icons";
 
 
 export default function Page() {
@@ -39,6 +40,18 @@ export default function Page() {
               <InputTextBox />
               <span className="flex flex-col justify-center">-</span>
               <InputTextBox />
+            </div>
+            <div>
+              <div className="text-R-14 text-stone-300">000님이 000님의 <br /> 법정대리인이 맞는지 확인하기 위해 </div>
+              <div>가족관계증명서와 <br /> 기본증명서를 발급할게요 </div>
+              <div>
+                <FileTextIcon className="w-20 h-20"/>
+              </div>
+              <CustomButton 
+              rounded="true" 
+              className="w-full">
+              다음
+          </CustomButton>
             </div>
           </div>
         </div>
