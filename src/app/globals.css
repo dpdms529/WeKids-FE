@@ -58,7 +58,7 @@ body {
   height: 100vh;
   overflow-y: auto;
   margin: 0 auto;
-  background-color: #a7a1a1;
+  background-color: white;
   position: relative;
   box-sizing: border-box;
 }
