@@ -10,7 +10,7 @@ const childAccountData = {
   parent: {
     name: "Jane Smith",
     accountNumber: "1111-2222-3333-4444",
-    profile: "/images/profile2.jpg",
+    profile: "/images/dadapingImg",
     balance: 500000,
     color: "#FFD700",
     character: "CHACHAPING",
@@ -36,11 +36,11 @@ const childAccountData = {
   ],
 };
 
-const accountData = {
+const emptyAccountDummyData = {
   parent: {
     name: "John Doe",
     accountNumber: null,
-    profile: "/images/profile1.jpg",
+    profile: "/images/dadapingImg.svg",
     balance: null,
     color: null,
     character: null,
@@ -51,43 +51,16 @@ const accountData = {
 
 export default function MainHome() {
   const { selectedAccount, setSelectedAccount } = useAccountInfoStore();
-  const [accountData, setAccountData] = useState({
-    parent: {
-      name: "",
-      accountNumber: null,
-      profile: "/images/default-profile.jpg", // 기본 프로필 이미지 경로
-      balance: null,
-      color: null,
-      character: null,
-      accountId: null,
-    },
-    children: [],
-  });
-
-  const [isLoading, setIsLoading] = useState(true);
+  const [accountData, setAccountData] = useState(emptyAccountDummyData); // 자식이 없는 더미데이터로 초기화
+  // 또는 const [accountData, setAccountData] = useState(childAccountData); // 자식이 있는 더미데이터로 초기화
+  const [isLoading, setIsLoading] = useState(false); // 더미데이터를 사용하므로 로딩 불필요
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/api/account-data");
-        const data = await response.json();
-        setAccountData(data);
-        if (data.children.length > 0) {
-          setSelectedAccount(data.children[0]);
-        }
-      } catch (error) {
-        console.error("Error fetching account data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
+    // 더미 데이터의 children이 있으면 첫 번째 자식을 선택
+    if (accountData.children.length > 0) {
+      setSelectedAccount(accountData.children[0]);
+    }
   }, [setSelectedAccount]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   const hasChildren = accountData?.children?.length > 0;
 
@@ -95,7 +68,6 @@ export default function MainHome() {
     <div className={`flex flex-col h-full`}>
       <div className="flex space-x-3 mb-6 ml-8 mt-4">
         {hasChildren ? (
-          // 자식 계정이 있는 경우 자식 프로필들 표시
           accountData.children.map((account) => (
             <div
               key={account.id}
@@ -116,7 +88,6 @@ export default function MainHome() {
             </div>
           ))
         ) : (
-          // 자식 계정이 없는 경우 부모 프로필만 표시
           <div className="relative cursor-pointer">
             <Profile
               accountInfo={accountData.parent}
