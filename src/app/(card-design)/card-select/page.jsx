@@ -29,7 +29,20 @@ const CardDesignSelector = () => {
           <div className="flex flex-col items-center mt-4">
             <CardCharacter selectedCharacter={selectedCharacter} selectedColor={selectedColor} />
           </div>
-          
+          <div className="text-center mb-4 mt-10">
+            <h3 className="text-md mb-2">배경색</h3>
+            <div className="flex justify-center">
+              <div className="grid grid-cols-3 gap-2 justify-items-center">
+                {Object.values(characterInfoMap).map((info) => (
+                <ColorButton
+                  key={info.colorClass}
+                  colorClass={info.colorClass}
+                  onClick={() => handleColorClick(info.colorClass)}
+                />
+                ))}
+              </div>
+            </div>
+          </div>
 
 
 
