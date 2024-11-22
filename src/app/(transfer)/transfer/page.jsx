@@ -1,11 +1,11 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
 import { useTransactionStore } from "@/src/stores/transactionStore";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import KeyPad from "@/src/ui/components/atoms/KeyPad";
-import TransferAmountDisplay from "@/src/ui/components/transfer/TransferAmoutDisplay";
-import TransferModal from "@/src/ui/components/transfer/TransferModal";
-import TransferOptions from "@/src/ui/components/transfer/TransferOptions";
+import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import KeyPad from "@/src/ui/Components/atoms/KeyPad";
+import TransferAmountDisplay from "@/src/ui/Components/transfer/TransferAmoutDisplay";
+import TransferModal from "@/src/ui/Components/transfer/TransferModal";
+import TransferOptions from "@/src/ui/Components/transfer/TransferOptions";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast"; // toast를 사용하여 알림 띄우기

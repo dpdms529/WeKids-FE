@@ -1,6 +1,6 @@
 "use client";
 import { colorTypeMap, urlPath } from "@/src/constants/common";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";

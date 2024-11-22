@@ -1,9 +1,9 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
-import SelectorItem from "@/src/ui/components/signup/SelectorItem";
+import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import ParentChildSelector from "@/src/ui/Components/signup/ParentChildSelector";
+import SelectorItem from "@/src/ui/Components/signup/SelectorItem";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

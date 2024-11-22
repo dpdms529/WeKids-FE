@@ -1,7 +1,7 @@
-import ShareButton from "@/src/ui/components/atoms/Sharebutton";
-import ConfirmButton from "@/src/ui/components/transaction/detail/ConfirmButton";
-import Memo from "@/src/ui/components/transaction/detail/Memo";
-import TransactionDetail from "@/src/ui/components/transaction/detail/TransactionDetail";
+import ShareButton from "@/src/ui/Components/atoms/Sharebutton";
+import ConfirmButton from "@/src/ui/Components/transaction/detail/ConfirmButton";
+import Memo from "@/src/ui/Components/transaction/detail/Memo";
+import TransactionDetail from "@/src/ui/Components/transaction/detail/TransactionDetail";
 
 const dummy = {
   title: "카카오페이",

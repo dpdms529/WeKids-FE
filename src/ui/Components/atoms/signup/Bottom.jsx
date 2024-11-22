@@ -1,13 +1,13 @@
 "use client";
 
 import { assigndata } from "@/src/constants/assign";
-import Assign from "@/src/ui/components/atoms/signup/Assign";
+import Assign from "@/src/ui/Components/atoms/signup/Assign";
 import { useEffect, useState } from "react";
 
 export default function Bottom({ setAllChecked, option = 3 }) {
   const [allCheck, setAllCheck] = useState(false);
   const [checkedItems, setCheckedItems] = useState(
-    Array(assigndata.length).fill(false),
+    Array(assigndata.length).fill(false)
   );
 
   useEffect(() => {

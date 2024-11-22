@@ -1,9 +1,9 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import Bottom from "@/src/ui/components/atoms/signup/Bottom";
-import Top from "@/src/ui/components/atoms/signup/Top";
+import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import Bottom from "@/src/ui/Components/atoms/signup/Bottom";
+import Top from "@/src/ui/Components/atoms/signup/Top";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";

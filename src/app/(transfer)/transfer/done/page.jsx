@@ -1,7 +1,7 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import ShareButton from "@/src/ui/components/atoms/Sharebutton";
+import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import ShareButton from "@/src/ui/Components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

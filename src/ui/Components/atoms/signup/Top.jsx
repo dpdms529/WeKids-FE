@@ -1,6 +1,6 @@
 "use client";
 
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import { useEffect, useState } from "react";
 import InputTextBox from "../InputTextBox";
 

@@ -1,5 +1,5 @@
 "use client";
-import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
+import InputTextBox from "@/src/ui/Components/atoms/InputTextBox";
 import { useState } from "react";
 
 const Page = () => {

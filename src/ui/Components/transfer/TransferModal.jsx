@@ -1,7 +1,7 @@
 import { urlPath } from "@/src/constants/common";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import Modal from "@/src/ui/components/atoms/Modal";
-import Profile from "@/src/ui/components/atoms/Profile";
+import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import Modal from "@/src/ui/Components/atoms/Modal";
+import Profile from "@/src/ui/Components/atoms/Profile";
 import { useRouter } from "next/navigation";
 
 const TransferModal = ({

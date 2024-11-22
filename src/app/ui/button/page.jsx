@@ -1,5 +1,5 @@
 "use client";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 
 const Page = () => {
   return (
