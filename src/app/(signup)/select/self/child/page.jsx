@@ -2,12 +2,13 @@
 
 import Bottom from "@/src/ui/Components/signup/Bottom"
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
 import toast, { Toaster } from "react-hot-toast";
 import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
 import { FileTextIcon } from "@radix-ui/react-icons";
+import LimitedInputBox from "@/src/ui/components/signup/LimitedInputBox";
 
 
 export default function Page() {
@@ -19,14 +20,27 @@ export default function Page() {
   const [topChecked, setTopChecked] = useState(false);
   const [bottomChecked, setBottomChecked] = useState(false);
 
+  useEffect(() => {
+    setTopChecked(name !== "" &&  residentfront.length == 6 && residentback.length == 7);
+}, [name, residentfront, residentback, topChecked]);
+
   const notify = () => {
     toast("빈칸을 채워주세요!");
   };
 
-  const handleBackChange = (value) => {
-    setResidentback(value);
-    setMaskedBack(value.replace(/./g, "*"));
+  const handleFrontChange = (value) => {
+    const frontnum = value.replace(/\D/g, "").slice(0, 6);
+    setResidentfront(frontnum);
   };
+  
+  const handleBackChange = (value) => {
+    const backnum = value.replace(/\D/g, "").slice(0, 7);
+    setResidentback(backnum);
+    const masked = backnum.replace(/.(?=.{1})/g, "*");
+    setMaskedBack(masked);
+  };
+    
+  
 
     return (
       <div className="flex flex-col w-[393px] h-screen overflow-y-auto scrollbar-hide bg-white">
@@ -37,7 +51,7 @@ export default function Page() {
               특정 금융정보법에 따라<br/> 아이의 기본 정보가 필요해요
             </div>
             <div>
-              <InputTextBox placeholder={"이름"} />
+              <InputTextBox placeholder={"이름"} value={name} onChange={setName}/>
             </div>
           </div>
           <div className="flex flex-col gap-5">
@@ -45,12 +59,15 @@ export default function Page() {
               자녀의 주민등록번호
             </div>
             <div className="flex flex-row w-full gap-2">
-              <InputTextBox placeholder={"주민등록번호"}
-              onChange={setResidentfront} />
+              <LimitedInputBox placeholder={"주민등록번호"}
+              value={residentfront}
+              onChange={handleFrontChange} />
               <div className="flex flex-col justify-center">-</div>
-              <InputTextBox placeholder={""}
-              text={maskedBack}
-              onChange={handleBackChange} />
+              <LimitedInputBox
+                placeholder={""}
+                value={residentback}
+                onChange={handleBackChange}
+              />
             </div>
             <div className="flex flex-col mt-3 gap-3">
               <div className="text-R-14 text-stone-300">000님이 000님의 <br /> 법정대리인이 맞는지 확인하기 위해 </div>
