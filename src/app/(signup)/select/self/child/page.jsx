@@ -1,6 +1,5 @@
 "use client";
 
-import Top from "@/src/ui/Components/signup/Top"
 import Bottom from "@/src/ui/Components/signup/Bottom"
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import React, { useState } from "react";
@@ -12,13 +11,22 @@ import { FileTextIcon } from "@radix-ui/react-icons";
 
 
 export default function Page() {
-    const [topChecked, setTopChecked] = useState(false);
-    const [bottomChecked, setBottomChecked] = useState(false);
-    const router = useRouter();
+    
+  const [name, setName] = useState("");
+  const [residentfront, setResidentfront] = useState("");
+  const [residentback, setResidentback] = useState("");
+  const [maskedBack, setMaskedBack] = useState("");
+  const [topChecked, setTopChecked] = useState(false);
+  const [bottomChecked, setBottomChecked] = useState(false);
 
-    const notify = () => {
-        toast('빈칸을 채워주세요!');
-      };
+  const notify = () => {
+    toast("빈칸을 채워주세요!");
+  };
+
+  const handleBackChange = (value) => {
+    setResidentback(value);
+    setMaskedBack(value.replace(/./g, "*"));
+  };
 
     return (
       <div className="flex flex-col w-[393px] h-screen overflow-y-auto scrollbar-hide bg-white">
@@ -37,9 +45,12 @@ export default function Page() {
               자녀의 주민등록번호
             </div>
             <div className="flex flex-row w-full gap-2">
-              <InputTextBox placeholder={"주민등록번호"} />
+              <InputTextBox placeholder={"주민등록번호"}
+              onChange={setResidentfront} />
               <div className="flex flex-col justify-center">-</div>
-              <InputTextBox placeholder={""} />
+              <InputTextBox placeholder={""}
+              text={maskedBack}
+              onChange={handleBackChange} />
             </div>
             <div className="flex flex-col mt-3 gap-3">
               <div className="text-R-14 text-stone-300">000님이 000님의 <br /> 법정대리인이 맞는지 확인하기 위해 </div>
