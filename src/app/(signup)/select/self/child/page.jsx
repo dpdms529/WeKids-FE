@@ -35,9 +35,9 @@ export default function Page() {
   
   const handleBackChange = (value) => { // 마스킹 가정
     
+
     
     if(residentback.length <=6 ){
-    const backnum = value.replace(/\D/g, "").slice(0, 7);
     const backnum1 = value.charAt(value.length - 1);
       setResidentback(residentback + backnum1);
      setMaskedBack(maskedBack + "*");
@@ -50,6 +50,12 @@ export default function Page() {
     }
      
   };
+    const HandleBackSpace = (e) => {
+      if (e.key === "Backspace") {
+        setMaskedBack((item) => item.slice(0, -1));
+        setResidentback((item) => item.slice(0, -1));
+      }
+    }
     
   
 
@@ -74,6 +80,7 @@ export default function Page() {
               value={residentfront}
               onChange={handleFrontChange} 
               className="w-full"
+              onKeyDown={HandleBackSpace}
               maxLength={6}/>
               <div className="flex flex-col justify-center">-</div>
               <LimitedInputBox
@@ -81,6 +88,7 @@ export default function Page() {
                 value={maskedBack}
                 text={maskedBack}
                 onChange={handleBackChange}
+                onKeyDown={HandleBackSpace}
                 className="w-full"
               />
             </div>
