@@ -16,7 +16,6 @@ export default function Page() {
   const [name, setName] = useState("");
   const [residentfront, setResidentfront] = useState("");
   const [residentback, setResidentback] = useState("");
-  const [maskedBack, setMaskedBack] = useState("");
   const [topChecked, setTopChecked] = useState(false);
   const [bottomChecked, setBottomChecked] = useState(false);
 
@@ -29,33 +28,14 @@ export default function Page() {
   };
 
   const handleFrontChange = (value) => {
-    const frontnum = value.replace(/\D/g, "").slice(0, 6);
-    setResidentfront(frontnum);
+    setResidentfront(value.slice(0, 6));
   };
   
-  const handleBackChange = (value) => { // 마스킹 가정
+  const handleBackChange = (value) => { 
     
-
-    
-    if(residentback.length <=6 ){
-    const backnum1 = value.charAt(value.length - 1);
-      setResidentback(residentback + backnum1);
-     setMaskedBack(maskedBack + "*");
-      
-    }
-    else{
-      setResidentback(residentback);
-      setMaskedBack(maskedBack);
-      
-    }
+    setResidentback(value.slice(0, 7));
      
   };
-    const HandleBackSpace = (e) => {
-      if (e.key === "Backspace") {
-        setMaskedBack((item) => item.slice(0, -1));
-        setResidentback((item) => item.slice(0, -1));
-      }
-    }
     
   
 
@@ -78,18 +58,20 @@ export default function Page() {
             <div className="flex flex-row w-full gap-2">
               <LimitedInputBox placeholder={"주민등록번호"}
               value={residentfront}
+              text={residentfront}
               onChange={handleFrontChange} 
+              security={false}
               className="w-full"
-              onKeyDown={HandleBackSpace}
               maxLength={6}/>
               <div className="flex flex-col justify-center">-</div>
               <LimitedInputBox
                 placeholder={""}
-                value={maskedBack}
-                text={maskedBack}
+                value={residentback}
+                text={residentback}
                 onChange={handleBackChange}
-                onKeyDown={HandleBackSpace}
-                className="w-full"
+                security={true}
+                className="w-full p-3 border border-gray-300 rounded text-transparent tracking-widest 
+                   [text-shadow:0_0_0_#000]"
               />
             </div>
             <div className="flex flex-col mt-3 gap-3">
