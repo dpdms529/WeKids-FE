@@ -19,7 +19,7 @@ export default function AccountItem({selectedIndex, setSelectedIndex}) {
 
 
 return(
-    <div className="flex flex-col h-4/5 ">
+    <div className="flex flex-col h-4/5">
     <div className="flex flex-col gap-5 mx-7">
         <div className="flex pt-5">
             <span className="flex flex-col text-R-28 text-black/80">내 계좌</span>
@@ -27,11 +27,11 @@ return(
         <div className="flex">
         <div className="pointer-events-none text-black/80 h-10 w-full flex text-R-20 bg-stone-300 hover:bg-neutral-400 rounded-[11px] items-center justify-between px-4 my-4" >
             <span className="text-left">총 {itemCount} 개</span>
-            <span className="text-right">{totalBalance}원</span>
+            <span className="text-right">{totalBalance.toLocaleString()}원</span>
         </div>
         </div>
     </div>
-        <div className="flex flex-col max-w-full overflow-y-auto px-7">
+        <div className="flex flex-col max-w-full overflow-y-auto ml-7 pr-3">
         {dummyData.map((account, index) => (
             <ParentChildSelector
             key={account.id}
