@@ -27,7 +27,7 @@ return(
         <div className="flex">
         <div className="pointer-events-none text-black/80 h-10 w-full flex text-R-20 bg-stone-300 hover:bg-neutral-400 rounded-[11px] items-center justify-between px-4 my-4" >
             <span className="text-left">총 {itemCount} 개</span>
-            <span className="text-right">{totalBalance.toLocaleString()}원</span>
+            <span className="text-right">{totalBalance.toLocaleString()} 원</span>
         </div>
         </div>
     </div>

@@ -20,7 +20,7 @@ export default function SelectorAccount({
           </div>
         </div>
         <div className="flex flex-col w-2/5 justify-end items-end pb-3 pr-3">
-          <span className="text-black/80">{balance.toLocaleString()}원</span>
+          <span className="text-black/80">{balance.toLocaleString()} 원</span>
         </div>
       </div>
     );
