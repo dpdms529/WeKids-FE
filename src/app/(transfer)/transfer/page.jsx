@@ -39,8 +39,7 @@ export default function Page() {
     }
   }, [isShaking]);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const modalHandler = () => setIsModalOpen(!isModalOpen);
 
   const handleNumberClick = (num) => {
     if (num === "⌫") {
@@ -99,11 +98,11 @@ export default function Page() {
         <div className="w-[393px] mt-9">
           <KeyPad number={handleNumberClick} buttonHeight="h-14" buttonWidth="w-[393px]" />
         </div>
-        <CustomButton onClick={openModal}>다음</CustomButton>
+        <CustomButton onClick={modalHandler}>다음</CustomButton>
       </div>
       <TransferModal
         isModalOpen={isModalOpen}
-        closeModal={closeModal}
+        modalHandler={modalHandler}
         selectedAccount={selectedAccount}
         transferAmount={transferAmount}
       />
