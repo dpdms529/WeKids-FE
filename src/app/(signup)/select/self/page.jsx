@@ -1,7 +1,7 @@
 "use client";
 
-import Top from "@/src/ui/Components/signup/Top"
-import Bottom from "@/src/ui/Components/signup/Bottom"
+import Top from "@/src/ui/components/signup/SignupHeader"
+import Bottom from "@/src/ui/components/signup/SignUpFooter"
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
