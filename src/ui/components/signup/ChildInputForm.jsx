@@ -3,11 +3,12 @@ import { FileTextIcon } from "@radix-ui/react-icons";
 import LimitedInputBox from "@/src/ui/components/signup/LimitedInputBox";
 import React, { useState, useEffect } from "react";
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import Modal from "../atoms/Modal";
+import Loader from "../atoms/Loader";
 
 export default function ChildInputForm({setAllChecked}) {
 
-  
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
   const [residentfront, setResidentfront] = useState("");
   const [residentback, setResidentback] = useState("");
@@ -24,6 +25,13 @@ export default function ChildInputForm({setAllChecked}) {
     
     setResidentback(value.slice(0, 7));
      
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 5000);
   };
 
     return (
@@ -65,10 +73,30 @@ export default function ChildInputForm({setAllChecked}) {
                 <FileTextIcon className="w-20 h-20"/>
               </div>
               <CustomButton 
+              onClick={openModal}
               rounded="true" 
               className="w-full mt-3">
               발급하기
               </CustomButton>
+              <Modal
+                isOpen={isModalOpen}
+                width="w-[393px]"
+                bottom="bottom-[220px]"
+                modalHandler={() => setIsModalOpen(false)}
+                border={""}
+                deletebutton={false}
+                ><div className="flex flex-col gap-4 items-center justify-center p-10">
+                  <div className="flex">
+                    아이를 확인중이에요. 
+                  </div>
+                  <div>
+                    5초정도의 시간이 소요될 수 있어요.
+                  </div>
+                  <div className="flex items-center justify-center mt-4">
+                    <Loader size="medium" />
+                  </div>
+                  
+                  </div></Modal>
             </div>
           </div>
         </div>
