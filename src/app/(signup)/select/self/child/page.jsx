@@ -33,11 +33,22 @@ export default function Page() {
     setResidentfront(frontnum);
   };
   
-  const handleBackChange = (value) => {
+  const handleBackChange = (value) => { // 마스킹 가정
+    
+    
+    if(residentback.length <=6 ){
     const backnum = value.replace(/\D/g, "").slice(0, 7);
-    setResidentback(backnum);
-    const masked = backnum.replace(/.(?=.{1})/g, "*");
-    setMaskedBack(masked);
+    const backnum1 = value.charAt(value.length - 1);
+      setResidentback(residentback + backnum1);
+     setMaskedBack(maskedBack + "*");
+      
+    }
+    else{
+      setResidentback(residentback);
+      setMaskedBack(maskedBack);
+      
+    }
+     
   };
     
   
@@ -45,7 +56,7 @@ export default function Page() {
     return (
       <div className="flex flex-col w-[393px] h-screen overflow-y-auto scrollbar-hide bg-white">
         <Toaster position="top-center" />   
-        <div className="flex flex-col px-10 w-full pt-12 gap-7">
+        <div className="flex flex-col px-10 w-max-full pt-12 gap-7">
           <div className="flex flex-col gap-5">
             <div className="flex flex-row items-start">
               특정 금융정보법에 따라<br/> 아이의 기본 정보가 필요해요
@@ -54,19 +65,23 @@ export default function Page() {
               <InputTextBox placeholder={"이름"} value={name} onChange={setName}/>
             </div>
           </div>
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 w-max-full">
             <div className="flex flex-row items-start">
               자녀의 주민등록번호
             </div>
             <div className="flex flex-row w-full gap-2">
               <LimitedInputBox placeholder={"주민등록번호"}
               value={residentfront}
-              onChange={handleFrontChange} />
+              onChange={handleFrontChange} 
+              className="w-full"
+              maxLength={6}/>
               <div className="flex flex-col justify-center">-</div>
               <LimitedInputBox
                 placeholder={""}
-                value={residentback}
+                value={maskedBack}
+                text={maskedBack}
                 onChange={handleBackChange}
+                className="w-full"
               />
             </div>
             <div className="flex flex-col mt-3 gap-3">

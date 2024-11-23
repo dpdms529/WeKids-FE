@@ -5,8 +5,9 @@ const LimitedInputBox = ({
   maxLength = 7,
   placeholder = "값을 입력해주세요",
   onChange,
-  width = 313,
+  width,
   height = 51,
+  className
 }) => {
   const [inputValue, setInputValue] = useState(value);
 
@@ -16,11 +17,15 @@ const LimitedInputBox = ({
 
   const handleChange = (e) => {
     const newValue = e.target.value.replace(/\D/g, "");
+    console.log(newValue);
     if (newValue.length <= maxLength) {
       setInputValue(newValue);
       if (onChange) {
         onChange(newValue);
       }
+    }
+    else{
+      e.target.value = inputValue;
     }
   };
 
@@ -40,10 +45,11 @@ const LimitedInputBox = ({
   return (
     <input
       type="text"
-      value={inputValue}
+      value={value}
       onChange={handleChange}
       placeholder={placeholder}
       style={getStyles()}
+      className={`${className}`}
     />
   );
 };
