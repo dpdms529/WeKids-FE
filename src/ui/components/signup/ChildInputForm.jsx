@@ -86,17 +86,18 @@ export default function ChildInputForm({setAllChecked}) {
                 border={""}
                 deletebutton={false}
                 ><div className="flex flex-col gap-4 items-center justify-center p-10">
-                  <div className="flex">
+                  <div className="flex text-R-20 text-black/80">
                     아이를 확인중이에요. 
                   </div>
-                  <div>
+                  <div className="text-R-14 text-black/80">
                     5초정도의 시간이 소요될 수 있어요.
                   </div>
                   <div className="flex items-center justify-center mt-4">
                     <Loader size="medium" />
                   </div>
                   
-                  </div></Modal>
+                  </div>
+                  </Modal>
             </div>
           </div>
         </div>
