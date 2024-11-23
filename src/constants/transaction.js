@@ -15,3 +15,4 @@ export const SortEnum = {
     NEWEST: "최신순",
     OLDEST: "과거순",
 };
+

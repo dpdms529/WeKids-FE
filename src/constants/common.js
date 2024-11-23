@@ -1,37 +1,63 @@
 // src/constants/characterInfo.js
 
 export const characterInfoMap = {
-  WEBEE: {
-    name: "위비",
-    imagePath: "/images/accountWeebeeImg.svg", // 위비 이미지 경로
-    colorClass: "bg-main02", // CSS 클래스 이름으로 색상 관리
+  HEARTSPRING: {
+    name: "하츄핑",
+    imagePath: "/images/hachupingImg.svg", // 하츄핑 이미지 경로
+    colorClass: "bg-pinkHachu", // CSS 클래스 이름으로 색상 관리
   },
-  BOMBOM: {
-    name: "봄봄",
-    imagePath: "/images/bombomImg.svg", // 봄봄 이미지 경로
-    colorClass: "bg-colorBombom", // CSS 클래스 이름으로 색상 관리
+  DADAPING: {
+    name: "바로핑",
+    imagePath: "/images/dadapingImg.svg", // 바로핑 이미지 경로
+    colorClass: "bg-blueDada", // CSS 클래스 이름으로 색상 관리
   },
-  DALBO: {
-    name: "달보",
-    imagePath: "/images/dalboImg.svg", // 달보 이미지 경로
-    colorClass: "bg-colorDalbo", // CSS 클래스 이름으로 색상 관리
+  GOGOPING: {
+    name: "아자핑",
+    imagePath: "/images/gogopingImg.svg", // 아자 이미지 경로
+    colorClass: "bg-yellowGogo", // CSS 클래스 이름으로 색상 관리
   },
-  DUJI: {
-    name: "두지",
-    imagePath: "/images/dalboImg.svg", // 두지 이미지 경로
-    colorClass: "bg-colorDuji", // CSS 클래스 이름으로 색상 관리
+  CHACHAPING: {
+    name: "차차핑",
+    imagePath: "/images/chachapingImg.svg", // 차차핑 이미지 경로
+    colorClass: "bg-yellowChacha", // CSS 클래스 이름으로 색상 관리
   },
-  KU: {
-    name: "쿠",
-    imagePath: "/images/dalboImg.svg", // 쿠 이미지 경로
-    colorClass: "bg-colorKu", // CSS 클래스 이름으로 색상 관리
+  LALAPING: {
+    name: "라라핑",
+    imagePath: "/images/lalapingImg.svg", // 라라핑 이미지 경로
+    colorClass: "bg-purpleLala", // CSS 클래스 이름으로 색상 관리
   },
-  PUDDING: {
-    name: "푸딩",
-    imagePath: "/images/dalboImg.svg", // 푸딩 이미지 경로
-    colorClass: "bg-colorPudding", // CSS 클래스 이름으로 색상 관리
+  HAPPYING: {
+    name: "해핑",
+    imagePath: "/images/happingImg.svg", // 해핑 이미지 경로
+    colorClass: "bg-pinkHap", // CSS 클래스 이름으로 색상 관리
   },
-  //Todo 두지,쿠,푸딩에 맞는 이미지로 경로 수정해줘야 함
+};
+
+export const colorTypeMap = {
+  PINK1: {
+    name: "하츄핑",
+    colorClass: "bg-pinkHachu", // CSS 클래스 이름으로 색상 관리
+  },
+  BLUE: {
+    name: "바로핑",
+    colorClass: "bg-blueBaro", // CSS 클래스 이름으로 색상 관리
+  },
+  YELLOW: {
+    name: "아자핑",
+    colorClass: "bg-yellowAja", // CSS 클래스 이름으로 색상 관리
+  },
+  GREEN: {
+    name: "차차핑",
+    colorClass: "bg-greenChacha", // CSS 클래스 이름으로 색상 관리
+  },
+  PURPLE: {
+    name: "라라핑",
+    colorClass: "bg-purpleLara", // CSS 클래스 이름으로 색상 관리
+  },
+  PINK2: {
+    name: "해핑",
+    colorClass: "bg-pinkHap", // CSS 클래스 이름으로 색상 관리
+  },
 };
 
 export const urlPath = {
