@@ -1,4 +1,5 @@
 "use client";
+import { characterInfoMap } from "@/src/constants/common";
 import { useAccountInfoStore } from "@/src/stores/accountStore";
 import Profile from "@/src/ui/components/atoms/Profile";
 import BlueCardBox from "@/src/ui/components/home/BlueCardBox";
@@ -11,23 +12,23 @@ const childAccounts = [
     balance: 300000,
     name: "강현우",
     state: "active",
-    designType: "WEBEE",
+    designType: "CHACHAPING",
   },
   {
     id: 2,
     accountNumber: "3333-0073-0030-04",
-    balance: 450000,
+    balance: 450,
     name: "이준호",
     state: "inactive",
-    designType: "BOMBOM",
+    designType: "GOGOPING",
   },
   {
     id: 3,
     accountNumber: "3333-0073-0030-05",
-    balance: 120000,
+    balance: 0,
     name: "김민수",
-    state: "active",
-    designType: "KU",
+    state: "ACTIVE",
+    designType: "HEARTSPRING",
   },
 ];
 
@@ -45,17 +46,31 @@ export default function MainHome() {
   };
 
   return (
-    <div className={`flex flex-col justify-center items-center h-full`}>
-      <div className="flex space-x-4">
+    <div className={`flex flex-col h-full`}>
+      <div className="flex space-x-3 mb-6 ml-8 mt-4">
         {childAccounts.map((account) => (
-          <Profile
+          <div
             key={account.id}
-            accountInfo={account}
-            onClick={() => handleProfileClick(account)} // onClick이 제대로 전달되었는지 확인
-          />
+            className="relative cursor-pointer"
+            onClick={() => handleProfileClick(account)}
+          >
+            <Profile
+              accountInfo={account}
+              imagePath={characterInfoMap[account.designType].imagePath}
+              className="w-10 h-10 relative z-10 ring-1 ring-black/60"
+            />
+            {selectedAccount?.id !== account.id && (
+              <div
+                className="absolute inset-0 bg-black/50 rounded-full pointer-events-none"
+                style={{ zIndex: 20 }}
+              />
+            )}
+          </div>
         ))}
       </div>
-      <BlueCardBox />
+      <div className="flex justify-center">
+        <BlueCardBox />
+      </div>
       {/* 선택된 계좌 정보 전달 */}
     </div>
   );
