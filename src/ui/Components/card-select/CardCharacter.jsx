@@ -16,7 +16,7 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
       <img
         src="/images/CardChip.svg" 
         alt="Card Chip"
-        className="absolute top-10 left-24 flex-shrink-0"
+        className="absolute top-8 right-1/4 transform -translate-x-1/2 flex-shrink-0"
       />
       <img
         src={characterInfoMap[selectedCharacter].imagePath}
