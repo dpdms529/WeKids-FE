@@ -51,7 +51,7 @@ const emptyAccountDummyData = {
 
 export default function ParentHome() {
   const { selectedAccount, setSelectedAccount } = useAccountInfoStore();
-  const [accountData, setAccountData] = useState(emptyAccountDummyData); // 자식이 없는 더미데이터로 초기화
+  const [accountData, setAccountData] = useState(childAccountData); // 자식이 없는 더미데이터로 초기화
   // 또는 const [accountData, setAccountData] = useState(childAccountData); // 자식이 있는 더미데이터로 초기화
   const [isLoading, setIsLoading] = useState(false); // 더미데이터를 사용하므로 로딩 불필요
 
@@ -66,7 +66,7 @@ export default function ParentHome() {
 
   return (
     <div className={`flex flex-col h-full`}>
-      <div className="flex space-x-3 mb-6 ml-8 mt-4">
+      <div className="flex space-x-3 mb-6 ml- mt-4">
         {hasChildren ? (
           accountData.children.map((account) => (
             <div
