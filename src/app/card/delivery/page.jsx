@@ -96,7 +96,7 @@ export default function Page() {
           </div>
           <div className="flex flex-col items-center h-[102px]"> 
             <CustomButton size={"mediumLarge"} rounded={true}>
-                휴대폰 인증하기
+                확인
             </CustomButton>
           </div>
         </div>
