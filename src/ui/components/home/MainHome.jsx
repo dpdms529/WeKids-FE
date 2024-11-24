@@ -1,8 +1,8 @@
 "use client";
 
 import { useUserTypeStore } from "@/src/stores/userTypeStore";
-import ChildHome from "./ChildView";
-import ParentHome from "./ParentView";
+import ChildHome from "./child/ChildView";
+import ParentHome from "./parent/ParentStart";
 
 export default function MainHome() {
   const { userType } = useUserTypeStore();

@@ -6,7 +6,7 @@ import {
 import { useEffect, useState } from "react";
 import Profile from "../../atoms/Profile";
 import BlueCardBox from "../BlueCardBox";
-import NoAccountCard from "./\bEmptyAccountCard";
+import NoAccountCard from "./EmptyAccountCard";
 import NoButtonAccountCard from "./AccountGuide";
 
 export default function ParentHome() {
