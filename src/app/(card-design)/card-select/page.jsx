@@ -45,7 +45,7 @@ const CardDesignSelector = () => {
           </div>
 
           <div className="text-center mb-4">
-            <h3 className="text-md mb-2">카드 캐릭터</h3>
+          <h3 className="R-20 mb-2">카드 캐릭터</h3>
             <div className="flex justify-center">
             <div className="grid grid-cols-2 gap-2">
               {Object.keys(characterInfoMap).map((character) => (
