@@ -23,7 +23,7 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
       <img
         src={characterInfoMap[selectedCharacter].imagePath}
         alt={characterInfoMap[selectedCharacter].name}
-        className="w-40 h-40 mt-10"
+        className="w-[192px] h-[191px] flex-shrink-0 mt-10"
       />
       <p className="text-R-20 mt-5 text-black/40">{cardName}</p>
     </div>
