@@ -24,7 +24,7 @@ const CardDesignSelector = () => {
   return (
     <div className="flex justify-center mt-10">
       <div className="flex flex-col items-center">
-        <h2 className="text-lg mb-4 text-left w-full">카드 디자인 선택</h2>
+      <h2 className="R-20 mb-4 text-left w-full">카드 디자인 선택</h2>
         <div className="w-[331px] h-[855.21px] flex-shrink-0 rounded-[10px] border border-black bg-white p-4">
           <div className="flex flex-col items-center mt-4">
             <CardCharacter selectedCharacter={selectedCharacter} selectedColor={selectedColor} />
