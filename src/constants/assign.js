@@ -4,3 +4,31 @@ export const assigndata = [
     "3. 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세",
     "4. 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세"
 ];
+
+export const alarmData = [
+    {
+        emoticon: "COMPLETED",
+        title: "완료 미션 바로 보기",
+        description: `미션을 확인해보세요. <br/>아이가 XX미션을 완료했습니다.`,
+          },
+    {
+        emoticon: "CARD",
+        title: "등록된 카드 디자인 확인하기",
+        description: `아이가 만든 카드 디자인을 확인하고 카드를 발행해주세요!`,
+    },
+    {
+        emoticon: "DOCUMENT",
+        title: "협상 제안서 바로 보기",
+        description: `용돈 협상 제안서를 확인해보세요. <br/>아이가 용돈 협상 제안서를 등록했습니다!`,
+    },
+    {
+        emoticon: "ANNOUNCEMENT",
+        title: "휴일에도 자동이체가 가능합니다!",
+        description: `2024년 10월 7일부터 휴일에도 자동이체가 가능해요!`,
+    },
+    {
+        emoticon: "MESSAGE",
+        title: "부모 동의 알림 확인하기",
+        description: `가족관계 증명서 확인해주기. <br/>아이가 소셜로그인 가입을 위한 부모 동의 알림을 보냈습니다!`,
+    },
+  ];
