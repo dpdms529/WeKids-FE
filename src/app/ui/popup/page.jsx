@@ -1,5 +1,5 @@
 "use client";
-import PopupMessage from "@/src/ui/Components/molecules/PopupMessage";
+import PopupMessage from "@/src/ui/components/molecules/PopupMessage";
 import { useState } from "react";
 
 const Page = () => {

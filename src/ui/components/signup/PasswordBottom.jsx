@@ -1,5 +1,5 @@
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import KeyPad from "@/src/ui/Components/atoms/KeyPad";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import KeyPad from "@/src/ui/components/atoms/KeyPad";
 
 export default function Page({
   pwd,

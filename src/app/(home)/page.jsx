@@ -1,8 +1,8 @@
 "use client";
 import { characterInfoMap } from "@/src/constants/common";
 import { useAccountInfoStore } from "@/src/stores/accountStore";
-import Profile from "@/src/ui/Components/atoms/Profile";
-import BlueCardBox from "@/src/ui/Components/home/BlueCardBox";
+import Profile from "@/src/ui/components/atoms/Profile";
+import BlueCardBox from "@/src/ui/components/home/BlueCardBox";
 import { useEffect } from "react";
 
 const childAccounts = [

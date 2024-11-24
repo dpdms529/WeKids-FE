@@ -1,8 +1,8 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import ConfirmItem from "@/src/ui/Components/signup/ConfirmItem";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import ConfirmItem from "@/src/ui/components/signup/ConfirmItem";
 import { useRouter } from "next/navigation";
 
 export default function Page() {

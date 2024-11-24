@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import InputTextBox from "@/src/ui/Components/atoms/InputTextBox";
-import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Top({ setAllChecked }) {
   const [phoneChecked, setphoneChecked] = useState(false);

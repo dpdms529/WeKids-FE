@@ -2,7 +2,7 @@
 
 import { urlPath } from "@/src/constants/common";
 import { useTransactionStore } from "@/src/stores/transactionStore";
-import TransferItem from "@/src/ui/Components/atoms/TransferItem";
+import TransferItem from "@/src/ui/components/atoms/TransferItem";
 import { useRouter } from "next/navigation";
 
 const dummyData = [
