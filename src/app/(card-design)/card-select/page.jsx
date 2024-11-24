@@ -63,7 +63,7 @@ const CardDesignSelector = () => {
 
         </div>
         <div className="w-full flex mt-10">
-          <CustomButton size="mediumLarge" className="w-full" onClick={() => setIsModalOpen(true)}>
+          <CustomButton size="Large" className="w-full" onClick={() => setIsModalOpen(true)}>
             확인
           </CustomButton>
           <CardIssueModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
