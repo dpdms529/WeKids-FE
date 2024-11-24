@@ -6,12 +6,23 @@ import ParentChildSelector from "@/src/ui/Components/signup/ParentChildSelector"
 import { urlPath } from "@/src/constants/common";
 import { useRouter } from "next/navigation";
 import SelectorItem from "@/src/ui/Components/signup/SelectorItem";
+import { useUserStore } from '@/src/stores/userStore'; // Zustand store import
 
 export default function Page() {
-
     const [isParentClicked, setParentClicked] = useState(false);
     const [isChildClicked, setChildClicked] = useState(false);
     const router = useRouter();
+    const { setUserType } = useUserStore(); // Zustand store의 setter 가져오기
+
+    const handleConfirm = () => {
+        if (isParentClicked) {
+            setUserType('PARENT');
+            router.push(urlPath.HOME);
+        } else if (isChildClicked) {
+            setUserType('CHILD');
+            router.push(urlPath.HOME);
+        }
+    };
 
     return(
         <div className="flex flex-col h-screen bg-white overflow-y-auto w-[393px] items-center px-10"> 
@@ -42,14 +53,13 @@ export default function Page() {
                     </ParentChildSelector>
             </div>
             <div className="fixed bottom-5">
-                <CustomButton className={`${isParentClicked || isChildClicked ? "bg-main01": "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`} 
-                onClick={() => {
-                    if (isParentClicked || isChildClicked) {
-                        router.push(urlPath.HOME);
-                    }
-                }}>확인</CustomButton>
+                <CustomButton 
+                    className={`${isParentClicked || isChildClicked ? "bg-main01": "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`} 
+                    onClick={handleConfirm}
+                >
+                    확인
+                </CustomButton>
             </div>
         </div>
     )
-
 }
