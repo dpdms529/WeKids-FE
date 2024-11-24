@@ -6,14 +6,13 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
   const [cardName, setCardName] = useState('');
 
   useEffect(() => {
-    // 더미 데이터 사용
     const dummyData = {
       1: { cardName: "찬웅핑" },
       2: { cardName: "윤정핑" }
     };
 
-    // 예시로 ID 1의 카드 이름 가져오기
-    const card = dummyData[2];
+    // ID 1의 카드 이름 가져오기
+    const card = dummyData[1];
     if (card) {
       setCardName(card.cardName);
     } else {
