@@ -1,12 +1,14 @@
+import MainHome from "../ui/components/home/MainHome";
 import Header from "../ui/layout/Header";
-import MainHome from "./(home)/page";
 import "./globals.css";
 
 export default function Home() {
   return (
     <div>
       <Header />
-      <MainHome className="flex justify-center items-center" />
+      <div className="flex justify-center items-center">
+        <MainHome />
+      </div>
     </div>
   );
 }
