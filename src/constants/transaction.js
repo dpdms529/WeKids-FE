@@ -20,3 +20,4 @@ export const AccountTransactionTypeEnum = {
   DEPOSIT: "입금",
   WITHDRAWAL: "출금",
 };
+

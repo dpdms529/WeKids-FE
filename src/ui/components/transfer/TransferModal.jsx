@@ -1,12 +1,12 @@
 import { urlPath } from "@/src/constants/common";
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import Modal from "@/src/ui/Components/atoms/Modal";
-import Profile from "@/src/ui/Components/atoms/Profile";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import Modal from "@/src/ui/components/atoms/Modal";
+import Profile from "@/src/ui/components/atoms/Profile";
 import { useRouter } from "next/navigation";
 
 const TransferModal = ({
   isModalOpen,
-  closeModal,
+  modalHandler,
   selectedAccount,
   transferAmount,
 }) => {
@@ -14,29 +14,29 @@ const TransferModal = ({
   return (
     <Modal
       isOpen={isModalOpen}
-      onClose={closeModal}
+      modalHandler={modalHandler}
       width="393px"
       height="47vh"
       translateY="0%"
-      delete_button={true}
+      deletebutton={true}
     >
-      <div className="flex flex-col items-center mt-4">
-        <Profile imagePath={selectedAccount.imagePath} />
-        <p className="text-base mt-9">
-          <span className="text-B-22">{selectedAccount.name}</span>님에게{"  "}
+      <div className="flex flex-col items-center mt-4 p-8 ">
+        <Profile />
+        <p className="text-base mt-2">
+          <span className="text-B-22">{selectedAccount.name}</span>님에게
           <span className="text-B-22">{transferAmount.toLocaleString()}원</span>
         </p>
-        <p className="text-R-20 mt-2">이체하시겠습니까?</p>
+        <p className="text-R-20 mt-1">이체하시겠습니까?</p>
         <p className="text-R-12 mt-5 text-gray-400">
           받는계좌 : 우리은행 {selectedAccount.account}
         </p>
       </div>
-      <div className="flex space-x-3 mt-10">
+      <div className="flex space-x-3 mt-7">
         <CustomButton
           size="small"
           color="gray"
           rounded={true}
-          onClick={closeModal}
+          onClick={modalHandler}
         >
           취소
         </CustomButton>

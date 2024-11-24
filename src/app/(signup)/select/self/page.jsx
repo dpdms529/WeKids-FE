@@ -2,8 +2,8 @@
 
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import Bottom from "@/src/ui/Components/atoms/signup/Bottom";
-import Top from "@/src/ui/Components/atoms/signup/Top";
+import Bottom from "@/src/ui/Components/signup/SignUpFooter";
+import Top from "@/src/ui/Components/signup/SignUpHeader";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -25,9 +25,9 @@ export default function Page() {
       <div className="px-10 py-5">
         <CustomButton
           rounded="true"
-          className={`w-full ${
+          className={`w-full border border-black/80 ${
             topChecked == true && bottomChecked == true
-              ? "bg-main02"
+              ? "bg-main01"
               : "bg-stone-300 hover:bg-stone-300"
           }`}
           onClick={() => {

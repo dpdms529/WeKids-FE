@@ -76,8 +76,7 @@ export default function Page() {
     }
   }, [isShaking]);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const modalHandler = () => setIsModalOpen(!isModalOpen);
 
   const handleNumberClick = (num) => {
     if (num === "⌫") {
@@ -153,6 +152,7 @@ export default function Page() {
             buttonWidth="w-[393px]"
           />
         </div>
+        <CustomButton onClick={modalHandler}>다음</CustomButton>
         <CustomButton
           onClick={handleButtonClick}
           // 버튼 비활성화 및 호버 효과 제거
@@ -163,7 +163,7 @@ export default function Page() {
       </div>
       <TransferModal
         isModalOpen={isModalOpen}
-        closeModal={closeModal}
+        modalHandler={modalHandler}
         selectedAccount={selectedAccount}
         transferAmount={transferAmount}
       />
