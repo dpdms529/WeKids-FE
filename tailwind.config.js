@@ -38,7 +38,7 @@ module.exports = {
         "L-20": ["20px", { lineHeight: "normal", fontWeight: 300 }],
       },
       fontFamily: {
-        WooridaumB: ["WooridaumB", "sans-serif"],
+        Pretend: ["WooridaumB", "sans-serif"],
         WooridaumR: ["WooridaumR", "sans-serif"],
         WooridaumL: ["WooridaumL", "sans-serif"],
       },
