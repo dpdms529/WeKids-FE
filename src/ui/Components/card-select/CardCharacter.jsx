@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { characterInfoMap } from '@/src/constants/common';
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
-  const cardName = "찬웅핑";
+
+  const [cardName, setCardName] = useState('');
+
+  useEffect(() => {
+    // 더미 데이터 사용
+    const dummyData = {
+      1: { cardName: "찬웅핑" },
+      2: { cardName: "윤정핑" }
+    };
+
+    // 예시로 ID 1의 카드 이름 가져오기
+    const card = dummyData[2];
+    if (card) {
+      setCardName(card.cardName);
+    } else {
+      console.error("Card not found");
+    }
+  }, []);
 
   return (
     <div className={`relative w-[196px] h-[312px] flex-shrink-0 rounded-[14px] border border-black ${selectedColor} shadow-md flex flex-col items-center justify-center`}>
