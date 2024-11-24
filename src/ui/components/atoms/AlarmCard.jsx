@@ -17,6 +17,7 @@ const AlarmCard = ({
     radius = "",
     border = "",
     date = "11월 21일",
+    isIssued = true,
     className
 }) => {
 
@@ -25,7 +26,7 @@ const AlarmCard = ({
 
     const SelectedIcon = EMOTICON[data.emoticon];
     return (
-      <div className={`flex flex-row ${width} ${height} ${radius} ${border} bg-main03 h-[149px] p-6 gap-5 ${className}`}>
+      <div className={`flex flex-row ${width} ${height} ${radius} ${border} ${isIssued ? "bg-main03" : "bg-white" } h-[149px] p-6 gap-5 ${className}`}>
         <div className="flex items-start">
           {SelectedIcon && <SelectedIcon className="w-[23px] h-[23px]" />} 
         </div>
