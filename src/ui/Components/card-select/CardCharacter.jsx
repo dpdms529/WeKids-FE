@@ -9,16 +9,14 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
       <img
         src="/images/logoImg.svg" 
         alt="Wekids Logo"
-        width={50} 
-        height={24}
+        width={42} 
+        height={20}
         className="absolute top-2 left-2"
       />
       <img
         src="/images/CardChip.svg" 
         alt="Card Chip"
-        width={20} 
-        height={20}
-        className="absolute top-10 left-24"
+        className="absolute top-10 left-24 flex-shrink-0"
       />
       <img
         src={characterInfoMap[selectedCharacter].imagePath}
