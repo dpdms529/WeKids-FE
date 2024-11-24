@@ -9,8 +9,8 @@ import CharacterButton from '@/src/ui/Components/card-select/CharacterButton';
 import CardIssueModal from '@/src/ui/Components/card-select/CardIssueModal';
 
 const CardDesignSelector = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState('HEARTSPRING');
-  const [selectedColor, setSelectedColor] = useState('bg-pinkHachu');
+  const [selectedCharacter, setSelectedCharacter] = useState('DADAPING');
+  const [selectedColor, setSelectedColor] = useState('bg-blueDada');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCharacterClick = (character) => {
