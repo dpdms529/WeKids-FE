@@ -9,7 +9,7 @@ export const alarmData = [
     {
         emoticon: "COMPLETED",
         title: "완료 미션 바로 보기",
-        description: () =>  `미션을 확인해보세요. <br/>아이가 XX미션을 완료했습니다.`,
+        description: (missionName) =>  `미션을 확인해보세요. <br/>아이가 ${missionName}미션을 완료했습니다.`,
           },
     {
         emoticon: "CARD",
