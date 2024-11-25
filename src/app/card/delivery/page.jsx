@@ -7,6 +7,8 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Modal from "@/src/ui/components/atoms/Modal";
 import { PlusIcon } from '@radix-ui/react-icons';
+import { urlPath } from "@/src/constants/common";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
 
@@ -14,10 +16,13 @@ export default function Page() {
   const [address, setAddress] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isExistCode, setExistCode] = useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const router = useRouter();
   const notify = () => {
     toast(
       <div>
-        주소가 입력되지 않았습니다. <br /> 다시 입력해주세요.
+        입력되지 않은 사항이 있습니다. <br /> 모두 입력해주세요.
       </div>
     );
   };
@@ -93,14 +98,14 @@ export default function Page() {
           </div>
           <div className="flex flex-col h-[130px]">
             <div className="mb-3">받는 분 이름을 입력해 주세요.</div>
-            <InputTextBox />
+            <InputTextBox value={name} onChange={setName} />
           </div>
           <div className="flex flex-col h-[130px]">
             <div className="mb-3">연락처를 입력해 주세요.</div>
-            <InputTextBox />
+            <InputTextBox value={phone} onChange={setPhone}/>
           </div>
           <div className="flex flex-col items-center h-[102px] justify-end"> 
-            <CustomButton size={"mediumLarge"} rounded={true} className="border border-1 border-black/80">
+            <CustomButton size={"mediumLarge"} rounded={true} className="border border-1 border-black/80" onClick={phone != "" && name != "" && address != "" ? () => router.push(urlPath.HOME) : notify}>
                 확인
             </CustomButton>
           </div>
