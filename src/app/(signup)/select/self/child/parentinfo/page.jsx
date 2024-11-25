@@ -4,8 +4,57 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Page() {
+
+  const [name, setName] = useState("");
+  const [birth, setBirth] = useState("".padStart(8, " "));
+  const [phone, setPhone] = useState("".padStart(11, " ")); // 부모 폰
+
+
+  const OnChangeBirthHandler = (value, type) => {
+    let updatedDate
+    switch(type){
+      case 1:
+        updatedDate = value.padEnd(8, " ").slice(0, 4) + birth.slice(4);
+        break;
+      case 2:
+        updatedDate = birth.slice(0, 4) + value.padEnd(2, " ").slice(0, 2) + birth.slice(6);
+        break;
+      case 3:
+        updatedDate = birth.slice(0, 6) + value.padEnd(2, " ").slice(0, 2);
+        break;
+      default:
+        break;
+    }
+    setBirth(updatedDate);
+    console.log(birth);
+    
+
+  }
+
+  const OnChangePhoneHandler = (value, type) => {
+    let phoneNumber;
+    switch(type){
+      case 1:
+      phoneNumber = value.padEnd(3, " ").slice(0, 3) + phone.slice(3);
+      break;
+      case 2:
+      phoneNumber = phone.slice(0, 3) + value.padEnd(4, " ").slice(0, 4) + phone.slice(7);
+      break;
+      case 3:
+      phoneNumber = phone.slice(0, 7) + value.padEnd(4, " ").slice(0, 4);
+      break;
+    default:
+      break;
+    }
+    
+    
+    setPhone(phoneNumber);
+    console.log(phone);
+  }
+
     return (
       <div className="flex flex-col max-w-[393px] h-screen overflow-y-auto scrollbar-hide">
         <div className="flex flex-col w-full h-full">
@@ -28,23 +77,23 @@ export default function Page() {
             <div className="flex flex-col gap-4">
               <div className="text-R-20">법정 대리인 이름</div>
               <div className="flex w-full">
-                <InputTextBox placeholder="이름을 입력하세요" />
+                <InputTextBox placeholder="이름을 입력하세요" text={name} onChange={setName} />
               </div>
             </div>
             <div className="flex flex-col gap-4">
               <div className="text-R-20">생년월일</div>
               <div className="flex flex-row gap-5 w-full">
-                <InputTextBox placeholder="2022년" />
-                <InputTextBox placeholder="1월" />
-                <InputTextBox placeholder="15일" />
+                <InputTextBox placeholder="2022년" onChange={(e) => OnChangeBirthHandler(e, 1)}  />
+                <InputTextBox placeholder="1월" onChange={(e) => OnChangeBirthHandler(e, 2)}  />
+                <InputTextBox placeholder="15일" onChange={(e) => OnChangeBirthHandler(e, 3)}  />
               </div>
             </div>
             <div className="flex flex-col gap-4">
               <div className="text-R-20">법정 대리인 휴대폰 번호</div>
               <div className="flex flex-row gap-5 w-full">
-                <InputTextBox placeholder="010" />
-                <InputTextBox placeholder="0000" />
-                <InputTextBox placeholder="0000" />
+                <InputTextBox placeholder="010" onChange={(e) => OnChangePhoneHandler(e, 1)}/>
+                <InputTextBox placeholder="0000" onChange={(e) => OnChangePhoneHandler(e, 2)}/>
+                <InputTextBox placeholder="0000" onChange={(e) => OnChangePhoneHandler(e, 3)}/>
               </div>
             </div>
           </div>
