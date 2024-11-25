@@ -17,7 +17,6 @@ const TransferModal = ({
       modalHandler={modalHandler}
       width="393px"
       height="47vh"
-      translateY="0%"
       deletebutton={true}
     >
       <div className="flex flex-col items-center mt-4 p-8 ">
@@ -31,7 +30,7 @@ const TransferModal = ({
           받는계좌 : 우리은행 {selectedAccount.account}
         </p>
       </div>
-      <div className="flex space-x-3 mt-7">
+      <div className="flex flex-row w-[393px] space-x-3 mt-7 px-8 pb-2">
         <CustomButton
           size="small"
           color="gray"

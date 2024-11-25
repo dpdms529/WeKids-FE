@@ -1,20 +1,50 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { redirect } from "next/navigation";
-import KeyPad from "@/src/ui/components/atoms/KeyPad";
-import { useTransactionStore } from "@/src/stores/transactionStore";
-import TransferAmountDisplay from "@/src/ui/components/transfer/TransferAmoutDisplay";
-import TransferOptions from "@/src/ui/components/transfer/TransferOptions";
-import TransferModal from "@/src/ui/components/transfer/TransferModal";
 import { urlPath } from "@/src/constants/common";
+import { useTransactionStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import KeyPad from "@/src/ui/components/atoms/KeyPad";
+import TransferAmountDisplay from "@/src/ui/components/transfer/TransferAmoutDisplay";
+import TransferModal from "@/src/ui/components/transfer/TransferModal";
+import TransferOptions from "@/src/ui/components/transfer/TransferOptions";
+import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const dummyData = [
-  { id: 1, name: "구자빈", account: "111-111-111", bank: "우리은행" },
-  { id: 2, name: "강현우", account: "222-222-222", bank: "우리은행" },
-  { id: 3, name: "안찬웅", account: "333-333-333", bank: "우리은행" },
-  { id: 4, name: "조예은", account: "444-444-444", bank: "우리은행" },
-  { id: 5, name: "최윤정", account: "555-555-555", bank: "우리은행" }, // 추후에는 더미데이터를 없애고 id 계좌 정보를 백엔드에서 조회해 오고 출력
+  {
+    id: 1,
+    name: "구자빈",
+    account: "111-111-111",
+    bank: "우리은행",
+    imgPath: "/images/gogopingImg.svg",
+  },
+  {
+    id: 2,
+    name: "강현우",
+    account: "222-222-222",
+    bank: "우리은행",
+    imgPath: "/images/gogopingImg.svg",
+  },
+  {
+    id: 3,
+    name: "안찬웅",
+    account: "333-333-333",
+    bank: "우리은행",
+    imgPath: "/images/gogopingImg.svg",
+  },
+  {
+    id: 4,
+    name: "조예은",
+    account: "444-444-444",
+    bank: "우리은행",
+    imgPath: "/images/gogopingImg.svg",
+  },
+  {
+    id: 5,
+    name: "최윤정",
+    account: "555-555-555",
+    bank: "우리은행",
+    imgPath: "/images/gogopingImg.svg",
+  },
 ];
 
 const sendUser = {
@@ -22,6 +52,7 @@ const sendUser = {
   account: "666-666-666",
   balance: 50000000,
   bank: "우리은행",
+  imgPath: "/images/gogopingImg.svg",
 };
 
 export default function Page() {
@@ -85,15 +116,28 @@ export default function Page() {
     }
   };
 
+  // 0원 이하일 경우 버튼 비활성화
+  const isButtonDisabled = transferAmount <= 0;
+
+  const handleButtonClick = () => {
+    if (isButtonDisabled) {
+      // Todo 이거 안뜸.. 왜인지는 알겠는데 못고쳐..!
+      toast.error("0원은 입력할 수 없습니다.");
+    } else {
+      // transferAmount가 0 이상일 경우, modal을 열거나 다른 동작 수행
+      setIsModalOpen(true);
+    }
+  };
+
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-white">
+    <div className="flex flex-col h-screen overflow-hidden bg-white mt-5">
       <TransferAmountDisplay
         selectedAccount={selectedAccount}
         transferAmount={transferAmount}
         clearTransferData={clearTransferData}
         sendUser={sendUser}
         isShaking={isShaking}
-        handleUserChange={(e) => handleUserChange(e)}
+        handleUserChange={handleUserChange}
       />
       <div className="bottom-0 fixed">
         <TransferOptions
@@ -107,7 +151,13 @@ export default function Page() {
             buttonWidth="w-[393px]"
           />
         </div>
-        <CustomButton onClick={modalHandler}>다음</CustomButton>
+        <CustomButton
+          onClick={handleButtonClick}
+          // 버튼 비활성화 및 호버 효과 제거
+          className={`${isButtonDisabled ? "bg-stone-300 cursor-not-allowed pointer-events-none" : ""}`}
+        >
+          다음
+        </CustomButton>
       </div>
       <TransferModal
         isModalOpen={isModalOpen}

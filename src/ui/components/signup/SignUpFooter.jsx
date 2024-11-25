@@ -1,9 +1,9 @@
 "use client";
 
-import Assign from "@/src/ui/Components/signup/Assign";
 import { assigndata } from "@/src/constants/assign";
-import React, { useState, useEffect } from "react";
+import Assign from "@/src/ui/components/signup/Assign";
 import { CheckIcon } from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
 
 export default function Bottom({ setAllChecked, option = 3 }) {
   const [allCheck, setAllCheck] = useState(false);

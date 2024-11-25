@@ -1,8 +1,6 @@
-// components/Header.js
-import { urlPath } from "@/src/constants/common";
+"use client";
 import { BellIcon, PersonIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Header() {
   const notificationCount = 0; // 알림 개수를 상태로 관리하거나 props로 받을 수 있습니다

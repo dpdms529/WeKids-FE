@@ -1,7 +1,7 @@
-import ShareButton from "@/src/ui/components/atoms/ShareButton";
+import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import ConfirmButton from "@/src/ui/components/transaction/detail/ConfirmButton";
-import TransactionDetail from "@/src/ui/components/transaction/detail/TransactionDetail";
 import Memo from "@/src/ui/components/transaction/detail/Memo";
+import TransactionDetail from "@/src/ui/components/transaction/detail/TransactionDetail";
 
 const dummy = {
   title: "카카오페이",
@@ -12,7 +12,9 @@ const dummy = {
   balance: "19,862원",
 };
 
-const TransactionDetailPage = () => {
+const TransactionDetailPage = ({ params }) => {
+  //trxId로 api 호출해서 값 가져오기
+  console.log(params.trxId);
   return (
     <div className="bg-white w-full h-full flex flex-col items-center justify-between">
       <div className="w-full px-5 py-10">

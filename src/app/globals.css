@@ -15,40 +15,40 @@
 }
 
 @font-face {
-  font-family: "WooridaumL";
+  font-family: "Pretendard-Light";
   font-weight: 300;
-  src: url("/fonts/WooridaumL.ttf");
+  src: url("/fonts/Pretendard-Light.ttf");
 }
 
 @font-face {
-  font-family: "WooridaumR";
+  font-family: "Pretendard-Regular";
   font-weight: 400;
-  src: url("/fonts/WooridaumR.ttf");
+  src: url("/fonts/Pretendard-Regular.ttf");
 }
 
 @font-face {
-  font-family: "WooridaumB";
+  font-family: "Pretendard-Bold";
   font-weight: 700;
-  src: url("/fonts/WooridaumB.ttf");
+  src: url("/fonts/Pretendard-Bold.ttf");
 }
 
-.wooridaumL {
-  font-family: "WooridaumL";
+.Pretendard-Light {
+  font-family: "Pretendard-Light";
 }
 
-.wooridaumB {
-  font-family: "WooridaumB";
+.Pretendard-Bold {
+  font-family: "Pretendard-Bold";
 }
 
-.wooridaumR {
-  font-family: "WooridaumR";
+.Pretendard-Regular {
+  font-family: "Pretendard-Regular";
 }
 
 body {
   width: 100%;
   color: var(--foreground);
   background: var(--background);
-  font-family: "WooridaumR", "WooridaumB", "WooridaumL";
+  font-family: "Pretendard-Regular", "Pretendard-Bold", "Pretendard-Light";
 }
 
 .wrapper {
@@ -107,4 +107,18 @@ nav {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@layer components {
+  .loader {
+    @apply w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
+
+  .loader-small {
+    @apply w-6 h-6 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
+
+  .loader-large {
+    @apply w-16 h-16 border-8 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
 }

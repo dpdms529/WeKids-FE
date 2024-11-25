@@ -1,15 +1,22 @@
 import React from "react";
 import Profile from "./Profile";
 
-const TransferItem = ({ name, account, bank, isSelected, onClick }) => {
+const TransferItem = ({
+  imgPath,
+  name,
+  account,
+  bank,
+  isSelected,
+  onClick,
+}) => {
   return (
     <div
       onClick={onClick}
-      className={`cursor-pointer flex items-center p-4 border ${
+      className={` cursor-pointer flex items-center p-4 border ${
         isSelected ? "border-black " : "border-stone-300"
       }`}
     >
-      <Profile height={"h-[50px]"} width={"w-[50px]"} />
+      <Profile height={"h-[50px]"} width={"w-[50px]"} imagePath={imgPath} />
       <div className="ml-4">
         <p className="text-B-14">{name}</p>
         <p className="text-neutral-400 text-R-14">

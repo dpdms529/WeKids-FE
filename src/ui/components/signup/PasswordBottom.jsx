@@ -1,5 +1,7 @@
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import KeyPad from "@/src/ui/Components/atoms/KeyPad";
+import { urlPath } from "@/src/constants/common";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import KeyPad from "@/src/ui/components/atoms/KeyPad";
+import Link from "next/link";
 
 export default function Page({
   pwd,
@@ -31,19 +33,20 @@ export default function Page({
   };
   return (
     <>
-      <div className="flex flex-col h-1/5 p-10 ">
-        <CustomButton
-          rounded="true"
-          className={`mt-auto w-full ${allow ? "bg-main02" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"}`}
-          disabled={!allow}
-          onClick={() => {
-            if (allow) {
-              router.push(urlPath.HOME);
-            }
-          }}
-        >
-          확인
-        </CustomButton>
+      <div className="flex flex-col h-1/5 p-10">
+        <Link href={urlPath.SIGNUP_CONFIRM}>
+          <CustomButton
+            rounded="true"
+            className={`mt-auto w-full ${
+              allow
+                ? "bg-main02"
+                : "bg-stone-300 hover:bg-stone-300 pointer-events-none"
+            }`}
+            disabled={!allow}
+          >
+            확인
+          </CustomButton>
+        </Link>
       </div>
       <div className="flex flex-col mt-auto w-[393px]">
         <KeyPad isDoubleButton={false} number={inputHandler} />

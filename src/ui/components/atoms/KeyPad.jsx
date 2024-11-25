@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 export default function KeyPad({
   buttonWidth = "w-full",
   buttonHeight = "h-12",

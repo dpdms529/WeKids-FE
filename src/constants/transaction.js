@@ -15,3 +15,8 @@ export const SortEnum = {
   NEWEST: "최신순",
   OLDEST: "과거순",
 };
+
+export const AccountTransactionTypeEnum = {
+  DEPOSIT: "입금",
+  WITHDRAWAL: "출금",
+};

@@ -26,7 +26,7 @@ const CustomButton = ({
 }) => {
   return (
     <button
-      className={`flex items-center justify-center text-R-20 ${colors[color]} ${
+      className={`flex items-center justify-center text-B-20 ${colors[color]} ${
         sizes[size]
       } ${rounded ? "rounded-[11px]" : "rounded-none"} ${className}`}
       onClick={onClick}
