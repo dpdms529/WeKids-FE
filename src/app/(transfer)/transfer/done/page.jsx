@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import ShareButton from "@/src/ui/components/atoms/ShareButton";
+import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { urlPath } from "@/src/constants/common";
 import { useRouter } from "next/navigation";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
@@ -25,8 +25,8 @@ const Page = () => {
 
         {/* 텍스트 영역 */}
         <div className="text-center space-y-2 mb-4">
-          <p className="text-B-28">{transferData.receiverName}님에게</p>
-          <p className="text-B-28">
+          <p className="text-B-28 text-black/80">{transferData.receiverName}님에게</p>
+          <p className="text-B-28 text-black/80">
             {transferData.amount.toLocaleString()}원 보냈어요
           </p>
           <div className="flex items-center justify-center gap-1 text-R-14 text-neutral-300">

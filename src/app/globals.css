@@ -108,3 +108,20 @@ nav {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+<<<<<<< HEAD
+=======
+
+@layer components {
+  .loader {
+    @apply w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
+
+  .loader-small {
+    @apply w-6 h-6 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
+
+  .loader-large {
+    @apply w-16 h-16 border-8 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
+}
+>>>>>>> 986dcee20cb795c0d039014b9380e48dc8e9cb72
