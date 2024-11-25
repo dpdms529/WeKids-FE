@@ -52,7 +52,9 @@ export const TransactionsView = () => {
 
   // 검색어에 따라 필터링된 트랜잭션
   const filteredTransactions = transactions
-    .filter((transaction) => transaction.title.toLowerCase().includes(search.toLowerCase()))
+    .filter((transaction) =>
+      transaction.title.toLowerCase().includes(search.toLowerCase()),
+    )
     .sort((a, b) => {
       // 날짜 정렬 적용
       if (sortingType === "최신순") {
