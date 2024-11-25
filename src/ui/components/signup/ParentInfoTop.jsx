@@ -23,8 +23,13 @@ export default function ParentInfoTop() {
 
   useEffect(() => {
     if (time <= 0) {
-      setIsRequest(false);
-      setIsOpen(false);
+      if (time === 0 && isRequest) {
+        setName("");
+        setBirth("".padStart(8, " "));
+        setPhone("".padStart(11, " "));
+        setIsRequest(false);
+        setIsOpen(false);
+      }
       return;
     }
     const interval = setInterval(() => {
