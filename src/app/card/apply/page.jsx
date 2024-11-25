@@ -1,3 +1,4 @@
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Header from "@/src/ui/layout/Header";
 
 export default function Page() {
@@ -5,7 +6,7 @@ export default function Page() {
   return (
     <div className="flex flex-col h-screen max-w-full overflow-auto scrollbar-hide">
         <Header />
-        <div className="flex p-9">
+        <div className="flex flex-col p-9">
             <div className="flex flex-col w-full items-center justify-center h-[384px] rounded-lg bg-main02">
                 <div className="flex flex-col p-12">
                     <div className="flex text-white text-R-14">
@@ -20,6 +21,11 @@ export default function Page() {
                 </div>
                 
                 
+            </div>
+            <div className="flex mt-8 justify-center">
+                <CustomButton size="mediumLarge" rounded={true} className="text-R-20">
+                    체크카드 신청하기
+                </CustomButton>
             </div>
             
 
