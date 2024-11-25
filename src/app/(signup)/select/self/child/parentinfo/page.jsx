@@ -5,7 +5,6 @@ import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
 import BirthButton from "@/src/ui/components/signup/BirthButton";
 import LimitedInputBox from "@/src/ui/components/signup/LimitedInputBox";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { year, month, date } from "@/src/constants/assign";
 import Modal from "@/src/ui/components/atoms/Modal";
@@ -28,6 +27,7 @@ export default function Page() {
   useEffect(() => {
     if (time <= 0) {
       setIsRequest(false);
+      setIsOpen(false);
       return;
     }
 
