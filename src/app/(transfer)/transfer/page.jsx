@@ -17,7 +17,12 @@ const dummyData = [
   { id: 5, name: "최윤정", account: "555-555-555", bank: "우리은행" }, // 추후에는 더미데이터를 없애고 id 계좌 정보를 백엔드에서 조회해 오고 출력
 ];
 
-const sendUser = { name: "김우리", account: "666-666-666", balance: 50000000, bank: "우리은행" };
+const sendUser = {
+  name: "김우리",
+  account: "666-666-666",
+  balance: 50000000,
+  bank: "우리은행",
+};
 
 export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,8 +44,7 @@ export default function Page() {
     }
   }, [isShaking]);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const modalHandler = () => setIsModalOpen(!isModalOpen);
 
   const handleNumberClick = (num) => {
     if (num === "⌫") {
@@ -97,13 +101,17 @@ export default function Page() {
           handleSetMaxAmount={handleSetMaxAmount}
         />
         <div className="w-[393px] mt-9">
-          <KeyPad number={handleNumberClick} buttonHeight="h-14" buttonWidth="w-[393px]" />
+          <KeyPad
+            number={handleNumberClick}
+            buttonHeight="h-14"
+            buttonWidth="w-[393px]"
+          />
         </div>
-        <CustomButton onClick={openModal}>다음</CustomButton>
+        <CustomButton onClick={modalHandler}>다음</CustomButton>
       </div>
       <TransferModal
         isModalOpen={isModalOpen}
-        closeModal={closeModal}
+        modalHandler={modalHandler}
         selectedAccount={selectedAccount}
         transferAmount={transferAmount}
       />
