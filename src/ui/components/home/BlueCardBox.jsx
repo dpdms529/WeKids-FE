@@ -6,17 +6,19 @@ import { CopyIcon } from "@radix-ui/react-icons";
 import { Text } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast"; // Toaster 및 toast 불러오기
 
 const BlueCardBox = () => {
   const { selectedAccount } = useAccountInfoStore(); // Zustand에서 selectedAccount 가져오기
   const [backgroundColorClass, setBackgroundColorClass] = useState(""); // backgroundColorClass 상태 추가
+  const router = useRouter();
 
   useEffect(() => {
     if (selectedAccount) {
       const accountCharacterInfo =
-        characterInfoMap[selectedAccount.designType] || [];
+        characterInfoMap[selectedAccount.character] || [];
 
       const bgClass = accountCharacterInfo.colorClass
         ? `${accountCharacterInfo.colorClass}` // 예: bg-color-dalbo
@@ -69,7 +71,7 @@ const BlueCardBox = () => {
         <Image
           width={0}
           height={0}
-          src={characterInfoMap[selectedAccount.designType].imagePath}
+          src={characterInfoMap[selectedAccount.character].imagePath}
           alt="Mascot"
           className="w-full h-full object-cover"
           style={{
