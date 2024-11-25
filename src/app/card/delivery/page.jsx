@@ -7,6 +7,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { useRouter } from "next/navigation";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
+import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 
 export default function Page() {
   const [postcode, setPostcode] = useState("");
@@ -31,7 +32,7 @@ export default function Page() {
           <div className="flex flex-col items-center text-R-20 text-black/80">
             배송지 선택하기
           </div>
-          <div className="flex w-[196px] h-[312px] bg-red-100 mt-6"></div>
+          <div className="flex w-[196px] h-[312px] mt-6"><CardCharacter selectedCharacter='DADAPING' selectedColor="bg-blueDada" /></div>
         </div>
         <div className="flex flex-col h-1/2">
           <CardAddress
