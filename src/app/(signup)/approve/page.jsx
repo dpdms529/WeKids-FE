@@ -7,7 +7,7 @@ import CustomButton from '@/src/ui/Components/atoms/CustomButton';
 
 const Parent_Approve = () => {
     return (
-      <div className="flex flex-col justify-between h-screen bg-white overflow-hidden">
+        <div className="flex flex-col w-full h-screen overflow-hidden">
         <Header />
         <div className="flex-grow flex items-center justify-center">
             <div className="w-[313px] h-[473px] flex-shrink-0 rounded-[40px] border-2 border-black/40 bg-[#57A9FB] flex flex-col items-center justify-center">
@@ -21,7 +21,8 @@ const Parent_Approve = () => {
              </p>
             </div>
         </div>
-        <div className="-mt-2">
+        
+        <div className="mb-12">
           <CustomButton
             size="medium"
             rounded={true}
