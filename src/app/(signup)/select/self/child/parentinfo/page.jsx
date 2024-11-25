@@ -2,6 +2,8 @@
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
+import BirthButton from "@/src/ui/components/signup/BirthButton";
+import LimitedInputBox from "@/src/ui/components/signup/LimitedInputBox";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useState } from "react";
@@ -83,21 +85,24 @@ export default function Page() {
             <div className="flex flex-col gap-4">
               <div className="text-R-20">생년월일</div>
               <div className="flex flex-row gap-5 w-full">
-                <InputTextBox placeholder="2022년" onChange={(e) => OnChangeBirthHandler(e, 1)}  />
-                <InputTextBox placeholder="1월" onChange={(e) => OnChangeBirthHandler(e, 2)}  />
-                <InputTextBox placeholder="15일" onChange={(e) => OnChangeBirthHandler(e, 3)}  />
+              <BirthButton placeholder="년도" />
+              <BirthButton placeholder="월" />
+              <BirthButton placeholder="일" />
               </div>
             </div>
             <div className="flex flex-col gap-4">
               <div className="text-R-20">법정 대리인 휴대폰 번호</div>
               <div className="flex flex-row gap-5 w-full">
-                <InputTextBox placeholder="010" onChange={(e) => OnChangePhoneHandler(e, 1)}/>
-                <InputTextBox placeholder="0000" onChange={(e) => OnChangePhoneHandler(e, 2)}/>
-                <InputTextBox placeholder="0000" onChange={(e) => OnChangePhoneHandler(e, 3)}/>
+                <LimitedInputBox placeholder="010" maxLength={3} text={phone.slice(0,3).replace(/\s/g, "")} value={phone.slice(0,3).replace(/\s/g, "")} onChange={(e) => OnChangePhoneHandler(e, 1)}/>
+                <LimitedInputBox placeholder="0000" maxLength={4} text={phone.slice(3,7).replace(/\s/g, "")} value={phone.slice(3,7).replace(/\s/g, "")} onChange={(e) => OnChangePhoneHandler(e, 2)}/>
+                <LimitedInputBox placeholder="0000" maxLength={4} text={phone.slice(7,11).replace(/\s/g, "")} value={phone.slice(7,11).replace(/\s/g, "")} onChange={(e) => OnChangePhoneHandler(e, 3)}/>
               </div>
             </div>
           </div>
-          
+            <div>
+            
+              
+            </div>
             <div className="flex flex-col w-full h-1/6 justify-center pt-10">
               <Link href={urlPath.HOME}>
               <CustomButton >
