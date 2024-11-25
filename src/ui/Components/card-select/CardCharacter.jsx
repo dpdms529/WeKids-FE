@@ -21,7 +21,7 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
   }, []);
 
   return (
-    <div className={`relative w-[196px] h-[312px] flex-shrink-0 rounded-[14px] border border-black ${selectedColor} flex flex-col items-center justify-center`}>
+    <div className={`relative w-[196px] h-[312px] flex-shrink-0 rounded-[14px] border border-black ${selectedColor} shadow-2xl flex flex-col items-center justify-center`}>
       <img
         src="/images/logoImg.svg" 
         alt="Wekids Logo"
