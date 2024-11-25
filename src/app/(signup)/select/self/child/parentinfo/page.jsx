@@ -8,6 +8,8 @@ import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { year, month, date } from "@/src/constants/assign";
+import Modal from "@/src/ui/components/atoms/Modal";
+import CharacterCard from "@/src/ui/components/atoms/CharacterCard";
 
 export default function Page() {
 
@@ -17,13 +19,17 @@ export default function Page() {
   const [time, setTime] = useState(0);
   const [allCheck, setAllCheck] = useState(false);
   const [isRequest, setIsRequest] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
       setAllCheck(name != "" && !birth.includes(" ") && !phone.includes(" "));
   }, [name, birth, phone])
 
   useEffect(() => {
-    if (time <= 0) return;
+    if (time <= 0) {
+      setIsRequest(false);
+      return;
+    }
 
     const interval = setInterval(() => {
       setTime((prevTime) => prevTime - 1);
@@ -76,8 +82,8 @@ export default function Page() {
     setPhone(phoneNumber);
   }
 
-  const hello = () =>{
-    console.log("hi");
+  const modalHandler = () => {
+      setIsOpen(!isOpen);
   }
 
     return (
@@ -133,18 +139,32 @@ export default function Page() {
             <div className="fixed w-full bottom-5 justify-center pt-10">
               
               <CustomButton onClick={() => {
-              if (allCheck) {
+              if(isRequest){
+                modalHandler();
+              }
+              else if (allCheck) {
                 setIsRequest(true); // 상태 업데이트
                 setTime(100);
-              } else {
-                hello(); // 조건에 따라 함수 호출
               }
               }} >
                 {isRequest ? "동의 확인" : "동의 요청하기"}
               </CustomButton>
               
             </div>
-
+            <Modal
+              isOpen={isOpen}
+              modalHandler={modalHandler}
+              border="rounded-3xl"
+              bottom="bottom-[170px]"
+              width="w-[358px]"
+              height="h-[443px]"
+              deletebutton={true}
+            >
+                <CharacterCard imgHeight={150} imgWidth={150} radius="rounded-none" className="border-none" >
+                  <div className="text-white text-R-28">부모님 동의를 기다리고 <br /> 있어요!!</div>
+                </CharacterCard>
+        
+      </Modal>
         </div>
       </div>
     );
