@@ -1,19 +1,23 @@
 'use client'
+import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 export default function Page() {
     return (
       <div className="flex flex-col max-w-[393px] h-screen overflow-y-auto scrollbar-hide">
-        <div className="flex flex-col w-full">
-          <div className="flex flex-row px-7 py-14 w-full h-[132px]">
-            <ArrowLeftIcon />
-            <div className="flex text-R-14 justify-center w-full">
+        <div className="flex flex-col w-full h-full">
+          <div className="flex flex-row px-7 pt-7 w-full h-24">
+            <div className="flex flex-row w-1/3">
+              <ArrowLeftIcon />
+            </div>
+            <div className="flex text-R-14 pl-7 w-full">
               네이버로 가입하기
             </div>
           </div>
-          <div className="flex flex-col px-10 gap-8 h-[632px]">
+          <div className="flex flex-col px-10 gap-8 h-2/3">
             <div className="text-R-20 text-black/80">
               만 14세 미만의 가입자는 <br />
               보호자의 동의가 필요해요.
@@ -45,10 +49,12 @@ export default function Page() {
             </div>
           </div>
           
-            <div className="flex w-full h-[115px]">
+            <div className="flex flex-col w-full h-1/6 justify-center pt-10">
+              <Link href={urlPath.HOME}>
               <CustomButton >
                 동의 요청하기
               </CustomButton>
+              </Link>
             </div>
 
         </div>
