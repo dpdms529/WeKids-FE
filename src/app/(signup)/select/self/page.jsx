@@ -4,6 +4,7 @@ import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Bottom from "@/src/ui/components/signup/SignUpFooter";
 import Top from "@/src/ui/components/signup/SignUpHeader";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -23,19 +24,23 @@ export default function Page() {
       <Top setAllChecked={setTopChecked} />
       <Bottom setAllChecked={setBottomChecked} />
       <div className="px-10 py-5">
-        <CustomButton
-          rounded="true"
-          className={`w-full border border-black/80 ${
-            topChecked == true && bottomChecked == true
-              ? "bg-main01"
-              : "bg-stone-300 hover:bg-stone-300"
-          }`}
-          onClick={() => {
-            topChecked && bottomChecked ? router.push(urlPath.HOME) : notify();
-          }}
-        >
-          다음
-        </CustomButton>
+        <Link href={urlPath.SIGNUP_PASSWORD}>
+          <CustomButton
+            rounded="true"
+            className={`w-full border border-black/80 ${
+              topChecked == true && bottomChecked == true
+                ? "bg-main01"
+                : "bg-stone-300 hover:bg-stone-300"
+            }`}
+            onClick={() => {
+              topChecked && bottomChecked
+                ? router.push(urlPath.HOME)
+                : notify();
+            }}
+          >
+            다음
+          </CustomButton>
+        </Link>
       </div>
     </div>
   );

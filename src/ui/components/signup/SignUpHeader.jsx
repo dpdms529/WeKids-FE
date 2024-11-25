@@ -1,9 +1,5 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
-import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
