@@ -8,7 +8,6 @@ import TransferModal from "@/src/ui/components/transfer/TransferModal";
 import TransferOptions from "@/src/ui/components/transfer/TransferOptions";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import { toast } from "react-hot-toast"; // toast를 사용하여 알림 띄우기
 
 const dummyData = [
   {
@@ -126,7 +125,7 @@ export default function Page() {
       toast.error("0원은 입력할 수 없습니다.");
     } else {
       // transferAmount가 0 이상일 경우, modal을 열거나 다른 동작 수행
-      openModal();
+      setIsModalOpen(true);
     }
   };
 
@@ -152,7 +151,6 @@ export default function Page() {
             buttonWidth="w-[393px]"
           />
         </div>
-        <CustomButton onClick={modalHandler}>다음</CustomButton>
         <CustomButton
           onClick={handleButtonClick}
           // 버튼 비활성화 및 호버 효과 제거
