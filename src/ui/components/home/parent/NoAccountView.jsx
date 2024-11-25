@@ -4,7 +4,7 @@ import NoAccountCard from "./EmptyAccountCard";
 export default function NoAccountView({ accountData }) {
   return (
     <div className="flex flex-col h-full">
-      <div className="flex space-x-3 mb-6 ml-8 mt-4">
+      <div className="flex space-x-3 mb-6 ml-1 mt-4">
         <Profile
           accountInfo={accountData.parent}
           imagePath={accountData.parent.profile}
