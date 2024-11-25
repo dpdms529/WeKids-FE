@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background:#b2d7f8;
-  --foreground:#171717;
+  --background: #b2d7f8;
+  --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,42 +14,41 @@
   }
 }
 
-@font-face{
+@font-face {
   font-family: "WooridaumL";
   font-weight: 300;
   src: url("/fonts/WooridaumL.ttf");
 }
 
-@font-face{
+@font-face {
   font-family: "WooridaumR";
   font-weight: 400;
   src: url("/fonts/WooridaumR.ttf");
 }
 
-@font-face{
+@font-face {
   font-family: "WooridaumB";
   font-weight: 700;
   src: url("/fonts/WooridaumB.ttf");
 }
 
-.wooridaumL{
-  font-family:"WooridaumL";
+.wooridaumL {
+  font-family: "WooridaumL";
 }
 
-.wooridaumB{
-  font-family:"WooridaumB";
+.wooridaumB {
+  font-family: "WooridaumB";
 }
 
-.wooridaumR{
-  font-family:"WooridaumR";
+.wooridaumR {
+  font-family: "WooridaumR";
 }
-
 
 body {
   width: 100%;
   color: var(--foreground);
   background: var(--background);
-  font-family:"WooridaumR","WooridaumB","WooridaumL";
+  font-family: "WooridaumR", "WooridaumB", "WooridaumL";
 }
 
 .wrapper {
@@ -62,8 +61,8 @@ body {
   position: relative;
   box-sizing: border-box;
 }
-  
-nav{
+
+nav {
   position: fixed;
   left: 50%;
   bottom: 0;
@@ -75,9 +74,23 @@ nav{
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-  20%, 40%, 60%, 80% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
 }
 
 .shake-animation {

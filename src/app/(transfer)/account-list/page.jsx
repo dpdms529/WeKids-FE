@@ -34,7 +34,10 @@ export default function Page() {
     <div className="max-w-md mx-auto bg-white shadow-lg h-screen flex flex-col">
       <div className="flex justify-between p-4">
         <h1 className="text-B-22 text-black/80">이체</h1>
-        <button className="text-neutral-400 text-R-20" onClick={() => router.push(urlPath.HOME)}>
+        <button
+          className="text-neutral-400 text-R-20"
+          onClick={() => router.push(urlPath.HOME)}
+        >
           닫기
         </button>
       </div>

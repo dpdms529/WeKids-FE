@@ -1,5 +1,4 @@
-'use client'
-
+"use client";
 
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -10,9 +9,8 @@ import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
 
 export default function Page() {
-
   const [postcode, setPostcode] = useState("");
-  const [address, setAddress] = useState("")
+  const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const router = useRouter();
@@ -21,7 +19,7 @@ export default function Page() {
     toast(
       <div>
         입력되지 않은 사항이 있습니다. <br /> 모두 입력해주세요.
-      </div>
+      </div>,
     );
   };
 
@@ -30,30 +28,41 @@ export default function Page() {
       <Toaster position="top-center" />
       <div className="flex flex-col items-center gap-2">
         <div className="flex flex-col h-1/2">
-          <div className="flex flex-col items-center text-R-20 text-black/80">배송지 선택하기</div>
+          <div className="flex flex-col items-center text-R-20 text-black/80">
+            배송지 선택하기
+          </div>
           <div className="flex w-[196px] h-[312px] bg-red-100 mt-6"></div>
         </div>
         <div className="flex flex-col h-1/2">
-          <CardAddress 
-          address={address}
-          postcode={postcode}
-          setAddress={setAddress}
-          setPostcode={setPostcode} />
-          <CardAddressBottom name={name} 
-          address={address} 
-          setName={setName}
-          setPhone={setPhone} 
-          setAddress={setAddress}/>
-          <div className="flex flex-col items-center h-[102px] justify-end"> 
-            <CustomButton size={"mediumLarge"} 
-            rounded={true} 
-            className="border border-1 border-black/80" 
-            onClick={phone != "" && name != "" && address != "" ? () => router.push(urlPath.HOME) : notify}>
-                확인
+          <CardAddress
+            address={address}
+            postcode={postcode}
+            setAddress={setAddress}
+            setPostcode={setPostcode}
+          />
+          <CardAddressBottom
+            name={name}
+            address={address}
+            setName={setName}
+            setPhone={setPhone}
+            setAddress={setAddress}
+          />
+          <div className="flex flex-col items-center h-[102px] justify-end">
+            <CustomButton
+              size={"mediumLarge"}
+              rounded={true}
+              className="border border-1 border-black/80"
+              onClick={
+                phone != "" && name != "" && address != ""
+                  ? () => router.push(urlPath.HOME)
+                  : notify
+              }
+            >
+              확인
             </CustomButton>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   );
 }
