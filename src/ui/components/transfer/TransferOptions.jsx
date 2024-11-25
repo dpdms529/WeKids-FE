@@ -1,3 +1,5 @@
+import React from "react";
+
 const TransferOptions = ({ handleAddAmount, handleSetMaxAmount }) => (
   <div className="flex justify-between px-4 py-2">
     <button

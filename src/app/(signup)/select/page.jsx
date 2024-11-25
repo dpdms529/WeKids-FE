@@ -1,11 +1,15 @@
 "use client";
 
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import React, { useState } from "react";
+import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorItem from "@/src/ui/components/signup/SelectorItem";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import SelectorItem from "@/src/ui/components/signup/SelectorItem";
 
 export default function Page() {
   const [isParentClicked, setParentClicked] = useState(false);

@@ -1,7 +1,9 @@
 "use client";
 
-import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
+import * as Checkbox from "@radix-ui/react-checkbox";
+import { CheckIcon } from "@radix-ui/react-icons";
 
 export default function Assign({ text, isChecked, onChange, option }) {
   const [checked, setChecked] = useState(isChecked);

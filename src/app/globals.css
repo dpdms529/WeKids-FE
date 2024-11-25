@@ -5,6 +5,8 @@
 :root {
   --background: #b2d7f8;
   --foreground: #171717;
+  --background: #b2d7f8;
+  --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -63,6 +65,8 @@ body {
 }
 
 nav {
+
+nav {
   position: fixed;
   left: 50%;
   bottom: 0;
@@ -74,6 +78,23 @@ nav {
 }
 
 @keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
   0%,
   100% {
     transform: translateX(0);
@@ -107,4 +128,18 @@ nav {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@layer components {
+  .loader {
+    @apply w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
+
+  .loader-small {
+    @apply w-6 h-6 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
+
+  .loader-large {
+    @apply w-16 h-16 border-8 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
 }

@@ -1,6 +1,6 @@
 "use client";
-import PasswordBottom from "@/src/ui/components/signup/PasswordBottom";
 import PasswordTop from "@/src/ui/components/signup/PasswordTop";
+import PasswordBottom from "@/src/ui/components/signup/PasswordBottom";
 import { useState } from "react";
 
 export default function Page() {

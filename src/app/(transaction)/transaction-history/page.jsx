@@ -1,4 +1,3 @@
-import AccountHistoryHeader from "@/src/ui/components/transaction/transaction-history/AccountHistoryHeader";
 import { TransactionFilter } from "@/src/ui/components/transaction/transaction-history/TransactionFilter";
 import { TransactionsView } from "@/src/ui/components/transaction/transaction-history/TransactionsView";
 import { Box, Flex } from "@radix-ui/themes";
@@ -8,7 +7,7 @@ export default function Page() {
     <section>
       <Flex direction="column" justify="between">
         <Box>
-          <AccountHistoryHeader
+          <TopBar
             name="조예은"
             balance="110000009862"
             accountNumber="1111-11-111111"

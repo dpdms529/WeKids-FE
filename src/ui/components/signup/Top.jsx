@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import { useEffect, useState } from "react";
 import InputTextBox from "../atoms/InputTextBox";
 
 export default function Top({ setAllChecked }) {
