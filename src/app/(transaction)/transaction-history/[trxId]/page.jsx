@@ -1,4 +1,4 @@
-import ShareButton from "@/src/ui/components/atoms/ShareButton";
+import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import ConfirmButton from "@/src/ui/components/transaction/detail/ConfirmButton";
 import TransactionDetail from "@/src/ui/components/transaction/detail/TransactionDetail";
 import Memo from "@/src/ui/components/transaction/detail/Memo";
@@ -16,7 +16,9 @@ const TransactionDetailPage = () => {
   return (
     <div className="bg-white w-full h-full flex flex-col items-center justify-between">
       <div className="w-full px-5 py-10">
-        <div className="w-full flex items-center text-B-22 my-5">{dummy.title}</div>
+        <div className="w-full flex items-center text-B-22 my-5">
+          {dummy.title}
+        </div>
         <Memo data={dummy.memo} />
         <hr />
         <div className="w-full">

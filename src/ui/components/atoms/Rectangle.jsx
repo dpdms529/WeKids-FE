@@ -1,22 +1,22 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
 const RECTANGLE_DEFAULT = {
   width: "w-[400px]",
   height: "h-[60px]",
   bgColor: "bg-white",
-  borderColor: "border-[#D1D5DB]"
+  borderColor: "border-[#D1D5DB]",
 };
 
-const Rectangle = ({ 
+const Rectangle = ({
   width = RECTANGLE_DEFAULT.width,
   height = RECTANGLE_DEFAULT.height,
   bgColor = RECTANGLE_DEFAULT.bgColor,
   borderColor = RECTANGLE_DEFAULT.borderColor,
-  onClick
+  onClick,
 }) => {
   return (
-    <div 
+    <div
       onClick={onClick}
       className={`
         ${width}

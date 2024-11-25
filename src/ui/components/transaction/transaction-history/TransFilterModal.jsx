@@ -1,10 +1,16 @@
-import { useTransFilterStore, RangeEnum, SortEnum, TypeEnum } from "@/src/stores/transactionStore";
+import {
+  useTransFilterStore,
+  RangeEnum,
+  SortEnum,
+  TypeEnum,
+} from "@/src/stores/transactionStore";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { Flex, Box, Button, Text } from "@radix-ui/themes";
 
 export const TransFilterModal = ({ onClose }) => {
   const { range, setRange } = useTransFilterStore();
-  const { startDate, setStartDate, endDate, setEndDate } = useTransFilterStore();
+  const { startDate, setStartDate, endDate, setEndDate } =
+    useTransFilterStore();
   const { type, setType } = useTransFilterStore();
   const { sortingType, setSortingType } = useTransFilterStore();
 
@@ -34,7 +40,9 @@ export const TransFilterModal = ({ onClose }) => {
                   key={label}
                   value={label}
                   className={`text-black text-R-14 w-[90px] h-10 border ${
-                    index < Object.values(RangeEnum).length - 1 ? "border-r-0" : ""
+                    index < Object.values(RangeEnum).length - 1
+                      ? "border-r-0"
+                      : ""
                   } border-black/40 text-black/80 bg-black/10 data-[state=checked]:bg-white data-[state=checked]:border-black transition-colors`}
                 >
                   {label}
