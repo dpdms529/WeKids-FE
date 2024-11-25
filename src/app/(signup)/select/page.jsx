@@ -4,7 +4,11 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import React, { useState } from "react";
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import { urlPath } from "@/src/constants/common";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
+import SelectorItem from "@/src/ui/components/signup/SelectorItem";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import SelectorItem from "@/src/ui/components/signup/SelectorItem";
 
 export default function Page() {
@@ -48,7 +52,11 @@ export default function Page() {
       </div>
       <div className="fixed bottom-5">
         <CustomButton
-          className={`${isParentClicked || isChildClicked ? "bg-main01" : "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`}
+          className={`${
+            isParentClicked || isChildClicked
+              ? "bg-main01"
+              : "bg-neutral-400 hover:bg-neutral-400 cursor-default"
+          }`}
           onClick={() => {
             if (isParentClicked || isChildClicked) {
               router.push(urlPath.HOME);

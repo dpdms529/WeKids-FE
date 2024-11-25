@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
 import { urlPath } from "@/src/constants/common";
-import { useRouter } from "next/navigation";
-import { Box } from "@radix-ui/themes";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import { Box } from "@radix-ui/themes";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const dummyData = [
   { id: 1, name: "구자빈", account: "111-111-111", bank: "우리은행" },
@@ -48,7 +48,7 @@ const TransferAmountDisplay = ({
         <div className="text-center">
           <div>
             <select
-              className="cursor-pointer text-black/80 text-B-14"
+              className="cursor-pointer text-black/80 text-R-14"
               value={selectedAccount.name}
               onChange={handleUserChange}
             >
@@ -72,7 +72,7 @@ const TransferAmountDisplay = ({
       </div>
       <div className="flex flex-col items-center justify-center h-1/2 mt-8">
         <div
-          className={`text-4xl font-bold ${isShaking ? "text-red-600 shake-animation" : "text-black/80"}`}
+          className={`text-B-32 font-bold ${isShaking ? "text-red-600 shake-animation" : "text-black/80"}`}
         >
           {transferAmount.toLocaleString()}원
         </div>

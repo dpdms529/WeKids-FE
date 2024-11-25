@@ -8,7 +8,7 @@ const LimitedInputBox = ({
   security = false,
   width,
   height = 51,
-  className
+  className,
 }) => {
   const [inputValue, setInputValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
@@ -95,19 +95,18 @@ const LimitedInputBox = ({
     transition: "all 0.2s ease",
   };
 
-
   return (
     <div style={containerStyles}>
-    <input
-      type={`${security ? "password" : "text" }`}
-      value={inputValue}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      placeholder={placeholder}
-      className={`${className} tracking-wides`}
-      style={getStyles()}
-    />
+      <input
+        type={`${security ? "password" : "text"}`}
+        value={inputValue}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        placeholder={placeholder}
+        className={`${className} tracking-wides`}
+        style={getStyles()}
+      />
     </div>
   );
 };

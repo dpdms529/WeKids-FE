@@ -5,6 +5,8 @@
 :root {
   --background: #b2d7f8;
   --foreground: #171717;
+  --background: #b2d7f8;
+  --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,40 +17,40 @@
 }
 
 @font-face {
-  font-family: "WooridaumL";
+  font-family: "Pretendard-Light";
   font-weight: 300;
-  src: url("/fonts/WooridaumL.ttf");
+  src: url("/fonts/Pretendard-Light.ttf");
 }
 
 @font-face {
-  font-family: "WooridaumR";
+  font-family: "Pretendard-Regular";
   font-weight: 400;
-  src: url("/fonts/WooridaumR.ttf");
+  src: url("/fonts/Pretendard-Regular.ttf");
 }
 
 @font-face {
-  font-family: "WooridaumB";
+  font-family: "Pretendard-Bold";
   font-weight: 700;
-  src: url("/fonts/WooridaumB.ttf");
+  src: url("/fonts/Pretendard-Bold.ttf");
 }
 
-.wooridaumL {
-  font-family: "WooridaumL";
+.Pretendard-Light {
+  font-family: "Pretendard-Light";
 }
 
-.wooridaumB {
-  font-family: "WooridaumB";
+.Pretendard-Bold {
+  font-family: "Pretendard-Bold";
 }
 
-.wooridaumR {
-  font-family: "WooridaumR";
+.Pretendard-Regular {
+  font-family: "Pretendard-Regular";
 }
 
 body {
   width: 100%;
   color: var(--foreground);
   background: var(--background);
-  font-family: "WooridaumR", "WooridaumB", "WooridaumL";
+  font-family: "Pretendard-Regular", "Pretendard-Bold", "Pretendard-Light";
 }
 
 .wrapper {
@@ -74,6 +76,23 @@ nav {
 }
 
 @keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
   0%,
   100% {
     transform: translateX(0);

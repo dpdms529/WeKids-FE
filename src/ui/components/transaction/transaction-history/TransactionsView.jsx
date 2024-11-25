@@ -1,11 +1,14 @@
 "use client";
+import { urlPath } from "@/src/constants/common";
+import { AccountTransactionTypeEnum } from "@/src/constants/transaction";
+import { useTransFilterStore } from "@/src/stores/transactionStore";
+import { formatDate } from "@/src/util/dateUtils";
+import { Flex } from "@radix-ui/themes";
+import Link from "next/link";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
-import { Flex } from "@radix-ui/themes";
-import { TransactionItem } from "./TransactionItem";
-import { useTransFilterStore } from "@/src/stores/transactionStore";
 
-export const TransactionsView = () => {
+export const TransactionsView = ({ transactionId }) => {
   const [transactions, setTransactions] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const { search, sortingType } = useTransFilterStore();
@@ -18,32 +21,20 @@ export const TransactionsView = () => {
 
     const newTransactions = [
       {
-        date: "2023-10-26",
-        title: "네이버페이",
-        amount: "-500",
-        balance: "12837132",
-        isIncome: false,
+        accountTransactionId: 1,
+        title: "조예은",
+        type: "출금",
+        amount: 1000,
+        balance: 50000,
+        create_at: "2024-9-30 15:45:30",
       },
       {
-        date: "2023-10-25",
-        title: "스타벅스",
-        amount: "-4500",
-        balance: "12832632",
-        isIncome: false,
-      },
-      {
-        date: "2023-10-24",
+        accountTransactionId: 2,
         title: "카카오페이",
-        amount: "-2000",
-        balance: "12830000",
-        isIncome: false,
-      },
-      {
-        date: "2023-10-23",
-        title: "편의점",
-        amount: "-1500",
-        balance: "12828500",
-        isIncome: false,
+        type: "입금",
+        amount: 1000,
+        balance: 50000,
+        create_at: "2024-9-30 15:45:30",
       },
     ];
 
@@ -78,15 +69,45 @@ export const TransactionsView = () => {
         useWindow={false}
       >
         {filteredTransactions.map((transaction, index) => (
-          <TransactionItem
+          <Link
             key={index}
-            id={index + 1} // TODO: 임시로 index+1로 넣어놓음 transactionId가 들어가야함
-            date={transaction.date}
-            title={transaction.title}
-            amount={transaction.amount}
-            balance={transaction.balance}
-            isIncome={transaction.isIncome}
-          />
+            href={`${urlPath.TRANSACTION_HISTORY}/${transaction.accountTransactionId}`}
+          >
+            <div className="border-b border-gray-100 p-4">
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
+                  <div className="flex gap-4">
+                    <span className="text-gray-600 text-R-14">
+                      {formatDate(transaction.create_at)}
+                    </span>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-R-14">{transaction.title}</span>
+                      <span className="text-main01 text-R-10 mt-2">
+                        #{transaction.type}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end">
+                  <span
+                    className={`text-R-18 ${
+                      transaction.type === AccountTransactionTypeEnum.DEPOSIT
+                        ? "text-main01"
+                        : ""
+                    }`}
+                  >
+                    {transaction.type === AccountTransactionTypeEnum.WITHDRAWAL
+                      ? "-"
+                      : ""}
+                    {transaction.amount.toLocaleString()}원
+                  </span>
+                  <span className="text-neutral-400 text-R-14 mt-2">
+                    {transaction.balance.toLocaleString()}원
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Link>
         ))}
       </InfiniteScroll>
     </Flex>

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useCardStore = create((set) => ({
-  cardName: '',
+  cardName: "",
   setCardName: (name) => set({ cardName: name }),
   fetchCardName: async (id) => {
     try {

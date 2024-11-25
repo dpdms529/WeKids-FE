@@ -32,7 +32,12 @@ export default function Page() {
           <div className="flex flex-col items-center text-R-20 text-black/80">
             배송지 선택하기
           </div>
-          <div className="flex w-[196px] h-[312px] mt-6"><CardCharacter selectedCharacter='DADAPING' selectedColor="bg-blueDada" /></div>
+          <div className="flex w-[196px] h-[312px] mt-6">
+            <CardCharacter
+              selectedCharacter="DADAPING"
+              selectedColor="bg-blueDada"
+            />
+          </div>
         </div>
         <div className="flex flex-col h-1/2">
           <CardAddress
