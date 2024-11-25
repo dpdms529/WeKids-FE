@@ -1,27 +1,22 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
+import { useUserTypeStore } from "@/src/stores/userTypeStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorItem from "@/src/ui/components/signup/SelectorItem";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import SelectorItem from "@/src/ui/Components/signup/SelectorItem";
-import { useUserStore } from "@/src/stores/userStore"; // Zustand store import
+import { useState } from "react";
 
 export default function Page() {
-  const [isParentClicked, setParentClicked] = useState(false);
-  const [isChildClicked, setChildClicked] = useState(false);
+  const [selectedType, setSelectedType] = useState(null);
   const router = useRouter();
-  const { setUserType } = useUserStore(); // Zustand store의 setter 가져오기
+  const { setUserType } = useUserTypeStore();
 
   const handleConfirm = () => {
-    if (isParentClicked) {
-      setUserType("PARENT");
-      router.push(urlPath.HOME);
-    } else if (isChildClicked) {
-      setUserType("CHILD");
-      router.push(urlPath.HOME);
+    if (selectedType) {
+      setUserType(selectedType);
+      router.push(urlPath.SIGNUP_SELF);
     }
   };
 
@@ -32,28 +27,22 @@ export default function Page() {
       </div>
       <div className="w-full">
         <ParentChildSelector
-          isSelected={isParentClicked}
-          onClick={() => {
-            setParentClicked(true);
-            setChildClicked(false);
-          }}
+          isSelected={selectedType === "PARENT"}
+          onClick={() => setSelectedType("PARENT")}
         >
           <SelectorItem
-            isSelected={isParentClicked}
+            isSelected={selectedType === "PARENT"}
             text="부모입니다."
             description="자녀에게 용돈을 줄거에요."
           />
         </ParentChildSelector>
 
         <ParentChildSelector
-          isSelected={isChildClicked}
-          onClick={() => {
-            setParentClicked(false);
-            setChildClicked(true);
-          }}
+          isSelected={selectedType === "CHILD"}
+          onClick={() => setSelectedType("CHILD")}
         >
           <SelectorItem
-            isSelected={isChildClicked}
+            isSelected={selectedType === "CHILD"}
             text="자녀입니다."
             description="용돈을 받고 금융도 배울거에요."
           />
@@ -61,7 +50,7 @@ export default function Page() {
       </div>
       <div className="fixed bottom-5">
         <CustomButton
-          className={`${isParentClicked || isChildClicked ? "bg-main01" : "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`}
+          className={`${selectedType ? "bg-main01" : "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`}
           onClick={handleConfirm}
         >
           확인
