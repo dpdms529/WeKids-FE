@@ -21,7 +21,6 @@ const Parent_Approve = () => {
              </p>
             </div>
         </div>
-
         <div className="-mt-2">
           <CustomButton
             size="medium"
@@ -33,7 +32,6 @@ const Parent_Approve = () => {
           </CustomButton>
         </div>
       </div>
-      
     );
   };
   
