@@ -13,7 +13,7 @@ const AlarmCard = ({
     case : number = 1 ,
     missionName = "설거지 미션",
     width = "w-full",
-    height = "h-[513px]",
+    height = "h-[149px]",
     radius = "",
     border = "",
     date = "11월 21일",
@@ -26,7 +26,7 @@ const AlarmCard = ({
 
     const SelectedIcon = EMOTICON[data.emoticon];
     return (
-      <div className={`flex flex-row ${width} ${height} ${radius} ${border} ${isIssued ? "bg-main03" : "bg-white" } h-40 p-6 gap-5 ${className}`}>
+      <div className={`flex flex-row ${width} ${height} ${radius} ${border} ${isIssued ? "bg-main03" : "bg-white" } p-6 gap-5 ${className}`}>
         <div className="flex items-start">
           {SelectedIcon && <SelectedIcon className="w-[23px] h-[23px]" />} 
         </div>
