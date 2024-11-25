@@ -6,41 +6,47 @@ const accountDummyData = {
   parent: {
     name: "Jane Smith",
     accountNumber: "1111-2222-3333-4444",
-    profile: "/images/dadapingImg",
+    profile: "/images/gogopingImg.svg",
     balance: 500000,
-    color: "#FFD700",
-    character: "CHACHAPING",
+    color: "YELLOW",
+    character: "GOGOPING",
     accountId: 2,
   },
   children: [
     {
-      id: 1,
+      childId: 1,
+      name: "최윤정",
       accountNumber: "1234-5678-9101-1121",
+      profile: "/images/chachapingImg.svg",
       balance: 300000,
-      name: "김민수",
-      state: "active",
-      designType: "GOGOPING",
+      accountId: 2,
+      cardState: "ACTIVE",
+      color: "GREEN",
+      character: "CHACHAPING",
     },
     {
-      id: 2,
-      accountNumber: "2222-3333-4444-5555",
-      balance: 450,
-      name: "박지수",
-      state: "inactive",
-      designType: "HEARTSPRING",
+      childId: 2,
+      name: "조예은",
+      accountNumber: "1234-5678-9101-1121",
+      profile: "/images/hachupingImg.svg",
+      balance: 300000,
+      accountId: 2,
+      cardState: "ACTIVE",
+      color: "PINK1",
+      character: "HEARTSPRING",
     },
   ],
 };
 
 const parentOnlyDummyData = {
   parent: {
-    name: "강현우",
-    accountNumber: "3333-0073-0030-03",
-    profile: "/images/dadapingImg",
-    balance: 300000,
-    color: "#87CEEB", // 하늘색 계열
-    character: "WEBEE",
-    accountId: 1,
+    name: "Jane Smith",
+    accountNumber: "1111-2222-3333-4444",
+    profile: "/images/chachapingImg.svg",
+    balance: 500000,
+    color: "#FFD700",
+    character: "CHACHAPING",
+    accountId: 2,
   },
   children: [], // 빈 배열로 자식이 없음을 표시
 };
@@ -49,17 +55,17 @@ const parentAccountNullDummyData = {
   parent: {
     name: "강현우",
     accountNumber: null,
-    profile: "/images/webeeImg",
-    balance: 300000,
-    color: "#87CEEB", // 하늘색 계열
-    character: "WEBEE",
-    accountId: 1,
+    profile: "/images/chachapingImg.svg",
+    balance: 500000,
+    color: "#FFD700",
+    character: "CHACHAPING",
+    accountId: 2,
   },
   children: [], // 빈 배열로 자식이 없음을 표시
 };
 
 export default function ParentHome() {
-  const [accountData, setAccountData] = useState(parentOnlyDummyData);
+  const [accountData, setAccountData] = useState(accountDummyData);
 
   if (accountData.parent.accountNumber == null) {
     return <NoAccountView accountData={accountData} />;
