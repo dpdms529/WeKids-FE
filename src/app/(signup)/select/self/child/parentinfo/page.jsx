@@ -7,6 +7,7 @@ import LimitedInputBox from "@/src/ui/components/signup/LimitedInputBox";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useState } from "react";
+import { year, month, date } from "@/src/constants/assign";
 
 export default function Page() {
 
@@ -16,16 +17,21 @@ export default function Page() {
 
 
   const OnChangeBirthHandler = (value, type) => {
+    
+    const tempValue = String(value);
+
+    const stringValue = tempValue.length == 1 ? "0" + tempValue : tempValue;
+    
     let updatedDate
     switch(type){
       case 1:
-        updatedDate = value.padEnd(8, " ").slice(0, 4) + birth.slice(4);
+        updatedDate = stringValue.padEnd(8, " ").slice(0, 4) + birth.slice(4);
         break;
       case 2:
-        updatedDate = birth.slice(0, 4) + value.padEnd(2, " ").slice(0, 2) + birth.slice(6);
+        updatedDate = birth.slice(0, 4) + stringValue.padEnd(2, " ").slice(0, 2) + birth.slice(6);
         break;
       case 3:
-        updatedDate = birth.slice(0, 6) + value.padEnd(2, " ").slice(0, 2);
+        updatedDate = birth.slice(0, 6) + stringValue.padEnd(2, " ").slice(0, 2);
         break;
       default:
         break;
@@ -62,7 +68,7 @@ export default function Page() {
         <div className="flex flex-col w-full h-full">
           <div className="flex flex-row px-7 pt-7 w-full h-24">
             <div className="flex flex-row w-1/3">
-              <ArrowLeftIcon />
+              <ArrowLeftIcon className="cursor-pointer" />
             </div>
             <div className="flex text-R-14 pl-7 w-full">
               네이버로 가입하기
@@ -85,9 +91,9 @@ export default function Page() {
             <div className="flex flex-col gap-4">
               <div className="text-R-20">생년월일</div>
               <div className="flex flex-row gap-5 w-full">
-              <BirthButton placeholder="년도" />
-              <BirthButton placeholder="월" />
-              <BirthButton placeholder="일" />
+              <BirthButton placeholder="년도" options={year} onChange={(e) => OnChangeBirthHandler(e, 1)} />
+              <BirthButton placeholder="월" options={month} onChange={(e) => OnChangeBirthHandler(e, 2)}/>
+              <BirthButton placeholder="일" options={date} onChange={(e) => OnChangeBirthHandler(e, 3)}/>
               </div>
             </div>
             <div className="flex flex-col gap-4">
