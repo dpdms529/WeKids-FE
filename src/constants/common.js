@@ -68,5 +68,5 @@ export const urlPath = {
   DONE: "/transfer/done",
   SIGNUP_SELECT: "/select", // 부모 자녀 선택(임시)
   SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)
-  SIGNUP_PHONE: "/select/phone" //(PASS 사진)
+  SIGNUP_PHONE: "/select/phone", //(PASS 사진)
 };

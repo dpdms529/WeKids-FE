@@ -25,8 +25,18 @@ export default function TopBar({ name, balance, accountNumber }) {
   };
 
   return (
-    <Flex align="center" justify="between" direction="column" className="bg-main02 h-[40vh]">
-      <Flex align="center" justify="between" direction="row" className="w-full pt-8 pl-3 pr-3">
+    <Flex
+      align="center"
+      justify="between"
+      direction="column"
+      className="bg-main02 h-[40vh]"
+    >
+      <Flex
+        align="center"
+        justify="between"
+        direction="row"
+        className="w-full pt-8 pl-3 pr-3"
+      >
         <Box onClick={handleBackClick}>
           <ArrowLeftIcon className="w-5 h-5 text-black/80" />
         </Box>
@@ -43,7 +53,9 @@ export default function TopBar({ name, balance, accountNumber }) {
         >
           {accountNumber}
         </p>
-        <h2 className="text-black/80 text-B-32">{Number(balance).toLocaleString()}원</h2>
+        <h2 className="text-black/80 text-B-32">
+          {Number(balance).toLocaleString()}원
+        </h2>
       </Flex>
       <Flex justify="between" direction="row" className="gap-3 m-8 mt-4">
         <CustomButton
