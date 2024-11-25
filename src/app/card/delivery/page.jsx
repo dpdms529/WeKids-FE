@@ -41,7 +41,8 @@ export default function Page() {
           setPostcode={setPostcode} />
           <CardAddressBottom name={name} 
           address={address} 
-          setName={setName} 
+          setName={setName}
+          setPhone={setPhone} 
           setAddress={setAddress}/>
           <div className="flex flex-col items-center h-[102px] justify-end"> 
             <CustomButton size={"mediumLarge"} 
@@ -49,7 +50,7 @@ export default function Page() {
             className="border border-1 border-black/80" 
             onClick={phone != "" && name != "" && address != "" ? () => router.push(urlPath.HOME) : notify}>
                 확인
-          </CustomButton>
+            </CustomButton>
           </div>
         </div>
       </div>  
