@@ -59,7 +59,7 @@ const parentAccountNullDummyData = {
 };
 
 export default function ParentHome() {
-  const [accountData, setAccountData] = useState(accountDummyData);
+  const [accountData, setAccountData] = useState(parentOnlyDummyData);
 
   if (accountData.parent.accountNumber == null) {
     return <NoAccountView accountData={accountData} />;
