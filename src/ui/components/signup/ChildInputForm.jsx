@@ -54,7 +54,7 @@ export default function ChildInputForm({setAllChecked}) {
                 text={residentfront}
                 onChange={handleFrontChange} 
                 security={false}
-                className="w-full"
+                className="w-full shadow-3xl"
                 maxLength={6}/>
               <div className="flex flex-col justify-center">-</div>
               <LimitedInputBox
