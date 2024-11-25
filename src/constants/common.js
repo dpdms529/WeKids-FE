@@ -71,4 +71,5 @@ export const urlPath = {
   SIGNUP_PHONE: "/select/phone", //(PASS 사진)
   SIGNUP_PASSWORD: "/select/self/password",
   SIGNUP_CONFIRM: "/select/self/password/confirm",
+  SIGNUP_GET_ACCOUNT: "/account",
 };
