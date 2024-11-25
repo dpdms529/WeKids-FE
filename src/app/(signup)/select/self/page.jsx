@@ -1,13 +1,5 @@
 "use client";
 
-<<<<<<< HEAD
-import Top from "@/src/ui/components/signup/SignupHeader"
-import Bottom from "@/src/ui/components/signup/SignUpFooter"
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-=======
->>>>>>> 30007994f17ff1d5e80aae05053f38e8590da677
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import Bottom from "@/src/ui/Components/signup/SignUpFooter";
