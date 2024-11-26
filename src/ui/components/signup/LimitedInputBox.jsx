@@ -63,7 +63,7 @@ const LimitedInputBox = ({
         ...baseStyles,
         border: "1px solid #A3A3A3",
         borderRadius: "12px",
-        color: "#9FA6B2",
+        color: "#000000",
         boxShadow: "none",
       };
     } else if (isFocused) {
@@ -82,7 +82,7 @@ const LimitedInputBox = ({
         ...baseStyles,
         border: "1px solid #000000",
         borderRadius: "12px",
-        color: "#000000",
+        color: "#9FA6B2",
         boxShadow: "none",
       };
     }
