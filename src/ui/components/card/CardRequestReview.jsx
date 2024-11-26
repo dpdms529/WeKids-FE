@@ -17,7 +17,11 @@ export default function CardRequestReview({
         </div>
       </div>
       <div className="flex flex-col h-1/5 justify-center items-center">
-        <CustomButton rounded={true} size={"mediumLarge"} className="max-w-full">
+        <CustomButton
+          rounded={true}
+          size={"mediumLarge"}
+          className="max-w-full"
+        >
           확인
         </CustomButton>
       </div>

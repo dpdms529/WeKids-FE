@@ -9,7 +9,7 @@ import { useSignUpStore } from "@/src/stores/accountStore";
 
 export default function Top({ setAllChecked }) {
   const [phoneChecked, setphoneChecked] = useState(false);
-  const {name, email, phone, setName, setEmail, setPhone} = useSignUpStore();
+  const { name, email, phone, setName, setEmail, setPhone } = useSignUpStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Top({ setAllChecked }) {
   }, [phone, email, name, setAllChecked]);
 
   const PhoneClickListener = () => {
-    router.push(urlPath.SIGNUOP_REGFOM_PHONE); // 추후에 혹시라도 zustand 쓸수도 있어서 함수로
+    router.push(urlPath.SIGNUP_REGFOM_PHONE); // 추후에 혹시라도 zustand 쓸수도 있어서 함수로
   };
 
   return (

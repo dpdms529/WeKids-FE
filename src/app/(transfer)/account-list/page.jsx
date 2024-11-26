@@ -3,6 +3,7 @@
 import { urlPath } from "@/src/constants/common";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import TransferItem from "@/src/ui/components/atoms/TransferItem";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const dummyData = [
@@ -76,31 +77,29 @@ export default function Page() {
       name: user.name,
       account: user.account,
     });
-    router.push(urlPath.TRANSFER);
   };
 
   return (
     <div className="max-w-md mx-auto h-screen flex flex-col">
       <div className="flex justify-between p-4">
         <h1 className="text-R-20 text-black/80">이체</h1>
-        <button
-          className="text-black/70 text-R-20"
-          onClick={() => router.push(urlPath.HOME)}
-        >
-          닫기
-        </button>
+        <Link href={urlPath.HOME}>
+          <button className="text-black/70 text-R-20">닫기</button>
+        </Link>
       </div>
       <div className="flex-1 overflow-y-auto scrollbar-hide">
-        {dummyData.map((user) => (
-          <TransferItem
-            imgPath={user.profile}
-            key={user.id}
-            name={user.name}
-            account={user.account}
-            bank={"우리은행"}
-            isSelected={user.id === selectedAccount?.id}
-            onClick={() => handleSelect(user)}
-          />
+        {dummyData.map((user, idx) => (
+          <Link key={idx} href={urlPath.TRANSFER}>
+            <TransferItem
+              imgPath={user.profile}
+              key={user.id}
+              name={user.name}
+              account={user.account}
+              bank={"우리은행"}
+              isSelected={user.id === selectedAccount?.id}
+              onClick={() => handleSelect(user)}
+            />
+          </Link>
         ))}
       </div>
     </div>

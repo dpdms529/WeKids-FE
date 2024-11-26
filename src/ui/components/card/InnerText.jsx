@@ -23,7 +23,11 @@ export default function InnerText({ isChild = true, name1, name2 }) {
         </div>
       </div>
       <div className="p-3">
-        <CustomButton rounded={true} size={"mediumLarge"} className="max-w-full">
+        <CustomButton
+          rounded={true}
+          size={"mediumLarge"}
+          className="max-w-full"
+        >
           카드 디자인 보기
         </CustomButton>
       </div>

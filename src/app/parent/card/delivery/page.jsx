@@ -8,13 +8,13 @@ import { useRouter } from "next/navigation";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
+import Link from "next/link";
 
 export default function Page() {
   const [postcode, setPostcode] = useState("");
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const router = useRouter();
 
   const notify = () => {
     toast(
@@ -22,6 +22,13 @@ export default function Page() {
         입력되지 않은 사항이 있습니다. <br /> 모두 입력해주세요.
       </div>,
     );
+  };
+
+  const clickHandler = (e) => {
+    if (phone === "" || name === "" || address === "") {
+      e.preventDefault();
+      notify();
+    }
   };
 
   return (
@@ -54,18 +61,18 @@ export default function Page() {
             setAddress={setAddress}
           />
           <div className="flex flex-col items-center h-[102px] justify-end">
-            <CustomButton
-              size={"mediumLarge"}
-              rounded={true}
-              className="border border-1 border-black/80"
-              onClick={
-                phone != "" && name != "" && address != ""
-                  ? () => router.push(urlPath.HOME)
-                  : notify
-              }
+            <Link
+              href={urlPath.PARENT_CARD_DELIVERY_COMPLETED}
+              onClick={clickHandler}
             >
-              확인
-            </CustomButton>
+              <CustomButton
+                size={"mediumLarge"}
+                rounded={true}
+                className="border border-1 border-black/80"
+              >
+                확인
+              </CustomButton>
+            </Link>
           </div>
         </div>
       </div>

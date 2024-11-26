@@ -70,8 +70,8 @@ export const urlPath = {
   ALARM_CARD: "/alarm/card",
 
   SIGNUP_SELECT: "/signup/select", // 부모 자녀 선택(임시)
-  SIGNUOP_REGFOM: "/signup/regform", //회원가입 개인정보 입력
-  SIGNUOP_REGFOM_PHONE: "/signup/regform/phone", //회원가입 개인정보 입력
+  SIGNUP_REGFOM: "/signup/regform", //회원가입 개인정보 입력
+  SIGNUP_REGFOM_PHONE: "/signup/regform/phone", //회원가입 개인정보 입력
   SELECT_PARENT_PASSWORD: "/signup/select/parent/password",
   SELECT_PARENT_PASSWORD_CONFIRM: "/signup/select/parent/password/confirm",
   SELECT_CHILD_APPLY: "/signup/select/child/parent-apply",
@@ -92,13 +92,11 @@ export const urlPath = {
   PARENT_CARD_DELIVERY_COMPLETED: "/parent/card/delivery/completed",
   PARENT_CARD_VERIFICATION: "/parent/card/verification",
 
-
-
-    // SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)
-    // SIGNUP_PHONE: "/select/phone", //(PASS 사진)
-    // SIGNUP_PASSWORD: "/select/self/password",
-    // SIGNUP_CONFIRM: "/select/self/password/confirm",
-    // SIGNUP_GET_ACCOUNT: "/account",
-    // CARD_SELECT: "/card-select",
-    // CARD_CHILD_APPROVE: "/card/design",
+  // SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)
+  // SIGNUP_PHONE: "/select/phone", //(PASS 사진)
+  // SIGNUP_PASSWORD: "/select/self/password",
+  // SIGNUP_CONFIRM: "/select/self/password/confirm",
+  // SIGNUP_GET_ACCOUNT: "/account",
+  // CARD_SELECT: "/card-select",
+  // CARD_CHILD_APPROVE: "/card/design",
 };

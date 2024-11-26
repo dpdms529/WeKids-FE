@@ -49,8 +49,8 @@ const InputTextBox = ({
       return `${baseClasses} border-2 border-black rounded-xl text-black shadow-lg -translate-y-0.5`;
     } else if (isCompleted) {
       return `${baseClasses} border border-black rounded-xl text-black`;
-    } else if(!isCompleted && value && !isFocused) {
-      return `${baseClasses} border border-black rounded-xl text-black`;//zustand로 값 읽어올때
+    } else if (!isCompleted && value && !isFocused) {
+      return `${baseClasses} border border-black rounded-xl text-black`; //zustand로 값 읽어올때
     }
   };
 
