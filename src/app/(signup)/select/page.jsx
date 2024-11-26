@@ -1,17 +1,24 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
+import { useUserTypeStore } from "@/src/stores/userTypeStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorItem from "@/src/ui/components/signup/SelectorItem";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Page() {
-  const [isParentClicked, setParentClicked] = useState(false);
-  const [isChildClicked, setChildClicked] = useState(false);
+  const [selectedType, setSelectedType] = useState(null);
   const router = useRouter();
+  const { setUserType } = useUserTypeStore();
+
+  const handleConfirm = () => {
+    if (selectedType) {
+      setUserType(selectedType);
+      router.push(urlPath.SIGNUP_SELF);
+    }
+  };
 
   return (
     <div className="flex flex-col h-screen bg-white overflow-y-auto w-[393px] items-center px-10">
@@ -20,45 +27,34 @@ export default function Page() {
       </div>
       <div className="w-full">
         <ParentChildSelector
-          isSelected={isParentClicked}
-          onClick={() => {
-            setParentClicked(true);
-            setChildClicked(false);
-          }}
+          isSelected={selectedType === "PARENT"}
+          onClick={() => setSelectedType("PARENT")}
         >
           <SelectorItem
-            isSelected={isParentClicked}
+            isSelected={selectedType === "PARENT"}
             text="부모입니다."
             description="자녀에게 용돈을 줄거에요."
           />
         </ParentChildSelector>
 
         <ParentChildSelector
-          isSelected={isChildClicked}
-          onClick={() => {
-            setParentClicked(false);
-            setChildClicked(true);
-          }}
+          isSelected={selectedType === "CHILD"}
+          onClick={() => setSelectedType("CHILD")}
         >
           <SelectorItem
-            isSelected={isChildClicked}
+            isSelected={selectedType === "CHILD"}
             text="자녀입니다."
             description="용돈을 받고 금융도 배울거에요."
           />
         </ParentChildSelector>
       </div>
       <div className="fixed bottom-5">
-        <Link href={urlPath.SIGNUP_SELF}>
-          <CustomButton
-            className={`${
-              isParentClicked || isChildClicked
-                ? "bg-main01"
-                : "bg-neutral-400 hover:bg-neutral-400 cursor-default"
-            }`}
-          >
-            확인
-          </CustomButton>
-        </Link>
+        <CustomButton
+          className={`${selectedType ? "bg-main01" : "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`}
+          onClick={handleConfirm}
+        >
+          확인
+        </CustomButton>
       </div>
     </div>
   );

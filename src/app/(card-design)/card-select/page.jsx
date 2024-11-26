@@ -22,7 +22,7 @@ const CardDesignSelector = () => {
   };
 
   return (
-    <div className="flex justify-center mt-10">
+    <div className="flex flex-col justify-center mt-10">
       <div className="flex flex-col items-center">
         <h2 className="R-20 mb-4 text-left w-full">카드 디자인 선택</h2>
         <div className="w-[331px] h-[935px] flex-shrink-0 rounded-[10px] border border-black bg-white p-4">
@@ -32,10 +32,10 @@ const CardDesignSelector = () => {
               selectedColor={selectedColor}
             />
           </div>
-          <div className="text-center mb-4 mt-10">
-            <h3 className="R-20 mb-2">배경색</h3>
+          <div className="text-center mb-12 mt-10">
+            <h3 className="R-20 mb-3">배경색</h3>
             <div className="flex justify-center">
-              <div className="grid grid-cols-3 gap-2 justify-items-center">
+              <div className="grid grid-cols-3 gap-5 justify-items-center">
                 {Object.values(characterInfoMap).map((info) => (
                   <ColorButton
                     key={info.colorClass}
@@ -48,9 +48,9 @@ const CardDesignSelector = () => {
           </div>
 
           <div className="text-center mb-4">
-            <h3 className="R-20 mb-2">카드 캐릭터</h3>
+            <h3 className="R-20 mb-4">카드 캐릭터</h3>
             <div className="flex justify-center">
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-5">
                 {Object.keys(characterInfoMap).map((character) => (
                   <CharacterButton
                     key={character}
@@ -64,10 +64,10 @@ const CardDesignSelector = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flex mt-10">
+      </div>
+      <div className="w-full flex-col flex mt-10 mb-4">
           <CustomButton
-            size="Large"
-            className="flex-grow h-auto py-2"
+            size="large"
             onClick={() => setIsModalOpen(true)}
           >
             확인
@@ -77,7 +77,6 @@ const CardDesignSelector = () => {
             onClose={() => setIsModalOpen(false)}
           />
         </div>
-      </div>
     </div>
   );
 };
