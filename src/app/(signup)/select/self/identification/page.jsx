@@ -4,6 +4,7 @@ import Header from "@/src/ui/layout/Header";
 import SignUpFooter from "@/src/ui/components/signup/SignUpFooter"
 import { useState } from "react";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import LimitedInputBox from "@/src/ui/components/signup/LimitedInputBox";
 
 export default function Page() {
   const [allCheck, setAllChecked] = useState(false);
@@ -18,11 +19,20 @@ export default function Page() {
             <div className="flex flex-col gap-11 mt-11">
               <div className="flex flex-col gap-3">
                 <div className="text-R-20 text-black/60">주민번호</div>
-                <InputTextBox placeholder="111111-1111111" />
+                <div className="flex flex-row justify-between gap-2">
+                  <LimitedInputBox />
+                  <div className="flex flex-col h-full justify-center">-</div>
+                  <LimitedInputBox />
+                </div>
+                
               </div>
               <div className="flex flex-col gap-3">
                 <div className="text-R-20 text-black/60">주민번호 확인</div>
-                <InputTextBox placeholder="111111-1111111" />
+                <div className="flex flex-row justify-between gap-2">
+                  <LimitedInputBox />
+                  <div className="flex flex-col h-full justify-center">-</div>
+                  <LimitedInputBox />
+                </div>
               </div>
             </div>
           </div>
