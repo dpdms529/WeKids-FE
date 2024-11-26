@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
   const [cardName, setCardName] = useState("");

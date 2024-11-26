@@ -16,10 +16,9 @@ export default function Page() {
   const handleConfirm = () => {
     if (selectedType) {
       setUserType(selectedType);
-      router.push(urlPath.SIGNUP_SELF);
+      router.push(urlPath.SIGNUOP_REGFOM);
     }
   };
-
   return (
     <div className="flex flex-col h-screen bg-white overflow-y-auto w-[393px] items-center px-10">
       <div className="my-20 py-2">

@@ -1,12 +1,12 @@
 "use client";
 
-import Bottom from "@/src/ui/components/signup/SignUpFooter";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
-import toast, { Toaster } from "react-hot-toast";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ChildInputForm from "@/src/ui/components/signup/ChildInputForm";
+import Bottom from "@/src/ui/components/signup/SignUpFooter";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Page() {
   const router = useRouter();
@@ -39,7 +39,7 @@ export default function Page() {
           rounded="true"
           className="w-full bg-stone-300 hover:bg-stone-300"
           onClick={() => {
-            router.push(urlPath.HOME);
+            router.push(urlPath.CARD_VERIFICATION_CONFIRM);
           }}
         >
           닫기
