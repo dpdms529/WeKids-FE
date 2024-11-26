@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-const CustomSelectBox = ({
+const BirthButton = ({
   width = 313,
   height = 51,
   options = [],
   placeholder = "선택해주세요",
   onChange,
 }) => {
-  const [isOpen, setIsOpen] = useState(false); // 드롭다운 열림 상태
-  const [selectedValue, setSelectedValue] = useState(""); // 선택된 값
-  const [isFocused, setIsFocused] = useState(false); // 포커스 상태
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -25,88 +26,38 @@ const CustomSelectBox = ({
 
   const handleBlur = () => {
     setIsFocused(false);
-    setIsOpen(false); // 포커스가 사라지면 드롭다운 닫기
-  };
-
-  const getStyles = () => {
-    const baseStyles = {
-      width: "100%",
-      height: "100%",
-      padding: "12px 18px",
-      boxSizing: "border-box",
-      fontSize: 14,
-      transition: "all 0.2s ease-in",
-      backgroundColor: "white",
-      outline: "none",
-      border: "1px solid #A3A3A3",
-      borderRadius: "12px",
-      color: selectedValue ? "#000000" : "#9FA6B2", // 선택 여부에 따라 색상 변경
-      cursor: "pointer",
-    };
-
-    if (isFocused) {
-      return {
-        ...baseStyles,
-        border: "2px solid #000000", // 포커스 상태에서 두꺼운 테두리
-        boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
-      };
-    }
-
-    return baseStyles;
-  };
-
-  const containerStyles = {
-    width,
-    height,
-    position: "relative",
-    cursor: "pointer",
-  };
-
-  const dropdownStyles = {
-    position: "absolute",
-    top: "100%",
-    left: 0,
-    width: "100%",
-    border: "1px solid #A3A3A3",
-    borderRadius: "12px",
-    backgroundColor: "white",
-    boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.1)",
-    marginTop: "8px",
-    zIndex: 1000,
-    maxHeight: "200px",
-    overflowY: "auto",
-  };
-
-  const optionStyles = {
-    padding: "12px 18px",
-    cursor: "pointer",
-    transition: "background-color 0.2s ease-in-out",
+    setIsOpen(false);
   };
 
   return (
     <div
-      style={containerStyles}
-      tabIndex={0} // div가 포커스를 받을 수 있도록 설정
-      onBlur={handleBlur} // 포커스가 사라지면 호출
+      className={`relative w-full h-${height} ${width} transition-all duration-200 ease-in-out`} // 혹시나 너비 바꿀 일 있을수도 있어서
+      tabIndex={0}
+      onBlur={handleBlur}
     >
       <div
         onClick={toggleDropdown}
-        style={getStyles()}
+        className={`flex items-center justify-between w-full h-full pl-4 pr-1 py-3 bg-white text-sm border border-neutral-400 rounded-lg 
+    ${
+      isFocused
+        ? "outline outline-1 outline-black shadow-md transform -translate-y-0.5"
+        : "outline-none"
+    } transition-all cursor-pointer`}
       >
-        {selectedValue || placeholder}
+        <span className={selectedValue ? "text-black" : "text-stone-300"}>
+          {selectedValue || placeholder}
+        </span>
+        <ChevronDownIcon className="w-5 h-5 text-black" />
       </div>
       {isOpen && (
-        <div style={dropdownStyles}>
+        <div
+          className={`absolute left-0 w-full mt-2 bg-white border border-neutral-400 rounded-lg shadow-lg max-h-52 overflow-y-auto z-10`}
+          style={{ top: "100%" }}
+        >
           {options.map((option, index) => (
             <div
               key={index}
-              style={optionStyles}
-              onMouseEnter={(e) =>
-                (e.target.style.backgroundColor = "#F0F0F0")
-              }
-              onMouseLeave={(e) =>
-                (e.target.style.backgroundColor = "white")
-              }
+              className="px-4 py-3 text-sm transition-colors cursor-pointer hover:bg-stone-300"
               onClick={() => handleOptionClick(option)}
             >
               {option}
@@ -118,4 +69,4 @@ const CustomSelectBox = ({
   );
 };
 
-export default CustomSelectBox;
+export default BirthButton;
