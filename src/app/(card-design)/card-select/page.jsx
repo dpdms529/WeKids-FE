@@ -22,7 +22,7 @@ const CardDesignSelector = () => {
   };
 
   return (
-    <div className="flex justify-center mt-10">
+    <div className="flex flex-col justify-center mt-10">
       <div className="flex flex-col items-center">
         <h2 className="R-20 mb-4 text-left w-full">카드 디자인 선택</h2>
         <div className="w-[331px] h-[935px] flex-shrink-0 rounded-[10px] border border-black bg-white p-4">
@@ -64,10 +64,10 @@ const CardDesignSelector = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flex mt-10">
+      </div>
+      <div className="w-full flex-col flex mt-10 mb-4">
           <CustomButton
-            size="Large"
-            className="flex-grow h-auto py-2"
+            size="large"
             onClick={() => setIsModalOpen(true)}
           >
             확인
@@ -77,7 +77,6 @@ const CardDesignSelector = () => {
             onClose={() => setIsModalOpen(false)}
           />
         </div>
-      </div>
     </div>
   );
 };
