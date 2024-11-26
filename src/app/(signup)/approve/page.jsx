@@ -5,7 +5,7 @@ import Header from '@/src/ui/layout/Header';
 import { characterInfoMap } from '@/src/constants/common';
 import CustomButton from '@/src/ui/Components/atoms/CustomButton';
 
-const Parent_Approve = () => {
+const ParentApprove = () => {
     return (
         <div className="flex flex-col w-full h-screen overflow-hidden">
         <Header />
@@ -36,4 +36,4 @@ const Parent_Approve = () => {
     );
   };
   
-  export default Parent_Approve;
+  export default ParentApprove;
