@@ -33,7 +33,11 @@ export default function Page() {
         </div>
         <div className="flex h-[91px]">
           <CustomButton
-            onClick={assignCheck && identificationCheck ? "" : () => notify()}
+            onClick={() => {
+              if (!(assignCheck && identificationCheck)) {
+                notify();
+              }
+            }}
             color={assignCheck && identificationCheck ? "main" : "gray"}
           >
             확인
