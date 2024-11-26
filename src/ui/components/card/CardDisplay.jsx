@@ -1,6 +1,6 @@
 import React from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import CardCharacter from "@/src/ui/Components/card-select/CardCharacter";
+import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 
 const CardDisplay = ({
   selectedCharacter,

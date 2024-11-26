@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
 import CardDisplay from "@/src/ui/components/card/CardDisplay";
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Header from "@/src/ui/layout/Header";
 
 const DesignChracterColor = {
