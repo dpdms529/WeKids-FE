@@ -78,13 +78,13 @@ export const urlPath = {
 
   //자식에서 카드신청 url
   CHILD_CARD_SELECT: "/child/card/card-select",
-  CHILD_CARD: "child/card",
-
-  //   SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)
-  //   SIGNUP_PHONE: "/select/phone", //(PASS 사진)
-  //   SIGNUP_PASSWORD: "/select/self/password",
-  //   SIGNUP_CONFIRM: "/select/self/password/confirm",
-  //   SIGNUP_GET_ACCOUNT: "/account",
-  //   CARD_SELECT: "/card-select",
-  //   CARD_CHILD_APPROVE: "/card/design",
-};
+  CHILD_CARD: "/child/card",
+  
+  SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)
+  SIGNUP_PHONE: "/select/phone", //(PASS 사진)
+  SIGNUP_PASSWORD: "/select/self/password",
+  SIGNUP_CONFIRM: "/select/self/password/confirm",
+  SIGNUP_GET_ACCOUNT: "/account",
+  CARD_SELECT: "/card-select",
+  CARD_CHILD_APPROVE: "/child/card/complete",
+}
