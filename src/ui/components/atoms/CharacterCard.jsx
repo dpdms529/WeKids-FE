@@ -5,7 +5,9 @@ const CharacterCard = ({
   height = "h-[513px]",
   radius = "rounded-[10px]",
   border = "border-black",
-  imagePath = "/images/avatarImg.svg",
+  imagePath = "/images/chachapingImg.svg",
+  imgWidth = 100,
+  imgHeight = 100,
   children,
   className,
 }) => {
@@ -18,8 +20,8 @@ const CharacterCard = ({
           src={imagePath}
           alt="profile image"
           layout="intrinsic"
-          width={100}
-          height={100}
+          width={imgWidth}
+          height={imgHeight}
         />
       </div>
       <div className="flex flex-col items-center gap-4 h-2/5">{children}</div>

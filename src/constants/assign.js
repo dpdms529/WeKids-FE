@@ -36,3 +36,22 @@ export const alarmData = [
       `가족관계 증명서 확인해주기. <br/>아이가 소셜로그인 가입을 위한 부모 동의 알림을 보냈습니다!`,
   },
 ];
+
+export const generateYears = (startYear, endYear) => {
+  return Array.from(
+    { length: endYear - startYear + 1 },
+    (_, i) => startYear + i,
+  );
+};
+
+export const generateMonths = () => {
+  return Array.from({ length: 12 }, (_, i) => i + 1);
+};
+
+export const generateDates = () => {
+  return Array.from({ length: 31 }, (_, i) => i + 1);
+};
+
+export const year = generateYears(1940, 2024);
+export const month = generateMonths();
+export const date = generateDates();
