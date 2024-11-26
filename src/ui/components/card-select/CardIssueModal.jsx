@@ -1,5 +1,6 @@
-import React from "react";
+import { urlPath } from "@/src/constants/common";
 import PopupMessage from "@/src/ui/Components/molecules/PopupMessage";
+import Link from "next/link";
 
 const CardIssueModal = ({ isOpen, onClose }) => {
   return (
@@ -16,7 +17,7 @@ const CardIssueModal = ({ isOpen, onClose }) => {
             이대로 발급할까요?
           </span>
         }
-        buttonText="확인"
+        buttonText={<Link href={urlPath.CARD_PARENT_APPROVE}>확인</Link>}
         onClose={onClose}
         width="375px"
         height="208px"
