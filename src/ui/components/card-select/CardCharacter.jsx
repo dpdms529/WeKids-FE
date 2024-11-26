@@ -41,7 +41,7 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
       <Image
         src={characterInfoMap[selectedCharacter].imagePath}
         alt={characterInfoMap[selectedCharacter].name}
-        width={192}  
+        width={192}
         height={191}
         className="w-[192px] h-[191px] flex-shrink-0 mt-10"
       />
