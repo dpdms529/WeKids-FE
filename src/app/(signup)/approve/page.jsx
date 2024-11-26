@@ -10,7 +10,7 @@ const ParentApprove = () => {
         <div className="flex flex-col w-full h-screen overflow-hidden">
         <Header />
         <div className="flex-grow flex items-center justify-center">
-            <div className="w-[313px] h-[473px] flex-shrink-0 rounded-[40px] border-2 border-black/40 bg-[#57A9FB] flex flex-col items-center justify-center">
+            <div className="w-[313px] h-[473px] flex-shrink-0 rounded-[40px] border-2 border-black/40 bg-main02 flex flex-col items-center justify-center">
              <img
                 src={characterInfoMap['HEARTSPRING'].imagePath}
                 alt="하츄핑"
