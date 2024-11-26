@@ -76,11 +76,23 @@ export const urlPath = {
   SELECT_PARENT_PASSWORD_CONFIRM: "/signup/select/parent/password/confirm",
   SELECT_CHILD_APPLY: "/signup/select/child/parent-apply",
   SELECT_CHILD_APPLY_CONFIRM: "/signup/select/child/parent-apply/confirm",
-  CARD_VERIFICATION_CONFIRM: "/card/verification/confirm",
+  CARD_VERIFICATION_CONFIRM: "/parent/card/verification/confirm",
 
   //자식에서 카드신청 url
   CHILD_CARD_SELECT: "/child/card/card-select",
   CHILD_CARD: "/child/card",
+  CHILD_CARD_COMPLETE: "/child/card/complete",
+
+  //부모 url
+  PARENT_ACCOUNT: "/parent/account",
+  PARENT_CARD_APPLY_SETUP: "/parent/card/apply/card-setup",
+  PARENT_CARD_APPLY_CONFIRM: "/parent/card/apply/confirm",
+  PARENT_CARD_APPLY_PASSWORD: "/parent/card/apply/password",
+  PARENT_CARD_DELIVERY: "/parent/card/delivery",
+  PARENT_CARD_DELIVERY_COMPLETED: "/parent/card/delivery/completed",
+  PARENT_CARD_VERIFICATION: "/parent/card/verification",
+
+
 
     // SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)
     // SIGNUP_PHONE: "/select/phone", //(PASS 사진)
