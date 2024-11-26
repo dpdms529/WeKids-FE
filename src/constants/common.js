@@ -72,6 +72,6 @@ export const urlPath = {
   SIGNUP_PASSWORD: "/select/self/password",
   SIGNUP_CONFIRM: "/select/self/password/confirm",
   SIGNUP_GET_ACCOUNT: "/account",
-  CARD_SELECT:"/card-select",
-  CARD_PARENT_APPROVE:"/card/parent"
+  CARD_SELECT: "/card-select",
+  CARD_CHILD_APPROVE: "/card/design",
 };
