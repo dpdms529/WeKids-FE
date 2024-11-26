@@ -66,6 +66,8 @@ export const urlPath = {
   ACCOUNT_LIST: "/account-list",
   TRANSFER: "/transfer",
   DONE: "/transfer/done",
+  ALARM: "/alarm",
+  ALARM_CARD: "/alarm/card",
 
   SIGNUP_SELECT: "/signup/select", // 부모 자녀 선택(임시)
   SIGNUOP_REGFOM: "/signup/regform", //회원가입 개인정보 입력
