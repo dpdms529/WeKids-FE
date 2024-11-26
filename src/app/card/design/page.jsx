@@ -14,7 +14,7 @@ const Page = () => {
         </div>
         <div className="flex flex-col w-full h-1/6 items-center gap-6">
           <div>
-            <span className="text-white text-R-20">이대로 진행할까요?</span>
+            <span className="text-white text-R-20">승인 대기중이에요.</span>
           </div>
           <div className="flex w-full justify-center">
             <CustomButton
@@ -22,7 +22,7 @@ const Page = () => {
               rounded={true}
               className="bg-main02"
             >
-              확인
+              동의 확인하기
             </CustomButton>
           </div>
         </div>
