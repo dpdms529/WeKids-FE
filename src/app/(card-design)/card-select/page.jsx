@@ -32,10 +32,10 @@ const CardDesignSelector = () => {
               selectedColor={selectedColor}
             />
           </div>
-          <div className="text-center mb-4 mt-10">
-            <h3 className="R-20 mb-2">배경색</h3>
+          <div className="text-center mb-12 mt-10">
+            <h3 className="R-20 mb-3">배경색</h3>
             <div className="flex justify-center">
-              <div className="grid grid-cols-3 gap-2 justify-items-center">
+              <div className="grid grid-cols-3 gap-5 justify-items-center">
                 {Object.values(characterInfoMap).map((info) => (
                   <ColorButton
                     key={info.colorClass}
@@ -48,9 +48,9 @@ const CardDesignSelector = () => {
           </div>
 
           <div className="text-center mb-4">
-            <h3 className="R-20 mb-2">카드 캐릭터</h3>
+            <h3 className="R-20 mb-4">카드 캐릭터</h3>
             <div className="flex justify-center">
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-5">
                 {Object.keys(characterInfoMap).map((character) => (
                   <CharacterButton
                     key={character}
