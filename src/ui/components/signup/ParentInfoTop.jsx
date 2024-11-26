@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { year, month, date } from "@/src/constants/assign";
 import Modal from "@/src/ui/components/atoms/Modal";
 import CharacterCard from "@/src/ui/components/atoms/CharacterCard";
+import toast, {Toaster} from "react-hot-toast";
 
 export default function ParentInfoTop() {
   const [name, setName] = useState("");
@@ -38,6 +39,10 @@ export default function ParentInfoTop() {
 
     return () => clearInterval(interval);
   }, [time]);
+
+  const notify = () => {
+    toast("빈칸을 채워주세요!");
+  };
 
   const OnChangeBirthHandler = (value, type) => {
     const tempValue = String(value);
@@ -87,6 +92,7 @@ export default function ParentInfoTop() {
   };
   return (
     <>
+      <Toaster position="top-center" />
       <div className="flex flex-col px-10 gap-4 h-2/3">
         <div className="text-R-20 text-black/80">
           만 14세 미만의 가입자는 <br />
@@ -154,7 +160,6 @@ export default function ParentInfoTop() {
         {isRequest ? (
           <>
             <div className="flex justify-center text-main03 text-R-14">
-              {" "}
               {time}초 전까지 동의해야 해요.
             </div>
             <div className="flex flex-col items-center w-full">
@@ -173,12 +178,15 @@ export default function ParentInfoTop() {
       </div>
       <div className="fixed w-full bottom-5 justify-center pt-10">
         <CustomButton
+          color={allCheck ? "main" : "gray" }
           onClick={() => {
             if (isRequest) {
               modalHandler();
             } else if (allCheck) {
               setIsRequest(true); // 상태 업데이트
               setTime(100);
+            } else{
+              notify();
             }
           }}
         >
