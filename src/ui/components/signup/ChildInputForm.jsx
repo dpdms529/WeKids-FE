@@ -2,7 +2,7 @@ import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
 import { FileTextIcon } from "@radix-ui/react-icons";
 import LimitedInputBox from "@/src/ui/components/signup/LimitedInputBox";
 import React, { useState, useEffect } from "react";
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Modal from "../atoms/Modal";
 import Loader from "../atoms/Loader";
 
