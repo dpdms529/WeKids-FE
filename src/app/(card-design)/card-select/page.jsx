@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { characterInfoMap } from "@/src/constants/common";
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import ColorButton from "@/src/ui/components/card-select/ColorButton";
 import CharacterButton from "@/src/ui/components/card-select/CharacterButton";

@@ -1,5 +1,5 @@
 import React from "react";
-import PopupMessage from "@/src/ui/Components/molecules/PopupMessage";
+import PopupMessage from "@/src/ui/components/molecules/PopupMessage";
 
 const CardIssueModal = ({ isOpen, onClose }) => {
   return (
