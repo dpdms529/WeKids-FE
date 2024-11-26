@@ -40,19 +40,19 @@ export const colorTypeMap = {
   },
   BLUE: {
     name: "바로핑",
-    colorClass: "bg-blueBaro", // CSS 클래스 이름으로 색상 관리
+    colorClass: "bg-blueDada", // CSS 클래스 이름으로 색상 관리
   },
   YELLOW: {
     name: "아자핑",
-    colorClass: "bg-yellowAja", // CSS 클래스 이름으로 색상 관리
+    colorClass: "bg-yellowGogo", // CSS 클래스 이름으로 색상 관리
   },
   GREEN: {
     name: "차차핑",
-    colorClass: "bg-greenChacha", // CSS 클래스 이름으로 색상 관리
+    colorClass: "bg-yellowChacha", // CSS 클래스 이름으로 색상 관리
   },
   PURPLE: {
     name: "라라핑",
-    colorClass: "bg-purpleLara", // CSS 클래스 이름으로 색상 관리
+    colorClass: "bg-purpleLala", // CSS 클래스 이름으로 색상 관리
   },
   PINK2: {
     name: "해핑",
