@@ -24,9 +24,9 @@ const ParentApprove = () => {
         
         <div className="mb-12">
           <CustomButton
-            size="medium"
+            size="mediumLarge"
             rounded={true}
-            className="w-[313px] h-[62px] px-[82px] py-[22px] justify-center items-center gap-[10px] flex-shrink-0 bg-[#57A9FB] rounded-[11px] text-R-20 mx-auto"
+            className="text-R-20 mx-auto"
             onClick={() => alert('확인 버튼 클릭')}
           >
             부모님 정보 다시 입력 하기
