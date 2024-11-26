@@ -1,7 +1,7 @@
 "use client";
 
 import Bottom from "@/src/ui/components/signup/SignUpFooter";
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";

@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "@/src/ui/Components/atoms/Profile";
+import Profile from "@/src/ui/components/atoms/Profile";
 
 const CharacterButton = ({ character, imagePath, onClick }) => {
   return (
