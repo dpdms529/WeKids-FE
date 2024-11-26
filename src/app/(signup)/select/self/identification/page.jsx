@@ -11,18 +11,18 @@ export default function Page() {
         <div className="flex flex-col bg-white h-screen overflow-y-auto scrollbar-hide w-full">
           <Header />
           <div className="flex flex-col w-full h-[423px] items-center px-12 pt-12">
-            <div>
+            <div className="text-R-20">
               계좌를 불러오기 위해서는 <br/>
               주민등록 번호가 필요해요!
             </div>
             <div className="flex flex-col gap-11 mt-11">
               <div className="flex flex-col gap-3">
-                <div>주민번호</div>
-                <InputTextBox />
+                <div className="text-R-20 text-black/60">주민번호</div>
+                <InputTextBox placeholder="111111-1111111" />
               </div>
               <div className="flex flex-col gap-3">
-                <div>주민번호 확인</div>
-                <InputTextBox />
+                <div className="text-R-20 text-black/60">주민번호 확인</div>
+                <InputTextBox placeholder="111111-1111111" />
               </div>
             </div>
           </div>
