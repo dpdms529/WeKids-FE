@@ -84,4 +84,8 @@ export const urlPath = {
 
   //부모 입장
   PARENT_ACCOUNT: "/parent/account",
+  PARENT_CARD_APPLY: "/parent/card/apply",
+  PARENT_CARD_PASSWORD: "/parent/card/apply/password",
+  PARENT_CARD_CONFIRM: "/parent/card/apply/confirm",
+  PARENT_CARD_DELIVERY_COMPLETE: "/parent/card/delivery/completed",
 };
