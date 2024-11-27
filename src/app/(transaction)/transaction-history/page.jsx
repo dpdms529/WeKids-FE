@@ -3,9 +3,8 @@ import { TransactionFilter } from "@/src/ui/components/transaction/transaction-h
 import { TransactionsView } from "@/src/ui/components/transaction/transaction-history/TransactionsView";
 import { Box, Flex } from "@radix-ui/themes";
 
-export default function Page({ searchParams }) {
-  const { color } = searchParams;
-  console.log("transactionhistory " + color);
+export default async function Page({ searchParams }) {
+  const { color } = await searchParams;
 
   return (
     <section>
