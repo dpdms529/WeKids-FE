@@ -1,33 +1,18 @@
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import { urlPath } from "@/src/constants/common";
+import CardDesignLayout from "@/src/ui/components/card/CardDesignLayout";
 import ChoiceDesign from "@/src/ui/components/card/ChoiceDesign";
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
+
 
 const Page = () => {
   return (
-    <div className="flex flex-col h-screen max-w-full overflow-hidden bg-sub02">
-      <div className="flex p-4 h-20">
-        <ArrowLeftIcon className="size-8 text-white cursor-pointer" />
-      </div>
-      <div className="flex flex-col p-4 h-full">
-        <div className="flex flex-col h-5/6 items-center justify-center">
-          <ChoiceDesign />
-        </div>
-        <div className="flex flex-col w-full h-1/6 items-center gap-6">
-          <div>
-            <span className="text-white text-R-20">승인 대기중이에요.</span>
-          </div>
-          <div className="flex w-full justify-center">
-            <CustomButton
-              size="mediumLarge"
-              rounded={true}
-              className="bg-main02"
-            >
-              동의 확인하기
-            </CustomButton>
-          </div>
-        </div>
-      </div>
-    </div>
+    <CardDesignLayout>
+      <ChoiceDesign
+        title="내가 선택한 디자인"
+        subText="승인 대기중이에요."
+        buttonText="동의 확인하기"
+        linkUrl={urlPath.HOME}
+      />
+    </CardDesignLayout>
   );
 };
 

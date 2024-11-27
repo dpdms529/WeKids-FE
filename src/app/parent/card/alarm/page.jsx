@@ -2,16 +2,17 @@ import { urlPath } from "@/src/constants/common";
 import CardDesignLayout from "@/src/ui/components/card/CardDesignLayout";
 import ChoiceDesign from "@/src/ui/components/card/ChoiceDesign";
 
-export default function Page() {
+const Page = () => {
   return (
     <CardDesignLayout>
       <ChoiceDesign
-        title="카드 발급 완료!"
-        subText=""
-        buttonText="카드 비밀번호 등록하기"
-        linkUrl={urlPath.SELECT_PARENT_PASSWORD}
+        title="자녀가 선택한 디자인"
+        subText="이대로 진행할까요?"
+        buttonText="확인"
+        linkUrl={urlPath.PARENT_CARD_VERIFICATION}
       />
     </CardDesignLayout>
   );
-}
+};
 
+export default Page;
