@@ -8,8 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast"; // Toaster 및 toast 불러오기
 
-const BlueCardBox = ({selectedAccount}) => {
-
+const BlueCardBox = ({ selectedAccount }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState(""); // backgroundColorClass 상태 추가
 
   useEffect(() => {
