@@ -1,6 +1,7 @@
-import InnerText from "@/src/ui/components/card/InnerText";
-import Image from "next/image";
+import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function CardRequestReview({
   src = "/images/chachapingImg.svg",
@@ -16,14 +17,12 @@ export default function CardRequestReview({
           <Image src={src} alt="character image" width={150} height={150} />
         </div>
       </div>
-      <div className="flex flex-col h-1/5 justify-center items-center">
-        <CustomButton
-          rounded={true}
-          size={"mediumLarge"}
-          className="max-w-full"
-        >
-          확인
-        </CustomButton>
+      <div className="flex flex-col h-1/5 justify-center px-10">
+        <Link href={urlPath.HOME}>
+          <CustomButton rounded={true} size={"mediumLarge"} className="max-w-full">
+            확인
+          </CustomButton>
+        </Link>
       </div>
     </>
   );

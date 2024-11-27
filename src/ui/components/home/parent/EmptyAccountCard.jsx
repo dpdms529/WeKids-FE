@@ -25,7 +25,7 @@ const NoAccountCard = ({
         <p className={`${textColor} text-R-20`}>{subText}</p>
       </div>
       <div className="border border-t-black">
-        <Link href={urlPath.SIGNUP_GET_ACCOUNT}>
+        <Link href={urlPath.PARENT_ACCOUNT}>
           <CustomButton onClick={onButtonClick}>{buttonText}</CustomButton>
         </Link>
       </div>

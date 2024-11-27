@@ -85,11 +85,12 @@ export const urlPath = {
 
   //부모 url
   PARENT_ACCOUNT: "/parent/account",
-  PARENT_CARD_APPLY_SETUP: "/parent/card/apply/card-setup",
-  PARENT_CARD_APPLY_CONFIRM: "/parent/card/apply/confirm",
-  PARENT_CARD_APPLY_PASSWORD: "/parent/card/apply/password",
+  PARENT_CARD_APPLY: "/parent/card/apply",
+  PARENT_CARD_SETUP: "/parent/card/apply/card-setup",
+  PARENT_CARD_CONFIRM: "/parent/card/apply/confirm",
+  PARENT_CARD_PASSWORD: "/parent/card/apply/password",
   PARENT_CARD_DELIVERY: "/parent/card/delivery",
-  PARENT_CARD_DELIVERY_COMPLETED: "/parent/card/delivery/completed",
+  PARENT_CARD_DELIVERY_COMPLETE: "/parent/card/delivery/completed",
   PARENT_CARD_VERIFICATION: "/parent/card/verification",
 
   // SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)

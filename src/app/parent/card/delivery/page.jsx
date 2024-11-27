@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import { useRouter } from "next/navigation";
+import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import Link from "next/link";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Page() {
   const [postcode, setPostcode] = useState("");
@@ -20,8 +20,15 @@ export default function Page() {
     toast(
       <div>
         입력되지 않은 사항이 있습니다. <br /> 모두 입력해주세요.
-      </div>,
+      </div>
     );
+  };
+
+  const clickHandler = (e) => {
+    if (phone === "" || name === "" || address === "") {
+      e.preventDefault();
+      notify();
+    }
   };
 
   const clickHandler = (e) => {

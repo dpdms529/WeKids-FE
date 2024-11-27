@@ -5,6 +5,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ChildInputForm from "@/src/ui/components/signup/ChildInputForm";
 import Bottom from "@/src/ui/components/signup/SignUpFooter";
 import Link from "next/link";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
