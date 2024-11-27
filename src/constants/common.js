@@ -92,12 +92,4 @@ export const urlPath = {
   PARENT_CARD_DELIVERY: "/parent/card/delivery",
   PARENT_CARD_DELIVERY_COMPLETE: "/parent/card/delivery/completed",
   PARENT_CARD_VERIFICATION: "/parent/card/verification",
-
-  // SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)
-  // SIGNUP_PHONE: "/select/phone", //(PASS 사진)
-  // SIGNUP_PASSWORD: "/select/self/password",
-  // SIGNUP_CONFIRM: "/select/self/password/confirm",
-  // SIGNUP_GET_ACCOUNT: "/account",
-  // CARD_SELECT: "/card-select",
-  // CARD_CHILD_APPROVE: "/card/design",
 };
