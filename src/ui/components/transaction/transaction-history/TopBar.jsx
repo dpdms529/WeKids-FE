@@ -4,14 +4,10 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function TopBar({ name, balance, accountNumber }) {
-  const router = useRouter();
-  const bgColorClass = selectedAccount?.color
-    ? colorTypeMap[selectedAccount.color].colorClass
-    : "bg-main02";
+export default function TopBar({ name, balance, accountNumber, bgColor }) {
+  const bgColorClass = colorTypeMap[bgColor].colorClass;
 
   const copyToClipboard = (text) => {
     navigator.clipboard
@@ -31,8 +27,6 @@ export default function TopBar({ name, balance, accountNumber }) {
   const handleSettingsClick = () => {
     alert("설정 버튼 클릭됨");
   };
-  console.log("bgColorClass " + bgColorClass);
-  console.log(selectedAccount?.color);
 
   return (
     <Flex
@@ -63,22 +57,21 @@ export default function TopBar({ name, balance, accountNumber }) {
         >
           {accountNumber}
         </p>
-        <h2 className="text-black/80 text-B-32">
+        <h2 className="text-black/80 text-B-32 mt-4">
           {Number(balance).toLocaleString()}원
         </h2>
       </Flex>
       <Flex justify="between" direction="row" className="gap-3 m-8 mt-4">
-        <CustomButton
-          className="text-R-14"
-          size="small"
-          color="black10"
-          rounded={true}
-          onClick={() => {
-            router.push(urlPath.TRANSFER);
-          }}
-        >
-          용돈주기
-        </CustomButton>
+        <Link href={urlPath.TRANSFER}>
+          <CustomButton
+            className="text-R-14"
+            size="small"
+            color="black10"
+            rounded={true}
+          >
+            용돈주기
+          </CustomButton>
+        </Link>
         <CustomButton
           className="text-R-14"
           size="small"

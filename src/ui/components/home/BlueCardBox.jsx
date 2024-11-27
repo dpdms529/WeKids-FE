@@ -44,7 +44,6 @@ const BlueCardBox = ({ selectedAccount }) => {
     >
       {/* Toaster 컴포넌트 */}
       <Toaster position="bottom-center" reverseOrder={false} />
-
       <div className="p-5">
         <div className="w-[180px]">
           <div className="flex items-center space-x-2 mt-3">
@@ -54,14 +53,12 @@ const BlueCardBox = ({ selectedAccount }) => {
           <Text className="text-B-28 mt-9">{selectedAccount.name}</Text>
         </div>
       </div>
-
       {/* 금액 위치 중앙 고정 */}
       <div className="absolute w-full bottom-20 text-right pr-7">
         <Text className="text-R-28">
           {selectedAccount.balance.toLocaleString()} 원
         </Text>
       </div>
-
       {/* 캐릭터 이미지 컨테이너 수정 */}
       <div className="absolute right-0 bottom-[75px] w-[180px] h-[180px] overflow-hidden">
         <Image
@@ -76,12 +73,12 @@ const BlueCardBox = ({ selectedAccount }) => {
           }}
         />
       </div>
-
+      {console.log("selectedAccount.color " + selectedAccount.color)}
       <div className="absolute bottom-0 w-full">
         <div className="w-full h-[1px] bg-black"></div>
         <div className="flex text-black">
           <Link
-            href={urlPath.TRANSACTION_HISTORY}
+            href={`${urlPath.TRANSACTION_HISTORY}?color=${selectedAccount.color}`}
             className="flex-1 py-4 text-center text-R-20 border-r border-black hover:bg-white/10 transition-colors"
           >
             <button>조회</button>
