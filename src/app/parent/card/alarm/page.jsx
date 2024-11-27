@@ -4,7 +4,7 @@ import ChoiceDesign from "@/src/ui/components/card/ChoiceDesign";
 
 const Page = () => {
   return (
-    <CardDesignLayout>
+    <CardDesignLayout backUrl={urlPath.ALARM}>
       <ChoiceDesign
         title="자녀가 선택한 디자인"
         subText="이대로 진행할까요?"
