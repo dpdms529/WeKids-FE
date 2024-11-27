@@ -6,7 +6,7 @@ const CardIssueModal = ({ isOpen, onClose }) => {
   const router = useRouter();
 
   const handleConfirm = () => {
-    // { TODO: 추후 자식 입장 페이지로 변경 }
+    // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
     router.push(urlPath.HOME); 
     onClose(); 
   };
