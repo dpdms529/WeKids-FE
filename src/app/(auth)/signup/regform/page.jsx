@@ -27,7 +27,7 @@ export default function Page() {
         <CustomButton
           rounded="true"
           className={`w-full border border-black/80 ${
-            topChecked && bottomChecked 
+            topChecked && bottomChecked
               ? "bg-main01"
               : "bg-stone-300 hover:bg-stone-300"
           }`}

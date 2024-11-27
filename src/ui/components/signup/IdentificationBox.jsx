@@ -3,19 +3,24 @@
 import IdentificationForm from "./IdentificationForm";
 import { useEffect, useState } from "react";
 
-export default function IdentificationBox({ setChecked }) {
+export default function IdentificationBox({ setChecked, setErrorCode }) {
   const [identification, setIdentification] = useState("".padStart(13, " "));
   const [checkidentification, setCheckIdentification] = useState(
     "".padStart(13, " "),
   );
 
   useEffect(() => {
-    setChecked(
-      !identification.includes(" ") &&
-        !checkidentification.includes(" ") &&
-        identification == checkidentification,
-    );
-  });
+    const isEmpty =
+      identification.includes(" ") || checkidentification.includes(" ");
+    const isMismatch = identification !== checkidentification;
+    setErrorCode([
+      !isMismatch,
+      !identification.includes(" "),
+      !checkidentification.includes(" "),
+    ]);
+    setChecked(!isEmpty && !isMismatch);
+  }, [identification, checkidentification, setChecked, setErrorCode]);
+
   return (
     <>
       <IdentificationForm

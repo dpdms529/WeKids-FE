@@ -1,5 +1,4 @@
 "use client";
-import { useAccountInfoStore } from "@/src/stores/accountStore";
 
 import { useEffect, useState } from "react";
 import Profile from "../../atoms/Profile";
@@ -7,11 +6,19 @@ import BlueCardBox from "../BlueCardBox";
 import NoButtonAccountCard from "./AccountGuide";
 
 export default function AccountView({ accountData }) {
-  const { selectedAccount, setSelectedAccount } = useAccountInfoStore();
+  const [selectedAccount, setSelectedAccount] = useState(null); // useState 구조분해할당 수정
   const [selectedProfile, setSelectedProfile] = useState("parent");
+
   useEffect(() => {
-    setSelectedAccount(accountData.parent);
-  }, []);
+    if (accountData) {
+      setSelectedAccount(accountData.parent);
+    }
+  }, [accountData]);
+
+  if (!accountData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="flex flex-col h-full">
       <div className="flex space-x-3 mb-6 ml-1 mt-4">
