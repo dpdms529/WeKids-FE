@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import { useRouter } from "next/navigation";
+import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
-import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Page() {
   const [postcode, setPostcode] = useState("");
@@ -20,7 +20,7 @@ export default function Page() {
     toast(
       <div>
         입력되지 않은 사항이 있습니다. <br /> 모두 입력해주세요.
-      </div>,
+      </div>
     );
   };
 
@@ -60,7 +60,7 @@ export default function Page() {
               className="border border-1 border-black/80"
               onClick={
                 phone != "" && name != "" && address != ""
-                  ? () => router.push(urlPath.HOME)
+                  ? () => router.push(urlPath.PARENT_CARD_DELIVERY_COMPLETE)
                   : notify
               }
             >

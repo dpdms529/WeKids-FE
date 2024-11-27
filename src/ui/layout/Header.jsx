@@ -21,7 +21,9 @@ export default function Header() {
       <div className="flex space-x-3 items-baseline mt-10">
         {/* 알람 아이콘과 배지 */}
         <div className="relative">
-          <BellIcon className="h-5 w-5 cursor-pointer" />
+          <Link href={urlPath.ALARM}>
+            <BellIcon className="h-5 w-5 cursor-pointer" />
+          </Link>
           {notificationCount > 0 && (
             <div className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
               {notificationCount}

@@ -66,6 +66,8 @@ export const urlPath = {
   ACCOUNT_LIST: "/account-list",
   TRANSFER: "/transfer",
   DONE: "/transfer/done",
+  ALARM: "/alarm",
+  ALARM_CARD: "/alarm/card",
 
   SIGNUP_SELECT: "/signup/select", // 부모 자녀 선택(임시)
   SIGNUOP_REGFOM: "/signup/regform", //회원가입 개인정보 입력
@@ -79,12 +81,11 @@ export const urlPath = {
   //자식에서 카드신청 url
   CHILD_CARD_SELECT: "/child/card/card-select",
   CHILD_CARD: "/child/card",
-  
-  SIGNUP_SELF: "/select/self", // 본인인증 회원가입 뷰(임시)
-  SIGNUP_PHONE: "/select/phone", //(PASS 사진)
-  SIGNUP_PASSWORD: "/select/self/password",
-  SIGNUP_CONFIRM: "/select/self/password/confirm",
-  SIGNUP_GET_ACCOUNT: "/account",
-  CARD_SELECT: "/card-select",
-  CARD_CHILD_APPROVE: "/child/card/complete",
-}
+
+  //부모 입장
+  PARENT_ACCOUNT: "/parent/account",
+  PARENT_CARD_APPLY: "/parent/card/apply",
+  PARENT_CARD_PASSWORD: "/parent/card/apply/password",
+  PARENT_CARD_CONFIRM: "/parent/card/apply/confirm",
+  PARENT_CARD_DELIVERY_COMPLETE: "/parent/card/delivery/completed",
+};

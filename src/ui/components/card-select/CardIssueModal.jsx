@@ -24,7 +24,7 @@ const CardIssueModal = ({ isOpen, onClose }) => {
             이대로 발급할까요?
           </span>
         }
-        buttonText="확인"
+        buttonText={<Link href={urlPath.HOME}>확인</Link>}
         onClose={onClose}
         onConfirm={handleConfirm}
         width="375px"

@@ -14,8 +14,8 @@ export default function Top({ setAllChecked }) {
   const router = useRouter();
 
   useEffect(() => {
-    email != "" && name != "" ? setphoneChecked(true) : setphoneChecked(false);
-    setAllChecked(email !== "" && name !== "" && phoneChecked);
+    email != "" && name != "" ? setphoneChecked(true) : setphoneChecked(false); // 추후에 구현
+    setAllChecked(email !== "" && name !== "");
   }, [phone, email, name, setAllChecked]);
 
   const PhoneClickListener = () => {

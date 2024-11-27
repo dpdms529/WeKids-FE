@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
   const [cardName, setCardName] = useState("");
-
+  const colorClass = colorTypeMap[selectedColor]?.colorClass || "bg-pinkHachu";
   useEffect(() => {
     const dummyData = {
       1: { cardName: "찬웅핑" },

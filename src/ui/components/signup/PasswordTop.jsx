@@ -24,8 +24,10 @@ export default function PasswordTop({
 
   useEffect(() => {
     if (isInput[5] === true && check === 0) {
-      setChecked(1);
-      setIsInput((prev) => prev.map(() => false));
+      const timeout = setTimeout(() => {
+        setChecked(1);
+        setIsInput((prev) => prev.map(() => false));
+      }, 1000);
     } else if (isInput[5] === true && check === 1) {
       const firstValue = pwd.slice(0, 6);
       const secondValue = pwd.slice(6, 12);
