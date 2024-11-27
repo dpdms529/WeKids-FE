@@ -16,6 +16,7 @@ export default function Page() {
         setIsInput={setIsInput}
         setPwd={setPwd}
         setAllowed={setAllowed}
+        index={6}
       />
       <PasswordBottom
         pwd={pwd}

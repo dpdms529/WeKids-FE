@@ -4,7 +4,7 @@ import PasswordBottom from "@/src/ui/components/signup/PasswordBottom";
 import { useState } from "react";
 // Todo 4자리로 바꿔야 됨
 export default function Page() {
-  const [isInput, setIsInput] = useState(Array(6).fill(false));
+  const [isInput, setIsInput] = useState(Array(4).fill(false));
   const [pwd, setPwd] = useState("");
   const [allow, setAllowed] = useState(false);
 
@@ -16,6 +16,7 @@ export default function Page() {
         setIsInput={setIsInput}
         setPwd={setPwd}
         setAllowed={setAllowed}
+        index={4}
       />
       <PasswordBottom
         pwd={pwd}

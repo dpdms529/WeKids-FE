@@ -55,3 +55,10 @@ export const generateDates = () => {
 export const year = generateYears(1940, 2024);
 export const month = generateMonths();
 export const date = generateDates();
+
+export const validationMessages = {
+  1: "주민번호와 주민번호 확인이 일치하지 않아요.",
+  2: "주민번호 입력칸에 빈칸이 있어요.",
+  3: "주민번호 확인칸에 빈칸이 있어요.",
+  4: "약관동의를 다 해주세요.",
+};
