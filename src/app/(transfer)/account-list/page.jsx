@@ -1,83 +1,32 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
+import { fetchChildAccouts } from "@/src/services/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
+import Loader from "@/src/ui/components/atoms/Loader";
 import TransferItem from "@/src/ui/components/atoms/TransferItem";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-const dummyData = [
-  {
-    id: 1,
-    name: "구자빈",
-    accountnumber: "111-111-111",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 2,
-    name: "강현우",
-    account: "222-222-222",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 3,
-    name: "안찬웅",
-    account: "333-333-333",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 4,
-    name: "조예은",
-    account: "444-444-444",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 5,
-    name: "최윤정",
-    account: "555-555-555",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 6,
-    name: "김우리",
-    account: "666-666-666",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 7,
-    name: "가우리",
-    account: "777-777-777",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 8,
-    name: "나우리",
-    account: "888-888-888",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 9,
-    name: "다우리",
-    account: "999-999-999",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 10,
-    name: "라우리",
-    account: "000-000-000",
-    profile: "/images/dadapingImg.svg",
-  },
-];
 export default function Page() {
-  const router = useRouter();
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['accountData'], // queryKey를 객체 형태로 전달
+    queryFn: fetchChildAccouts, // service에서 가져온 queryFn 지정
+  });
+
   const { selectedAccount, setSelectedAccount } = useTransactionStore();
   const handleSelect = (user) => {
     setSelectedAccount({
-      id: user.id,
+      id: user.accountId,
       name: user.name,
       account: user.account,
     });
   };
+  if (isLoading) {
+    return <div><Loader/></div>;
+  }
 
   return (
     <div className="max-w-md mx-auto h-screen flex flex-col">
@@ -88,15 +37,15 @@ export default function Page() {
         </Link>
       </div>
       <div className="flex-1 overflow-y-auto scrollbar-hide">
-        {dummyData.map((user, idx) => (
+        {data.map((user, idx) => (
           <Link key={idx} href={urlPath.TRANSFER}>
             <TransferItem
-              imgPath={user.profile}
-              key={user.id}
+              imgPath={`/images/${user.profile}`}
+              key={user.accountId}
               name={user.name}
-              account={user.account}
+              account={user.acocuntNumber} // TODO: 실제 값이 acocunt라 썻어요 추후에 바꾸면 바꿀게요..
               bank={"우리은행"}
-              isSelected={user.id === selectedAccount?.id}
+              isSelected={user.accountId === selectedAccount?.accountId}
               onClick={() => handleSelect(user)}
             />
           </Link>

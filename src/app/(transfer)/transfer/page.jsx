@@ -1,51 +1,17 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
+import { fetchChildAccouts } from "@/src/services/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
+import Loader from "@/src/ui/components/atoms/Loader";
 import TransferAmountDisplay from "@/src/ui/components/transfer/TransferAmoutDisplay";
 import TransferModal from "@/src/ui/components/transfer/TransferModal";
 import TransferOptions from "@/src/ui/components/transfer/TransferOptions";
+import { useQuery } from "@tanstack/react-query";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const dummyData = [
-  {
-    id: 1,
-    name: "구자빈",
-    account: "111-111-111",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-  {
-    id: 2,
-    name: "강현우",
-    account: "222-222-222",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-  {
-    id: 3,
-    name: "안찬웅",
-    account: "333-333-333",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-  {
-    id: 4,
-    name: "조예은",
-    account: "444-444-444",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-  {
-    id: 5,
-    name: "최윤정",
-    account: "555-555-555",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-];
 
 const sendUser = {
   name: "김우리",
@@ -66,6 +32,15 @@ export default function Page() {
     clearTransferData,
   } = useTransactionStore();
   const [first, setFirst] = useState(true);
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['accountData'], // queryKey를 객체 형태로 전달
+    queryFn: fetchChildAccouts, // service에서 가져온 queryFn 지정
+  });
+
+  if (isLoading) {
+    return <div><Loader/></div>;
+  }
 
   useEffect(() => {
     if (first) {
@@ -116,7 +91,7 @@ export default function Page() {
 
   const handleUserChange = (e) => {
     const selectedName = e.target.value;
-    const user = dummyData.find((user) => user.name === selectedName); // dummyData
+    const user = data.find((user) => user.name === selectedName); // dummyData
     if (user) {
       setSelectedAccount(user);
     }
@@ -142,6 +117,7 @@ export default function Page() {
         transferAmount={transferAmount}
         clearTransferData={clearTransferData}
         sendUser={sendUser}
+        data={data}
         isShaking={isShaking}
         handleUserChange={handleUserChange}
       />

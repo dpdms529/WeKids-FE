@@ -4,18 +4,11 @@ import { Box } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-const dummyData = [
-  { id: 1, name: "구자빈", account: "111-111-111", bank: "우리은행" },
-  { id: 2, name: "강현우", account: "222-222-222", bank: "우리은행" },
-  { id: 3, name: "안찬웅", account: "333-333-333", bank: "우리은행" },
-  { id: 4, name: "조예은", account: "444-444-444", bank: "우리은행" },
-  { id: 5, name: "최윤정", account: "555-555-555", bank: "우리은행" },
-];
-
 const TransferAmountDisplay = ({
   selectedAccount,
   transferAmount,
   clearTransferData,
+  data,
   sendUser,
   isShaking,
   handleUserChange,
@@ -52,7 +45,7 @@ const TransferAmountDisplay = ({
               value={selectedAccount.name}
               onChange={handleUserChange}
             >
-              {dummyData.map((user, index) => (
+              {data.map((user, index) => (
                 <option key={index} value={user.name}>
                   {user.name}
                 </option>
