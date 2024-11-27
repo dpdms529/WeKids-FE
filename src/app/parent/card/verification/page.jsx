@@ -5,7 +5,6 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ChildInputForm from "@/src/ui/components/signup/ChildInputForm";
 import Bottom from "@/src/ui/components/signup/SignUpFooter";
 import Link from "next/link";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -31,10 +30,12 @@ export default function Page() {
       <Toaster position="top-center" />
       <div className="flex flex-1 flex-col overflow-y-auto scrollbar-hide">
         <ChildInputForm setAllChecked={setTopChecked} />
-        <div className="mt-12 mb-1 text-R-20 text-black/80 px-8">
+        <div className="mt-12 mb-1 text-R-20 text-black/80">
+          <div className="px-8">
           아이의 계좌를 만들기 위해 <br /> OOO님의 동의가 필요해요
+          </div>
+          <Bottom setAllChecked={setBottomChecked} />
         </div>
-        <Bottom setAllChecked={setBottomChecked} />
       </div>
       <div className="flex flex-col px-10 py-5 gap-6">
         <Link href={urlPath.CARD_VERIFICATION_CONFIRM}>
