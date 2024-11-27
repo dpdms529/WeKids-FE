@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from "react";
-import ShareButton from "@/src/ui/components/atoms/ShareButton";
+import { useState } from "react";
 import { urlPath } from "@/src/constants/common";
-import { useRouter } from "next/navigation";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [transferData, setTransferData] = useState({
@@ -25,19 +25,21 @@ const Page = () => {
 
         {/* 텍스트 영역 */}
         <div className="text-center space-y-2 mb-4">
-          <p className="text-B-28">{transferData.receiverName}님에게</p>
-          <p className="text-B-28">
+          <p className="text-B-28 text-black/80">
+            {transferData.receiverName}님에게
+          </p>
+          <p className="text-B-28 text-black/80">
             {transferData.amount.toLocaleString()}원 보냈어요
           </p>
-          <div className="flex items-center justify-center gap-1 text-R-14 text-neutral-300">
+          <div className="flex items-center justify-center text-R-14 text-neutral-300 pt-4">
             {transferData.bankName} {transferData.accountNumber}
-            <ChevronRightIcon width="16" height="16" stroke="text-neutral-300" strokeWidth={0.5} />
+            <ChevronRightIcon
+              width="16"
+              height="16"
+              stroke="text-neutral-300"
+              strokeWidth={0.5}
+            />
           </div>
-        </div>
-
-        {/* 메모 영역 */}
-        <div className="bg-stone-200 px-4 py-2 rounded-full text-R-14 text-neutral-300">
-          {transferData.memo}
         </div>
       </div>
 
@@ -45,8 +47,11 @@ const Page = () => {
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton rounded={true} />
-          <CustomButton rounded={true} onClick={() => router.push(urlPath.HOME)}>
-              <span className="text-R-20">확인</span>
+          <CustomButton
+            rounded={true}
+            onClick={() => router.push(urlPath.HOME)}
+          >
+            <span className="text-R-20">확인</span>
           </CustomButton>
         </div>
       </div>

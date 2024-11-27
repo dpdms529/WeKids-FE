@@ -8,13 +8,19 @@ export default function Page() {
     <section>
       <Flex direction="column" justify="between">
         <Box>
-          <TopBar name="조예은" balance="110000009862" accountNumber="1111-11-111111" />
+          <TopBar
+            name="조예은"
+            balance="110000009862"
+            accountNumber="1111-11-111111"
+          />
         </Box>
-        <Box>
+        <Box className="cursor-pointer">
           <TransactionFilter />
         </Box>
         <Box>
-          <TransactionsView />
+          {/* todo 여기에 AccountHistoryHead에 들어가는
+          더미 불러올 때 받아오는 id 값 넣어주면 됨 */}
+          <TransactionsView id="2" />
         </Box>
       </Flex>
     </section>
