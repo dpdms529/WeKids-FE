@@ -41,7 +41,7 @@ const PopupMessage = ({
             rounded={true}
             onClick={() => {
               if (onConfirm) onConfirm();
-              onClose(); 
+              onClose();
             }}
             className="w-full rounded-md mt-4 border border-black"
           >

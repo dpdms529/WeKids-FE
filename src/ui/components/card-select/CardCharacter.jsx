@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
   const [cardName, setCardName] = useState("");
-  
+
   useEffect(() => {
     const dummyData = {
       1: { cardName: "찬웅핑" },
@@ -19,7 +19,7 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
       console.error("Card not found");
     }
   }, []);
-  
+
   return (
     <div
       className={`relative w-[196px] h-[312px] flex-shrink-0 rounded-[14px] border border-black ${selectedColor} shadow-2xl flex flex-col items-center justify-center`}

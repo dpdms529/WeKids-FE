@@ -29,41 +29,38 @@ export default function Identification({ setIsChecked }) {
     <>
       <Toaster position="top-center" />
       <div className="flex flex-col overflow-y-hidden h-screen">
-      <div className="flex flex-col w-full h-4/5 items-center overflow-auto pt-12">
-        <div className="text-R-20 px-12 h-1/5">
-          계좌를 불러오기 위해서는 <br />
-          주민등록 번호가 필요해요!
+        <div className="flex flex-col w-full h-4/5 items-center overflow-auto pt-12">
+          <div className="text-R-20 px-12 h-1/5">
+            계좌를 불러오기 위해서는 <br />
+            주민등록 번호가 필요해요!
+          </div>
+          <div className="flex flex-col gap-11 px-12 mt-11 h-2/5">
+            <IdentificationBox
+              setChecked={setIdentificationCheck}
+              setErrorCode={setErrorCode}
+            />
+          </div>
+          <div className="flex flex-col w-full h-2/5">
+            <SignUpFooter setAllChecked={setAssignChecked} />
+          </div>
         </div>
-        <div className="flex flex-col gap-11 px-12 mt-11 h-2/5">
-          <IdentificationBox
-            setChecked={setIdentificationCheck}
-            setErrorCode={setErrorCode}
-          />
-        </div>
-        <div className="flex flex-col w-full h-2/5">
-          <SignUpFooter setAllChecked={setAssignChecked} />
+        <div className="flex flex-col h-1/5">
+          <div className="">
+            <CustomButton
+              onClick={() => {
+                if (!(assignCheck && identificationCheck)) {
+                  notify();
+                } else {
+                  setIsChecked(true);
+                }
+              }}
+              color={assignCheck && identificationCheck ? "main" : "gray"}
+            >
+              확인
+            </CustomButton>
+          </div>
         </div>
       </div>
-      <div className="flex flex-col h-1/5">
-        
-
-        <div className="">
-          <CustomButton
-            onClick={() => {
-              if (!(assignCheck && identificationCheck)) {
-                notify();
-              } else {
-                setIsChecked(true);
-              }
-            }}
-            color={assignCheck && identificationCheck ? "main" : "gray"}
-          >
-            확인
-          </CustomButton>
-        </div>
-      </div>
-      </div>
-      
     </>
   );
 }

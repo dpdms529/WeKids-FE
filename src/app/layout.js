@@ -16,8 +16,8 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <body className={`antialiased`}>
         <QueryProvider>
-        <div className="wrapper">{children}</div>
-        /</QueryProvider>
+          <div className="wrapper">{children}</div>
+        </QueryProvider>
       </body>
     </html>
   );

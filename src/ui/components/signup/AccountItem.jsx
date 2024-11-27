@@ -1,5 +1,7 @@
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorAccount from "@/src/ui/components/signup/SelectorAccount";
+import { fetchAccounts } from "@/src/services/account";
+import { useQuery } from "@tanstack/react-query";
 
 const dummyData = [
   { id: 1, name: "입출금 통장", account: "111-111-111", balance: 1000000 },
@@ -9,15 +11,23 @@ const dummyData = [
 ];
 
 export default function AccountItem({ selectedIndex, setSelectedIndex }) {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["accountData"], // queryKey를 객체 형태로 전달
+    queryFn: fetchAccounts, // service에서 가져온 queryFn 지정
+  });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   const toggleAccountSelection = (index) => {
     setSelectedIndex((prev) => (prev === index ? null : index));
   };
 
-  const totalBalance = dummyData.reduce((acc, item) => acc + item.balance, 0);
-  const itemCount = dummyData.length;
+  const totalBalance = data.reduce((acc, item) => acc + item.balance, 0);
+  const itemCount = data.length;
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-[696px] overflow-hidden">
       <div className="flex flex-col gap-5 mx-7">
         <div className="flex pt-5">
           <span className="flex flex-col text-R-28 text-black/80">내 계좌</span>
@@ -31,31 +41,17 @@ export default function AccountItem({ selectedIndex, setSelectedIndex }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col max-w-full overflow-y-auto ml-7 pr-3">
-        {dummyData.map((account, index) => (
+      <div className="flex flex-col max-w-full overflow-y-auto mx-7">
+        {data.map((account, index) => (
           <ParentChildSelector
-            key={account.id}
+            key={index}
             isSelected={selectedIndex == index}
             className="my-2"
             onClick={() => toggleAccountSelection(index)}
           >
             <SelectorAccount
-              name={account.name}
-              account={account.account}
-              balance={account.balance}
-            />
-          </ParentChildSelector>
-        ))}
-        {dummyData.map((account, index) => (
-          <ParentChildSelector
-            key={account.id}
-            isSelected={selectedIndex == index}
-            className="my-2"
-            onClick={() => toggleAccountSelection(index)}
-          >
-            <SelectorAccount
-              name={account.name}
-              account={account.account}
+              name={account.bankName}
+              account={account.accountNumber}
               balance={account.balance}
             />
           </ParentChildSelector>
