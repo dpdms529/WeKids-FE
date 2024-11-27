@@ -69,7 +69,7 @@ export default function ChildInputForm({ setAllChecked }) {
           />
         </div>
         <div className="flex flex-col mt-3 gap-3">
-          <div className="text-R-14 text-stone-300">
+          <div className="text-R-14 text-neutral-400">
             000님이 000님의 <br /> 법정대리인이 맞는지 확인하기 위해{" "}
           </div>
           <div className="text-R-20 text-black/80">
