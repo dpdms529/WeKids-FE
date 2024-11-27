@@ -1,7 +1,9 @@
 import { urlPath } from "@/src/constants/common";
+import { submitTransfer } from "@/src/services/transaction";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Modal from "@/src/ui/components/atoms/Modal";
 import Profile from "@/src/ui/components/atoms/Profile";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 const TransferModal = ({
@@ -9,8 +11,31 @@ const TransferModal = ({
   modalHandler,
   selectedAccount,
   transferAmount,
+  sendUser,
 }) => {
   const router = useRouter();
+  const mutation = useMutation({
+    mutationFn: submitTransfer,
+  });
+  const handleSubmit = () => {
+    const data = { 
+      parentAccountNumber: sendUser.accountNumber, 
+      childAccountNumber: selectedAccount.accountNumber,
+      amount: transferAmount,
+      sender: sendUser.name,
+      receiver: selectedAccount.name };
+
+      mutation.mutate(data, {
+        onSuccess: (data) => {
+          console.log("Transfer Successful:", data || "No response data");
+          router.push(urlPath.DONE);
+        },
+        onError: (error) => {
+          console.error("Transfer Failed:", error.message);
+        },
+      });
+    };
+
   return (
     <Modal
       isOpen={isModalOpen}
@@ -42,7 +67,7 @@ const TransferModal = ({
         <CustomButton
           size="medium"
           rounded={true}
-          onClick={() => router.push(urlPath.DONE)}
+          onClick={() => handleSubmit()}
         >
           이체하기
         </CustomButton>

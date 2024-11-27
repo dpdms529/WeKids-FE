@@ -27,10 +27,9 @@ export default function Page() {
       setSelectedAccount({
         id: user.accountId,
         name: user.name,
-        account: user.account,
+        accountNumber: user.accountNumber,
       });
       setChildrenAccounts(data);
-      router.push
     },
     [setSelectedAccount, setChildrenAccounts, data]
   );
@@ -55,7 +54,7 @@ export default function Page() {
               imgPath={`/images/${user.profile}`}
               key={user.accountId}
               name={user.name}
-              account={user.acocuntNumber} // TODO: 실제 값이 acocunt라 썻어요 추후에 바꾸면 바꿀게요..
+              account={user.accountNumber} // TODO: 실제 값이 acocunt라 썻어요 추후에 바꾸면 바꿀게요..
               bank={"우리은행"}
               isSelected={user.accountId === selectedAccount?.accountId}
             />

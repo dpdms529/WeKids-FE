@@ -13,10 +13,10 @@ import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
-const sendUser = {
-  name: "김우리",
-  account: "666-666-666",
-  balance: 50000000,
+const sendUser = { // 추후에 홈에서 zustand로 로그인중인 부모의 이름이나 정보를 담아두는 걸로
+  name: "강현우",
+  accountNumber: "1002-913-023908",
+  balance: 1000000,
   bank: "우리은행",
   imgPath: "/images/gogopingImg.svg",
 };
@@ -149,6 +149,7 @@ export default function Page() {
         modalHandler={modalHandler}
         selectedAccount={selectedAccount}
         transferAmount={transferAmount}
+        sendUser={sendUser}
       />
     </div>
   );
