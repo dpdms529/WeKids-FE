@@ -1,32 +1,44 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
-import { fetchChildAccouts } from "@/src/services/account";
+import { fetchChildAccounts } from "@/src/services/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import Loader from "@/src/ui/components/atoms/Loader";
 import TransferItem from "@/src/ui/components/atoms/TransferItem";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
 
+  const router = useRouter();
+
   const { data, error, isLoading } = useQuery({
     queryKey: ['accountData'], // queryKey를 객체 형태로 전달
-    queryFn: fetchChildAccouts, // service에서 가져온 queryFn 지정
+    queryFn: fetchChildAccounts, // service에서 가져온 queryFn 지정
   });
 
-  const { selectedAccount, setSelectedAccount } = useTransactionStore();
-  const handleSelect = (user) => {
-    setSelectedAccount({
-      id: user.accountId,
-      name: user.name,
-      account: user.account,
-    });
-  };
+  
+
+  const { selectedAccount, setSelectedAccount, setChildrenAccounts } = useTransactionStore();
+  const handleSelect = useCallback(
+    (user) => {
+      setSelectedAccount({
+        id: user.accountId,
+        name: user.name,
+        account: user.account,
+      });
+      setChildrenAccounts(data);
+      router.push
+    },
+    [setSelectedAccount, setChildrenAccounts, data]
+  );
+
   if (isLoading) {
     return <div><Loader/></div>;
   }
+  
 
   return (
     <div className="max-w-md mx-auto h-screen flex flex-col">
@@ -38,7 +50,7 @@ export default function Page() {
       </div>
       <div className="flex-1 overflow-y-auto scrollbar-hide">
         {data.map((user, idx) => (
-          <Link key={idx} href={urlPath.TRANSFER}>
+          <Link key={idx} href={urlPath.TRANSFER} onClick={(e) => handleSelect(user)}>
             <TransferItem
               imgPath={`/images/${user.profile}`}
               key={user.accountId}
@@ -46,7 +58,6 @@ export default function Page() {
               account={user.acocuntNumber} // TODO: 실제 값이 acocunt라 썻어요 추후에 바꾸면 바꿀게요..
               bank={"우리은행"}
               isSelected={user.accountId === selectedAccount?.accountId}
-              onClick={() => handleSelect(user)}
             />
           </Link>
         ))}

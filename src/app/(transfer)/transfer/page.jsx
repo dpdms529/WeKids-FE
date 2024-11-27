@@ -1,6 +1,6 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
-import { fetchChildAccouts } from "@/src/services/account";
+import { fetchChildAccounts } from "@/src/services/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
@@ -29,18 +29,10 @@ export default function Page() {
     setSelectedAccount,
     transferAmount,
     setTransferAmount,
+    childrenAccounts,
     clearTransferData,
   } = useTransactionStore();
   const [first, setFirst] = useState(true);
-
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['accountData'], // queryKey를 객체 형태로 전달
-    queryFn: fetchChildAccouts, // service에서 가져온 queryFn 지정
-  });
-
-  if (isLoading) {
-    return <div><Loader/></div>;
-  }
 
   useEffect(() => {
     if (first) {
@@ -55,6 +47,17 @@ export default function Page() {
       return () => clearTimeout(timeout);
     }
   }, [isShaking]);
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['accountData'], // queryKey를 객체 형태로 전달
+    queryFn: fetchChildAccounts, // service에서 가져온 queryFn 지정
+  });
+
+  if (isLoading) {
+    return <div><Loader/></div>;
+  }
+
+  
 
   const modalHandler = () => setIsModalOpen(!isModalOpen);
 
@@ -117,7 +120,7 @@ export default function Page() {
         transferAmount={transferAmount}
         clearTransferData={clearTransferData}
         sendUser={sendUser}
-        data={data}
+        children={childrenAccounts}
         isShaking={isShaking}
         handleUserChange={handleUserChange}
       />
