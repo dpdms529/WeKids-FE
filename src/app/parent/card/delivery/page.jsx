@@ -5,7 +5,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -14,15 +14,22 @@ export default function Page() {
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const router = useRouter();
 
   const notify = () => {
     toast(
       <div>
         입력되지 않은 사항이 있습니다. <br /> 모두 입력해주세요.
-      </div>
+      </div>,
     );
   };
+
+  const clickHandler = (e) => {
+    if (phone === "" || name === "" || address === "") {
+      e.preventDefault();
+      notify();
+    }
+  };
+
 
   return (
     <div className="flex flex-col h-screen max-w-full overflow-auto scrollbar-hide px-10 py-6">
@@ -54,18 +61,18 @@ export default function Page() {
             setAddress={setAddress}
           />
           <div className="flex flex-col items-center h-[102px] justify-end">
-            <CustomButton
-              size={"mediumLarge"}
-              rounded={true}
-              className="border border-1 border-black/80"
-              onClick={
-                phone != "" && name != "" && address != ""
-                  ? () => router.push(urlPath.PARENT_CARD_DELIVERY_COMPLETE)
-                  : notify
-              }
+            <Link
+              href={urlPath.PARENT_CARD_DELIVERY_COMPLETE}
+              onClick={clickHandler}
             >
-              확인
-            </CustomButton>
+              <CustomButton
+                size={"mediumLarge"}
+                rounded={true}
+                className="border border-1 border-black/80"
+              >
+                확인
+              </CustomButton>
+            </Link>
           </div>
         </div>
       </div>

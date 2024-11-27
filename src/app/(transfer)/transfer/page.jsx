@@ -65,8 +65,14 @@ export default function Page() {
     setTransferAmount,
     clearTransferData,
   } = useTransactionStore();
+  const [first, setFirst] = useState(true);
 
   useEffect(() => {
+    if (first) {
+      setTransferAmount(0);
+      setFirst(false);
+    }
+
     if (isShaking) {
       const timeout = setTimeout(() => {
         setIsShaking(false);
