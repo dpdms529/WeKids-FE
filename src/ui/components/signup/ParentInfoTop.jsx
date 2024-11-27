@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import { year, month, date } from "@/src/constants/assign";
 import Modal from "@/src/ui/components/atoms/Modal";
 import CharacterCard from "@/src/ui/components/atoms/CharacterCard";
+import { useRouter } from "next/navigation";
+import { urlPath } from "@/src/constants/common";
 
 export default function ParentInfoTop() {
   const [name, setName] = useState("");
@@ -17,6 +19,7 @@ export default function ParentInfoTop() {
   const [isRequest, setIsRequest] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [blank, setBlank] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     setAllCheck(name != "" && !birth.includes(" ") && !phone.includes(" "));
   }, [name, birth, phone]);
@@ -83,7 +86,11 @@ export default function ParentInfoTop() {
   };
 
   const modalHandler = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(true);
+    setTimeout(() => {
+      setIsOpen(false);
+      router.push(urlPath.HOME);
+    }, 5000);
   };
   return (
     <>

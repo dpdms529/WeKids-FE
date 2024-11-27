@@ -31,10 +31,20 @@ export default function Page({
       pwd.length != 12 ? setPwd(pwd + num) : "";
     }
   };
+
+  const handleClick = (e) => {
+    if (!allow) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col h-1/5 p-10">
-        <Link href={urlPath.SELECT_PARENT_PASSWORD_CONFIRM}>
+        <Link
+          href={urlPath.SELECT_PARENT_PASSWORD_CONFIRM}
+          onClick={handleClick}
+        >
           <CustomButton
             rounded="true"
             className={`mt-auto w-full ${
@@ -42,7 +52,6 @@ export default function Page({
                 ? "bg-main02"
                 : "bg-stone-300 hover:bg-stone-300 pointer-events-none"
             }`}
-            disabled={!allow}
           >
             확인
           </CustomButton>
