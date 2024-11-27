@@ -1,8 +1,8 @@
 "use client";
 
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import Link from "next/link";
-import CustomButton from "../atoms/CustomButton";
 
 export default function ChoiceDesign({
   title,
