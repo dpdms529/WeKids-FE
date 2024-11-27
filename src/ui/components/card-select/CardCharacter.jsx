@@ -1,28 +1,14 @@
 import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
+import { useUserStore } from "@/src/stores/userTypeStore";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
-  const [cardName, setCardName] = useState("");
-  
-  useEffect(() => {
-    const dummyData = {
-      1: { cardName: "찬웅핑" },
-      2: { cardName: "윤정핑" },
-    };
+  const colorClass = colorTypeMap[selectedColor]?.colorClass || "bg-pinkHachu";
+  const userName = useUserStore((state) => state.userName);
 
-    // ID 1의 카드 이름 가져오기
-    const card = dummyData[1];
-    if (card) {
-      setCardName(card.cardName);
-    } else {
-      console.error("Card not found");
-    }
-  }, []);
-  
   return (
     <div
-      className={`relative w-[196px] h-[312px] flex-shrink-0 rounded-[14px] border border-black ${selectedColor} shadow-2xl flex flex-col items-center justify-center`}
+      className={`relative w-[196px] h-[312px] flex-shrink-0 rounded-[14px] border border-black ${colorClass} shadow-2xl flex flex-col items-center justify-center`}
     >
       <Image
         src="/images/logoImg.svg"
@@ -45,7 +31,7 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
         height={191}
         className="w-[192px] h-[191px] flex-shrink-0 mt-10"
       />
-      <p className="text-R-20 mt-5 text-black/40">{cardName}</p>
+      <p className="text-R-20 mt-5 text-black/40">{userName}</p>
     </div>
   );
 };

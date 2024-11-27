@@ -10,7 +10,7 @@ import CardIssueModal from "@/src/ui/components/card-select/CardIssueModal";
 
 const CardDesignSelector = () => {
   const [selectedCharacter, setSelectedCharacter] = useState("DADAPING");
-  const [selectedColor, setSelectedColor] = useState("bg-blueDada");
+  const [selectedColor, setSelectedColor] = useState("BLUE");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCharacterClick = (character) => {
