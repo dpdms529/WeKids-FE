@@ -51,7 +51,7 @@ export default function Page() {
             다음
           </CustomButton>
         </Link>
-        <Link href={urlPath.CARD_VERIFICATION_CONFIRM}>
+        <Link href={urlPath.HOME}>
           <CustomButton
             rounded="true"
             className="w-full bg-stone-300 hover:bg-stone-300"

@@ -5,7 +5,6 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
-import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import Link from "next/link";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -31,12 +30,6 @@ export default function Page() {
     }
   };
 
-  const clickHandler = (e) => {
-    if (phone === "" || name === "" || address === "") {
-      e.preventDefault();
-      notify();
-    }
-  };
 
   return (
     <div className="flex flex-col h-screen max-w-full overflow-auto scrollbar-hide px-10 py-6">
@@ -69,7 +62,7 @@ export default function Page() {
           />
           <div className="flex flex-col items-center h-[102px] justify-end">
             <Link
-              href={urlPath.PARENT_CARD_DELIVERY_COMPLETED}
+              href={urlPath.PARENT_CARD_DELIVERY_COMPLETE}
               onClick={clickHandler}
             >
               <CustomButton

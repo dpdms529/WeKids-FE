@@ -32,22 +32,23 @@ export default function Identification({ setIsChecked }) {
   return (
     <>
       <Toaster position="top-center" />
-      <div className="flex flex-col w-full h-2/5 items-center px-12 pt-12">
-        <div className="text-R-20">
+      <div className="flex flex-col w-full h-2/5 items-center pt-12">
+        <div className="text-R-20  px-12">
           계좌를 불러오기 위해서는 <br />
           주민등록 번호가 필요해요!
         </div>
-        <div className="flex flex-col gap-11 mt-11">
+        <div className="flex flex-col gap-11 px-12 mt-11">
           <IdentificationBox
             setChecked={setIdentificationCheck}
             setErrorCode={setErrorCode}
           />
         </div>
-      </div>
-      <div className="flex flex-col h-3/5">
-        <div className="flex flex-col my-12">
+        <div className="flex flex-col my-12 w-full">
           <SignUpFooter setAllChecked={setAssignChecked} />
         </div>
+      </div>
+      <div className="flex flex-col h-3/5">
+        
 
         <div className="fixed bottom-0">
           <CustomButton

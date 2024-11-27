@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div className="flex flex-col bg-white h-screen max-w-[393px] overflow-hidden">
       <Header />
-      <div className="flex-flex-col overflow-auto scrollbar-hide">
+      <div className="flex-flex-col h-full overflow-auto scrollbar-hide">
         {isClicked ? (
           <Account />
         ) : (
