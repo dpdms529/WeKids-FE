@@ -88,4 +88,5 @@ export const urlPath = {
   PARENT_CARD_PASSWORD: "/parent/card/apply/password",
   PARENT_CARD_CONFIRM: "/parent/card/apply/confirm",
   PARENT_CARD_DELIVERY_COMPLETE: "/parent/card/delivery/completed",
+  
 };

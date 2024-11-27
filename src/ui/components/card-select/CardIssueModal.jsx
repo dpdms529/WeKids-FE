@@ -6,7 +6,8 @@ const CardIssueModal = ({ isOpen, onClose }) => {
   const router = useRouter();
 
   const handleConfirm = () => {
-    router.push(urlPath.CARD_CHILD_APPROVE); 
+    // { TODO: 추후 자식 입장 페이지로 변경 }
+    router.push(urlPath.HOME); 
     onClose(); 
   };
 
@@ -24,7 +25,7 @@ const CardIssueModal = ({ isOpen, onClose }) => {
             이대로 발급할까요?
           </span>
         }
-        buttonText={<Link href={urlPath.HOME}>확인</Link>}
+        buttonText="확인"
         onClose={onClose}
         onConfirm={handleConfirm}
         width="375px"
