@@ -1,5 +1,3 @@
-// src/constants/characterInfo.js
-
 export const characterInfoMap = {
   HEARTSPRING: {
     name: "하츄핑",
@@ -86,10 +84,13 @@ export const urlPath = {
   //부모 url
   PARENT_ACCOUNT: "/parent/account",
   PARENT_CARD_APPLY: "/parent/card/apply",
-  PARENT_CARD_SETUP: "/parent/card/apply/card-setup",
-  PARENT_CARD_CONFIRM: "/parent/card/apply/confirm",
   PARENT_CARD_PASSWORD: "/parent/card/apply/password",
+  PARENT_CARD_CONFIRM: "/parent/card/apply/confirm",
+  PARENT_CARD_SETUP: "/parent/card/apply/card-setup",
+
+  PARENT_CARD_VERIFICATION: "/parent/card/verification",
+  PARENT_CARD_ALARM: "/parent/card/alarm",
+
   PARENT_CARD_DELIVERY: "/parent/card/delivery",
   PARENT_CARD_DELIVERY_COMPLETE: "/parent/card/delivery/completed",
-  PARENT_CARD_VERIFICATION: "/parent/card/verification",
 };

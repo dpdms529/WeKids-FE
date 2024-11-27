@@ -1,4 +1,6 @@
+import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import Link from "next/link";
 
 export default function InnerText({ isChild = true, name1, name2 }) {
   return (
@@ -23,6 +25,7 @@ export default function InnerText({ isChild = true, name1, name2 }) {
         </div>
       </div>
       <div className="p-3">
+        <Link href={urlPath.PARENT_CARD_ALARM}>
         <CustomButton
           rounded={true}
           size={"mediumLarge"}
@@ -30,6 +33,7 @@ export default function InnerText({ isChild = true, name1, name2 }) {
         >
           카드 디자인 보기
         </CustomButton>
+        </Link>
       </div>
     </div>
   );
