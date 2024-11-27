@@ -35,7 +35,7 @@ export const TransactionFilter = () => {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-[180px] placeholder-black/40 bg-transparent border-none outline-none text-neutral-400 text-xs"
+                className="w-[180px] placeholder-black/40 bg-transparent border-none outline-none text-black/80 text-xs"
               />
             </Flex>
           </Flex>
