@@ -44,7 +44,7 @@ const parentOnlyDummyData = {
     accountNumber: "1111-2222-3333-4444",
     profile: "/images/chachapingImg.svg",
     balance: 500000,
-    color: "#FFD700",
+    color: "PINK1",
     character: "CHACHAPING",
     accountId: 2,
   },
@@ -57,7 +57,7 @@ const parentAccountNullDummyData = {
     accountNumber: null,
     profile: "/images/chachapingImg.svg",
     balance: 500000,
-    color: "#FFD700",
+    color: "BLUE",
     character: "CHACHAPING",
     accountId: 2,
   },
@@ -66,6 +66,9 @@ const parentAccountNullDummyData = {
 
 export default function ParentHome() {
   const [accountData, setAccountData] = useState(accountDummyData);
+  if (!accountData) {
+    return <div>Loading...</div>;
+  }
 
   if (accountData.parent.accountNumber == null) {
     return <NoAccountView accountData={accountData} />;
