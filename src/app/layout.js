@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
+import QueryProvider from "../ui/components/QueryProvider";
 
 export const metadata = {
   title: "wekids",
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <body className={`antialiased`}>
+        <QueryProvider>
         <div className="wrapper">{children}</div>
+        /</QueryProvider>
       </body>
     </html>
   );

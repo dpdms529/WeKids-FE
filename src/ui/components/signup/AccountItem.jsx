@@ -17,7 +17,7 @@ export default function AccountItem({ selectedIndex, setSelectedIndex }) {
   const itemCount = dummyData.length;
 
   return (
-    <div className="flex flex-col h-4/5">
+    <div className="flex flex-col h-full">
       <div className="flex flex-col gap-5 mx-7">
         <div className="flex pt-5">
           <span className="flex flex-col text-R-28 text-black/80">내 계좌</span>
