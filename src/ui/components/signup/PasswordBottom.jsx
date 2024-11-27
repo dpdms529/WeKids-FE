@@ -34,7 +34,7 @@ export default function Page({
   return (
     <>
       <div className="flex flex-col h-1/5 p-10">
-        <Link href={urlPath.SIGNUP_CONFIRM}>
+        <Link href={urlPath.SELECT_PARENT_PASSWORD_CONFIRM}>
           <CustomButton
             rounded="true"
             className={`mt-auto w-full ${

@@ -1,8 +1,10 @@
+import { assigndata } from "@/src/constants/assign";
+import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Header from "@/src/ui/layout/Header";
-import { assigndata } from "@/src/constants/assign";
-import { PersonIcon, Pencil1Icon } from "@radix-ui/react-icons";
+import { Pencil1Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import Link from "next/link";
 
 const imgSrc = {
   1: "chachapingImg",
@@ -60,13 +62,15 @@ export default function Page() {
           </div>
         </div>
         <div className="flex my-8 justify-center">
-          <CustomButton
-            size="mediumLarge"
-            rounded={true}
-            className="text-R-20 border border-1 border-black"
-          >
-            체크카드 신청하기
-          </CustomButton>
+          <Link href={urlPath.CHILD_CARD_SELECT}>
+            <CustomButton
+              size="mediumLarge"
+              rounded={true}
+              className="text-R-20 border border-1 border-black"
+            >
+              체크카드 신청하기
+            </CustomButton>
+          </Link>
         </div>
         <div className="flex flex-col gap-5">
           <div className="flex text-B-20 text-black">

@@ -15,7 +15,6 @@ const childAccountData = {
   color: "GREEN",
   character: "CHACHAPING",
 };
-
 export default function ChildHome() {
   return (
     <div className="flex flex-col h-screen bg-white">
@@ -27,7 +26,7 @@ export default function ChildHome() {
           </div>
           <div className="flex-1">
             {/* url 수정필요 */}
-            <Link href={urlPath.CARD_SELECT}>
+            <Link href={urlPath.CHILD_CARD}>
               <div className="border-2 border-dashed border-black/40 rounded-lg h-full w-full flex items-center justify-center">
                 <PlusIcon width={50} height={50} color="grey" variant="soft" />
               </div>

@@ -1,12 +1,13 @@
 "use client";
 
-import Bottom from "@/src/ui/components/signup/SignUpFooter";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
-import toast, { Toaster } from "react-hot-toast";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ChildInputForm from "@/src/ui/components/signup/ChildInputForm";
+import Bottom from "@/src/ui/components/signup/SignUpFooter";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Page() {
   const router = useRouter();
@@ -26,20 +27,24 @@ export default function Page() {
       </div>
       <Bottom setAllChecked={setBottomChecked} />
       <div className="flex flex-col px-10 py-5 gap-6">
-        <CustomButton
-          rounded="true"
-          className={`w-full ${topChecked == true && bottomChecked == true ? "bg-main02" : "bg-stone-300 hover:bg-stone-300"}`}
-          onClick={() => {
-            topChecked && bottomChecked ? router.push(urlPath.HOME) : notify();
-          }}
-        >
-          다음
-        </CustomButton>
+        <Link href={urlPath.PARENT_CARD_APPLY}>
+          <CustomButton
+            rounded="true"
+            className={`w-full ${topChecked == true && bottomChecked == true ? "bg-main02" : "bg-stone-300 hover:bg-stone-300"}`}
+            onClick={() => {
+              topChecked && bottomChecked
+                ? router.push(urlPath.HOME)
+                : notify();
+            }}
+          >
+            다음
+          </CustomButton>
+        </Link>
         <CustomButton
           rounded="true"
           className="w-full bg-stone-300 hover:bg-stone-300"
           onClick={() => {
-            router.push(urlPath.HOME);
+            router.push(urlPath.CARD_VERIFICATION_CONFIRM);
           }}
         >
           닫기

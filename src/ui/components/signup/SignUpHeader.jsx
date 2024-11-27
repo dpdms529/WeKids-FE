@@ -14,12 +14,12 @@ export default function Top({ setAllChecked }) {
   const router = useRouter();
 
   useEffect(() => {
-    email != "" && name != "" ? setphoneChecked(true) : setphoneChecked(false);
-    setAllChecked(email !== "" && name !== "" && phoneChecked);
+    email != "" && name != "" ? setphoneChecked(true) : setphoneChecked(false); // 추후에 구현
+    setAllChecked(email !== "" && name !== "");
   }, [phone, email, name, setAllChecked]);
 
   const PhoneClickListener = () => {
-    router.push(urlPath.SIGNUP_PHONE); // 추후에 혹시라도 zustand 쓸수도 있어서 함수로
+    router.push(urlPath.SIGNUOP_REGFOM_PHONE); // 추후에 혹시라도 zustand 쓸수도 있어서 함수로
   };
 
   return (

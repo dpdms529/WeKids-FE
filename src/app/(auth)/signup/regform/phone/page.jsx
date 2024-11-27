@@ -14,7 +14,7 @@ export default function Page() {
         fill
         className="object-cover"
         onClick={() => {
-          router.push(urlPath.SIGNUP_SELF);
+          router.push(urlPath.SIGNUOP_REGFOM);
         }}
       />
     </div>

@@ -7,6 +7,8 @@ import {
 } from "@radix-ui/react-icons";
 import { alarmData } from "@/src/constants/assign";
 import Image from "next/image";
+import Link from "next/link";
+import { urlPath } from "@/src/constants/common";
 
 const EMOTICON = {
   MESSAGE: EnvelopeClosedIcon,
@@ -63,7 +65,9 @@ const AlarmCard = ({
         </div>
       </div>
       <div className="flex w-1/4 items-center justify-end">
+      <Link href={urlPath.ALARM_CARD}>
         <ChevronRightIcon className="w-[43px] h-[43px] cursor-pointer" />
+      </Link>
       </div>
     </div>
   );

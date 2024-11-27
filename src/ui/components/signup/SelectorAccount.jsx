@@ -16,7 +16,7 @@ export default function SelectorAccount({
           <span className="text-R-20 text-black/80">{name}</span>
         </div>
         <div>
-          <span className="text-R-10 text-stone-300">{account}</span>
+          <span className="text-R-12 text-black/50">{account}</span>
         </div>
       </div>
       <div className="flex flex-col w-2/5 justify-end items-end pb-3 pr-3">
