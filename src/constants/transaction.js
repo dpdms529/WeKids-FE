@@ -8,7 +8,7 @@ export const RangeEnum = {
 export const TypeEnum = {
   ALL: "전체",
   DEPOSIT: "입금만",
-  WITHDRAWAL: "출력만",
+  WITHDRAWAL: "출금만",
 };
 
 export const SortEnum = {

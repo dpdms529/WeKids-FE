@@ -5,39 +5,60 @@ import { fetchChildAccounts } from "@/src/services/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import Loader from "@/src/ui/components/atoms/Loader";
 import TransferItem from "@/src/ui/components/atoms/TransferItem";
-import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { useCallback } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
-
+  const [accounts, setAccounts] = useState([]); // 데이터를 저장할 상태
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태 관리
+  const [error, setError] = useState(null); // 에러 상태 관리
   const router = useRouter();
-
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['accountData'], // queryKey를 객체 형태로 전달
-    queryFn: fetchChildAccounts, // service에서 가져온 queryFn 지정
-  });
-
-  
-
   const { selectedAccount, setSelectedAccount, setChildrenAccounts } = useTransactionStore();
+
+  // 계좌 데이터 가져오기
+  useEffect(() => {
+    const fetchAccounts = async () => {
+      try {
+        const data = await fetchChildAccounts(); // 데이터 가져오기
+        setAccounts(data); // 가져온 데이터를 상태에 저장
+        setChildrenAccounts(data); // 전역 상태에 저장
+      } catch (error) {
+        setError(error.message); // 에러 처리
+      } finally {
+        setIsLoading(false); // 로딩 상태 해제
+      }
+    };
+
+    fetchAccounts();
+  }, [setChildrenAccounts]);
+
+  // 계좌 선택 핸들러
   const handleSelect = useCallback(
-    (user) => {
+    (user, e) => {
+       // Link의 기본 동작 방지
       setSelectedAccount({
         id: user.accountId,
         name: user.name,
         accountNumber: user.accountNumber,
+        
       });
-      setChildrenAccounts(data);
+      router.push(urlPath.TRANSFER);
     },
-    [setSelectedAccount, setChildrenAccounts, data]
+    [setSelectedAccount]
   );
 
   if (isLoading) {
-    return <div><Loader/></div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
-  
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="max-w-md mx-auto h-screen flex flex-col">
@@ -48,17 +69,17 @@ export default function Page() {
         </Link>
       </div>
       <div className="flex-1 overflow-y-auto scrollbar-hide">
-        {data.map((user, idx) => (
-          <Link key={idx} href={urlPath.TRANSFER} onClick={(e) => handleSelect(user)}>
+        {accounts.map((user, idx) => (
+          
             <TransferItem
               imgPath={`/images/${user.profile}`}
               key={user.accountId}
               name={user.name}
-              account={user.accountNumber} // TODO: 실제 값이 acocunt라 썻어요 추후에 바꾸면 바꿀게요..
+              account={user.accountNumber}
               bank={"우리은행"}
-              isSelected={user.accountId === selectedAccount?.accountId}
+              isSelected={user.accountId === selectedAccount?.id}
+              onClick={(e) => handleSelect(user, e)}
             />
-          </Link>
         ))}
       </div>
     </div>

@@ -17,24 +17,26 @@ const TransferModal = ({
   const mutation = useMutation({
     mutationFn: submitTransfer,
   });
+
   const handleSubmit = () => {
-    const data = { 
-      parentAccountNumber: sendUser.accountNumber, 
+    const data = {
+      parentAccountNumber: sendUser.accountNumber,
       childAccountNumber: selectedAccount.accountNumber,
       amount: transferAmount,
       sender: sendUser.name,
-      receiver: selectedAccount.name };
-
-      mutation.mutate(data, {
-        onSuccess: (data) => {
-          console.log("Transfer Successful:", data || "No response data");
-          router.push(urlPath.DONE);
-        },
-        onError: (error) => {
-          console.error("Transfer Failed:", error.message);
-        },
-      });
+      receiver: selectedAccount.name,
     };
+
+    mutation.mutate(data, {
+      onSuccess: () => {
+        alert("이체가 성공적으로 완료되었습니다!");
+        router.push(urlPath.DONE);
+      },
+      onError: (error) => {
+        alert("이체 실패: " + error.message);
+      },
+    });
+  };
 
   return (
     <Modal
@@ -44,7 +46,7 @@ const TransferModal = ({
       height="47vh"
       deletebutton={true}
     >
-      <div className="flex flex-col items-center mt-4 p-8 ">
+      <div className="flex flex-col items-center mt-4 p-8">
         <Profile />
         <p className="text-base mt-2">
           <span className="text-B-22">{selectedAccount.name}</span>님에게
@@ -52,28 +54,20 @@ const TransferModal = ({
         </p>
         <p className="text-R-20 mt-1">이체하시겠습니까?</p>
         <p className="text-R-12 mt-5 text-gray-400">
-          받는계좌 : 우리은행 {selectedAccount.account}
+          받는계좌 : 우리은행 {selectedAccount.accountNumber}
         </p>
       </div>
       <div className="flex flex-row w-[393px] space-x-3 mt-7 px-8 pb-2">
-        <CustomButton
-          size="small"
-          color="gray"
-          rounded={true}
-          onClick={modalHandler}
-        >
+        <CustomButton size="small" color="gray" rounded={true} onClick={modalHandler}>
           취소
         </CustomButton>
-        <CustomButton
-          size="medium"
-          rounded={true}
-          onClick={() => handleSubmit()}
-        >
+        <CustomButton size="medium" rounded={true} onClick={handleSubmit}>
           이체하기
         </CustomButton>
       </div>
     </Modal>
   );
 };
+
 
 export default TransferModal;

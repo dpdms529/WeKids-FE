@@ -6,8 +6,9 @@ import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function TopBar({ name, balance, accountNumber, bgColor }) {
+export default function TopBar({ name, balance, accountNumber, bgColor="YELLOW" }) {
   const bgColorClass = colorTypeMap[bgColor].colorClass;
+
 
   const copyToClipboard = (text) => {
     navigator.clipboard
