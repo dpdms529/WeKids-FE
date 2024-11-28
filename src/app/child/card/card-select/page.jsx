@@ -2,47 +2,28 @@
 
 import React, { useState } from "react";
 import { useMutation, QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import axios from "axios";
 import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import ColorButton from "@/src/ui/components/card-select/ColorButton";
 import CharacterButton from "@/src/ui/components/card-select/CharacterButton";
 import CardIssueModal from "@/src/ui/components/card-select/CardIssueModal";
+import { designCreate } from "@/src/services/design";
 
 const queryClient = new QueryClient();
 
 const CardDesignSelector = () => {
   const [selectedCharacter, setSelectedCharacter] = useState("HEARTSPRING");
-  // const [selectedColor, setSelectedColor] = useState(colorTypeMap["BLUE"].colorClass);
   const [selectedColor, setSelectedColor] = useState("BLUE");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(""); // 오류 메시지 상태 추가
-  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
+  const [errorMessage, setErrorMessage] = useState(""); 
+  const [isLoading, setIsLoading] = useState(false); 
 
-  const handleCharacterClick = (character) => {
-    setSelectedCharacter(character);
-  };
-
-  const handleColorClick = (colorClass) => {
-    const colorKey = Object.keys(colorTypeMap).find(
-      key => colorTypeMap[key].colorClass === colorClass
-    );
-  
-    if (colorKey) {
-      setSelectedColor(colorKey); // Enum 값 (예: "BLUE") 설정
-    } else {
-      console.error("Invalid color class:", colorClass);
-    }
-  };
-  // Mutation for POST request using TanStack Query
   const mutation = useMutation({
     mutationFn: (designData) => {
-      return axios.post("http://localhost:8080/api/v1/design", designData);
+      return designCreate(designData);
     },
     onSuccess: (data) => {
-      // 서버에서 응답을 받은 후 색상 매핑
-      // const mappedColor = colorTypeMap[data.color]?.colorClass || colorTypeMap["BLUE"].colorClass; // 기본값 설정
       setSelectedColor(data.color);
       setIsModalOpen(true);
       setErrorMessage(""); // 성공 시 오류 메시지 초기화
@@ -59,6 +40,22 @@ const CardDesignSelector = () => {
     }
   });
 
+  const handleCharacterClick = (character) => {
+    setSelectedCharacter(character);
+  };
+
+  const handleColorClick = (colorClass) => {
+    const colorKey = Object.keys(colorTypeMap).find(
+      key => colorTypeMap[key].colorClass === colorClass
+    );
+  
+    if (colorKey) {
+      setSelectedColor(colorKey); // Enum 값 (예: "BLUE") 설정
+    } else {
+      console.error("색상 선택 오류:", colorClass);
+    }
+  };
+
   // 버튼을 눌러서 저장되는 데이터 부분 sendingData
   const handleConfirmClick = () => {
     const designData = {
@@ -71,8 +68,6 @@ const CardDesignSelector = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    // setSelectedCharacter("HEARTSPRING"); // 초기값으로 리셋
-    // setSelectedColor(colorTypeMap["BLUE"].colorClass); // 초기값으로 리셋
     setSelectedCharacter("HEARTSPRING"); // 초기값으로 리셋
     setSelectedColor("BLUE"); // Enum 값으로 초기화
   };
@@ -128,9 +123,8 @@ const CardDesignSelector = () => {
             disabled={isLoading}
           >
             {isLoading ? "제출 중..." : "확인"}
-            
           </CustomButton>
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>} {/* 오류 메시지 표시 */}
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
           <CardIssueModal
             isOpen={isModalOpen}
             onClose={handleModalClose}
