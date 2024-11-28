@@ -3,8 +3,7 @@ import { TransactionFilter } from "@/src/ui/components/transaction/transaction-h
 import { TransactionsView } from "@/src/ui/components/transaction/transaction-history/TransactionsView";
 import { Box, Flex } from "@radix-ui/themes";
 
-export default async function Page({ searchParams }) {
-  const { color } = await searchParams;
+export default async function Page() {
 
   return (
     <section>
@@ -14,7 +13,6 @@ export default async function Page({ searchParams }) {
             name="조예은"
             balance="110000009862"
             accountNumber="1111-11-111111"
-            bgColor={color}
           />
         </Box>
         <Box className="cursor-pointer">
