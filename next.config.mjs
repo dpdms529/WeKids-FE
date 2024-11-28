@@ -7,6 +7,15 @@ const nextConfig = {
     });
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ssl.pstatic.net",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
