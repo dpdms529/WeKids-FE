@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/url";
+import { BASE_URL } from "@/src/constants/url";
 
 // 디자인 생성
 export const designCreate = async (data) => {
@@ -32,5 +32,5 @@ export const desingFetch = async () => {
     }
 
     const responseBody = await response.text();
-    return responseBody ? JSON.parse(responseBody) : {};
-}
+  return responseBody ? JSON.parse(responseBody) : {};
+};
