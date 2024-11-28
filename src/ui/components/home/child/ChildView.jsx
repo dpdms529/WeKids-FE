@@ -15,6 +15,18 @@ const childAccountData = {
   color: "GREEN",
   character: "CHACHAPING",
 };
+const childAccountNullData = {
+  childId: 1,
+  name: "최윤정",
+  accountNumber: "",
+  profile: "/images/chachapingImg.svg",
+  balance: 300000,
+  accountId: 2,
+  cardState: "ACTIVE",
+  color: "GREEN",
+  character: "CHACHAPING",
+};
+
 export default function ChildHome() {
   return (
     <div className="flex flex-col h-screen bg-white">
