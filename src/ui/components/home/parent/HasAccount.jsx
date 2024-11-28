@@ -6,7 +6,9 @@ import BlueCardBox from "../BlueCardBox";
 import NoButtonAccountCard from "./AccountGuide";
 
 export default function AccountView({ accountData }) {
-  const [selectedAccount, setSelectedAccount] = useState(null); // useState 구조분해할당 수정
+  const [selectedAccount, setSelectedAccount] = useState(
+    accountData?.parent || null
+  );
   const [selectedProfile, setSelectedProfile] = useState("parent");
 
   useEffect(() => {
@@ -84,7 +86,11 @@ export default function AccountView({ accountData }) {
 
       <div className="flex justify-center">
         {selectedAccount ? (
-          <BlueCardBox selectedAccount={selectedAccount} />
+          selectedAccount.accountNumber ? (
+            <BlueCardBox selectedAccount={selectedAccount} />
+          ) : (
+            <NoButtonAccountCard mainText="자녀의 카드 발급을" />
+          )
         ) : (
           <NoButtonAccountCard />
         )}
