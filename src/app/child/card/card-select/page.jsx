@@ -13,63 +13,72 @@ import { designCreate } from "@/src/services/design";
 const queryClient = new QueryClient();
 
 const CardDesignSelector = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState("HEARTSPRING");
-  const [selectedColor, setSelectedColor] = useState("BLUE");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(""); 
-  const [isLoading, setIsLoading] = useState(false); 
+  const [designState, setDesignState] = useState({
+    selectedCharacter: "HEARTSPRING",
+    selectedColor: "BLUE",
+    isModalOpen: false,
+    errorMessage: "",
+    isLoading: false,
+  });
 
   const mutation = useMutation({
-    mutationFn: (designData) => {
-      return designCreate(designData);
-    },
+    mutationFn: designCreate,
     onSuccess: (data) => {
-      setSelectedColor(data.color);
-      setIsModalOpen(true);
-      setErrorMessage(""); // 성공 시 오류 메시지 초기화
+      setDesignState((prev) => ({
+        ...prev,
+        selectedColor: data.color,
+        isModalOpen: true,
+        errorMessage: "",
+      }));
     },
     onError: (error) => {
-      console.error("Error submitting design:", error.response ? error.response.data : error.message);
-      setErrorMessage("디자인 제출에 실패했습니다. 다시 시도해 주세요.");
+      console.error("Error submitting design:", error.message);
+      setDesignState((prev) => ({
+        ...prev,
+        errorMessage: "디자인 제출에 실패했습니다. 다시 시도해 주세요.",
+      }));
     },
     onMutate: () => {
-      setIsLoading(true); // 요청 시작 시 로딩 상태 설정
+      setDesignState((prev) => ({ ...prev, isLoading: true }));
     },
     onSettled: () => {
-      setIsLoading(false); // 요청 완료 후 로딩 상태 해제
-    }
+      setDesignState((prev) => ({ ...prev, isLoading: false }));
+    },
   });
 
   const handleCharacterClick = (character) => {
-    setSelectedCharacter(character);
+    setDesignState((prev) => ({ ...prev, selectedCharacter: character }));
   };
 
   const handleColorClick = (colorClass) => {
     const colorKey = Object.keys(colorTypeMap).find(
-      key => colorTypeMap[key].colorClass === colorClass
+      (key) => colorTypeMap[key].colorClass === colorClass
     );
-  
+
     if (colorKey) {
-      setSelectedColor(colorKey); // Enum 값 (예: "BLUE") 설정
+      setDesignState((prev) => ({ ...prev, selectedColor: colorKey }));
     } else {
-      console.error("색상 선택 오류:", colorClass);
+      console.error("Invalid color class:", colorClass);
     }
   };
 
-  // 버튼을 눌러서 저장되는 데이터 부분 sendingData
   const handleConfirmClick = () => {
     const designData = {
-      color: selectedColor,
-      character: selectedCharacter,
+      color: designState.selectedColor,
+      character: designState.selectedCharacter,
     };
     console.log("Sending data:", designData);
     mutation.mutate(designData);
   };
 
   const handleModalClose = () => {
-    setIsModalOpen(false);
-    setSelectedCharacter("HEARTSPRING"); // 초기값으로 리셋
-    setSelectedColor("BLUE"); // Enum 값으로 초기화
+    setDesignState({
+      selectedCharacter: "HEARTSPRING",
+      selectedColor: "BLUE",
+      isModalOpen: false,
+      errorMessage: "",
+      isLoading: false,
+    });
   };
 
   return (
@@ -79,8 +88,8 @@ const CardDesignSelector = () => {
         <div className="w-[331px] h-[935px] flex-shrink-0 rounded-[10px] border border-black bg-white p-4">
           <div className="flex flex-col items-center mt-4">
             <CardCharacter
-              selectedCharacter={selectedCharacter}
-              selectedColor={selectedColor}
+              selectedCharacter={designState.selectedCharacter}
+              selectedColor={designState.selectedColor}
             />
           </div>
           <div className="text-center mb-12 mt-10">
@@ -120,13 +129,15 @@ const CardDesignSelector = () => {
           <CustomButton
             size="large"
             onClick={handleConfirmClick}
-            disabled={isLoading}
+            disabled={designState.isLoading}
           >
-            {isLoading ? "제출 중..." : "확인"}
+            {designState.isLoading ? "제출 중..." : "확인"}
           </CustomButton>
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          {designState.errorMessage && (
+          <p className="text-red-500">{designState.errorMessage}</p>
+          )}
           <CardIssueModal
-            isOpen={isModalOpen}
+            isOpen={designState.isModalOpen}
             onClose={handleModalClose}
           />
         </div>
