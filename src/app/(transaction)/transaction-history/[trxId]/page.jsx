@@ -1,7 +1,9 @@
+import { urlPath } from "@/src/constants/common";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
-import ConfirmButton from "@/src/ui/components/transaction/detail/ConfirmButton";
 import Memo from "@/src/ui/components/transaction/detail/Memo";
 import TransactionDetail from "@/src/ui/components/transaction/detail/TransactionDetail";
+import Link from "next/link";
 
 const dummy = {
   title: "카카오페이",
@@ -30,10 +32,13 @@ const TransactionDetailPage = ({ params }) => {
           <TransactionDetail label="거래 후 잔액" value={dummy.balance} />
         </div>
       </div>
-
-      <div className="flex w-full">
-        <ShareButton />
-        <ConfirmButton />
+      <div className="flex w-full mt-auto">
+        <ShareButton size="small" />
+        <Link href={urlPath.TRANSACTION_HISTORY} className="flex-1">
+          <CustomButton size="medium" className="w-full">
+            확인
+          </CustomButton>
+        </Link>
       </div>
     </div>
   );
