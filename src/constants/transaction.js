@@ -8,7 +8,7 @@ export const RangeEnum = {
 export const TypeEnum = {
   ALL: "전체",
   DEPOSIT: "입금만",
-  WITHDRAWAL: "출력만",
+  WITHDRAWAL: "출금만",
 };
 
 export const SortEnum = {
@@ -19,4 +19,9 @@ export const SortEnum = {
 export const AccountTransactionTypeEnum = {
   DEPOSIT: "입금",
   WITHDRAWAL: "출금",
+};
+
+export const formatToLocalDate = (date) => {
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 };

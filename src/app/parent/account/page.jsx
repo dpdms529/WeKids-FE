@@ -9,9 +9,9 @@ export default function Page() {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <div className="flex flex-col bg-white h-screen max-w-[393px] overflow-hidden">
+    <div className="flex flex-col bg-white w-[393px] h-screen overflow-y-hidden">
       <Header />
-      <div className="flex-flex-col h-full overflow-auto scrollbar-hide">
+      <div className="overflow-y-hidden scrollbar-hide">
         {isClicked ? (
           <Account />
         ) : (

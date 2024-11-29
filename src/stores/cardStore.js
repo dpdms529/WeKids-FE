@@ -45,3 +45,9 @@ export const useCardStore = create((set) => ({
     }
   },
 }));
+
+export const useColorStore = create((set) => ({
+    color: "",
+    setColor: (color) => set({color: color}),
+    removeColor: () => set({ color: "" }),
+}))

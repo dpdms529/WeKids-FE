@@ -4,7 +4,7 @@ import { useState } from "react";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Link from "next/link";
 
-export default function Page() {
+export default function Account() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const clickHandler = (e) => {
     if (selectedIndex == null) {
@@ -14,11 +14,13 @@ export default function Page() {
 
   return (
     <>
-      <AccountItem
-        selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex}
-      />
-      <div className="fixed bottom-[60px] items-center">
+      <div className="flex flex-col overflow-y-auto h-5/6 ">
+        <AccountItem
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
+      </div>
+      <div className="flex items-center ">
         <Link href={urlPath.HOME} onClick={clickHandler}>
           <CustomButton color={selectedIndex ? "main" : "gray"}>
             가져오기

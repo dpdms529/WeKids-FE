@@ -5,6 +5,8 @@ import Link from "next/link";
 const CardIssueModal = ({ isOpen, onClose }) => {
 
   const handleConfirm = () => {
+    // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
+    router.push(urlPath.HOME); 
     onClose(); 
   };
   return (
