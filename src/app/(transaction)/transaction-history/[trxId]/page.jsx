@@ -37,7 +37,7 @@ const TransactionDetailPage = ({ params }) => {
       {
         onSuccess: () => {
           console.log("메모 업데이트 성공!");
-          router.push(urlPath.TRANSACTION_HISTORY);
+          router.push(`${urlPath.TRANSACTION_HISTORY}?color=${selectedAccount.color}`);
         },
         onError: (error) => {
           console.error("메모 업데이트 실패:", error.message);

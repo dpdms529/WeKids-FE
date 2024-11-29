@@ -17,35 +17,50 @@ export const submitTransfer = async (data) => {
     return responseBody ? JSON.parse(responseBody) : {};
   };
 
-  export const fetchTransactions = async ({ page, size = 10, accountId }) => {
-    const url = new URL(
-      `${BASE_URL}/accounts/${accountId}/transactions`
-    );
-    url.searchParams.append("page", page);
-    url.searchParams.append("size", size);
+
+  export const fetchTransactions = async ({ page, size = 5, accountId }) => {
+    const url = `${BASE_URL}/accounts/${accountId}/transactions`;
   
-    console.log("Fetching URL:", url.toString());
+    console.log("Fetching URL:", url);
   
-    const response = await fetch(url.toString());
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Fetch error:", errorText);
-      throw new Error("Failed to fetch transactions");
+    try {
+      const response = await fetch(`${url}?page=${page}&size=${size}`, {
+        method: "GET",
+      });
+  
+      if (!response.ok) {
+        // HTTP 상태 코드가 200-299가 아니면 에러 처리
+        const errorMessage = await response.text();
+        throw new Error(`Error fetching transactions: ${errorMessage}`);
+      }
+  
+      const data = await response.json();
+  
+      // API 응답 구조에 맞게 반환
+      return {
+        transactions: data.transactions,
+        hasNext: data.hasNext, // hasNext 값이 그대로 전달
+      };
+    } catch (error) {
+      console.error("Error fetching transactions:", error);
+      throw error; // 에러를 다시 던져 React Query에서 처리
     }
-    return response.json();
   };
   
   
-  export const useTransactionList = ({ accountId = 4, size = 10 }) => {
-    return useInfiniteQuery({
-      queryKey: ["transactions", accountId],
-      queryFn: ({ pageParam = 0 }) =>
-        fetchTransactions({ page: pageParam, accountId, size }),
-      getNextPageParam: (lastPage, allPages) => {
-        return lastPage.hasNext ? allPages.length : undefined;
-      },
-    });
-  };
+export const useTransactionList = ({ accountId = 4, size = 5 }) => {
+  return useInfiniteQuery({
+    queryKey: ["transactions", accountId],
+    queryFn: ({ pageParam = 0 }) =>
+      fetchTransactions({ page: pageParam, accountId, size }),
+    getNextPageParam: (lastPage, allPages) => {
+      console.log("Last Page:", lastPage);
+      console.log("HasNext:", lastPage?.hasNext);
+      console.log("Next Page Index:", allPages.length);
+      return lastPage?.hasNext ? allPages.length : undefined;
+    },
+  });
+};
   
 
   export const fetchTransactionById = async (transactionId) => {

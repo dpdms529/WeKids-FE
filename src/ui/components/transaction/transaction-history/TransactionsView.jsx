@@ -6,12 +6,11 @@ import { useInView } from "react-intersection-observer";
 import Link from "next/link";
 import { urlPath } from "@/src/constants/common";
 import { formatDate } from "@/src/util/dateUtils";
-import { AccountTransactionTypeEnum } from "@/src/constants/transaction";
-import { useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroller";
+import Loader from "@/src/ui/components/atoms/Loader";
 
 export const TransactionsView = ({ accountId, balance }) => {
-  const size = 5; // 페이지당 데이터 수
-  const { ref, inView } = useInView(); // Intersection Observer 훅 사용
+  const size = 5 ; // 페이지당 데이터 수
   const { search, sortingType, range, startDate, endDate, type } =
     useTransFilterStore();
 
@@ -29,12 +28,6 @@ export const TransactionsView = ({ accountId, balance }) => {
   });
 
   // Intersection Observer가 뷰에 들어올 때 다음 페이지 가져오기
-  useEffect(() => {
-    if (inView && hasNextPage && !isFetchingNextPage) {
-      console.log("Fetching next page...");
-      fetchNextPage();
-    }
-  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   if (isLoading && !data) {
     return <div>Loading...</div>; // 첫 로딩
@@ -46,6 +39,10 @@ export const TransactionsView = ({ accountId, balance }) => {
 
   // 모든 페이지의 데이터를 병합
   const transactions = data?.pages.flatMap((page) => page.transactions) || [];
+
+  if (transactions.length === 0) {
+    return <div>거래 내역이 없습니다.</div>; // 데이터가 없을 경우 처리
+  }
 
   // 필터링
   const filteredTransactions = data?.pages
@@ -87,11 +84,15 @@ export const TransactionsView = ({ accountId, balance }) => {
   }) || [];
 
   if(transactions){
+    console.log("HasNext (last page):", data?.pages[data.pages.length - 1]?.hasNext);
     console.log(transactions)
   }
 
   return (
-    <Flex direction="column" className="bg-white h-[53vh] overflow-auto">
+    <Flex direction="column" className="bg-white h-[53vh] overflow-auto scrollbar-hide">
+      <InfiniteScroll pageStart={0} hasMore={hasNextPage} loadMore={() => {
+    !isFetchingNextPage && fetchNextPage(); // 중복 호출 방지
+  }} useWindow={false} >
       {filteredTransactions.map((transaction, index) => (
         <Link
           key={index}
@@ -133,7 +134,12 @@ export const TransactionsView = ({ accountId, balance }) => {
           </div>
         </Link>
       ))}
-      <div ref={ref} />
+      {isFetchingNextPage && (
+          <div className="text-center py-4">
+            <Loader /> {/* 호출 중일 때 Loader 표시 */}
+          </div>
+        )}
+      </InfiniteScroll>
     </Flex>
   );
 };
