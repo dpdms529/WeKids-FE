@@ -1,16 +1,16 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
-import { useUserCardColorStore } from "@/src/stores/userStore";
+import { useUserCardColorStore, useUserTypeStore } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
-import { useUserTypeStore } from "@/src/stores/userTypeStore";
 
 export default function TopBar({ name, balance, accountNumber }) {
   const bgColorClass = useUserCardColorStore((state) => state.userCardColor);
   console.log("bgColorClass " + bgColorClass);
+  const {userType} = useUserTypeStore();
 
   // const bgColorClass = colorTypeMap[userColor].colorClass;
 
