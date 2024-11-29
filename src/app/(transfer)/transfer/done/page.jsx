@@ -1,20 +1,40 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
+import { useTransactionStore } from "@/src/stores/transactionStore";
 
 const Page = () => {
+  const { selectedAccount, transferAmount, clearTransferData } = useTransactionStore();
   const [transferData, setTransferData] = useState({
-    receiverName: "최윤정",
-    amount: 10000,
-    accountNumber: "240910713624017",
-    bankName: "하나",
-    memo: "메모입력..",
+    sendUser: "",
+    amount: 0,
+    accountNumber: "",
+    bankName: "우리",
+    memo: "",
   });
   const router = useRouter();
+
+  useEffect(() => {
+    if (selectedAccount) {
+      setTransferData((prev) => ({
+        ...prev,
+        sendUser: selectedAccount.name,
+        accountNumber: selectedAccount.accountNumber,
+        amount: transferAmount,
+        memo: "메모입력..",
+      }));
+    }
+  }, [selectedAccount, transferAmount]);
+
+  const completeTransfer = () => {
+    clearTransferData();
+    router.push(urlPath.HOME)
+  }
+
   return (
     <main className="min-h-screen bg-white flex flex-col">
       <div className="flex-1 flex flex-col items-center justify-center">
@@ -26,10 +46,10 @@ const Page = () => {
         {/* 텍스트 영역 */}
         <div className="text-center space-y-2 mb-4">
           <p className="text-B-28 text-black/80">
-            {transferData.receiverName}님에게
+          {transferData.sendUser || "알 수 없는 사용자"}님에게
           </p>
           <p className="text-B-28 text-black/80">
-            {transferData.amount.toLocaleString()}원 보냈어요
+          {transferData.amount?.toLocaleString() || 0}원 보냈어요
           </p>
           <div className="flex items-center justify-center text-R-14 text-neutral-300 pt-4">
             {transferData.bankName} {transferData.accountNumber}
@@ -49,7 +69,7 @@ const Page = () => {
           <ShareButton rounded={true} />
           <CustomButton
             rounded={true}
-            onClick={() => router.push(urlPath.HOME)}
+            onClick={completeTransfer}
           >
             <span className="text-R-20">확인</span>
           </CustomButton>

@@ -7,9 +7,10 @@ import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { useUserTypeStore } from "@/src/stores/userTypeStore";
 
-export default function TopBar({ name, balance, accountNumber, bgColor }) {
+export default function TopBar({ name, balance, accountNumber, bgColor="YELLOW" }) {
   const bgColorClass = colorTypeMap[bgColor].colorClass;
   const { userType } = useUserTypeStore();
+
 
   const copyToClipboard = (text) => {
     navigator.clipboard
