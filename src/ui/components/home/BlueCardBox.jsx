@@ -1,6 +1,7 @@
 "use client";
 
 import { characterInfoMap, urlPath } from "@/src/constants/common"; // 상대 경로로 불러오기
+import { useUserCardColorStore } from "@/src/stores/userStore";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { Text } from "@radix-ui/themes";
 import Image from "next/image";
@@ -10,6 +11,7 @@ import toast, { Toaster } from "react-hot-toast"; // Toaster 및 toast 불러오
 
 const BlueCardBox = ({ selectedAccount }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState(""); // backgroundColorClass 상태 추가
+  const setCardColor = useUserCardColorStore((state) => state.setCardColor);
 
   useEffect(() => {
     if (selectedAccount) {
@@ -19,10 +21,11 @@ const BlueCardBox = ({ selectedAccount }) => {
       const bgClass = accountCharacterInfo.colorClass
         ? `${accountCharacterInfo.colorClass}` // 예: bg-color-dalbo
         : "bg-main02"; // colorClass가 없으면 기본값을 bg-main02로 설정
-
+      setCardColor(bgClass);
       setBackgroundColorClass(bgClass); // 상태 업데이트
+      console.log(bgClass + " bgClass");
     }
-  }, [selectedAccount]);
+  }, [selectedAccount, setCardColor]);
 
   if (!selectedAccount) return <div>계좌를 선택해주세요.</div>;
 
@@ -78,7 +81,7 @@ const BlueCardBox = ({ selectedAccount }) => {
         <div className="w-full h-[1px] bg-black"></div>
         <div className="flex text-black">
           <Link
-            href={`${urlPath.TRANSACTION_HISTORY}?color=${selectedAccount.color}`}
+            href={`${urlPath.TRANSACTION_HISTORY}`}
             className="flex-1 py-4 text-center text-R-20 border-r border-black hover:bg-white/10 transition-colors"
           >
             <button>조회</button>

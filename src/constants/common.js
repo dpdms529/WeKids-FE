@@ -60,7 +60,7 @@ export const colorTypeMap = {
 
 export const urlPath = {
   HOME: "/",
-  TRANSACTION_HISTORY: "/transaction-history",
+  TRANSACTION_HISTORY: "/transaction-history", //거래 조회
   ACCOUNT_LIST: "/account-list",
   TRANSFER: "/transfer",
   DONE: "/transfer/done",

@@ -1,7 +1,7 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
-import { useUserTypeStore } from "@/src/stores/userTypeStore";
+import { useUserTypeStore } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorItem from "@/src/ui/components/signup/SelectorItem";

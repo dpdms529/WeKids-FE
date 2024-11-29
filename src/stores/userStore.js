@@ -7,6 +7,11 @@ export const useUserTypeStore = create((set) => ({
 }));
 
 export const useUserStore = create((set) => ({
-  userName: '응애핑',
+  userName: "응애핑",
   setUserName: (name) => set({ userName: name }),
+}));
+
+export const useUserCardColorStore = create((set) => ({
+  userCardColor: "",
+  setCardColor: (color) => set({ userCardColor: color }),
 }));

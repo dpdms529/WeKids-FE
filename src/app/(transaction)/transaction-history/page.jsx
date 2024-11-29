@@ -19,7 +19,6 @@ export default function Page() {
             name="조예은"
             balance={balance}
             accountNumber="1111-11-111111"
-            bgColor={color}
           />
         </Box>
         <Box className="cursor-pointer">

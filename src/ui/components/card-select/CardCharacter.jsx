@@ -1,5 +1,5 @@
 import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
-import { useUserStore } from "@/src/stores/userTypeStore";
+import { useUserStore } from "@/src/stores/userStore";
 import Image from "next/image";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
