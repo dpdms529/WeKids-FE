@@ -26,13 +26,13 @@ export default function InnerText({ isChild = true, name1, name2 }) {
       </div>
       <div className="p-3">
         <Link href={urlPath.PARENT_CARD_ALARM}>
-        <CustomButton
-          rounded={true}
-          size={"mediumLarge"}
-          className="max-w-full"
-        >
-          카드 디자인 보기
-        </CustomButton>
+          <CustomButton
+            rounded={true}
+            size={"mediumLarge"}
+            className="max-w-full"
+          >
+            카드 디자인 보기
+          </CustomButton>
         </Link>
       </div>
     </div>

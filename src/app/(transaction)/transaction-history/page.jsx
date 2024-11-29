@@ -4,7 +4,6 @@ import { TransactionsView } from "@/src/ui/components/transaction/transaction-hi
 import { Box, Flex } from "@radix-ui/themes";
 
 export default async function Page() {
-
   return (
     <section>
       <Flex direction="column" justify="between">

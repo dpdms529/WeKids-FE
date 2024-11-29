@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps } from "next";
 import { BASE_URL } from "../constants/url";
 
 export const getParentsAccounts = async () => {

@@ -48,8 +48,6 @@ export default function Identification({ setIsChecked }) {
         </div>
       </div>
       <div className="flex flex-col h-3/5">
-        
-
         <div className="fixed bottom-0">
           <CustomButton
             onClick={() => {

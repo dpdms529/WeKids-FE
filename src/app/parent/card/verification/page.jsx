@@ -32,7 +32,7 @@ export default function Page() {
         <ChildInputForm setAllChecked={setTopChecked} />
         <div className="mt-12 mb-1 text-R-20 text-black/80">
           <div className="px-8">
-          아이의 계좌를 만들기 위해 <br /> OOO님의 동의가 필요해요
+            아이의 계좌를 만들기 위해 <br /> OOO님의 동의가 필요해요
           </div>
           <Bottom setAllChecked={setBottomChecked} />
         </div>

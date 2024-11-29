@@ -30,7 +30,6 @@ export default function Page() {
     }
   };
 
-
   return (
     <div className="flex flex-col h-screen max-w-full overflow-auto scrollbar-hide px-10 py-6">
       <Toaster position="top-center" />

@@ -2,7 +2,6 @@ import { urlPath } from "@/src/constants/common";
 import CardDesignLayout from "@/src/ui/components/card/CardDesignLayout";
 import ChoiceDesign from "@/src/ui/components/card/ChoiceDesign";
 
-
 const Page = () => {
   return (
     <CardDesignLayout>

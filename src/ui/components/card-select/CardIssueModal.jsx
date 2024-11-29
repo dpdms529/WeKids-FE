@@ -1,5 +1,5 @@
 import { urlPath } from "@/src/constants/common";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import PopupMessage from "@/src/ui/components/molecules/PopupMessage";
 
 const CardIssueModal = ({ isOpen, onClose }) => {
@@ -7,8 +7,8 @@ const CardIssueModal = ({ isOpen, onClose }) => {
 
   const handleConfirm = () => {
     // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
-    router.push(urlPath.HOME); 
-    onClose(); 
+    router.push(urlPath.HOME);
+    onClose();
   };
 
   return (
