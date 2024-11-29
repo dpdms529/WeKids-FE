@@ -1,23 +1,19 @@
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorAccount from "@/src/ui/components/signup/SelectorAccount";
 import { fetchAccounts } from "@/src/services/account";
-import { useQuery } from "@tanstack/react-query";
-
-const dummyData = [
-  { id: 1, name: "입출금 통장", account: "111-111-111", balance: 1000000 },
-  { id: 2, name: "적금 통장", account: "222-222-222", balance: 1000000 },
-  { id: 3, name: "예금 통장", account: "333-333-333", balance: 1000000 },
-  { id: 4, name: "모임 통장", account: "444-4444-444", balance: 1000000 },
-];
+import { useQuery } from '@tanstack/react-query';
+import Loader from "../atoms/Loader";
 
 export default function AccountItem({ selectedIndex, setSelectedIndex }) {
+
   const { data, error, isLoading } = useQuery({
-    queryKey: ["accountData"], // queryKey를 객체 형태로 전달
+    queryKey: ['accountData'], // queryKey를 객체 형태로 전달
     queryFn: fetchAccounts, // service에서 가져온 queryFn 지정
   });
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div><Loader/></div>;
   }
+
 
   const toggleAccountSelection = (index) => {
     setSelectedIndex((prev) => (prev === index ? null : index));
@@ -43,6 +39,7 @@ export default function AccountItem({ selectedIndex, setSelectedIndex }) {
       </div>
       <div className="flex flex-col max-w-full overflow-y-auto mx-7">
         {data.map((account, index) => (
+          
           <ParentChildSelector
             key={index}
             isSelected={selectedIndex == index}
@@ -56,6 +53,7 @@ export default function AccountItem({ selectedIndex, setSelectedIndex }) {
             />
           </ParentChildSelector>
         ))}
+        
       </div>
     </div>
   );

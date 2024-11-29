@@ -1,20 +1,64 @@
 "use client";
 import { useTransactionList } from "@/src/services/transaction";
 import { Flex } from "@radix-ui/themes";
-import { useTransFilterStore } from "@/src/stores/transactionStore";
-import { useInView } from "react-intersection-observer";
+import { RangeEnum, useTransFilterStore, TypeEnum } from "@/src/stores/transactionStore";
 import Link from "next/link";
 import { urlPath } from "@/src/constants/common";
 import { formatDate } from "@/src/util/dateUtils";
 import InfiniteScroll from "react-infinite-scroller";
 import Loader from "@/src/ui/components/atoms/Loader";
+import { formatToLocalDate } from "@/src/constants/transaction";
+import { useEffect, useState } from "react";
 
-export const TransactionsView = ({ accountId, balance }) => {
+export const TransactionsView = ({ accountId, setBalance }) => {
   const size = 5 ; // 페이지당 데이터 수
   const { search, sortingType, range, startDate, endDate, type } =
     useTransFilterStore();
+    const now = new Date();
+    const MonthsAgo = new Date();
+    MonthsAgo.setMonth(now.getMonth() - 3);
+    const [start, setStart] = useState(formatToLocalDate(MonthsAgo));
+    const [end, setEnd] = useState(formatToLocalDate(now));
+    const[typetoEng, setTypeToEng] = useState("ALL");
 
-  // React Query로 데이터 가져오기
+
+    
+
+  useEffect(() => {
+    
+    if(type == TypeEnum.ALL){
+      setTypeToEng("ALL");
+    }
+    else if(type == TypeEnum.DEPOSIT){
+      setTypeToEng("DEPOSIT");
+    }
+    else if(type == TypeEnum.WITHDRAWAL){
+      setTypeToEng("WITHDRAWAL");
+    }
+  
+    if (range === RangeEnum.ONE_MONTH) {
+      MonthsAgo.setMonth(now.getMonth() - 1); // 한 달 전
+      setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
+      setEnd(formatToLocalDate(now)); // 현재 날짜 설정
+    } else if (range === RangeEnum.THREE_MONTHS) {
+      MonthsAgo.setMonth(now.getMonth() - 3); // 세 달 전
+      setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
+      setEnd(formatToLocalDate(now)); // 현재 날짜 설정
+    } else if (range === RangeEnum.LAST_MONTH) {
+      const firstDayLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1); // 지난달 1일
+      const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
+      setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
+      setEnd(formatToLocalDate(lastDayLastMonth)); // 포맷팅 후 설정
+    } else if(range === RangeEnum.CUSTOM) {
+      setStart(startDate.toISOString().split("T")[0]); // 포맷팅 후 설정
+      setEnd(endDate.toISOString().split("T")[0]); // 현재 날짜 설정
+    } else{
+      MonthsAgo.setMonth(now.getMonth() - 3); // 기본 세 달 전
+      setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
+      setEnd(formatToLocalDate(now)); // 현재 날짜 설정
+    }
+  }, [range, type, startDate, endDate]);
+
   const {
     data,
     isLoading,
@@ -24,8 +68,23 @@ export const TransactionsView = ({ accountId, balance }) => {
     error,
   } = useTransactionList({
     accountId,
+    start,
+    end,
+    type: typetoEng,
     size,
   });
+
+  useEffect(() => {
+    if (start && end) {
+      fetchNextPage();
+    }
+  }, [start, end, fetchNextPage]);
+
+  useEffect(() => {
+    if (data?.pages?.[0]?.balance !== undefined) {
+      setBalance(data.pages[0].balance); // 첫 페이지의 balance를 설정
+    }
+  }, [data, setBalance]);
 
   // Intersection Observer가 뷰에 들어올 때 다음 페이지 가져오기
 
@@ -54,14 +113,7 @@ export const TransactionsView = ({ accountId, balance }) => {
       .includes(search.toLowerCase());
 
     // 트랜잭션 유형 필터링 (프론트의 type 변수를 서버 값과 매핑)
-    const normalizedType = type.replace("만", ""); // "만" 제거
-    const serverType =
-      normalizedType === "입금" ? "DEPOSIT" :
-      normalizedType === "출금" ? "WITHDRAWAL" :
-      null;
 
-    const matchesType =
-      !serverType || transaction.type === serverType; // 전체 선택 시 모든 유형 포함
 
     // 날짜 범위 필터링 (range에 따라 처리)
     const transactionDate = new Date(transaction.createAt);
@@ -72,7 +124,7 @@ export const TransactionsView = ({ accountId, balance }) => {
       (!startDate || transactionDate >= startDate) &&
       (!endDate || transactionDate <= endDate);
 
-    return matchesSearch && matchesType && matchesDate;
+    return matchesSearch && matchesDate;
   })
   ?.sort((a, b) => {
     // 날짜 정렬
@@ -83,10 +135,6 @@ export const TransactionsView = ({ accountId, balance }) => {
     }
   }) || [];
 
-  if(transactions){
-    console.log("HasNext (last page):", data?.pages[data.pages.length - 1]?.hasNext);
-    console.log(transactions)
-  }
 
   return (
     <Flex direction="column" className="bg-white h-[53vh] overflow-auto scrollbar-hide">

@@ -18,13 +18,14 @@ export const submitTransfer = async (data) => {
   };
 
 
-  export const fetchTransactions = async ({ page, size = 5, accountId }) => {
+  export const fetchTransactions = async ({ page, start, end, size = 5, type, accountId }) => {
     const url = `${BASE_URL}/accounts/${accountId}/transactions`;
   
     console.log("Fetching URL:", url);
   
     try {
-      const response = await fetch(`${url}?page=${page}&size=${size}`, {
+      console.log(start, end)
+      const response = await fetch(`${url}?page=${page}&start=${start}&end=${end}&type=${type}&size=${size}`, {
         method: "GET",
       });
   
@@ -35,11 +36,13 @@ export const submitTransfer = async (data) => {
       }
   
       const data = await response.json();
+      console.log(data.transactions);
   
       // API 응답 구조에 맞게 반환
       return {
         transactions: data.transactions,
         hasNext: data.hasNext, // hasNext 값이 그대로 전달
+        balance: data.balance,
       };
     } catch (error) {
       console.error("Error fetching transactions:", error);
@@ -48,11 +51,12 @@ export const submitTransfer = async (data) => {
   };
   
   
-export const useTransactionList = ({ accountId = 4, size = 5 }) => {
+export const useTransactionList = ({ accountId = 4, start, end, type, size = 5 }) => {
+  console.log(type)
   return useInfiniteQuery({
-    queryKey: ["transactions", accountId],
+    queryKey: ["transactions", accountId, start, end, type, size],
     queryFn: ({ pageParam = 0 }) =>
-      fetchTransactions({ page: pageParam, accountId, size }),
+      fetchTransactions({ page: pageParam, start, end, accountId, type, size }),
     getNextPageParam: (lastPage, allPages) => {
       console.log("Last Page:", lastPage);
       console.log("HasNext:", lastPage?.hasNext);
