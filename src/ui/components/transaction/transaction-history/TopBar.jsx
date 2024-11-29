@@ -5,9 +5,11 @@ import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+import { useUserTypeStore } from "@/src/stores/userTypeStore";
 
 export default function TopBar({ name, balance, accountNumber, bgColor }) {
   const bgColorClass = colorTypeMap[bgColor].colorClass;
+  const { userType } = useUserTypeStore();
 
   const copyToClipboard = (text) => {
     navigator.clipboard
@@ -62,26 +64,30 @@ export default function TopBar({ name, balance, accountNumber, bgColor }) {
         </h2>
       </Flex>
       <Flex justify="between" direction="row" className="gap-3 m-8 mt-4">
-        <Link href={urlPath.TRANSFER}>
-          <CustomButton
-            className="text-R-14"
-            size="small"
-            color="black10"
-            rounded={true}
-          >
-            용돈주기
-          </CustomButton>
-        </Link>
-        <CustomButton
-          className="text-R-14"
-          size="small"
-          color="black10"
-          rounded={true}
-          onClick={notify}
-        >
-          가져오기
-        </CustomButton>
-        <Toaster position="bottom-center" />
+        {userType === "PARENT" && (
+          <>
+            <Link href={urlPath.TRANSFER}>
+              <CustomButton
+                className="text-R-14"
+                size="small"
+                color="black10"
+                rounded={true}
+              >
+                용돈주기
+              </CustomButton>
+            </Link>
+            <CustomButton
+              className="text-R-14"
+              size="small"
+              color="black10"
+              rounded={true}
+              onClick={notify}
+            >
+              가져오기
+            </CustomButton>
+            <Toaster position="bottom-center" />
+          </>
+        )}
       </Flex>
     </Flex>
   );
