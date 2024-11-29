@@ -24,7 +24,6 @@ export const submitTransfer = async (data) => {
     console.log("Fetching URL:", url);
   
     try {
-      console.log(start, end)
       const response = await fetch(`${url}?page=${page}&start=${start}&end=${end}&type=${type}&size=${size}`, {
         method: "GET",
       });
@@ -116,7 +115,6 @@ export const useTransactionList = ({ accountId = 4, start, end, type, size = 5 }
       },
       body: JSON.stringify({ memo }),
     });
-    console.log("???")
     if (response.status !== 204) {
       const errorBody = await response.text();
       console.error("Error response:", errorBody);
