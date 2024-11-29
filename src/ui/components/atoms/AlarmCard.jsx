@@ -35,6 +35,7 @@ const AlarmCard = ({
     data.emoticon != "NOTIFICATION" ? EMOTICON[data.emoticon] : "";
 
   return (
+    <Link href={urlPath.ALARM_CARD}>
     <div
       className={`flex flex-row ${width} ${height} ${radius} ${border} ${isIssued ? "bg-main03" : "bg-white"} px-6 pt-6 pb-5 gap-5 ${className}`}
     >
@@ -65,11 +66,12 @@ const AlarmCard = ({
         </div>
       </div>
       <div className="flex w-1/4 items-center justify-end">
-        <Link href={urlPath.ALARM_CARD}>
+        
           <ChevronRightIcon className="w-[43px] h-[43px] cursor-pointer" />
-        </Link>
+        
       </div>
     </div>
+    </Link>
   );
 };
 
