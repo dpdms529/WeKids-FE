@@ -23,12 +23,14 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
         width={31}
         height={24}
         className="absolute top-8 right-1/4 transform -translate-x-1/2 flex-shrink-0"
+        style={{ width: "auto", height: "auto" }}
       />
       <Image
         src={characterInfoMap[selectedCharacter].imagePath}
         alt={characterInfoMap[selectedCharacter].name}
         width={192}
         height={191}
+        priority
         className="w-[192px] h-[191px] flex-shrink-0 mt-10"
       />
       <p className="text-R-20 mt-5 text-black/40">{userName}</p>
