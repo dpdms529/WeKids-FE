@@ -2,15 +2,12 @@
 import PasswordTop from "@/src/ui/components/signup/PasswordTop";
 import Digit4PasswordButton from "@/src/ui/components/signup/Digit4PasswordButton";
 import { useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useMutation } from "@tanstack/react-query"; 
+import { useMutation } from "@tanstack/react-query";
 import { useCardStore } from "@/src/stores/cardStore";
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
 
-const queryClient = new QueryClient();
-
-function Page() {
+export default function Page() {
   const [isInput, setIsInput] = useState(Array(4).fill(false));
   const [pwd, setPwd] = useState("");
   const [allow, setAllowed] = useState(false);
@@ -57,11 +54,3 @@ function Page() {
     </div>
   );
 }
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <Page />
-  </QueryClientProvider>
-);
-
-export default App;
