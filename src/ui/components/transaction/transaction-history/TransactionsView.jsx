@@ -9,20 +9,19 @@ import InfiniteScroll from "react-infinite-scroller";
 import Loader from "@/src/ui/components/atoms/Loader";
 import { formatToLocalDate } from "@/src/constants/transaction";
 import { useEffect, useState } from "react";
+import { useColorStore } from "@/src/stores/cardStore";
 
 export const TransactionsView = ({ accountId, setBalance }) => {
   const size = 5 ; // 페이지당 데이터 수
   const { search, sortingType, range, startDate, endDate, type } =
     useTransFilterStore();
+  
     const now = new Date();
     const MonthsAgo = new Date();
     MonthsAgo.setMonth(now.getMonth() - 3);
     const [start, setStart] = useState(formatToLocalDate(MonthsAgo));
     const [end, setEnd] = useState(formatToLocalDate(now));
     const[typetoEng, setTypeToEng] = useState("ALL");
-
-
-    
 
   useEffect(() => {
     

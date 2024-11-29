@@ -13,10 +13,9 @@ import { urlPath } from "@/src/constants/common";
 const TransactionDetailPage = ({ params }) => {
   const resolvedParams = use(params);
   const trxId = resolvedParams.trxId;
-  const router = useRouter();
-
   const { data, isLoading, error } = useTransactionDetail(trxId);
   const [memo, setMemo] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     if (data?.memo && memo === "") {
@@ -37,7 +36,7 @@ const TransactionDetailPage = ({ params }) => {
       {
         onSuccess: () => {
           console.log("메모 업데이트 성공!");
-          router.push(`${urlPath.TRANSACTION_HISTORY}?color=${selectedAccount.color}`);
+          router.push(`${urlPath.TRANSACTION_HISTORY}?color=YELLOW`);
         },
         onError: (error) => {
           console.error("메모 업데이트 실패:", error.message);
