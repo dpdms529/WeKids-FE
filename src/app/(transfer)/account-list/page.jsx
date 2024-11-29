@@ -1,83 +1,64 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
+import { fetchChildAccounts } from "@/src/services/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
+import Loader from "@/src/ui/components/atoms/Loader";
 import TransferItem from "@/src/ui/components/atoms/TransferItem";
 import Link from "next/link";
+import { useCallback, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const dummyData = [
-  {
-    id: 1,
-    name: "구자빈",
-    accountnumber: "111-111-111",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 2,
-    name: "강현우",
-    account: "222-222-222",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 3,
-    name: "안찬웅",
-    account: "333-333-333",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 4,
-    name: "조예은",
-    account: "444-444-444",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 5,
-    name: "최윤정",
-    account: "555-555-555",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 6,
-    name: "김우리",
-    account: "666-666-666",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 7,
-    name: "가우리",
-    account: "777-777-777",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 8,
-    name: "나우리",
-    account: "888-888-888",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 9,
-    name: "다우리",
-    account: "999-999-999",
-    profile: "/images/dadapingImg.svg",
-  },
-  {
-    id: 10,
-    name: "라우리",
-    account: "000-000-000",
-    profile: "/images/dadapingImg.svg",
-  },
-];
 export default function Page() {
+  const [accounts, setAccounts] = useState([]); // 데이터를 저장할 상태
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태 관리
+  const [error, setError] = useState(null); // 에러 상태 관리
   const router = useRouter();
-  const { selectedAccount, setSelectedAccount } = useTransactionStore();
-  const handleSelect = (user) => {
-    setSelectedAccount({
-      id: user.id,
-      name: user.name,
-      account: user.account,
-    });
-  };
+  const { selectedAccount, setSelectedAccount, setChildrenAccounts } = useTransactionStore();
+
+  // 계좌 데이터 가져오기
+  useEffect(() => {
+    const fetchAccounts = async () => {
+      try {
+        const data = await fetchChildAccounts(); // 데이터 가져오기
+        setAccounts(data); // 가져온 데이터를 상태에 저장
+        setChildrenAccounts(data); // 전역 상태에 저장
+      } catch (error) {
+        setError(error.message); // 에러 처리
+      } finally {
+        setIsLoading(false); // 로딩 상태 해제
+      }
+    };
+
+    fetchAccounts();
+  }, [setChildrenAccounts]);
+
+  // 계좌 선택 핸들러
+  const handleSelect = useCallback(
+    (user, e) => {
+       // Link의 기본 동작 방지
+      setSelectedAccount({
+        id: user.accountId,
+        name: user.name,
+        accountNumber: user.accountNumber,
+        
+      });
+      router.push(urlPath.TRANSFER);
+    },
+    [setSelectedAccount]
+  );
+
+  if (isLoading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="max-w-md mx-auto h-screen flex flex-col">
@@ -88,18 +69,17 @@ export default function Page() {
         </Link>
       </div>
       <div className="flex-1 overflow-y-auto scrollbar-hide">
-        {dummyData.map((user, idx) => (
-          <Link key={idx} href={urlPath.TRANSFER}>
+        {accounts.map((user, idx) => (
+          
             <TransferItem
-              imgPath={user.profile}
-              key={user.id}
+              imgPath={`/images/${user.profile}`}
+              key={user.accountId}
               name={user.name}
-              account={user.account}
+              account={user.accountNumber}
               bank={"우리은행"}
-              isSelected={user.id === selectedAccount?.id}
-              onClick={() => handleSelect(user)}
+              isSelected={user.accountId === selectedAccount?.id}
+              onClick={(e) => handleSelect(user, e)}
             />
-          </Link>
         ))}
       </div>
     </div>
