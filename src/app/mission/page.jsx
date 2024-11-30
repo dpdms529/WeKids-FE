@@ -1,53 +1,24 @@
-'use client'
+'use client';
+
+import { useState } from "react";
+import MissionAddComponent from "@/src/ui/components/mission/MissionAddComponent";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import InputDateBox from "@/src/ui/components/atoms/InputDateBox";
-import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
-import ButtonGroup from "@/src/ui/components/mission/ButtonGroup";
+import MissionModal from "@/src/ui/components/mission/MissionModal";
 
 export default function Page() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => setIsModalOpen(true);
+    const handleCloseModal = () => setIsModalOpen(false);
     return (
         <div className="flex flex-col w-full h-screen overflow-hidden justify-center items-center p-10 gap-2">
-            <div className="w-full flex flex-col text-B-22">
-                미션 등록하기
-            </div>
-            <div className="flex flex-col overflow-y-auto scrollbar-hide gap-3">
-                <div className="flex flex-col gap-1">
-                    <div className="text-R-14">
-                        미션명
-                    </div>
-                    <div>
-                        <InputTextBox placeholder="ex) 우리아이 도전 미션" />
-                    </div>
-                </div>
-                <div className="flex flex-col gap-1">
-                    <div className="text-R-14">
-                        미션 완료 방법
-                    </div>
-                    <div>
-                        <InputTextBox height={150} placeholder="ex) 사진 인증" />
-                    </div>
-                </div>
-                <div className="flex flex-col gap-1">
-                    <div className="text-R-14">
-                        미션 완료 시 수령 금액
-                    </div>
-                    <div>
-                        <InputTextBox placeholder="ex) 10,000" />
-                    </div>
-                </div>
-                <div className="flex flex-col">
-                    <InputDateBox />
-                </div>
-
-            </div>
-            <div className="flex flex-col w-full gap-2">
-                <ButtonGroup />
-                <div className="flex flex-row">
-                    <CustomButton size="mediumLarge" rounded={true} >
-                        미션 등록
-                    </CustomButton>
-                </div>
-            </div>
+        <CustomButton onClick={handleOpenModal} size="mediumLarge" rounded={true}>
+        미션 등록하기
+      </CustomButton>
+      <MissionModal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <MissionAddComponent />
+    </MissionModal>
         </div>
+
     );
 }
