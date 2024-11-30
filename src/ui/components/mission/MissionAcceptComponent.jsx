@@ -27,9 +27,7 @@ import Image from "next/image";
       setChecked(newChecked);
     };
     return (
-        <div className="flex flex-col w-full overflow-hidden justify-center items-center p-10">
-          <div className = "priveiw-rapping">
-          </div>
+        <div className="flex flex-col w-full overflow-hidden justify-center items-center p-10 h-full">
             <div className="flex flex-row gap-1 mb-5 w-full">
               <div className="flex flex-row text-B-22 mb-1">
                 <div
@@ -59,7 +57,7 @@ import Image from "next/image";
               {data[3]}
             </div>
           </div>
-          <div className="flex flex-col w-full gap-2">
+          <div className="flex flex-col w-full gap-2 h-full">
             <div className="text-R-14">💡미션 완료 인증하기</div>
             <div className="flex flex-row justify-between py-3 px-7 bg-gray-100 w-full h-36 border border-gray-300 rounded-md text-sm text-gray-800">
             <div className="flex flex-row bg-white">
@@ -82,25 +80,30 @@ import Image from "next/image";
             </div>
             </div>
             
-            <div className="flex flex-row mt-1 gap-4">
-
+            <div className="flex flex-row mt-4 gap-4 w-full justify-between h-[40px]">
+                <div className="flex flex-col w-full">
+                <CustomButton
+              size="mediumLarge"
+              rounded={true}
+              onClick={AddAndCloseModal}
+              className="flex text-R-18 bg-red-500 w-full"
+            >
+              반려
+            </CustomButton>
+                </div>
+            <div className="flex flex-col w-full">
             <CustomButton
               size="mediumLarge"
               rounded={true}
               onClick={AddAndCloseModal}
-              className="text-R-18"
+              className="text-R-18 bg-main03 w-full"
             >
-              💙 미 션 완 료 💙
+              승인
             </CustomButton>
+                </div>
+            
 
-            <CustomButton
-              size="mediumLarge"
-              rounded={true}
-              onClick={AddAndCloseModal}
-              className="text-R-18"
-            >
-              💙 미 션 완 료 💙
-            </CustomButton>
+            
             </div>
           </div>
 
