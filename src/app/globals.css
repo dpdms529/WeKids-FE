@@ -109,6 +109,24 @@ nav {
   scrollbar-width: none;
 }
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 51, 0.06);
+  border-radius: 3px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 51, 0.06) transparent;
+}
+
 @layer components {
   .loader {
     @apply w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin;
