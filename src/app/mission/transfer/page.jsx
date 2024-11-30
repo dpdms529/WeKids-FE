@@ -15,7 +15,7 @@ const Page = () => {
   const router = useRouter();
 
   const completeTransfer = () => {
-    router.push(urlPath.HOME) // 송금 비밀번호 등록 page로 이동
+    router.push(urlPath.MISSION_PASSWORD)
   }
 
   return <TransferComplete 
