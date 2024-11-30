@@ -13,7 +13,7 @@ const MissionModal = ({ isOpen, setOpen, children }) => {
           취소
         </button>
 
-        <div>{children}</div>
+        <div className="overflow-auto scrollbar-hide h-full">{children}</div>
       </div>
     </div>
   );
