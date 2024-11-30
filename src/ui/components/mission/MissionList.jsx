@@ -6,11 +6,11 @@ const DUMMY_MISSIONS = [
   {
     missionId: "mission_1",
     title: "미션명 미션명 미션명 미션명",
-    content: "미션 성공 시 총30,000원을 받을 수 있어요",
+    content: "미션 성공 시 총 30,000원을 받을 수 있어요",
     state: "ACC",
     deadline: "2024-11-20",
     category: "DAILY",
-    childName: "김위키",
+    childName: "안찬웅",
     childProfile: "HEARTSPRING",
     image: null,
     memo: ""
@@ -18,11 +18,11 @@ const DUMMY_MISSIONS = [
   {
     missionId: "mission_2",
     title: "미션명 미션명 미션명 미션명",
-    content: "미션 성공 시 총20,000원을 받을 수 있어요",
+    content: "미션 성공 시 총 30,000원을 받을 수 있어요",
     state: "NEW",
     deadline: "2024-11-25",
     category: "WEEKLY",
-    childName: "이위키",
+    childName: "구자빈",
     childProfile: "CHACHAPING",
     image: null,
     memo: ""
@@ -30,11 +30,11 @@ const DUMMY_MISSIONS = [
   {
     missionId: "mission_3",
     title: "미션명 미션명 미션명 미션명",
-    content: "미션 성공 시 총30,000원을 받을 수 있어요",
+    content: "미션 성공 시 총 30,000원을 받을 수 있어요",
     state: "PRO",
     deadline: "2024-11-20",
     category: "DAILY",
-    childName: "김위키",
+    childName: "조예은",
     childProfile: "DADAPING",
     image: null,
     memo: ""
@@ -42,11 +42,11 @@ const DUMMY_MISSIONS = [
   {
     missionId: "mission_4",
     title: "미션명 미션명 미션명 미션명",
-    content: "미션 성공 시 총30,000원을 받을 수 있어요",
+    content: "미션 성공 시 총 30,000원을 받을 수 있어요",
     state: "REJ",
     deadline: "2024-11-20",
     category: "DAILY",
-    childName: "김위키",
+    childName: "강현우",
     childProfile: "HEARTSPRING",
     image: null,
     memo: ""
@@ -54,11 +54,11 @@ const DUMMY_MISSIONS = [
   {
     missionId: "mission_5",
     title: "미션명 미션명 미션명 미션명",
-    content: "미션 성공 시 총30,000원을 받을 수 있어요",
+    content: "미션 성공 시 총 30,000원을 받을 수 있어요",
     state: "DONE",
     deadline: "2024-11-20",
     category: "DAILY",
-    childName: "김위키",
+    childName: "최윤정",
     childProfile: "DADAPING",
     image: null,
     memo: ""
@@ -81,13 +81,14 @@ export default function MissionList() {
         >
           {/* 상단 영역: 프로필 이미지와 미션 정보 */}
           <div className="flex items-start gap-3">
-            <div className="w-[68px] h-[68px] bg-white rounded-lg flex items-center justify-center">
+            <div className="w-[71px] h-[86px] bg-white rounded-lg flex flex-col items-center justify-center -mt-2">
             <Image
                 src={characterInfoMap[mission.childProfile].imagePath}
                 alt={mission.childName}
                 width={68}
-                height={86}
+                height={68}
               />
+              <span className="text-xs text-gray-600">{mission.childName}</span>
             </div>
 
             <div>

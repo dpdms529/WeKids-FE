@@ -20,7 +20,7 @@ export default function Page() {
             color="main"
             rounded={true}
           >
-            미션등록
+            미션 등록
           </CustomButton>
         </div>
         
