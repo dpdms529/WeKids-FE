@@ -14,10 +14,10 @@ export default function MissionAddComponent({setIsModalOpen}) {
 
     return (
         <div className="flex flex-col w-full overflow-hidden justify-center items-center p-10">
-            <div className="w-full flex flex-col text-B-22">
-                미션 등록하기
+            <div className="w-full flex flex-col text-B-22 mb-1">
+            미션 등록하기
             </div>
-            <div className="flex flex-col overflow-y-auto scrollbar-hide gap-3 h-[393px]">
+            <div className="flex flex-col overflow-y-auto scrollbar-hide gap-3 h-[348px] mb-1">
                 <div className="flex flex-col gap-1">
                     <div className="text-R-14">
                     </div>
@@ -27,15 +27,15 @@ export default function MissionAddComponent({setIsModalOpen}) {
                 </div>
                 <div className="flex flex-col gap-1">
                     <div className="text-R-14">
-                        미션 완료 방법
+                    💡미션 완료 방법
                     </div>
                     <div>
-                        <InputTextBox height={130} placeholder="ex) 사진 인증" />
+                        <InputTextBox height={80} placeholder="ex) 사진 인증" />
                     </div>
                 </div>
                 <div className="flex flex-col gap-1">
                     <div className="text-R-14">
-                        미션 완료 시 수령 금액
+                    💡미션 완료 시 수령 금액
                     </div>
                     <div>
                         <InputTextBox placeholder="ex) 10,000" />
@@ -48,7 +48,7 @@ export default function MissionAddComponent({setIsModalOpen}) {
             </div>
             <div className="flex flex-col w-full gap-2">
                 <ButtonGroup />
-                <div className="flex flex-row">
+                <div className="flex flex-row mt-1">
                     <CustomButton size="mediumLarge" rounded={true} onClick={AddAndCloseModal} >
                         미 션 등 록
                     </CustomButton>

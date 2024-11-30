@@ -4,7 +4,7 @@ const InputDateBox = ({
   width = 313,
   height = 71,
   value = "",
-  label = "미션 만료일",
+  label = "💡미션 만료일",
   onChange,
 }) => {
   const [dateValue, setDateValue] = useState(value);
