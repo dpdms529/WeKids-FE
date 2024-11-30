@@ -10,12 +10,11 @@ import CustomButton from "../atoms/CustomButton";
   }
   
         
-  const MissionRequestComponent = ({setIsModalOpen}) => {
-    const [file, setFile] = useState('');
+  const MissionRequestComponent = ({setIsModalOpen,  setFile}) => {
     const [previewURL, setPreviewURL] = useState('');
     const [preview,setPreview] = useState(null);
     const fileRef= useRef();
-      const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(false);
   
     const AddAndCloseModal = () => {
         
