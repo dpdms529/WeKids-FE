@@ -22,20 +22,17 @@ export default function Top({ setAllChecked }) {
   };
 
   return (
-    <>
-      <div className="px-5 py-2">
-        <a className="flex text-R-20 text-black/80 mb-10">개인정보 입력</a>
-      </div>
-      <div className="px-10 py-4">
-        <a className="flex text-R-20 text-black/80 mb-3">이메일</a>
+    <div className="flex flex-col w-full h-fit space-y-[48px]">
+      <div className="flex flex-col gap-[9px] ">
+        <label className="text-R-20 text-black/80">이메일</label>
         <InputTextBox text={email} onChange={setEmail} />
       </div>
-      <div className="px-10 py-4">
-        <a className="flex text-R-20 text-black/80 mb-3">이름</a>
+      <div className="flex flex-col gap-[9px] ">
+        <label className="text-R-20 text-black/80">이름</label>
         <InputTextBox text={name} onChange={setName} />
       </div>
-      <div className="px-10 py-4">
-        <a className="flex text-R-20 text-black/80 mb-3">휴대폰 인증</a>
+      <div className="flex flex-col gap-[9px] ">
+        <label className="text-R-20 text-black/80">휴대폰 인증</label>
         <CustomButton
           key={phoneChecked}
           rounded="true"
@@ -45,6 +42,6 @@ export default function Top({ setAllChecked }) {
           휴대폰 인증하기
         </CustomButton>
       </div>
-    </>
+    </div>
   );
 }
