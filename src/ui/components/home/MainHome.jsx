@@ -3,7 +3,7 @@
 import { useUserTypeStore } from "@/src/stores/userStore";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ChildHome from "./child/ChildView";
-import ParentHome from "./parent/ParentStart";
+import ParentHome from "./parent/ParentHome";
 
 const query = new QueryClient();
 export default function MainHome() {
