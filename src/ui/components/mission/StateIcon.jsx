@@ -6,7 +6,7 @@ const StateIcon = ({ state }) => {
       ACC: "/images/clean.svg",
       NEW: "/images/new.svg",
       PRO: "/images/pencil.svg",
-      REJ: "/images/drawing_pin.svg",
+      REJ: "/images/drawing-pin-solid.svg",
       DONE: "/images/clean.svg"
     };
     return icons[state] || icons.NEW;

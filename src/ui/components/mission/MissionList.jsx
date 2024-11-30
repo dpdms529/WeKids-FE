@@ -100,7 +100,7 @@ export default function MissionList() {
               
               {/* 하단 영역: 날짜와 상태 */}
               <div className="flex justify-between items-center mt-2">
-                <div className="flex items-center gap2 text-xs text-gray-400">
+                <div className="text-[10px] flex items-center gap2 text-xs gap-1 text-gray-400">
                     <StateIcon state={mission.state} />
                     {formatDate(mission.deadline)}
                 </div>
