@@ -101,11 +101,11 @@ export default function MissionList() {
               
               {/* 하단 영역: 날짜와 상태 */}
               <div className="flex justify-between items-center mt-2">
-                <div className="text-[10px] flex items-center gap2 text-xs gap-1 text-gray-400">
+                <div className="text-[10px] flex items-center gap2 text-xs gap-1 text-gray-400 whitespace-nowrap">
                     <StateIcon state={mission.state} />
                     {formatDate(mission.deadline)}
                 </div>
-                <div className={`px-3 py-1 rounded-full text-xs ${getStatusStyle(mission.state)}`}
+                <div className={`px-3 py-1 rounded-full text-xs ${getStatusStyle(mission.state)} ml-3`}
                 >
                   {getStatusText(mission.state)}
                 </div>
