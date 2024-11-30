@@ -38,7 +38,6 @@ export default function ButtonGroup() {
 
   return (
     <div className="flex flex-col w-full gap-2">
-      {/* 첫 번째 줄 */}
       <div className="flex flex-row justify-between gap-3 w-full">
         {topButtons.map((button) => (
           <button
@@ -50,7 +49,6 @@ export default function ButtonGroup() {
           </button>
         ))}
       </div>
-      {/* 두 번째 줄 */}
       <div className="flex flex-row justify-between gap-3 w-full">
         {bottomButtons.map((button) => (
           <button

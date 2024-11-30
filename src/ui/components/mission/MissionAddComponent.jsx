@@ -6,6 +6,11 @@ import ButtonGroup from "@/src/ui/components/mission/ButtonGroup";
 
 
 export default function MissionAddComponent() {
+
+    const AddAndCloseModal = () => {
+        alert('미션이 등록 되었습니다!')
+    }
+
     return (
         <div className="flex flex-col w-full overflow-hidden justify-center items-center p-10 gap-2">
             <div className="w-full flex flex-col text-B-22">
@@ -44,7 +49,7 @@ export default function MissionAddComponent() {
             <div className="flex flex-col w-full gap-2">
                 <ButtonGroup />
                 <div className="flex flex-row">
-                    <CustomButton size="mediumLarge" rounded={true} >
+                    <CustomButton size="mediumLarge" rounded={true} onClick={AddAndCloseModal} >
                         미션 등록
                     </CustomButton>
                 </div>
