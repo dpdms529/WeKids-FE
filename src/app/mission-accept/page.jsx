@@ -4,6 +4,8 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import MissionModal from "@/src/ui/components/mission/MissionModal";
 import MissionAcceptComponent from "@/src/ui/components/mission/MissionAcceptComponent";
 
+const imgPath = "/images/hachupingImg.svg"
+
 export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -17,7 +19,7 @@ export default function Page() {
         미션 등록하기
       </CustomButton>
       <MissionModal isOpen={isModalOpen} setOpen={setIsModalOpen}>
-        <MissionAcceptComponent setIsModalOpen={setIsModalOpen} />
+        <MissionAcceptComponent setIsModalOpen={setIsModalOpen} imgPath={imgPath} />
       </MissionModal>
     </div>
   );
