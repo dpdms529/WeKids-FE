@@ -16,9 +16,9 @@ export default function ButtonGroup({
   ];
 
   const bottomButtons = [
-    { id: "chores", label: "집안일", icon: "/images/broomImg.svg" },
-    { id: "errand", label: "심부름", icon: "/images/pinImg.svg" },
-    { id: "exercise", label: "운동", icon: "/images/pencilImg.svg" },
+    { id: "cleaning", label: "청소", icon: "/images/broomImg.svg" },
+    { id: "habit", label: "생활습관", icon: "/images/pinImg.svg" },
+    { id: "improve", label: "자기계발", icon: "/images/pencilImg.svg" },
   ];
 
   const etcButton = { id: "etc", label: "기타", icon: "/images/etcImg.svg" };
