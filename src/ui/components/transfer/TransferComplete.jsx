@@ -2,6 +2,20 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 
+const MESSAGES = {
+  COMPLETE: {
+    TITLE: (name) => `${name}님에게`,
+    SUBTITLE: (amount) => `${amount}원 보냈어요`,
+  },
+  CONFIRM: {
+    TITLE: (name) => `${name}님에게`,
+    SUBTITLE: (amount) => `${amount}원 송금하시겠습니까?`,
+  },
+  BUTTONS: {
+    CONFIRM: "확인"
+  }
+};
+
 const TransferComplete = ({ 
     onComplete,
     transferData = {
@@ -10,8 +24,12 @@ const TransferComplete = ({
       accountNumber: "",
       bankName: "우리",
       memo: "",
-    }
+    },
+    type = "COMPLETE"
   }) => {
+    // type이 유효한지 확인하고, 유효하지 않으면 COMPLETE 사용
+    const messageType = MESSAGES[type] ? type : "COMPLETE";
+    const messages = MESSAGES[messageType];
     return (
       <main className="min-h-screen bg-white flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center">
@@ -21,10 +39,10 @@ const TransferComplete = ({
   
           <div className="text-center space-y-2 mb-4">
             <p className="text-B-28 text-black/80">
-              {transferData.sendUser || "알 수 없는 사용자"}님에게
+              {messages.TITLE(transferData.sendUser || "알 수 없는 사용자")}
             </p>
             <p className="text-B-28 text-black/80">
-              {transferData.amount?.toLocaleString() || 0}원 보냈어요
+              {messages.SUBTITLE(transferData.amount?.toLocaleString() || 0)}
             </p>
             <div className="flex items-center justify-center text-R-14 text-neutral-300 pt-4">
               {transferData.bankName} {transferData.accountNumber}
@@ -45,7 +63,7 @@ const TransferComplete = ({
               rounded={true}
               onClick={onComplete}
             >
-              <span className="text-R-20">확인</span>
+              <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
             </CustomButton>
           </div>
         </div>
