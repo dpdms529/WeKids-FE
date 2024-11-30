@@ -1,22 +1,22 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
-import { useUserTypeStore } from "@/src/stores/userTypeStore";
+import { useUserTypeStore } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorItem from "@/src/ui/components/signup/SelectorItem";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Page() {
   const [selectedType, setSelectedType] = useState(null);
-  const router = useRouter();
   const { setUserType } = useUserTypeStore();
 
   const handleConfirm = () => {
     if (selectedType) {
       setUserType(selectedType);
-      router.push(urlPath.SIGNUOP_REGFOM);
+    } else {
+      e.preventDefault();
     }
   };
   return (
@@ -48,12 +48,13 @@ export default function Page() {
         </ParentChildSelector>
       </div>
       <div className="fixed bottom-5">
-        <CustomButton
-          className={`${selectedType ? "bg-main01" : "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`}
-          onClick={handleConfirm}
-        >
-          확인
-        </CustomButton>
+        <Link href={urlPath.SIGNUP_REGFOM} onClick={handleConfirm}>
+          <CustomButton
+            className={`${selectedType ? "bg-main01" : "bg-neutral-400 hover:bg-neutral-400 cursor-default"}`}
+          >
+            확인
+          </CustomButton>
+        </Link>
       </div>
     </div>
   );

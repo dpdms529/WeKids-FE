@@ -1,7 +1,5 @@
-import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
-import Link from "next/link";
 
 export default function Page({
   pwd,
@@ -10,6 +8,7 @@ export default function Page({
   setIsInput,
   setPwd,
   setAllowed,
+  onSubmit
 }) {
   const inputHandler = (num) => {
     if (num === "⌫") {
@@ -20,33 +19,32 @@ export default function Page({
       }
       setIsInput(updateInput);
       setAllowed(false);
-      pwd.length != 6 ? setPwd(pwd.slice(0, -1)) : "";
+      setPwd(pwd.slice(0, -1));
     } else if (num != "") {
       const updateInput = [...isInput];
       const index = updateInput.indexOf(false);
       if (index != -1) {
         updateInput[index] = true;
+        setIsInput(updateInput);
+        setPwd(pwd + num)
       }
-      setIsInput(updateInput);
-      pwd.length != 12 ? setPwd(pwd + num) : "";
     }
   };
 
   const handleClick = (e) => {
     if (!allow) {
       e.preventDefault();
+      return;
     }
+    onSubmit();
   };
 
   return (
     <>
       <div className="flex flex-col h-1/5 p-10">
-        <Link
-          href={urlPath.SELECT_PARENT_PASSWORD_CONFIRM}
-          onClick={handleClick}
-        >
           <CustomButton
             rounded="true"
+            onClick={handleClick}
             className={`mt-auto w-full ${
               allow
                 ? "bg-main02"
@@ -55,7 +53,6 @@ export default function Page({
           >
             확인
           </CustomButton>
-        </Link>
       </div>
       <div className="flex flex-col mt-auto w-[393px]">
         <KeyPad isDoubleButton={false} number={inputHandler} />

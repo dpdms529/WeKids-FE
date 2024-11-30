@@ -3,10 +3,12 @@ import { create } from "zustand";
 // useTransactionStore
 export const useTransactionStore = create((set) => ({
   selectedAccount: null,
+  childrenAccounts: [],
   transferAmount: 0,
   setSelectedAccount: (account) => set({ selectedAccount: account }),
   setTransferAmount: (amount) => set({ transferAmount: amount }),
-  clearTransferData: () => set({ selectedAccount: null, transferAmount: 0 }),
+  setChildrenAccounts: (accounts) => set({ childrenAccounts: accounts }),
+  clearTransferData: () => set({ selectedAccount: null, transferAmount: 0, childrenAccounts: [] }),
 }));
 
 // useTransFilterStore
@@ -20,7 +22,7 @@ export const RangeEnum = {
 export const TypeEnum = {
   ALL: "전체",
   DEPOSIT: "입금만",
-  WITHDRAWAL: "출력만",
+  WITHDRAWAL: "출금만",
 };
 
 export const SortEnum = {

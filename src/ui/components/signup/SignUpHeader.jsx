@@ -5,12 +5,11 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSignUpStore } from "@/src/stores/accountStore";
 
 export default function Top({ setAllChecked }) {
   const [phoneChecked, setphoneChecked] = useState(false);
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const { name, email, phone, setName, setEmail, setPhone } = useSignUpStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -19,7 +18,7 @@ export default function Top({ setAllChecked }) {
   }, [phone, email, name, setAllChecked]);
 
   const PhoneClickListener = () => {
-    router.push(urlPath.SIGNUOP_REGFOM_PHONE); // 추후에 혹시라도 zustand 쓸수도 있어서 함수로
+    router.push(urlPath.SIGNUP_REGFOM_PHONE); // 추후에 혹시라도 zustand 쓸수도 있어서 함수로
   };
 
   return (
@@ -29,11 +28,11 @@ export default function Top({ setAllChecked }) {
       </div>
       <div className="px-10 py-4">
         <a className="flex text-R-20 text-black/80 mb-3">이메일</a>
-        <InputTextBox value={email} onChange={setEmail} />
+        <InputTextBox text={email} onChange={setEmail} />
       </div>
       <div className="px-10 py-4">
         <a className="flex text-R-20 text-black/80 mb-3">이름</a>
-        <InputTextBox value={name} onChange={setName} />
+        <InputTextBox text={name} onChange={setName} />
       </div>
       <div className="px-10 py-4">
         <a className="flex text-R-20 text-black/80 mb-3">휴대폰 인증</a>

@@ -35,7 +35,7 @@ export default function Bottom({ setAllChecked, option = 3 }) {
 
   return (
     <>
-      <div className="px-10 py-4">
+      <div className="px-10 py-4 h-auto mb-20">
         <span className="text-R-14">약관동의</span>
         <div className="border-stone-300 border-2 h-68 rounded-lg mt-4">
           <div className="flex flex-col space-y-2 p-3 items-start">

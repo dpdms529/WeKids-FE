@@ -10,7 +10,7 @@ import CardIssueModal from "@/src/ui/components/card-select/CardIssueModal";
 
 const CardDesignSelector = () => {
   const [selectedCharacter, setSelectedCharacter] = useState("DADAPING");
-  const [selectedColor, setSelectedColor] = useState("bg-blueDada");
+  const [selectedColor, setSelectedColor] = useState("BLUE");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCharacterClick = (character) => {
@@ -66,17 +66,14 @@ const CardDesignSelector = () => {
         </div>
       </div>
       <div className="w-full flex-col flex mt-10 mb-4">
-          <CustomButton
-            size="large"
-            onClick={() => setIsModalOpen(true)}
-          >
-            확인
-          </CustomButton>
-          <CardIssueModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-          />
-        </div>
+        <CustomButton size="large" onClick={() => setIsModalOpen(true)}>
+          확인
+        </CustomButton>
+        <CardIssueModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      </div>
     </div>
   );
 };

@@ -1,12 +1,20 @@
 "use client";
-import { Box, Flex } from "@radix-ui/themes";
-import { useRouter } from "next/navigation";
-import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { urlPath } from "@/src/constants/common";
+import {
+  useUserCardColorStore,
+  useUserTypeStore,
+} from "@/src/stores/userStore";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
+import { Box, Flex } from "@radix-ui/themes";
+import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function TopBar({ name, balance, accountNumber }) {
-  const router = useRouter();
+  const bgColorClass = useUserCardColorStore((state) => state.userCardColor);
+  console.log("bgColorClass " + bgColorClass);
+  const { userType } = useUserTypeStore();
+  // const bgColorClass = colorTypeMap[userColor].colorClass;
 
   const copyToClipboard = (text) => {
     navigator.clipboard
@@ -14,10 +22,13 @@ export default function TopBar({ name, balance, accountNumber }) {
       .then(() => alert("클립보드에 복사되었습니다!"))
       .catch((err) => console.error("복사 실패:", err));
   };
-
-  const handleBackClick = () => {
-    // window.history.back();
-    router.back();
+  const notify = () => {
+    toast.dismiss(); // 기존 토스트 모두 제거
+    toast.error("추후에 구현될 기능입니다.", {
+      id: "unique-toast", // 고유 ID 부여
+      duration: 2000,
+      position: "bottom-center",
+    });
   };
 
   const handleSettingsClick = () => {
@@ -29,7 +40,7 @@ export default function TopBar({ name, balance, accountNumber }) {
       align="center"
       justify="between"
       direction="column"
-      className="bg-main02 h-[40vh]"
+      className={`${bgColorClass} h-[40vh]`}
     >
       <Flex
         align="center"
@@ -37,9 +48,9 @@ export default function TopBar({ name, balance, accountNumber }) {
         direction="row"
         className="w-full pt-8 pl-3 pr-3"
       >
-        <Box onClick={handleBackClick}>
+        <Link href={urlPath.HOME}>
           <ArrowLeftIcon className="w-5 h-5 text-black/80" />
-        </Box>
+        </Link>
         <h1 className="text-black/80">{name}의 통장</h1>
         <Box onClick={handleSettingsClick}>
           <GearIcon className="w-5 h-5 text-black/80" />
@@ -53,31 +64,35 @@ export default function TopBar({ name, balance, accountNumber }) {
         >
           {accountNumber}
         </p>
-        <h2 className="text-black/80 text-B-32">
+        <h2 className="text-black/80 text-B-32 mt-4">
           {Number(balance).toLocaleString()}원
         </h2>
       </Flex>
       <Flex justify="between" direction="row" className="gap-3 m-8 mt-4">
-        <CustomButton
-          className="text-R-14"
-          size="small"
-          color="black10"
-          rounded={true}
-          onClick={() => {
-            router.push(urlPath.TRANSFER);
-          }}
-        >
-          용돈주기
-        </CustomButton>
-        <CustomButton
-          className="text-R-14"
-          size="small"
-          color="black10"
-          rounded={true}
-          onClick={() => {}}
-        >
-          가져오기
-        </CustomButton>
+        {userType === "PARENT" && (
+          <>
+            <Link href={urlPath.TRANSFER}>
+              <CustomButton
+                className="text-R-14"
+                size="small"
+                color="black10"
+                rounded={true}
+              >
+                용돈주기
+              </CustomButton>
+            </Link>
+            <CustomButton
+              className="text-R-14"
+              size="small"
+              color="black10"
+              rounded={true}
+              onClick={notify}
+            >
+              가져오기
+            </CustomButton>
+            <Toaster position="bottom-center" />
+          </>
+        )}
       </Flex>
     </Flex>
   );

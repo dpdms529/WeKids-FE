@@ -1,7 +1,7 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
-import { useUserTypeStore } from "@/src/stores/userTypeStore";
+import { useUserTypeStore } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Bottom from "@/src/ui/components/signup/SignUpFooter";
 import Top from "@/src/ui/components/signup/SignUpHeader";
@@ -27,7 +27,7 @@ export default function Page() {
         <CustomButton
           rounded="true"
           className={`w-full border border-black/80 ${
-            topChecked && bottomChecked 
+            topChecked && bottomChecked
               ? "bg-main01"
               : "bg-stone-300 hover:bg-stone-300"
           }`}

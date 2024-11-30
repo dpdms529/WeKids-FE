@@ -1,6 +1,10 @@
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
 import SignIn from "@/src/ui/Components/auth/SignIn";
 import ConfirmItem from "@/src/ui/Components/signup/ConfirmItem";
+<<<<<<< HEAD
+=======
+import Link from "next/link";
+>>>>>>> b6345b9510eccba73e6b18acab1ee957d4e3e166
 
 export default function Page() {
   return (
@@ -9,12 +13,21 @@ export default function Page() {
         <div className="flex flex-col gap-6 h-5/6 justify-center items-center">
           <ConfirmItem />
         </div>
+
         <div className="flex h-1/6 w-full items-end pb-1">
+<<<<<<< HEAD
           <SignIn>
             <CustomButton size="mediumLarge" rounded={true}>
               확인
             </CustomButton>
           </SignIn>
+=======
+          <Link href={urlPath.HOME}>
+            <CustomButton size="mediumLarge" rounded={true}>
+              확인
+            </CustomButton>
+          </Link>
+>>>>>>> b6345b9510eccba73e6b18acab1ee957d4e3e166
         </div>
       </div>
     </div>

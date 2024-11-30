@@ -1,8 +1,14 @@
 import { urlPath } from "@/src/constants/common";
-import PopupMessage from "@/src/ui/Components/molecules/PopupMessage";
+import PopupMessage from "@/src/ui/components/molecules/PopupMessage";
 import Link from "next/link";
 
 const CardIssueModal = ({ isOpen, onClose }) => {
+
+  const handleConfirm = () => {
+    // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
+    router.push(urlPath.HOME);
+    onClose();
+  };
   return (
     <div>
       <PopupMessage
@@ -17,8 +23,10 @@ const CardIssueModal = ({ isOpen, onClose }) => {
             이대로 발급할까요?
           </span>
         }
-        buttonText={<Link href={urlPath.HOME}>확인</Link>}
+        // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
+        buttonText={<Link href={urlPath.CHILD_CARD_COMPLETE}>확인</Link>}
         onClose={onClose}
+        onConfirm={handleConfirm}
         width="375px"
         height="208px"
       />

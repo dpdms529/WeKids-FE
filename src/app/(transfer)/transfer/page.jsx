@@ -1,56 +1,22 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
+import { fetchChildAccounts } from "@/src/services/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
+import Loader from "@/src/ui/components/atoms/Loader";
 import TransferAmountDisplay from "@/src/ui/components/transfer/TransferAmoutDisplay";
 import TransferModal from "@/src/ui/components/transfer/TransferModal";
 import TransferOptions from "@/src/ui/components/transfer/TransferOptions";
+import { useQuery } from "@tanstack/react-query";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const dummyData = [
-  {
-    id: 1,
-    name: "구자빈",
-    account: "111-111-111",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-  {
-    id: 2,
-    name: "강현우",
-    account: "222-222-222",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-  {
-    id: 3,
-    name: "안찬웅",
-    account: "333-333-333",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-  {
-    id: 4,
-    name: "조예은",
-    account: "444-444-444",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-  {
-    id: 5,
-    name: "최윤정",
-    account: "555-555-555",
-    bank: "우리은행",
-    imgPath: "/images/gogopingImg.svg",
-  },
-];
 
-const sendUser = {
-  name: "김우리",
-  account: "666-666-666",
-  balance: 50000000,
+const sendUser = { // 추후에 홈에서 zustand로 로그인중인 부모의 이름이나 정보를 담아두는 걸로
+  name: "강현우",
+  accountNumber: "1002-913-023908",
+  balance: 1000000,
   bank: "우리은행",
   imgPath: "/images/gogopingImg.svg",
 };
@@ -63,10 +29,17 @@ export default function Page() {
     setSelectedAccount,
     transferAmount,
     setTransferAmount,
+    childrenAccounts,
     clearTransferData,
   } = useTransactionStore();
+  const [first, setFirst] = useState(true);
 
   useEffect(() => {
+    if (first) {
+      setTransferAmount(0);
+      setFirst(false);
+    }
+
     if (isShaking) {
       const timeout = setTimeout(() => {
         setIsShaking(false);
@@ -74,6 +47,17 @@ export default function Page() {
       return () => clearTimeout(timeout);
     }
   }, [isShaking]);
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['accountData'], // queryKey를 객체 형태로 전달
+    queryFn: fetchChildAccounts, // service에서 가져온 queryFn 지정
+  });
+
+  if (isLoading) {
+    return <div><Loader/></div>;
+  }
+
+  
 
   const modalHandler = () => setIsModalOpen(!isModalOpen);
 
@@ -110,7 +94,7 @@ export default function Page() {
 
   const handleUserChange = (e) => {
     const selectedName = e.target.value;
-    const user = dummyData.find((user) => user.name === selectedName); // dummyData
+    const user = data.find((user) => user.name === selectedName); // dummyData
     if (user) {
       setSelectedAccount(user);
     }
@@ -136,6 +120,7 @@ export default function Page() {
         transferAmount={transferAmount}
         clearTransferData={clearTransferData}
         sendUser={sendUser}
+        children={childrenAccounts}
         isShaking={isShaking}
         handleUserChange={handleUserChange}
       />
@@ -164,6 +149,7 @@ export default function Page() {
         modalHandler={modalHandler}
         selectedAccount={selectedAccount}
         transferAmount={transferAmount}
+        sendUser={sendUser}
       />
     </div>
   );

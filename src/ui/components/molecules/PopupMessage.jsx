@@ -6,6 +6,7 @@ const PopupMessage = ({
   message = "문구",
   buttonText = "확인",
   onClose,
+  onConfirm,
   width = "375px",
   height = "208px",
 }) => {
@@ -38,7 +39,10 @@ const PopupMessage = ({
           <CustomButton
             size="mediumLarge"
             rounded={true}
-            onClick={onClose}
+            onClick={() => {
+              if (onConfirm) onConfirm();
+              onClose();
+            }}
             className="w-full rounded-md mt-4 border border-black"
           >
             {buttonText}

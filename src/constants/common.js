@@ -1,5 +1,3 @@
-// src/constants/characterInfo.js
-
 export const characterInfoMap = {
   HEARTSPRING: {
     name: "하츄핑",
@@ -62,7 +60,7 @@ export const colorTypeMap = {
 
 export const urlPath = {
   HOME: "/",
-  TRANSACTION_HISTORY: "/transaction-history",
+  TRANSACTION_HISTORY: "/transaction-history", //거래 조회
   ACCOUNT_LIST: "/account-list",
   TRANSFER: "/transfer",
   DONE: "/transfer/done",
@@ -70,22 +68,29 @@ export const urlPath = {
   ALARM_CARD: "/alarm/card",
 
   SIGNUP_SELECT: "/signup/select", // 부모 자녀 선택(임시)
-  SIGNUOP_REGFOM: "/signup/regform", //회원가입 개인정보 입력
-  SIGNUOP_REGFOM_PHONE: "/signup/regform/phone", //회원가입 개인정보 입력
+  SIGNUP_REGFOM: "/signup/regform", //회원가입 개인정보 입력
+  SIGNUP_REGFOM_PHONE: "/signup/regform/phone", //회원가입 개인정보 입력
   SELECT_PARENT_PASSWORD: "/signup/select/parent/password",
   SELECT_PARENT_PASSWORD_CONFIRM: "/signup/select/parent/password/confirm",
   SELECT_CHILD_APPLY: "/signup/select/child/parent-apply",
   SELECT_CHILD_APPLY_CONFIRM: "/signup/select/child/parent-apply/confirm",
-  CARD_VERIFICATION_CONFIRM: "/card/verification/confirm",
+  CARD_VERIFICATION_CONFIRM: "/parent/card/verification/confirm",
 
   //자식에서 카드신청 url
   CHILD_CARD_SELECT: "/child/card/card-select",
   CHILD_CARD: "/child/card",
+  CHILD_CARD_COMPLETE: "/child/card/complete",
 
-  //부모 입장
+  //부모 url
   PARENT_ACCOUNT: "/parent/account",
   PARENT_CARD_APPLY: "/parent/card/apply",
   PARENT_CARD_PASSWORD: "/parent/card/apply/password",
   PARENT_CARD_CONFIRM: "/parent/card/apply/confirm",
+  PARENT_CARD_SETUP: "/parent/card/apply/card-setup",
+
+  PARENT_CARD_VERIFICATION: "/parent/card/verification",
+  PARENT_CARD_ALARM: "/parent/card/alarm",
+
+  PARENT_CARD_DELIVERY: "/parent/card/delivery",
   PARENT_CARD_DELIVERY_COMPLETE: "/parent/card/delivery/completed",
 };

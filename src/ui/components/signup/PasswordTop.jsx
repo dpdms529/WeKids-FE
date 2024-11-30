@@ -5,6 +5,7 @@ export default function PasswordTop({
   setIsInput,
   setPwd,
   setAllowed,
+  index = 6,
 }) {
   const [check, setChecked] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
@@ -23,17 +24,17 @@ export default function PasswordTop({
   }, [isShaking]);
 
   useEffect(() => {
-    if (isInput[5] === true && check === 0) {
+    if (isInput[index - 1] === true && check === 0) {
       const timeout = setTimeout(() => {
         setChecked(1);
         setIsInput((prev) => prev.map(() => false));
       }, 1000);
-    } else if (isInput[5] === true && check === 1) {
-      const firstValue = pwd.slice(0, 6);
-      const secondValue = pwd.slice(6, 12);
+    } else if (isInput[index - 1] === true && check === 1) {
+      const firstValue = pwd.slice(0, index);
+      const secondValue = pwd.slice(index, index * 2);
       firstValue == secondValue ? setAllowed(true) : setIsShaking(true);
     }
-  }, [isInput[5]]);
+  }, [isInput[index - 1]]);
 
   return (
     <div className="flex flex-col h-3/5 p-10 w-full">
