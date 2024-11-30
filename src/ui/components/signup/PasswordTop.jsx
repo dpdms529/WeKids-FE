@@ -6,6 +6,8 @@ export default function PasswordTop({
   setPwd,
   setAllowed,
   index = 6,
+  title = "간편 비밀번호를",
+  type = "간편"
 }) {
   const [check, setChecked] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
@@ -41,11 +43,11 @@ export default function PasswordTop({
       <div className="flex flex-col justify-center h-3/5">
         {check ? (
           <p className="text-B-20">
-            간편 비밀번호를 <br /> 다시 입력해 주세요.
+            {type} <br /> 다시 입력해 주세요.
           </p>
         ) : (
           <p className="text-B-20">
-            간편 비밀번호를 <br /> 등록해 주세요.
+            {title} <br /> 등록해 주세요.
           </p>
         )}
         {isShaking ? (
