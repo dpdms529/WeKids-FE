@@ -18,7 +18,13 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
   const [reward, setReward] = useState(0);
   const [period, setPeriod] = useState(new Date());
   const AddAndCloseModal = () => {
+    // 추후에 api 연결하고 분기처리
+    const userConfirmed = window.confirm("아이가 인증 전 입니다. 정말로 승인하시겠습니까?");
+
+  if (userConfirmed) {
     setIsModalOpen(false);
+  }
+    
   };
   const getCurrentDateInKoreanFormat = () => {
   
@@ -58,7 +64,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
       
         <div className="text-R-14">💡미션 완료 인증하기</div>
         <div className="flex flex-row justify-center py-3 px-7 bg-blue-100 w-full h-32 border border-gray-300 rounded-lg text-sm text-gray-800">
-          <div className="flex flex-row bg-white shadow-sm rounded-md">
+          <div className="flex flex-row bg-white shadow-md rounded-md">
             <Image src={imgPath} alt="Example Image" width={100} height={100} />
           </div>
         </div>
