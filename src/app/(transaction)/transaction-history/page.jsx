@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import TopBar from "@/src/ui/components/transaction/transaction-history/TopBar";
 import { TransactionFilter } from "@/src/ui/components/transaction/transaction-history/TransactionFilter";
 import { TransactionsView } from "@/src/ui/components/transaction/transaction-history/TransactionsView";

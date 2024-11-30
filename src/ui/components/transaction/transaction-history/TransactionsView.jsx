@@ -1,7 +1,11 @@
 "use client";
 import { useTransactionList } from "@/src/services/transaction";
 import { Flex } from "@radix-ui/themes";
-import { RangeEnum, useTransFilterStore, TypeEnum } from "@/src/stores/transactionStore";
+import {
+  RangeEnum,
+  useTransFilterStore,
+  TypeEnum,
+} from "@/src/stores/transactionStore";
 import Link from "next/link";
 import { urlPath } from "@/src/constants/common";
 import { formatDate } from "@/src/util/dateUtils";
@@ -12,29 +16,26 @@ import { useEffect, useState } from "react";
 import { useColorStore } from "@/src/stores/cardStore";
 
 export const TransactionsView = ({ accountId, setBalance }) => {
-  const size = 5 ; // 페이지당 데이터 수
+  const size = 5; // 페이지당 데이터 수
   const { search, sortingType, range, startDate, endDate, type } =
     useTransFilterStore();
-  
-    const now = new Date();
-    const MonthsAgo = new Date();
-    MonthsAgo.setMonth(now.getMonth() - 3);
-    const [start, setStart] = useState(formatToLocalDate(MonthsAgo));
-    const [end, setEnd] = useState(formatToLocalDate(now));
-    const[typetoEng, setTypeToEng] = useState("ALL");
+
+  const now = new Date();
+  const MonthsAgo = new Date();
+  MonthsAgo.setMonth(now.getMonth() - 3);
+  const [start, setStart] = useState(formatToLocalDate(MonthsAgo));
+  const [end, setEnd] = useState(formatToLocalDate(now));
+  const [typetoEng, setTypeToEng] = useState("ALL");
 
   useEffect(() => {
-    
-    if(type == TypeEnum.ALL){
+    if (type == TypeEnum.ALL) {
       setTypeToEng("ALL");
-    }
-    else if(type == TypeEnum.DEPOSIT){
+    } else if (type == TypeEnum.DEPOSIT) {
       setTypeToEng("DEPOSIT");
-    }
-    else if(type == TypeEnum.WITHDRAWAL){
+    } else if (type == TypeEnum.WITHDRAWAL) {
       setTypeToEng("WITHDRAWAL");
     }
-  
+
     if (range === RangeEnum.ONE_MONTH) {
       MonthsAgo.setMonth(now.getMonth() - 1); // 한 달 전
       setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
@@ -44,14 +45,18 @@ export const TransactionsView = ({ accountId, setBalance }) => {
       setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
       setEnd(formatToLocalDate(now)); // 현재 날짜 설정
     } else if (range === RangeEnum.LAST_MONTH) {
-      const firstDayLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1); // 지난달 1일
+      const firstDayLastMonth = new Date(
+        now.getFullYear(),
+        now.getMonth() - 1,
+        1,
+      ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
       setEnd(formatToLocalDate(lastDayLastMonth)); // 포맷팅 후 설정
-    } else if(range === RangeEnum.CUSTOM) {
+    } else if (range === RangeEnum.CUSTOM) {
       setStart(startDate.toISOString().split("T")[0]); // 포맷팅 후 설정
       setEnd(endDate.toISOString().split("T")[0]); // 현재 날짜 설정
-    } else{
+    } else {
       MonthsAgo.setMonth(now.getMonth() - 3); // 기본 세 달 전
       setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
       setEnd(formatToLocalDate(now)); // 현재 날짜 설정
@@ -103,85 +108,88 @@ export const TransactionsView = ({ accountId, setBalance }) => {
   }
 
   // 필터링
-  const filteredTransactions = data?.pages
-  ?.flatMap((page) => page.transactions) // 모든 페이지의 트랜잭션 병합
-  ?.filter((transaction) => {
-    // 검색어 필터링
-    const matchesSearch = transaction.title
-      .toLowerCase()
-      .includes(search.toLowerCase());
+  const filteredTransactions =
+    data?.pages
+      ?.flatMap((page) => page.transactions) // 모든 페이지의 트랜잭션 병합
+      ?.filter((transaction) => {
+        // 검색어 필터링
+        const matchesSearch = transaction.title
+          .toLowerCase()
+          .includes(search.toLowerCase());
 
-    // 트랜잭션 유형 필터링 (프론트의 type 변수를 서버 값과 매핑)
+        // 트랜잭션 유형 필터링 (프론트의 type 변수를 서버 값과 매핑)
 
+        // 날짜 범위 필터링 (range에 따라 처리)
+        const transactionDate = new Date(transaction.createAt);
+        const startDate = range?.start ? new Date(range.start) : null;
+        const endDate = range?.end ? new Date(range.end) : null;
 
-    // 날짜 범위 필터링 (range에 따라 처리)
-    const transactionDate = new Date(transaction.createAt);
-    const startDate = range?.start ? new Date(range.start) : null;
-    const endDate = range?.end ? new Date(range.end) : null;
+        const matchesDate =
+          (!startDate || transactionDate >= startDate) &&
+          (!endDate || transactionDate <= endDate);
 
-    const matchesDate =
-      (!startDate || transactionDate >= startDate) &&
-      (!endDate || transactionDate <= endDate);
-
-    return matchesSearch && matchesDate;
-  })
-  ?.sort((a, b) => {
-    // 날짜 정렬
-    if (sortingType === "최신순") {
-      return new Date(b.createAt) - new Date(a.createAt); // 최신순
-    } else {
-      return new Date(a.createAt) - new Date(b.createAt); // 과거순
-    }
-  }) || [];
-
+        return matchesSearch && matchesDate;
+      })
+      ?.sort((a, b) => {
+        // 날짜 정렬
+        if (sortingType === "최신순") {
+          return new Date(b.createAt) - new Date(a.createAt); // 최신순
+        } else {
+          return new Date(a.createAt) - new Date(b.createAt); // 과거순
+        }
+      }) || [];
 
   return (
-    <Flex direction="column" className="bg-white h-[53vh] overflow-auto scrollbar-hide">
-      <InfiniteScroll pageStart={0} hasMore={hasNextPage} loadMore={() => {
-    !isFetchingNextPage && fetchNextPage(); // 중복 호출 방지
-  }} useWindow={false} >
-      {filteredTransactions.map((transaction, index) => (
-        <Link
-          key={index}
-          href={`${urlPath.TRANSACTION_HISTORY}/${transaction.accountTransactionId}`}
-        >
-          <div className="border-b border-gray-100 p-4">
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col">
-                <div className="flex gap-4">
-                  <span className="text-gray-600 text-R-14">
-                    {formatDate(transaction.createAt)}
-                  </span>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-R-14">{transaction.title}</span>
-                    <span className="text-main01 text-R-10 mt-2">
-                      #{transaction.type === "DEPOSIT" ? "입금" : "출금"}
+    <Flex
+      direction="column"
+      className="bg-white h-[53vh] overflow-auto scrollbar-hide"
+    >
+      <InfiniteScroll
+        pageStart={0}
+        hasMore={hasNextPage}
+        loadMore={() => {
+          !isFetchingNextPage && fetchNextPage(); // 중복 호출 방지
+        }}
+        useWindow={false}
+      >
+        {filteredTransactions.map((transaction, index) => (
+          <Link
+            key={index}
+            href={`${urlPath.TRANSACTION_HISTORY}/${transaction.accountTransactionId}`}
+          >
+            <div className="border-b border-gray-100 p-4">
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col">
+                  <div className="flex gap-4">
+                    <span className="text-gray-600 text-R-14">
+                      {formatDate(transaction.createAt)}
                     </span>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-R-14">{transaction.title}</span>
+                      <span className="text-main01 text-R-10 mt-2">
+                        #{transaction.type === "DEPOSIT" ? "입금" : "출금"}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-col items-end">
-                <span
-                  className={`text-R-18 ${
-                    transaction.type === "DEPOSIT"
-                      ? "text-main01"
-                      : ""
-                  }`}
-                >
-                  {transaction.type === "DEPOSIT"
-                    ? ""
-                    : "-"}
-                  {transaction.amount.toLocaleString()}원
-                </span>
-                <span className="text-neutral-400 text-R-14 mt-2">
-                  {transaction.balance.toLocaleString()}원
-                </span>
+                <div className="flex flex-col items-end">
+                  <span
+                    className={`text-R-18 ${
+                      transaction.type === "DEPOSIT" ? "text-main01" : ""
+                    }`}
+                  >
+                    {transaction.type === "DEPOSIT" ? "" : "-"}
+                    {transaction.amount.toLocaleString()}원
+                  </span>
+                  <span className="text-neutral-400 text-R-14 mt-2">
+                    {transaction.balance.toLocaleString()}원
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        </Link>
-      ))}
-      {isFetchingNextPage && (
+          </Link>
+        ))}
+        {isFetchingNextPage && (
           <div className="text-center py-4">
             <Loader /> {/* 호출 중일 때 Loader 표시 */}
           </div>
