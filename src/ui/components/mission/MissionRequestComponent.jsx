@@ -1,120 +1,173 @@
-'use client'
+'use client';
 
-import { CheckIcon, PlusIcon } from "@radix-ui/react-icons";
 import { useRef, useState } from "react";
 import CustomButton from "../atoms/CustomButton";
+import Profile from "../atoms/Profile";
+import Image from "next/image";
+import InputTextBox from "../atoms/InputTextBox";
 
-  const data ={ 1 :"미션 설명이 들어갑니다. 미션 설명은 총 몇 자 인가요? 넓이 영역에 대해 한번 고려 해보셔야 할 것 같습니다. 보통 설명이 이렇게까지 길어지는 일이 있을지는 잘 모르겠습니다. 부모님이 자식에게 이 만큼 설명하는 것이 아이 연령을 고려했을 때 불필요한 일일 수도 있습니다만 저희는 최대 길이 영역을 고려하여 디자인 진행을 해야합니다",
-    2 : "미션 성공 시 총 30,000원을 받을 수 있어요 💙",
-    3: "🍪 2024년 11월 20일 (수) 까지 완료할 수 있어요"
-  }
-  
-        
-  const MissionRequestComponent = ({setIsModalOpen,  setFile}) => {
-    const [previewURL, setPreviewURL] = useState('');
-    const [preview,setPreview] = useState(null);
-    const fileRef= useRef();
-    const [checked, setChecked] = useState(false);
-  
-    const AddAndCloseModal = () => {
-        
-        setIsModalOpen(false);
+const data = {
+  1: "미션 설명이 들어갑니다. 미션 설명은 총 몇 자 인가요? 넓이 영역에 대해 한번 고려 해보셔야 할 것 같습니다. 보통 설명이 이렇게까지 길어지는 일이 있을지는 잘 모르겠습니다. 부모님이 자식에게 이 만큼 설명하는 것이 아이 연령을 고려했을 때 불필요한 일일 수도 있습니다만 저희는 최대 길이 영역을 고려하여 디자인 진행을 해야합니다",
+  2: "미션 성공 시 총 30,000원을 받을 수 있어요 💙",
+  3: "🍪 2024년 11월 20일 (수) 까지 완료할 수 있어요",
+  4: "아이가 메시지를 작성하지 않았습니다. ",
+  5: "이곳에 미션명이 들어갑니다."
+};
+
+const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
+  const [previewURL, setPreviewURL] = useState("");
+  const fileRef = useRef();
+  const [reward, setReward] = useState(0);
+  const [period, setPeriod] = useState(new Date());
+  const [checked, setChecked] = useState(false);
+
+  const AddAndCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleFileOnChange = (event) => {
+    event.preventDefault();
+    const file = event.target.files[0];
+    if (file) {
+      setFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewURL(reader.result);
       };
+      reader.readAsDataURL(file);
+    }
+  };
 
-      const handleFileOnChange = (event) => {
-        event.preventDefault();
-        let file = event.target.files[0];
-        let reader = new FileReader();
-    
-        reader.onloadend = (e) => {
-          setFile(file);
-          setPreviewURL(reader.result);
-        }
-        if(file)
-          reader.readAsDataURL(file);
-      }
-      
-    const handleFileButtonClick = (e) => {
-        e.preventDefault();
-        fileRef.current.click();
-      }
-    
+  const getCurrentDateInKoreanFormat = () => {
+  
+    const year = period.getFullYear();
+    const month = String(period.getMonth() + 1).padStart(2, '0');
+    const day = String(period.getDate()).padStart(2, '0');
+  
+    const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
+    const weekDay = weekDays[period.getDay()];
+  
+    return `${year}년 ${month}월 ${day}일 (${weekDay})`;
+  };
 
-    const handleCheckboxChange = () => {
-      const newChecked = !checked;
-      setChecked(newChecked);
-    };
-      return (
-          <div className="flex flex-col w-full overflow-hidden justify-center items-center p-10">
-            <div className = "priveiw-rapping">
-            {preview}	
+  const handleFileButtonClick = (e) => {
+    e.preventDefault();
+    fileRef.current.click();
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const file = event.dataTransfer.files[0];
+    if (file) {
+      setFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewURL(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCheckboxChange = () => {
+    setChecked((prev) => !prev);
+  };
+
+  const handleDeleteFile = () => {
+    setPreviewURL("");
+    setFile(null);
+  };
+
+  return (
+    <div className="flex flex-col w-full justify-center items-center p-10 h-full">
+    <div className="flex flex-col gap-1 mb-5 w-full ">
+      <div className="flex flex-row text-B-22 mb-1">
+        <Profile width="w-[30px]" height="h-[30px]" imagePath="https://ssl.pstatic.net/static/pwe/address/img_profile.png" />
+      </div>
+      <div className="text-black text-B-20">{data[5]}</div>
+    </div>
+    <div className="flex flex-col w-full gap-2 mb-3 overflow-auto scrollbar-hide">
+      <div className="text-R-14">💡미션 완료 방법</div>
+      <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
+        {data[1]}
+      </div>
+      <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
+        미션 성공 시 총  <strong>{reward}</strong>  원을 받을 수 있어요 💙
+      </div>
+      <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
+        🍪 <strong className="text-main01">{period ? getCurrentDateInKoreanFormat() : ""}</strong> 까지 완료할 수 있어요
+      </div>
+    
+      <div className="text-R-14">💡미션 완료 인증하기</div>
+        <div className="flex flex-col items-center justify-center p-3 bg-blue-100 w-full h-32 border shadow-md rounded-lg">
+          
+        {previewURL ? (
+          <div className="flex flex-row gap-2 justify-between w-full h-28">
+          <Image
+            src={previewURL}
+            alt="Uploaded Preview"
+            width={100}
+            height={100}
+            className="rounded-md object-contain bg-white w-full h-auto"
+          />
+          
+              <button
+                className="w-20 h-28 flex flex-col items-center justify-center bg-black/10 hover:bg-black/40 rounded-md"
+                onClick={handleDeleteFile}
+              >
+                <Image src="/images/deleteImg.svg" alt="delete image" width={100} height={100} />
+                <p className="text-R-12">삭제</p>
+              </button>
+            
             </div>
-              <div className="flex flex-row gap-1 mb-5 w-full">
-                <div className="flex flex-row text-B-22 mb-1">
-                  <div
-                      className={`flex flex-row bg-main03 rounded cursor-pointer items-center w-4 h-4 justify-center mt-1`}
-                      onClick={handleCheckboxChange}
-                      >
-                      {checked ? (
-                      <CheckIcon className="text-black w-4 h-4" />
-                      ) : (
-                      <CheckIcon className="text-white w-4 h-4" />
-                      )}
-                  </div>
-                  </div>
-                  <div>
-                    미션명~~~~~~~~~~~~
-                  </div>
-              </div>
-            <div className="flex flex-col w-full gap-2 mb-3 ">
-              <div className="text-R-14">💡미션 완료 방법</div>
-              <div className="p-3 bg-gray-100 border border-gray-300 rounded-md text-sm text-gray-800">
-                {data[1]}
-              </div>
-              <div className="p-3 bg-gray-100 border border-gray-300 rounded-md text-sm text-gray-800">
-                {data[2]}
-              </div>
-              <div className="p-3 bg-gray-100 border border-gray-300 rounded-md text-sm text-gray-800">
-                {data[3]}
-              </div>
-            </div>
-            <div className="flex flex-col w-full gap-2">
-              <div className="text-R-14">💡미션 완료 인증하기</div>
-              <div className={`flex flex-col h-${previewURL ? "20" : "36"} p-3 w-full bg-gray-100 border border-gray-300 rounded-md text-sm text-gray-800 justify-center items-center`}>
+        ) : (
+          <>
             <button
               className="w-12 h-12 flex items-center justify-center bg-black/10 hover:bg-black/40 rounded-full"
               onClick={handleFileButtonClick}
             >
-              <PlusIcon className="w-8 h-8 text-white" />
+              <Image src="/images/backupImg.svg" alt="upload image" width={50} height={50} className="bg-blue-100" />
             </button>
-            
-              <input ref = {fileRef} hidden = {true} id = "file" type='file' onChange={handleFileOnChange}></input>
-              
-              </div>
-              {previewURL && (
-            <div className="mt-2 mb-2 w-10 h-10">
-              <img
-                src={previewURL}
-                alt="Uploaded Preview"
-                className="w-full h-full object-cover rounded-md border border-gray-300"
-              />
-            </div>
-          )}
-              <div className="flex flex-row mt-1">
-                
-              <CustomButton
-                size="mediumLarge"
-                rounded={true}
-                onClick={AddAndCloseModal}
-                className="text-R-18"
-              >
-                💙 미 션 완 료 💙
-              </CustomButton>
-              </div>
-            </div>
-            
-          </div>
-      );
-  }
+            <input
+              ref={fileRef}
+              hidden={true}
+              id="file"
+              type="file"
+              onChange={handleFileOnChange}
+            />
+            <p className="text-sm text-gray-600 mt-2">드래그하거나 파일을 업로드하세요.</p>
+          </>
+        )}
+      
+      </div>
+      <div className="text-R-14">💡자녀가 작성한 메시지</div>
+      <div className=" bg-blue-100 rounded-lg text-R-12 shadow-md text-black">
+          <textarea
+            className="w-full h-20 bg-blue-100 rounded-md resize-none outline-none p-2"
+          ></textarea>
+        </div>
+      <div className="flex flex-row w-full justify-center h-[40px] px-10 mt-2">
+        
+        <div className="flex flex-col h-full w-full">
+          <CustomButton
+            size="mediumLarge"
+            rounded={true}
+            onClick={AddAndCloseModal}
+            className="text-R-18 bg-main03 w-full"
+          >
+            미 션 완 료
+          </CustomButton>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+};
 
-  export default MissionRequestComponent;
+export default MissionRequestComponent;
