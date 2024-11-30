@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const InputDateBox = ({
   width = 313,
-  height = 51,
+  height = 71,
   value = "",
   label = "미션 만료일",
   onChange,
@@ -32,7 +32,7 @@ const InputDateBox = ({
 
   const getInputClasses = () => {
     const baseClasses =
-      "w-full h-[51px] px-4 py-2 box-border text-sm transition-all duration-200 ease-in bg-white border border-gray-300 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500";
+      "w-full h-full px-4 py-2 box-border text-sm transition-all duration-200 ease-in bg-white border border-gray-300 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500";
 
     if (!dateValue && !isFocused) {
       return `${baseClasses} text-gray-400`;

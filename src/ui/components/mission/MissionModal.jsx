@@ -8,9 +8,9 @@ const MissionModal = ({ isOpen, setOpen, children }) => {
       <div className="absolute bg-white w-[393px] h-[648px] pb-4 rounded-lg shadow-lg top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <button
           onClick={() => setOpen(false)}
-          className="absolute top-3 right-3 text-black"
+          className="absolute top-4 right-7 text-black"
         >
-          ✖
+          취소
         </button>
 
         <div>{children}</div>

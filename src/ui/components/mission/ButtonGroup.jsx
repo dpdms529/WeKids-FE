@@ -8,6 +8,7 @@ export default function ButtonGroup() {
     { id: "all", label: "ALL" },
     { id: "child1", label: "아이1" },
     { id: "child2", label: "아이2" },
+    { id: "child3", label: "아이3" },
   ];
 
   const bottomButtons = [
@@ -32,7 +33,7 @@ export default function ButtonGroup() {
     if (selectedId === id) {
       return `${baseClasses} bg-main02 text-white`; // 선택된 버튼 스타일
     } else {
-      return `${baseClasses} bg-stone-300 text-neutral-400`; // 선택되지 않은 버튼 스타일
+      return `${baseClasses} bg-black/10 text-neutral-400`; // 선택되지 않은 버튼 스타일
     }
   };
 
@@ -48,6 +49,9 @@ export default function ButtonGroup() {
             {button.label}
           </button>
         ))}
+      </div>
+      <div className="text-R-14">
+        미션 카테고리
       </div>
       <div className="flex flex-row justify-between gap-3 w-full">
         {bottomButtons.map((button) => (
