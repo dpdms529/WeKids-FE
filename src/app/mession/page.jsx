@@ -1,6 +1,6 @@
 "use client";
 import PasswordTop from "@/src/ui/components/signup/PasswordTop";
-import Digit4PasswordButton from "@/src/ui/components/signup/Digit4PasswordButton";
+import PasswordBottom from "@/src/ui/components/signup/PasswordBottom";
 import { useState } from "react";
 
 export default function TransferPasswordPage() {
@@ -20,14 +20,14 @@ export default function TransferPasswordPage() {
             title="송금 비밀번호를"
             type="송금"
           />
-          <Digit4PasswordButton
+          <PasswordBottom
             pwd={pwd}
             isInput={isInput}
             allow={allow}
             setIsInput={setIsInput}
             setPwd={setPwd}
             setAllowed={setAllowed}
-            type="transfer" // 송금 비밀번호 타입 지정
+            type="transfer"
           />
         </div>
       );
