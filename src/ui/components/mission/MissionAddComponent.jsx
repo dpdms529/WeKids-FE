@@ -5,10 +5,11 @@ import InputTextBox from "@/src/ui/components/atoms/InputTextBox";
 import ButtonGroup from "@/src/ui/components/mission/ButtonGroup";
 
 
-export default function MissionAddComponent() {
+export default function MissionAddComponent({setIsModalOpen}) {
 
     const AddAndCloseModal = () => {
         alert('미션이 등록 되었습니다!')
+        setIsModalOpen(false);
     }
 
     return (
