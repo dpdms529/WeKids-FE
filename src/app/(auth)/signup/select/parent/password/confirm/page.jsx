@@ -1,12 +1,8 @@
-"use client";
-
-import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/Components/atoms/CustomButton";
+import SignIn from "@/src/ui/Components/auth/SignIn";
 import ConfirmItem from "@/src/ui/Components/signup/ConfirmItem";
-import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const router = useRouter();
   return (
     <div className="flex flex-col bg-white overflow-hidden h-screen max-w-[393px]">
       <div className="flex flex-col p-10 h-full">
@@ -14,15 +10,11 @@ export default function Page() {
           <ConfirmItem />
         </div>
         <div className="flex h-1/6 w-full items-end pb-1">
-          <CustomButton
-            size="mediumLarge"
-            rounded={true}
-            onClick={() => {
-              router.push(urlPath.HOME);
-            }}
-          >
-            확인
-          </CustomButton>
+          <SignIn>
+            <CustomButton size="mediumLarge" rounded={true}>
+              확인
+            </CustomButton>
+          </SignIn>
         </div>
       </div>
     </div>

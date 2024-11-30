@@ -1,18 +1,24 @@
 import { signIn } from "@/auth";
-import NaverLoginImg from "@/public/images/NaverLoginImg.png";
-import Image from "next/image";
 
-export default function SignIn() {
+export default function SignIn({ children }) {
+  const data = {
+    birthday: "1998-05-29",
+    name: "조예은",
+    phone: "010-0000-0000",
+    simplePassword: "123456",
+    email: "wekids@naver.com",
+    social: "naver",
+    memberType: "PARENT",
+    redirectTo: "/",
+  };
   return (
     <form
       action={async () => {
         "use server";
-        await signIn("naver", { redirectTo: "/" });
+        await signIn("credentials", data);
       }}
     >
-      <button type="submit">
-        <Image src={NaverLoginImg} alt="네이버 로그인" />
-      </button>
+      {children}
     </form>
   );
 }

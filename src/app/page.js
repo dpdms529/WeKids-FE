@@ -9,8 +9,8 @@ export default async function Home() {
       <Header />
       <div className="flex justify-center items-center">
         <MainHome />
-        <SignOut />
       </div>
+      <SignOut />
     </div>
   );
 }

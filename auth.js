@@ -1,73 +1,100 @@
 import NextAuth from "next-auth";
-import Naver from "next-auth/providers/naver";
+import Credentials from "next-auth/providers/credentials";
+import { decrypt } from "@/src/libs/session";
+import { cookies } from "next/headers";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [Naver],
-  callbacks: {
-    async jwt({ token, user, account, profile }) {
-      if (account) {
-        // 사용자가 새로 로그인함 -> 토큰 발급
-        return {
-          id: user.id,
-          name: profile.response.name,
-          email: token.email,
-          picture: token.picture,
-          mobile: profile.response.mobile,
-          birthday: profile.response.birthyear + "-" + profile.response.birthday,
-          gender: profile.response.gender,
-          nickname: profile.response.nickname,
-          access_token: account.access_token,
-          refresh_token: account.refresh_token,
-          token_type: account.token_type,
-          expires_in: account.expires_in,
-          expires_at: account.expires_at,
-        };
-      } else if (Date.now() < token.expires_at * 1000) {
-        // 토큰이 아직 유효하면 기존 토큰 리턴
-        return token;
-      } else {
-        // 토큰이 유효하지 않을 경우
+  providers: [
+    Credentials({
+      authorize: async (credentials) => {
+        const cookieStore = await cookies();
 
-        // 리프레시 토큰이 없으면 에러 발생
-        if (!token.refresh_token) throw TypeError("refresh_token이 존재하지 않음");
+        if (credentials.token) {
+          const session = await decrypt(credentials.token);
 
-        // 리프레시 토큰이 있으면 access token 재발급
-        try {
-          const response = await fetch("https://nid.naver.com/oauth2.0/token", {
-            method: "POST",
-            body: new URLSearchParams({
-              grant_type: "refresh_token",
-              client_id: process.env.AUTH_NAVER_ID,
-              client_secret: process.env.AUTH_NAVER_SECRET,
-              refresh_token: token.refresh_token,
-            }),
-          });
+          const user = {
+            id: session?.memberId,
+            role: session?.role,
+            Authorization: credentials.token,
+          };
 
-          const tokensOrError = await response.json();
-
-          if (!response.ok) throw tokensOrError;
-
-          const newTokens = tokensOrError;
-
-          token.access_token = newTokens.access_token;
-          token.expires_at = Math.floor(Date.now() / 1000 + newTokens.expires_in);
-
-          if (newTokens.refresh_token) token.refresh_token = newTokens.refresh_token;
-
-          return token;
-        } catch (error) {
-          console.error("access_token 발급 실패", error);
-          token.error = "RefreshTokenError";
-          return token;
+          return user;
         }
+
+        cookieStore.delete("email");
+        cookieStore.delete("name");
+        cookieStore.delete("birthday");
+
+        const response = await fetch("http://localhost:8080/api/v1/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            birthday: credentials.birthday,
+            name: credentials.name,
+            phone: credentials.phone,
+            simplePassword: credentials.simplePassword,
+            email: credentials.email,
+            social: credentials.social,
+            memberType: credentials.memberType,
+          }),
+        });
+
+        if (!response.ok) {
+          if (response.status === 409) console.error("이미 가입한 회원입니다.");
+          else console.error("failed to fetch:");
+          return null;
+        }
+
+        try {
+          const data = await response.json();
+
+          if (data.token) {
+            const session = await decrypt(data.token);
+
+            const user = {
+              id: session?.memberId,
+              role: session?.role,
+              Authorization: data.token,
+            };
+
+            return user;
+          }
+        } catch (error) {
+          console.error("JSON parsing error", error);
+        }
+
+        return null;
+      },
+    }),
+  ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+        token.Authorization = user.Authorization;
       }
+      return token;
     },
     async session({ session, token }) {
-      session.error = token.error;
-      session.user.id = token.id;
+      session.user = {
+        id: token.id,
+        role: token.role,
+        Authorization: token.Authorization,
+      };
+
       return session;
     },
     async authorized({ auth }) {
+      if (!auth) {
+        const cookie = await cookies();
+        const authorization = cookie.get("Authorization")?.value;
+        if (authorization) {
+          return signIn("credentials", { token: authorization, redirect: false });
+        }
+      }
       return !!auth;
     },
   },
