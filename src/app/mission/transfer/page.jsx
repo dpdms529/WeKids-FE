@@ -15,7 +15,7 @@ const Page = () => {
   const router = useRouter();
 
   const completeTransfer = () => {
-    router.push(urlPath.MISSION_PASSWORD)
+    router.push(urlPath.MISSION_TRANSFER_PASSWORD)
   }
 
   return <TransferComplete 

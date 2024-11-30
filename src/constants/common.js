@@ -95,6 +95,7 @@ export const urlPath = {
   PARENT_CARD_DELIVERY_COMPLETE: "/parent/card/delivery/completed",
   
   // 송금 관련
-  MISSION_PASSWORD: "/mission/password",
+  MISSION_TRANSFER_PASSWORD: "/mission/transfer/password", // 송금 비밀번호 등록
+  MISSION_TRANSFER_DONE: "/mission/transfer/done", // 송금 완료 
   
 };
