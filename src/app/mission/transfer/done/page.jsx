@@ -1,8 +1,8 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
-import { useRouter } from "next/navigation";
 import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
 import { useState } from "react";
+import Link from "next/link";
 
 const Page = () => {
   const [transferData, setTransferData] = useState({
@@ -12,7 +12,6 @@ const Page = () => {
     bankName: "우리",
     memo: "메모입력..",
   });
-  const router = useRouter();
 
 //   useEffect(() => {
 //     if (selectedMission) {
@@ -26,14 +25,13 @@ const Page = () => {
 //     }
 //   }, [selectedMission]);
 
-  const completeTransfer = () => {
-    router.push(urlPath.HOME) // API연결 후, 미션목록으로 가게 수정
-  }
-
-  return <TransferComplete 
-    transferData={transferData} 
-    onComplete={completeTransfer}
-  />;
+  return ( // 미션 목록으로 이동하게 변경
+    <Link href={urlPath.HOME}> 
+      <TransferComplete 
+        transferData={transferData}
+      />
+    </Link>
+  );
 };
 
 export default Page;
