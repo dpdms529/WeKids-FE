@@ -36,7 +36,7 @@ const Profile = ({
         `}
     >
       <Image
-        src={imagePath}
+        src="https://ssl.pstatic.net/static/pwe/address/img_profile.png"
         alt="profile image"
         fill
         className="object-cover"

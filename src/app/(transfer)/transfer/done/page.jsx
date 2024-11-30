@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 
 const Page = () => {
-  const { selectedAccount, transferAmount, clearTransferData } = useTransactionStore();
+  const { selectedAccount, transferAmount, clearTransferData } =
+    useTransactionStore();
   const [transferData, setTransferData] = useState({
     sendUser: "",
     amount: 0,
@@ -32,8 +33,8 @@ const Page = () => {
 
   const completeTransfer = () => {
     clearTransferData();
-    router.push(urlPath.HOME)
-  }
+    router.push(urlPath.HOME);
+  };
 
   return (
     <main className="min-h-screen bg-white flex flex-col">
@@ -46,10 +47,10 @@ const Page = () => {
         {/* 텍스트 영역 */}
         <div className="text-center space-y-2 mb-4">
           <p className="text-B-28 text-black/80">
-          {transferData.sendUser || "알 수 없는 사용자"}님에게
+            {transferData.sendUser || "알 수 없는 사용자"}님에게
           </p>
           <p className="text-B-28 text-black/80">
-          {transferData.amount?.toLocaleString() || 0}원 보냈어요
+            {transferData.amount?.toLocaleString() || 0}원 보냈어요
           </p>
           <div className="flex items-center justify-center text-R-14 text-neutral-300 pt-4">
             {transferData.bankName} {transferData.accountNumber}
@@ -67,10 +68,7 @@ const Page = () => {
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton rounded={true} />
-          <CustomButton
-            rounded={true}
-            onClick={completeTransfer}
-          >
+          <CustomButton rounded={true} onClick={completeTransfer}>
             <span className="text-R-20">확인</span>
           </CustomButton>
         </div>
