@@ -1,15 +1,13 @@
 import { BASE_URL } from "../constants/url";
 
 export const fetchAccounts = async () => {
-  const response = await fetch(
-    `${BASE_URL}/accounts/baas`,
-  );
+  const response = await fetch(`${BASE_URL}/accounts/baas`);
   return response.json();
 };
 
 export const fetchChildAccounts = async () => {
   const response = await fetch(`${BASE_URL}/accounts/children`);
-  
+
   if (!response.ok) {
     throw new Error("Failed to fetch child accounts");
   }
@@ -18,4 +16,3 @@ export const fetchChildAccounts = async () => {
   const data = await response.json();
   return data;
 };
-

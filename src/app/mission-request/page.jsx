@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState } from "react";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import MissionModal from "@/src/ui/components/mission/MissionModal";
