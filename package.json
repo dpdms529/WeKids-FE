@@ -22,6 +22,7 @@
     "react-hot-toast": "^2.4.1",
     "react-infinite-scroller": "^1.2.6",
     "styled-components": "^6.1.13",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "zustand": "^5.0.1"
   },
   "devDependencies": {
