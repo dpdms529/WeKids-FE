@@ -10,7 +10,7 @@ const MissionModal = ({ isOpen, setOpen, children }) => {
           onClick={() => setOpen(false)}
           className="absolute top-4 right-7 text-black"
         >
-          취소
+          X
         </button>
 
         <div className="overflow-auto scrollbar-hide h-full">{children}</div>

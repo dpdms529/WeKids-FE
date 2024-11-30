@@ -78,7 +78,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
               size="mediumLarge"
               rounded={true}
               onClick={AddAndCloseModal}
-              className="flex text-R-18 bg-red-500 w-full"
+              className="flex text-R-18 bg-red-500 hover:bg-red-700 w-full"
             >
               반려
             </CustomButton>
