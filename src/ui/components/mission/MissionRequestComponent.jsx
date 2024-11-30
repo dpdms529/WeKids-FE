@@ -146,7 +146,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
         )}
       
       </div>
-      <div className="text-R-14">💡자녀가 작성한 메시지</div>
+      <div className="text-R-14">💡부모님께 보낼 메시지</div>
       <div className=" bg-blue-100 rounded-lg text-R-12 shadow-md text-black">
           <textarea
             className="w-full h-20 bg-blue-100 rounded-md resize-none outline-none p-2"
