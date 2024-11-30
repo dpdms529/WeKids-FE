@@ -50,7 +50,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
           <div>
             <InputTextBox
               height={80}
-              placeholder="ex) 사진 인증"
+              placeholder="아이가 미션을 완료할 수 있게 설명을 입력해 주세요."
               value={method}
               text={method}
               onChange={(value) => setMethod(value)}
@@ -60,12 +60,10 @@ export default function MissionAddComponent({ setIsModalOpen }) {
         <div className="flex flex-col gap-1">
           <div className="text-R-14">💡미션 완료 시 수령 금액</div>
           <div>
-            <input
-              type="text"
-              placeholder="ex) 10,000"
+            <InputTextBox
+              placeholder="미션 완료 시 아이가 수령할 금액을 입력해주세요."
               value={reward}
               onChange={handleRewardChange}
-              className="w-full h-10 px-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
