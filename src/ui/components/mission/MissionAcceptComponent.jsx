@@ -52,24 +52,24 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
       </div>
       <div className="flex flex-col w-full gap-2 mb-3 overflow-auto scrollbar-hide">
         <div className="text-R-14">💡미션 완료 방법</div>
-        <div className="p-3 bg-blue-100 border border-gray-300 rounded-lg text-R-12 text-black">
+        <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
           {data[1]}
         </div>
-        <div className="p-3 bg-blue-100 border border-gray-300 rounded-lg text-R-12 text-black">
+        <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
           미션 성공 시 총  <strong>{reward}</strong>  원을 받을 수 있어요 💙
         </div>
-        <div className="p-3 bg-blue-100 border border-gray-300 rounded-lg text-R-12 text-black">
+        <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
           🍪 <strong className="text-main01">{period ? getCurrentDateInKoreanFormat() : ""}</strong> 까지 완료할 수 있어요
         </div>
       
         <div className="text-R-14">💡미션 완료 인증하기</div>
-        <div className="flex flex-row justify-center py-3 px-7 bg-blue-100 w-full h-32 border border-gray-300 rounded-lg">
+        <div className="flex flex-row justify-center py-3 px-7 bg-blue-100 w-full h-32 border shadow-md rounded-lg">
           <div className="flex flex-row bg-white shadow-md rounded-md">
             <Image src={imgPath} alt="Example Image" width={100} height={100} />
           </div>
         </div>
         <div className="text-R-14">💡자녀가 작성한 메시지</div>
-        <div className="p-3 bg-blue-100 border border-gray-300 rounded-lg text-R-12 text-black">
+        <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
           {data[4]}
         </div>
         <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-2">
