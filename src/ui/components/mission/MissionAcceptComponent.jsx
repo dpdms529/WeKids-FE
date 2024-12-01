@@ -10,7 +10,7 @@ const data = {
   2: "미션 성공 시 총 30,000원을 받을 수 있어요 💙",
   3: "🍪 2024년 11월 20일 (수) 까지 완료할 수 있어요",
   4: "아이가 메시지를 작성하지 않았습니다. ",
-  5: "이곳에 미션명이 들어갑니다."
+  5: "이곳에 미션명이 들어갑니다.",
 };
 
 const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
@@ -19,22 +19,22 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
   const [period, setPeriod] = useState(new Date());
   const AddAndCloseModal = () => {
     // 추후에 api 연결하고 분기처리
-    const userConfirmed = window.confirm("아이가 인증 전 입니다. 정말로 승인하시겠습니까?");
+    const userConfirmed = window.confirm(
+      "아이가 인증 전 입니다. 정말로 승인하시겠습니까?",
+    );
 
-  if (userConfirmed) {
-    setIsModalOpen(false);
-  }
-    
+    if (userConfirmed) {
+      setIsModalOpen(false);
+    }
   };
   const getCurrentDateInKoreanFormat = () => {
-  
     const year = period.getFullYear();
-    const month = String(period.getMonth() + 1).padStart(2, '0');
-    const day = String(period.getDate()).padStart(2, '0');
-  
-    const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
+    const month = String(period.getMonth() + 1).padStart(2, "0");
+    const day = String(period.getDate()).padStart(2, "0");
+
+    const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
     const weekDay = weekDays[period.getDay()];
-  
+
     return `${year}년 ${month}월 ${day}일 (${weekDay})`;
   };
 
@@ -46,7 +46,11 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
     <div className="flex flex-col w-full justify-center items-center p-10 h-full">
       <div className="flex flex-col gap-1 mb-5 w-full ">
         <div className="flex flex-row text-B-22 mb-1">
-          <Profile width="w-[30px]" height="h-[30px]" imagePath="https://ssl.pstatic.net/static/pwe/address/img_profile.png" />
+          <Profile
+            width="w-[30px]"
+            height="h-[30px]"
+            imagePath="https://ssl.pstatic.net/static/pwe/address/img_profile.png"
+          />
         </div>
         <div className="text-black text-B-20">{data[5]}</div>
       </div>
@@ -56,23 +60,27 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
           {data[1]}
         </div>
         <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
-          미션 성공 시 총  <strong>{reward}</strong>  원을 받을 수 있어요 💙
+          미션 성공 시 총 <strong>{reward}</strong> 원을 받을 수 있어요 💙
         </div>
         <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
-          🍪 <strong className="text-main01">{period ? getCurrentDateInKoreanFormat() : ""}</strong> 까지 완료할 수 있어요
+          🍪{" "}
+          <strong className="text-main01">
+            {period ? getCurrentDateInKoreanFormat() : ""}
+          </strong>{" "}
+          까지 완료할 수 있어요
         </div>
-      
-        <div className="text-R-14">💡미션 완료 인증하기</div>
+
+        <div className="text-R-14 mt-6">💡미션 완료 인증하기</div>
         <div className="flex flex-row justify-center py-3 px-7 bg-blue-100 w-full h-32 border shadow-md rounded-lg">
           <div className="flex flex-row bg-white shadow-md rounded-md">
             <Image src={imgPath} alt="Example Image" width={100} height={100} />
           </div>
         </div>
-        <div className="text-R-14">💡자녀가 작성한 메시지</div>
+        <div className="text-R-14 mt-6">💡자녀가 작성한 메시지</div>
         <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
           {data[4]}
         </div>
-        <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-2">
+        <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-9">
           <div className="flex flex-col w-full">
             <CustomButton
               size="mediumLarge"
