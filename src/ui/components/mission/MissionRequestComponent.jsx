@@ -120,11 +120,11 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
                 alt="Uploaded Preview"
                 width={100}
                 height={100}
-                className="rounded-md object-contain bg-white w-full h-auto"
+                className="rounded-md object-contain bg-white w-4/5 h-auto"
               />
 
               <button
-                className="w-20 h-28 flex flex-col items-center justify-center bg-black/10 hover:bg-black/40 rounded-md"
+                className="w-1/5 h-28 flex flex-col items-center justify-center bg-black/10 hover:bg-black/40 rounded-md"
                 onClick={handleDeleteFile}
               >
                 <Image
