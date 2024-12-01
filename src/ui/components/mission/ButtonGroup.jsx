@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ButtonGroup({
   setTopButtonChecked,
@@ -19,9 +20,9 @@ export default function ButtonGroup({
     { id: "cleaning", label: "청소", icon: "/images/broomImg.svg" },
     { id: "habit", label: "생활습관", icon: "/images/pinImg.svg" },
     { id: "improve", label: "자기계발", icon: "/images/pencilImg.svg" },
+    { id: "etc", label: "기타", icon: "/images/etcImg.svg" },
   ];
 
-  const etcButton = { id: "etc", label: "기타", icon: "/images/etcImg.svg" };
 
   const handleTopButtonClick = (id) => {
     if (id === "all") {
@@ -52,7 +53,7 @@ export default function ButtonGroup({
 
   const getButtonClasses = (id, isSelected) => {
     const baseClasses =
-      "flex-grow h-8 flex items-center justify-center px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200";
+      "flex-grow h-8 flex items-center justify-center py-2 text-R-12 font-medium transition-all duration-200";
 
     if (isSelected) {
       return `${baseClasses} bg-main02 text-white`; // 선택된 버튼 스타일
@@ -79,42 +80,22 @@ export default function ButtonGroup({
           </button>
         ))}
       </div>
-      <div className="text-R-14 mb-1">💡미션 카테고리</div>
+      <div className="text-R-14 mb-1 mt-2">💡미션 카테고리</div>
+      <div className="flex flex-row justify-between gap-3 w-full">
       <div className="flex flex-row justify-between gap-3 w-full">
         {bottomButtons.map((button) => (
-          <button
-            key={button.id}
-            onClick={() => handleBottomButtonClick(button.id)}
-            className={getButtonClasses(
-              button.id,
-              button.id === selectedBottomButton,
-            )}
-          >
-            <div className="flex items-center gap-2">
-              <img src={button.icon} alt={button.label} className="w-4 h-4" />
-              <span>{button.label}</span>
-            </div>
-          </button>
-        ))}
+            <button
+                key={button.id}
+                onClick={() => handleBottomButtonClick(button.id)}
+                className={`${getButtonClasses(button.id, button.id === selectedBottomButton)} flex items-center gap-2`}
+            >
+        <Image src={button.icon} alt={button.label} width={16} height={16} />
+        <span className="whitespace-nowrap overflow-hidden">{button.label}</span>
+    </button>
+  ))}
+</div>
       </div>
-      <div className="mt-3 flex justify-between gap-3 w-[100px]">
-        <button
-          onClick={() => handleBottomButtonClick(etcButton.id)}
-          className={getButtonClasses(
-            etcButton.id,
-            etcButton.id === selectedBottomButton,
-          )}
-        >
-          <div className="flex items-center gap-2">
-            <img
-              src={etcButton.icon}
-              alt={etcButton.label}
-              className="w-4 h-4"
-            />
-            <span>{etcButton.label}</span>
-          </div>
-        </button>
-      </div>
+      
     </div>
   );
 }

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
+
 const InputDateBox = ({
   width = 313,
-  height = 71,
+  height = 40, // 높이를 조정
   value = "",
   label = "💡미션 만료일",
   onChange,
 }) => {
   const [dateValue, setDateValue] = useState(value);
-  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     setDateValue(value);
@@ -22,49 +22,31 @@ const InputDateBox = ({
     }
   };
 
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-
-  const getInputClasses = () => {
-    const baseClasses =
-      "w-full h-full px-4 py-2 box-border text-sm transition-all duration-200 ease-in bg-white border border-gray-300 rounded-xl shadow-sm focus:ring-blue-500 focus:border-blue-500";
-
-    if (!dateValue && !isFocused) {
-      return `${baseClasses} text-gray-400`;
-    } else if (isFocused) {
-      return `${baseClasses} text-black border-black shadow-lg`;
-    } else {
-      return `${baseClasses} text-black`;
-    }
-  };
-
   return (
-    <div className="flex flex-col w-full" style={{ width, height }}>
+    <div className="flex flex-col w-full mb-3" style={{ width }}>
       {label && (
         <label
           htmlFor="date-input"
-          className="block text-R-14 font-medium text-black mb-1"
+          className="block text-R-14 font-medium text-black mb-2" // 라벨과 입력창 간격 추가
         >
           {label}
         </label>
       )}
-      <input
-        id="date-input"
-        type="date"
-        value={dateValue}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        className={getInputClasses()}
-        style={{ appearance: "auto" }} // 기본 아이콘 표시
-      />
+      <div className="bg-blue-100 rounded-lg shadow-md">
+        <input
+          id="date-input"
+          type="date"
+          value={dateValue}
+          onChange={handleChange}
+          className="w-full h-full p-2 bg-blue-100 rounded-md text-R-12 text-black resize-none outline-none"
+          style={{ height }} // 높이를 직접 지정
+        />
+      </div>
     </div>
   );
 };
 
 export default InputDateBox;
+
+  
+  
