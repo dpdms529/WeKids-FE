@@ -1,4 +1,5 @@
 import MissionCard from "./MissionCard";
+import Image from "next/image";
 
 const DUMMY_MISSIONS = [
   {
@@ -77,6 +78,17 @@ const DUMMY_MISSIONS = [
 
 export default function MissionList() {
     return (
+
+      <div className="flex flex-col w-full">
+        <div className="flex items-center gap-1 mb-4 px-1 ml-3">
+          <Image
+            src="/images/filters.svg"
+            alt="filter icon"
+            width={16}
+            height={16}
+          />
+          <span className="text-sm font-medium">FILTER</span>
+        </div>
       <div className="flex flex-col items-center gap-2">
         {DUMMY_MISSIONS.map((mission) => (
           <MissionCard 
@@ -84,6 +96,7 @@ export default function MissionList() {
             mission={mission} 
           />
         ))}
+      </div>
       </div>
     );
   }
