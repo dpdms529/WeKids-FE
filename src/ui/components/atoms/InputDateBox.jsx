@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 const InputDateBox = ({
   width = 313,
   height = 40, // 높이를 조정
@@ -47,6 +46,3 @@ const InputDateBox = ({
 };
 
 export default InputDateBox;
-
-  
-  

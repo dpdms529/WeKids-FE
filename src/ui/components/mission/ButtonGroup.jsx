@@ -23,7 +23,6 @@ export default function ButtonGroup({
     { id: "etc", label: "기타", icon: "/images/etcImg.svg" },
   ];
 
-
   const handleTopButtonClick = (id) => {
     if (id === "all") {
       if (isAllSelected) {
@@ -82,20 +81,26 @@ export default function ButtonGroup({
       </div>
       <div className="text-R-14 mb-1 mt-2">💡미션 카테고리</div>
       <div className="flex flex-row justify-between gap-3 w-full">
-      <div className="flex flex-row justify-between gap-3 w-full">
-        {bottomButtons.map((button) => (
+        <div className="flex flex-row justify-between gap-3 w-full">
+          {bottomButtons.map((button) => (
             <button
-                key={button.id}
-                onClick={() => handleBottomButtonClick(button.id)}
-                className={`${getButtonClasses(button.id, button.id === selectedBottomButton)} flex items-center gap-2`}
+              key={button.id}
+              onClick={() => handleBottomButtonClick(button.id)}
+              className={`${getButtonClasses(button.id, button.id === selectedBottomButton)} flex items-center gap-2`}
             >
-        <Image src={button.icon} alt={button.label} width={16} height={16} />
-        <span className="whitespace-nowrap overflow-hidden">{button.label}</span>
-    </button>
-  ))}
-</div>
+              <Image
+                src={button.icon}
+                alt={button.label}
+                width={16}
+                height={16}
+              />
+              <span className="whitespace-nowrap overflow-hidden">
+                {button.label}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
-      
     </div>
   );
 }

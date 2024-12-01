@@ -16,13 +16,12 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
 
   useEffect(() => {
-    if(child.length && category && title && method && reward && period){
+    if (child.length && category && title && method && reward && period) {
       setChecked(true);
-    }
-    else{
+    } else {
       setChecked(false);
     }
-  }, [child, category, title, method, reward, period])
+  }, [child, category, title, method, reward, period]);
 
   // 금액 포맷팅 함수
   const formatReward = (value) => {
@@ -45,12 +44,11 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   };
 
   const AddAndCloseModal = () => {
-    if(checked){
+    if (checked) {
       setIsModalOpen(false);
-    }else{
-      alert('빈칸을 전부 채워주세요.')
+    } else {
+      alert("빈칸을 전부 채워주세요.");
     }
-    
   };
 
   return (
@@ -122,11 +120,16 @@ export default function MissionAddComponent({ setIsModalOpen }) {
                 size="mediumLarge"
                 rounded={true}
                 onClick={AddAndCloseModal}
-                className={` ${!checked ? "bg-stone-300 hover:bg-neutral-400" : "bg-main03 hover:bg-main01" } text-R-18  w-full`}
+                className={` ${!checked ? "bg-stone-300 hover:bg-neutral-400" : "bg-main03 hover:bg-main01"} text-R-18  w-full`}
               >
                 미 션 등 록
               </CustomButton>
-              {isConfirmModalOpen && <MissionConfirmModal setParentOpen={setIsModalOpen} setOpen={setConfirmModalOpen} />}
+              {isConfirmModalOpen && (
+                <MissionConfirmModal
+                  setParentOpen={setIsModalOpen}
+                  setOpen={setConfirmModalOpen}
+                />
+              )}
             </div>
           </div>
         </div>
