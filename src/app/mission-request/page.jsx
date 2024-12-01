@@ -6,7 +6,7 @@ import MissionRequestComponent from "@/src/ui/components/mission/MissionRequestC
 
 export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [file, setFile] = useState('');
+  const [file, setFile] = useState("");
 
   return (
     <div className="flex flex-col w-full h-screen overflow-hidden justify-center items-center p-10 gap-2">
@@ -18,7 +18,10 @@ export default function Page() {
         미션 등록하기
       </CustomButton>
       <MissionModal isOpen={isModalOpen} setOpen={setIsModalOpen}>
-        <MissionRequestComponent setIsModalOpen={setIsModalOpen} setFile={setFile} />
+        <MissionRequestComponent
+          setIsModalOpen={setIsModalOpen}
+          setFile={setFile}
+        />
       </MissionModal>
     </div>
   );
