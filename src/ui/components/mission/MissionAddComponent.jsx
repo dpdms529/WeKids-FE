@@ -2,6 +2,7 @@
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputDateBox from "@/src/ui/components/atoms/InputDateBox";
 import ButtonGroup from "@/src/ui/components/mission/ButtonGroup";
+import MissionConfirmModal from "./MissionConfirmModal";
 import { useEffect, useState } from "react";
 
 export default function MissionAddComponent({ setIsModalOpen }) {
@@ -12,6 +13,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   const [reward, setReward] = useState("");
   const [period, setPeriod] = useState("");
   const [checked, setChecked] = useState(false);
+  const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
 
   useEffect(() => {
     if(child.length && category && title && method && reward && period){
@@ -36,13 +38,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
 
   const handleCancel = () => {
     if (child.length || category || title || method || reward || period) {
-      if (
-        confirm(
-          "입력된 데이터가 있습니다. 취소하면 작성 중인 내용이 모두 삭제됩니다. 계속하시겠습니까?"
-        )
-      ) {
-        setIsModalOpen(false);
-      }
+      setConfirmModalOpen(true);
     } else {
       setIsModalOpen(false);
     }
@@ -130,6 +126,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
               >
                 미 션 등 록
               </CustomButton>
+              {isConfirmModalOpen && <MissionConfirmModal setParentOpen={setIsModalOpen} setOpen={setConfirmModalOpen} />}
             </div>
           </div>
         </div>
