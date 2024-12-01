@@ -5,7 +5,6 @@ import { BASE_URL } from "../constants/url";
 
 const session = await auth();
 const authorization = session?.user?.Authorization;
-console.log(authorization);
 
 const headers = {
   "Content-Type": "application/json",

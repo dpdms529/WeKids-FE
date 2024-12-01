@@ -7,6 +7,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
       authorize: async (credentials) => {
+        console.log("credentials", credentials);
+
         const cookieStore = await cookies();
 
         if (credentials.token) {
@@ -25,12 +27,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         cookieStore.delete("name");
         cookieStore.delete("birthday");
 
-        const response = await fetch("http://localhost:8080/api/v1/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
+        let body;
+
+        if (credentials.memberType === "PARENT") {
+          body = {
             birthday: credentials.birthday,
             name: credentials.name,
             phone: credentials.phone,
@@ -38,12 +38,33 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             email: credentials.email,
             social: credentials.social,
             memberType: credentials.memberType,
-          }),
+          };
+        } else if (credentials.memberType === "CHILD") {
+          body = {
+            birthday: credentials.birthday,
+            name: credentials.name,
+            phone: credentials.phone,
+            simplePassword: credentials.simplePassword,
+            email: credentials.email,
+            social: credentials.social,
+            memberType: credentials.memberType,
+            guardianName: credentials.guardianName,
+            guardianBirthday: credentials.guardianBirthday,
+            guardianPhone: credentials.guardianPhone,
+          };
+        }
+
+        const response = await fetch("http://localhost:8080/api/v1/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
         });
 
         if (!response.ok) {
           if (response.status === 409) console.error("이미 가입한 회원입니다.");
-          else console.error("failed to fetch:");
+          else console.error("failed to fetch:", response);
           return null;
         }
 

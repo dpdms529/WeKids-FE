@@ -7,13 +7,20 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSignUpStore } from "@/src/stores/accountStore";
 
-export default function Top({ setAllChecked }) {
+export default function Top({ setAllChecked, data }) {
   const [phoneChecked, setphoneChecked] = useState(false);
-  const { name, email, phone, setName, setEmail, setPhone } = useSignUpStore();
+  const { name, email, phone, birthday, setName, setEmail, setPhone, setBirthday } =
+    useSignUpStore();
   const router = useRouter();
 
   useEffect(() => {
-    email != "" && name != "" ? setphoneChecked(true) : setphoneChecked(false); // 추후에 구현
+    setEmail(data.email);
+    setName(data.name);
+    setBirthday(data.birthday);
+  }, []);
+
+  useEffect(() => {
+    email !== "" && name !== "" ? setphoneChecked(true) : setphoneChecked(false); // 추후에 구현
     setAllChecked(email !== "" && name !== "");
   }, [phone, email, name, setAllChecked]);
 

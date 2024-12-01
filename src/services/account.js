@@ -6,13 +6,15 @@ import { BASE_URL } from "../constants/url";
 const session = await auth();
 const authorization = session?.user?.Authorization;
 
+const headers = {
+  "Content-Type": "application/json",
+  Cookie: `Authorization=${authorization}`,
+};
+
 export const fetchAccounts = async () => {
   const response = await fetch(`${BASE_URL}/accounts/baas`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Cookie: `Authorization=${authorization}`,
-    },
+    headers: headers,
   });
 
   if (!response.ok) {
@@ -25,7 +27,10 @@ export const fetchAccounts = async () => {
 };
 
 export const fetchChildAccounts = async () => {
-  const response = await fetch(`${BASE_URL}/accounts/children`);
+  const response = await fetch(`${BASE_URL}/accounts/children`, {
+    method: "GET",
+    headers: headers,
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch child accounts");
