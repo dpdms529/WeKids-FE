@@ -53,6 +53,12 @@ const TransferComplete = ({
                 strokeWidth={0.5}
               />
             </div>
+            {transferData.memo && (
+              <p className="text-R-14 text-neutral-300 pt-2 px-4 py-2 bg-[#F5F5F5] rounded-[100px] inline-block">
+                  {transferData.memo}
+              </p>
+            )}
+
           </div>
         </div>
   

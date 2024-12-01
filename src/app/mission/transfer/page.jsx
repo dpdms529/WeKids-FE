@@ -4,7 +4,7 @@ import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
 import { useState } from "react";
 import Link from "next/link";
 
-const Page = () => {
+export default function TransferDonePage() {
   const [transferData, setTransferData] = useState({
     sendUser: "xx",
     amount: "xx",
@@ -21,6 +21,4 @@ const Page = () => {
       />
     </Link>
   );
-};
-
-export default Page;
+}
