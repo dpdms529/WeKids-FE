@@ -10,11 +10,11 @@ export function formatDate(dateString) {
   
   export function getStatusStyle(state) {
     const styles = {
-      ACC: "bg-blue-100 text-blue-500",
-      NEW: "bg-green-100 text-green-500",
-      PRO: "bg-pink-100 text-pink-500",
-      REJ: "bg-red-100 text-red-500",
-      DONE: "bg-gray-100 text-gray-500"
+      ACC: "bg-[#57A9FB]",
+      NEW: "bg-[#F8DEE7]",
+      PRO: "bg-[#E1B2C6]",
+      REJ: "bg-[#F24646]",
+      DONE: "bg-[#A3A3A3]"
     };
     return styles[state] || "";
   }

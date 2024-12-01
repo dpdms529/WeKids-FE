@@ -1,24 +1,43 @@
 import Image from "next/image";
-
 const StateIcon = ({ state }) => {
-  const getStateIcon = (state) => {
-    const icons = {
-      ACC: "/images/clean.svg",
-      NEW: "/images/new.svg",
-      PRO: "/images/pencil.svg",
-      REJ: "/images/drawing-pin-solid.svg",
-      DONE: "/images/clean.svg"
+  const getStateInfo = (state) => {
+    const stateInfo = {
+      ACC: {
+        icon: "/images/clean.svg",
+        text: "청소"
+      },
+      NEW: {
+        icon: "/images/pencil.svg",
+        text: "자기계발"
+      },
+      PRO: {
+        icon: "/images/drawing-pin-solid.svg",
+        text: "생활습관"
+      },
+      REJ: {
+        icon: "/images/new.svg",
+        text: "기타"
+      },
+      DONE: {
+        icon: "/images/clean.svg",
+        text: "청소"
+      }
     };
-    return icons[state] || icons.NEW;
+    return stateInfo[state] || stateInfo.NEW;
   };
 
+  const stateInfo = getStateInfo(state);
+
   return (
-    <Image
-      src={getStateIcon(state)}
-      alt={`${state} icon`}
-      width={16}
-      height={16}
-    />
+    <div className="flex items-center gap-[2px]">
+      <Image
+        src={stateInfo.icon}
+        alt={`${state} icon`}
+        width={16}
+        height={16}
+      />
+      <span className="text-xs text-gray-600">{stateInfo.text}</span>
+    </div>
   );
 };
 

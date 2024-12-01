@@ -36,6 +36,7 @@ module.exports = {
         "R-12": ["12px", { lineHeight: "normal", fontWeight: 400 }],
         "R-10": ["10px", { lineHeight: "normal", fontWeight: 400 }],
         "L-20": ["20px", { lineHeight: "normal", fontWeight: 300 }],
+        "L-12": ["12px", { lineHeight: "normal", fontWeight: 300 }],
       },
       fontFamily: {
         Pretend: ["WooridaumB", "sans-serif"],
