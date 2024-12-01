@@ -47,7 +47,8 @@ export default function PasswordTop({
           </p>
         ) : (
           <p className="text-B-20">
-            {title} <br /> 등록해 주세요.
+            {title} <br /> 
+            {type === "송금" ? "입력해주세요." : "등록해 주세요."}
           </p>
         )}
         {isShaking ? (
