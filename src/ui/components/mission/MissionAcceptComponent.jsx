@@ -17,15 +17,12 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
   const [checked, setChecked] = useState(false);
   const [reward, setReward] = useState(0);
   const [period, setPeriod] = useState(new Date());
+  const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
   const AddAndCloseModal = () => {
     // 추후에 api 연결하고 분기처리
-    const userConfirmed = window.confirm(
-      "아이가 인증 전 입니다. 정말로 승인하시겠습니까?",
-    );
 
-    if (userConfirmed) {
-      setIsModalOpen(false);
-    }
+    // setConfirmModalOpen(true);
+    setIsModalOpen(false);
   };
   const getCurrentDateInKoreanFormat = () => {
     const year = period.getFullYear();
@@ -100,6 +97,12 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
             >
               승인
             </CustomButton>
+            {isConfirmModalOpen && (
+              <MissionConfirmModal
+                setParentOpen={setIsModalOpen}
+                setOpen={setConfirmModalOpen}
+              />
+            )}
           </div>
         </div>
       </div>
