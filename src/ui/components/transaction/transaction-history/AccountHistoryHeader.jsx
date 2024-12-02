@@ -43,12 +43,7 @@ export default function AccountHistoryHeader({ name, balance, accountNumber }) {
       direction="column"
       className={`h-[40vh] ${colorTypeMap[account.color].colorClass}`}
     >
-      <Flex
-        align="center"
-        justify="between"
-        direction="row"
-        className="w-full pt-8 pl-3 pr-3"
-      >
+      <Flex align="center" justify="between" direction="row" className="w-full pt-8 pl-3 pr-3">
         <div onClick={handleNavigate} className="cursor-pointer">
           <ArrowLeftIcon className="w-5 h-5 text-black/80" />
         </div>
@@ -59,15 +54,10 @@ export default function AccountHistoryHeader({ name, balance, accountNumber }) {
       </Flex>
       <div className="flex-1 flex items-center">
         <Flex direction="column" align="center">
-          <p
-            className="text-R-14 underline text-black/40"
-            style={{ textUnderlineOffset: "6px" }}
-          >
+          <p className="text-R-14 underline text-black/40" style={{ textUnderlineOffset: "6px" }}>
             {accountNumber}
           </p>
-          <h2 className="text-black/80 text-R-28 mt-3">
-            {Number(balance).toLocaleString()}원
-          </h2>
+          <h2 className="text-black/80 text-R-28 mt-3">{Number(balance).toLocaleString()}원</h2>
         </Flex>
       </div>
       <Flex justify="between" direction="row" className="gap-3 mx-8 mb-8">

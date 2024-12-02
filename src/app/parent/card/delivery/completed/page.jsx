@@ -27,11 +27,7 @@ const CardIssueComplete = () => {
       </div>
 
       <div>
-        <CustomButton
-          size={"large"}
-          rounded={false}
-          onClick={() => router.push(urlPath.HOME)}
-        >
+        <CustomButton size={"large"} rounded={false} onClick={() => router.push(urlPath.HOME)}>
           확인
         </CustomButton>
       </div>

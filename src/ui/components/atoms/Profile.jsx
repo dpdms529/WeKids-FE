@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 
 const PROFILE_DEFAULT = {
@@ -6,7 +5,7 @@ const PROFILE_DEFAULT = {
   height: "h-[60px]",
   bgColor: "bg-white",
   borderColor: "border-2 border-gray-200",
-  imagePath: "/images/chachaping_img.svg",
+  imagePath: "/images/chachapingImg.svg",
   radius: "rounded-full",
 };
 
@@ -15,7 +14,7 @@ const Profile = ({
   height = PROFILE_DEFAULT.height,
   bgColor = PROFILE_DEFAULT.bgColor,
   borderColor = PROFILE_DEFAULT.borderColor,
-  imagePath = PROFILE_DEFAULT.imagePath,
+  profile = PROFILE_DEFAULT.imagePath,
   radius = PROFILE_DEFAULT.radius,
   onClick,
   className = "",
@@ -35,12 +34,7 @@ const Profile = ({
           ${className}
         `}
     >
-      <Image
-        src={imagePath}
-        alt="profile image"
-        fill
-        className="object-cover"
-      />
+      <Image src={profile} alt="profile image" fill className="object-cover" />
     </div>
   );
 };

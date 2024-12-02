@@ -8,9 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function Bottom({ setAllChecked, option = 3 }) {
   const [allCheck, setAllCheck] = useState(false);
-  const [checkedItems, setCheckedItems] = useState(
-    Array(assigndata.length).fill(false),
-  );
+  const [checkedItems, setCheckedItems] = useState(Array(assigndata.length).fill(false));
 
   useEffect(() => {
     const items = checkedItems.slice(0, option);

@@ -1,21 +1,5 @@
-import Profile from "../../atoms/Profile";
-import NoAccountCard from "./EmptyAccountCard";
+import EmptyAccountCard from "./EmptyAccountCard";
 
-export default function NoAccountView({ accountData }) {
-  return (
-    <div className="flex flex-col h-full">
-      <div className="flex space-x-3 mb-6 ml-1 mt-4">
-        <div className="relative">
-          <Profile
-            accountInfo={accountData.parent}
-            imagePath={accountData.parent.profile}
-            className="w-10 h-10 relative z-10 ring-1 ring-black/60"
-          />
-        </div>
-      </div>
-      <div className="flex justify-center">
-        <NoAccountCard />
-      </div>
-    </div>
-  );
+export default function NoAccountView() {
+  return <EmptyAccountCard />;
 }

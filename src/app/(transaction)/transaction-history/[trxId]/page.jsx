@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { use } from "react";
 import { useTransactionDetail, useUpdateTransactionMemo } from "@/src/services/transaction";
 import Loader from "@/src/ui/components/atoms/Loader";
@@ -61,9 +61,7 @@ const TransactionDetailPage = ({ params }) => {
   return (
     <div className="bg-white w-full h-full flex flex-col items-center justify-between">
       <div className="w-full px-5 py-10">
-        <div className="w-full flex items-center text-B-22 my-5">
-          {data.title}
-        </div>
+        <div className="w-full flex items-center text-B-22 my-5">{data.title}</div>
         <Memo memo={memo} setMemo={setMemo} />
         <hr />
         <div className="w-full">
@@ -78,7 +76,7 @@ const TransactionDetailPage = ({ params }) => {
         <ShareButton />
         <CustomButton onClick={handleUpdateMemo} isLoading={isUpdating}>
           확인
-          </CustomButton>
+        </CustomButton>
       </div>
     </div>
   );
