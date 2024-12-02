@@ -29,22 +29,15 @@ const childAccountNullData = {
 
 export default function ChildHome() {
   return (
-    <div className="flex flex-col h-screen bg-white">
-      {/* Card Section */}
-      <div className="p-4">
-        <div className="bg-[#E8F1FF] rounded-[10px] w-[331px] h-[252px] p-6 flex flex-col">
-          <div className="text-B-28 font-medium mb-4">
-            {childAccountData.name}
+    <div className="bg-[#E8F1FF] rounded-[10px] w-[331px] h-[252px] p-6 flex flex-col">
+      <p className="text-B-28 font-medium mb-4">{childAccountData.name}</p>
+      <div className="flex-1">
+        {/* url 수정필요 */}
+        <Link href={urlPath.CHILD_CARD}>
+          <div className="border-2 border-dashed border-black/40 rounded-lg h-full w-full flex items-center justify-center">
+            <PlusIcon width={50} height={50} color="grey" variant="soft" />
           </div>
-          <div className="flex-1">
-            {/* url 수정필요 */}
-            <Link href={urlPath.CHILD_CARD}>
-              <div className="border-2 border-dashed border-black/40 rounded-lg h-full w-full flex items-center justify-center">
-                <PlusIcon width={50} height={50} color="grey" variant="soft" />
-              </div>
-            </Link>
-          </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
