@@ -85,25 +85,18 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
 
   return (
     <div className="flex flex-col w-full justify-center items-center p-10 h-full">
-      <div className="flex flex-col gap-1 mb-5 w-full ">
-        <div className="flex flex-row text-B-22 mb-1">
-          <Profile
-            width="w-[30px]"
-            height="h-[30px]"
-            imagePath="https://ssl.pstatic.net/static/pwe/address/img_profile.png"
-          />
-        </div>
-        <div className="text-black text-B-20">{data[5]}</div>
+      <div className="flex flex-col gap-1 mb-5 w-full">
+        <div className="text-black text-R-15">{data[5]}</div>
       </div>
       <div className="flex flex-col w-full gap-2 mb-3 overflow-auto scrollbar-hide">
-        <div className="text-R-14">💡미션 완료 방법</div>
-        <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
+        <div className="text-R-10">미션 완료 방법</div>
+        <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-black">
           {data[1]}
         </div>
-        <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
-          미션 성공 시 총 <strong>{reward}</strong> 원을 받을 수 있어요 💙
+        <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-black">
+          미션 성공 시 총 <strong>{reward}</strong> 원을 받을 수 있어요
         </div>
-        <div className="p-3 bg-blue-100 border rounded-lg text-R-12 shadow-md text-black">
+        <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-black">
           🍪{" "}
           <strong className="text-main01">
             {period ? getCurrentDateInKoreanFormat() : ""}
@@ -111,8 +104,8 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
           까지 완료할 수 있어요
         </div>
 
-        <div className="text-R-14 mt-6">💡미션 완료 인증하기</div>
-        <div className="flex flex-col items-center justify-center p-3 mb-6 bg-blue-100 w-full h-32 border shadow-md rounded-lg">
+        <div className="text-R-10 mt-6">미션 완료 인증하기</div>
+        <div className="flex flex-col items-center justify-center p-3 mb-6 bg-main02/20 w-full h-32 border shadow-md rounded-lg">
           {previewURL ? (
             <div className="flex flex-row gap-2 justify-between w-full h-28">
               <Image
@@ -130,16 +123,16 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
                 <Image
                   src="/images/deleteImg.svg"
                   alt="delete image"
-                  width={100}
-                  height={100}
+                  width={25}
+                  height={25}
                 />
-                <p className="text-R-12">삭제</p>
+                <p className="text-R-10">삭제</p>
               </button>
             </div>
           ) : (
-            <>
+            <div className="flex flex-col items-center">
               <button
-                className="w-12 h-12 flex items-center justify-center bg-black/10 hover:bg-black/40 rounded-full"
+                className="w-12 h-12 flex items-center justify-center bg-transparent rounded-full"
                 onClick={handleFileButtonClick}
               >
                 <Image
@@ -147,7 +140,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
                   alt="upload image"
                   width={50}
                   height={50}
-                  className="bg-blue-100"
+                  className="bg-transparent"
                 />
               </button>
               <input
@@ -157,15 +150,15 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
                 type="file"
                 onChange={handleFileOnChange}
               />
-              <p className="text-sm text-gray-600 mt-2">
+              <p className="text-R-14 text-black/40 mt-2">
                 드래그하거나 파일을 업로드하세요.
               </p>
-            </>
+            </div>
           )}
         </div>
-        <div className="text-R-14">💡부모님께 보낼 메시지</div>
-        <div className=" bg-blue-100 rounded-lg text-R-12 shadow-md text-black">
-          <textarea className="w-full h-20 bg-blue-100 rounded-md resize-none outline-none p-2"></textarea>
+        <div className="text-R-10">부모님께 보낼 메시지</div>
+        <div className=" bg-main02/20 rounded-lg text-R-12 shadow-md text-black">
+          <textarea className="w-full h-20 bg-transparent rounded-md resize-none outline-none p-2"></textarea>
         </div>
         <div className="flex flex-row w-full justify-center h-[40px] px-10 mt-9">
           <div className="flex flex-col h-full w-full">
@@ -173,7 +166,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
               size="mediumLarge"
               rounded={true}
               onClick={AddAndCloseModal}
-              className="text-R-18 bg-main03 w-full"
+              className="text-R-20 bg-main02 w-full"
             >
               미 션 완 료
             </CustomButton>
