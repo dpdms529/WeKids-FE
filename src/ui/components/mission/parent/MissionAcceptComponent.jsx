@@ -19,10 +19,19 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
   const [reward, setReward] = useState(0);
   const [period, setPeriod] = useState(new Date());
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
-  const AddAndCloseModal = () => {
+  const [text, setText] = useState('');
+  const AddAndCloseModal = (type) => {
     // 추후에 api 연결하고 분기처리
-
-    setConfirmModalOpen(true);
+    if(type == "accept"){
+      setText(`아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`)
+      setConfirmModalOpen(true);
+      
+    }
+    else if(type == "denied"){
+      setText(`반려 버튼을 누르셨습니다. <br /> 정말 반려하시겠습니까?`)
+      setConfirmModalOpen(true);
+    }
+    
     //setIsModalOpen(false);
   };
   const getCurrentDateInKoreanFormat = () => {
@@ -38,7 +47,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className="flex flex-col gap-1 mb-5 w-full pt-10 px-7 ">
+      <div className="flex flex-col gap-1 mb-2 w-full pt-10 px-7 ">
         <div className="flex flex-row text-B-22 mb-1">
           <Profile
             width="w-[23px]"
@@ -53,11 +62,10 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
             width={19}
             height={19}
             alt="delete icon"
-            className="cursor-pointer"
           />
         </div>
       </div>
-      <div className="flex flex-col w-full gap-2 mb-3 px-7 pb-10 overflow-auto">
+      <div className="flex flex-col w-full gap-2 mb-3 pt-1 px-7 pb-1 overflow-auto">
         <div className="text-R-10 text-sub02">미션 완료 방법</div>
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           {data[1]}
@@ -89,7 +97,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
             <CustomButton
               size="mediumLarge"
               rounded={true}
-              onClick={AddAndCloseModal}
+              onClick={() => AddAndCloseModal("accept")}
               className="text-R-15 bg-main02 w-full"
             >
               승인
@@ -98,7 +106,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
               <MissionConfirmModal
                 setParentOpen={setIsModalOpen}
                 setOpen={setConfirmModalOpen}
-                text={`아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`}
+                text={text}
               />
             )}
           </div>
@@ -106,7 +114,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
             <CustomButton
               size="mediumLarge"
               rounded={true}
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => AddAndCloseModal("denied")}
               className="flex text-R-15 bg-red01 hover:bg-red-700 w-full"
             >
               반려
