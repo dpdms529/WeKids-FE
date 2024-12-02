@@ -12,7 +12,7 @@ export default function FilterHeader() {
         onClick={() => setIsModalOpen(true)}
       >
         <Image
-          src="/images/filters.svg"
+          src="/images/filtersImg.svg"
           alt="filter icon"
           width={16}
           height={16}

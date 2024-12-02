@@ -3,23 +3,23 @@ const StateIcon = ({ state }) => {
   const getStateInfo = (state) => {
     const stateInfo = {
       ACC: {
-        icon: "/images/clean.svg",
+        icon: "/images/trashImg.svg",
         text: "청소"
       },
       NEW: {
-        icon: "/images/pencil.svg",
+        icon: "/images/pencilImg.svg",
         text: "자기계발"
       },
       PRO: {
-        icon: "/images/drawing-pin-solid.svg",
+        icon: "/images/pinImg.svg",
         text: "생활습관"
       },
       REJ: {
-        icon: "/images/new.svg",
+        icon: "/images/ectImg.svg",
         text: "기타"
       },
       DONE: {
-        icon: "/images/clean.svg",
+        icon: "/images/trashImg.svg",
         text: "청소"
       }
     };

@@ -43,7 +43,7 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
             <div className="grid grid-cols-3 gap-2 mb-2">
               <button className="flex items-center gap-1 px-3 py-2 bg-gray-50 rounded-lg">
                 <Image 
-                  src="/images/clean.svg" 
+                  src="/images/trashImg.svg" 
                   alt="청소" 
                   width={16} 
                   height={16}
@@ -52,7 +52,7 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
               </button>
               <button className="flex items-center gap-1 px-3 py-2 bg-gray-50 rounded-lg">
                 <Image 
-                  src="/images/pencil.svg" 
+                  src="/images/pencilImg.svg" 
                   alt="자기계발" 
                   width={16} 
                   height={16}
@@ -61,7 +61,7 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
               </button>
               <button className="flex items-center gap-1 px-3 py-2 bg-gray-50 rounded-lg">
                 <Image 
-                  src="/images/drawing-pin-solid.svg" 
+                  src="/images/pinImg.svg" 
                   alt="생활습관" 
                   width={16} 
                   height={16}
