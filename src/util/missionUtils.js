@@ -10,24 +10,24 @@ export function formatDate(dateString) {
   
   export function getStatusStyle(state) {
     const styles = {
-      ACC: "bg-[#57A9FB]",
-      NEW: "bg-[#F8DEE7]",
-      PRO: "bg-[#E1B2C6]",
-      REJ: "bg-[#F24646]",
-      DONE: "bg-[#A3A3A3]"
+      ACC: "bg-main02",
+      NEW: "bg-pink01",
+      PRO: "bg-purple01",
+      REJ: "bg-red01",
+      DONE: "bg-neutral-400"
     };
     return styles[state] || "";
   }
   
   export function getBackgroundStyle(state) {
     const styles = {
-      ACC: "bg-[#9BD5F1]", 
-      NEW: "bg-[#57A9FB] opacity-20",
-      PRO: "bg-[#DCF0FA]",
-      REJ: "bg-[#FCDADA] flex-shrink-0",
+      ACC: "bg-blue01", 
+      NEW: "bg-main02 opacity-20",
+      PRO: "bg-main02 opacity-20",
+      REJ: "bg-pink01",
       DONE: "bg-stone-300"
     };
-    return styles[state] || "bg-[#52B6E7]";
+    return styles[state] || "bg-";
   }
   
   export function getStatusText(state) {
