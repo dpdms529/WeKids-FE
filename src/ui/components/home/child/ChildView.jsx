@@ -1,5 +1,5 @@
 import BlueCardBox from "../BlueCardBox";
-import EmptyAccountCard from "../parent/EmptyAccountCard";
+import EmptyAccountCard from "./EmptyAccountCard";
 
 const childAccountData = {
   childId: 1,
