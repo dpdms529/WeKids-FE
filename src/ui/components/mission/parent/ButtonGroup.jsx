@@ -46,8 +46,14 @@ export default function ButtonGroup({
   };
 
   const handleBottomButtonClick = (id) => {
-    setSelectedBottomButton(id);
-    setBottomButtonChecked(id);
+    if(id == selectedBottomButton){
+      setSelectedBottomButton("");
+    setBottomButtonChecked("");
+    }
+    else{
+      setSelectedBottomButton(id);
+      setBottomButtonChecked(id);
+    }
   };
 
   const getButtonClasses = (id, isSelected) => {
