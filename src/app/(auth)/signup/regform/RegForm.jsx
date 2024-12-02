@@ -24,7 +24,7 @@ export default function RegForm({ data }) {
       <div className="text-R-20 text-black/80 mb-[57px] px-[24px]">
         개인정보 입력
       </div>
-      <div className="flex flex-col items-center w-full h-full px-[40px] space-y-[48px] overflow-y-auto scrollbar-hide">
+      <div className="flex flex-col items-center w-full h-full px-[30px] space-y-[48px] overflow-y-auto scrollbar-hide">
         <Top setAllChecked={setTopChecked} data={data} />
         <Bottom setAllChecked={setBottomChecked} />
       </div>
