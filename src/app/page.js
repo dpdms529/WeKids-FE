@@ -12,24 +12,16 @@ export default async function Home() {
   const authorization = session?.user?.Authorization;
 
   if (!authorization) redirect("/onboard");
-
   const memberType = session.user.role;
 
-  // const components =
-  //   memberType === "ROLE_PARENT" ? (
-  //     <ParentHome authorization={authorization} />
-  //   ) : (
-  //     <ChildHome />
-  //   );
-
   return (
-    <div className="flex flex-col w-full h-full space-y-8">
+    <div className="flex flex-col w-full h-full space-y-6">
       <Header />
       <div className="flex justify-center">
         {memberType === "ROLE_PARENT" ? (
           <ParentHome authorization={authorization} />
         ) : (
-          <ChildHome />
+          <ChildHome authorization={authorization} />
         )}
       </div>
       <div className="flex justify-center">

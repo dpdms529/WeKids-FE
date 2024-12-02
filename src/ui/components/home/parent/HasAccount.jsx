@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import Profile from "../../atoms/Profile";
 import BlueCardBox from "../BlueCardBox";
-import NoButtonAccountCard from "./AccountGuide";
+import ChildNoCard from "./ChildNoCard";
 
 export default function AccountView({ accountData }) {
   const [selectedAccount, setSelectedAccount] = useState(
-    accountData?.parent || null,
+    accountData?.parent || null
   );
   const [selectedProfile, setSelectedProfile] = useState("parent");
 
@@ -85,14 +85,10 @@ export default function AccountView({ accountData }) {
       </div>
 
       <div className="flex justify-center">
-        {selectedAccount ? (
-          selectedAccount.accountNumber ? (
-            <BlueCardBox selectedAccount={selectedAccount} />
-          ) : (
-            <NoButtonAccountCard mainText="자녀의 카드 발급을" />
-          )
+        {selectedAccount?.accountNumber ? (
+          <BlueCardBox selectedAccount={selectedAccount} />
         ) : (
-          <NoButtonAccountCard />
+          <ChildNoCard />
         )}
       </div>
     </div>
