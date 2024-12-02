@@ -4,6 +4,7 @@ import InputDateBox from "@/src/ui/components/atoms/InputDateBox";
 import MissionConfirmModal from "../MissionConfirmModal";
 import { useEffect, useState } from "react";
 import ButtonGroup from "./ButtonGroup";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function MissionAddComponent({ setIsModalOpen }) {
   const [child, setChild] = useState([]);
@@ -47,16 +48,17 @@ export default function MissionAddComponent({ setIsModalOpen }) {
     if (checked) {
       setIsModalOpen(false);
     } else {
-      alert("빈칸을 전부 채워주세요.");
+      toast('빈칸을 모두 채워주세요!')
     }
   };
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className="w-full flex flex-col text-B-18 mb-5 px-7 pt-10">
+      <Toaster />
+      <div className="text-B-18 mb-5 px-7 pt-10">
         미션 등록하기
       </div>
-      <div className="flex flex-col w-full overflow-y-auto gap-3 h-full mb-1 px-7 pb-10">
+      <div className="w-full overflow-y-auto gap-3 h-full mb-1 px-7 pb-10">
         <div className="flex flex-col gap-1">
           <ButtonGroup
             setTopButtonChecked={setChild}

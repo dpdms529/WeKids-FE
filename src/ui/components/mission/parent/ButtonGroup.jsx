@@ -17,33 +17,29 @@ export default function ButtonGroup({
   ];
 
   const bottomButtons = [
-    { id: "cleaning", label: "청소", icon: "/images/broomImg.svg" },
+    { id: "cleaning", label: "청소", icon: "/images/trashImg.svg" },
     { id: "habit", label: "생활습관", icon: "/images/pinImg.svg" },
     { id: "improve", label: "자기계발", icon: "/images/pencilImg.svg" },
-    { id: "etc", label: "기타", icon: "/images/etcImg.svg" },
+    { id: "etc", label: "기타", icon: "/images/ectImg.svg" },
   ];
 
   const handleTopButtonClick = (id) => {
     if (id === "all") {
-      if (isAllSelected) {
-        setIsAllSelected(false);
-        setTopButtonChecked([]);
-      } else {
-        setIsAllSelected(true);
-        const allSelections = ["child1", "child2", "child3"];
-        setSelectedTopButtons(allSelections);
-        setTopButtonChecked(allSelections);
-      }
+      const allSelections = isAllSelected ? [] : ["child1", "child2", "child3"];
+      setSelectedTopButtons(allSelections);
+      setTopButtonChecked(allSelections);
+      setIsAllSelected(!isAllSelected);
     } else {
       const newSelection = selectedTopButtons.includes(id)
         ? selectedTopButtons.filter((button) => button !== id)
         : [...selectedTopButtons, id];
-
+  
       setSelectedTopButtons(newSelection);
-      setIsAllSelected(false);
       setTopButtonChecked(newSelection);
+      setIsAllSelected(false);
     }
   };
+  
 
   const handleBottomButtonClick = (id) => {
     if(id == selectedBottomButton){

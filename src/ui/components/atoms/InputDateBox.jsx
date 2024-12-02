@@ -4,7 +4,7 @@ const InputDateBox = ({
   width = "100%",
   height = 40,
   value = "",
-  label = "💡미션 만료일",
+  label = "미션 만료일",
   onChange,
   className,
 }) => {
