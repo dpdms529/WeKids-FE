@@ -85,10 +85,10 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className="flex flex-col gap-1 mb-5 pt-10 px-10 w-full">
+      <div className="flex flex-col gap-1 mb-5 pt-10 px-7 w-full">
         <div className="text-black text-R-15">{data[5]}</div>
       </div>
-      <div className="flex flex-col pb-10 px-10 w-full gap-2 mb-3 overflow-auto">
+      <div className="flex flex-col pb-10 px-7 w-full gap-2 mb-3 overflow-auto">
         <div className="text-R-10">미션 완료 방법</div>
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-black">
           {data[1]}
@@ -121,7 +121,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
                 onClick={handleDeleteFile}
               >
                 <Image
-                  src="/images/deleteImg.svg"
+                  src="/images/trashImg.svg"
                   alt="delete image"
                   width={25}
                   height={25}
