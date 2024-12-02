@@ -1,8 +1,7 @@
-"use client";
-
 import { useRef, useState } from "react";
 import CustomButton from "../../atoms/CustomButton";
 import Image from "next/image";
+import imageCompression from "browser-image-compression";
 
 const data = {
   1: "미션 설명이 들어갑니다. 미션 설명은 총 몇 자 인가요? 넓이 영역에 대해 한번 고려 해보셔야 할 것 같습니다. 보통 설명이 이렇게까지 길어지는 일이 있을지는 잘 모르겠습니다. 부모님이 자식에게 이 만큼 설명하는 것이 아이 연령을 고려했을 때 불필요한 일일 수도 있습니다만 저희는 최대 길이 영역을 고려하여 디자인 진행을 해야합니다",
@@ -18,70 +17,68 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
   const [reward, setReward] = useState(0);
   const [period, setPeriod] = useState(new Date());
   const [message, setMessage] = useState("");
-  const [checked, setChecked] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
   const AddAndCloseModal = () => {
     setIsModalOpen(false);
   };
 
-  const handleFileOnChange = (event) => {
-    event.preventDefault();
-    const file = event.target.files[0];
+  const compressAndSetFile = async (file) => {
     if (file) {
-      setFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewURL(reader.result);
+      const options = {
+        maxSizeMB: 1, // 최대 1MB로 압축
+        useWebWorker: true,
       };
-      reader.readAsDataURL(file);
+
+      try {
+        const compressedFile = await imageCompression(file, options);
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreviewURL(reader.result);
+        };
+        reader.readAsDataURL(compressedFile);
+
+        setFile(compressedFile);
+      } catch (error) {
+        console.error("Error compressing the file:", error);
+      }
     }
   };
 
-  const getCurrentDateInKoreanFormat = () => {
-    const year = period.getFullYear();
-    const month = String(period.getMonth() + 1).padStart(2, "0");
-    const day = String(period.getDate()).padStart(2, "0");
-
-    const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
-    const weekDay = weekDays[period.getDay()];
-
-    return `${year}년 ${month}월 ${day}일 (${weekDay})`;
-  };
-
-  const handleFileButtonClick = (e) => {
-    e.preventDefault();
-    fileRef.current.click();
+  const handleFileOnChange = async (event) => {
+    event.preventDefault();
+    const file = event.target.files[0];
+    await compressAndSetFile(file);
   };
 
   const handleDragOver = (event) => {
     event.preventDefault();
-    event.stopPropagation();
+    setIsDragging(true);
   };
 
   const handleDragLeave = (event) => {
     event.preventDefault();
-    setIsDragging(false); // 드래그 상태 해제
+    setIsDragging(false);
   };
 
-  const handleDrop = (event) => {
+  const handleDrop = async (event) => {
     event.preventDefault();
-    event.stopPropagation();
+    setIsDragging(false);
 
     const file = event.dataTransfer.files[0];
-    if (file) {
-      setFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewURL(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    await compressAndSetFile(file);
   };
 
   const handleDeleteFile = () => {
     setPreviewURL("");
     setFile(null);
+    setIsDragging(false);
+  };
+
+  const handleFileButtonClick = (e) => {
+    e.preventDefault();
+    fileRef.current.click();
   };
 
   return (
@@ -101,13 +98,22 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           🍪{" "}
           <span className="text-sub02">
-            {period ? getCurrentDateInKoreanFormat() : ""}
+            {period
+              ? `${period.getFullYear()}년 ${period.getMonth() + 1}월 ${period.getDate()}일`
+              : ""}
           </span>{" "}
           까지 완료할 수 있어요
         </div>
 
         <div className="text-R-10 mt-6 text-sub02">미션 완료 인증하기</div>
-        <div className="flex flex-col items-center justify-center p-3 mb-6 bg-main02/20 w-full h-32 border shadow-md rounded-lg">
+        <div
+          className={`flex flex-col items-center justify-center p-3 mb-6 ${
+            isDragging ? "bg-white" : "bg-main02/20"
+          } w-full h-32 border shadow-md rounded-lg`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
           {previewURL ? (
             <div className="flex flex-row gap-2 justify-between w-full h-28">
               <Image
@@ -117,7 +123,6 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
                 height={100}
                 className="rounded-md object-contain bg-white w-4/5 h-auto"
               />
-
               <button
                 className="w-1/5 h-28 flex flex-col items-center justify-center bg-black/10 hover:bg-black/40 rounded-md"
                 onClick={handleDeleteFile}
@@ -132,12 +137,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
               </button>
             </div>
           ) : (
-            <div
-              className="flex flex-col items-center"
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-            >
+            <div className="flex flex-col items-center">
               <button
                 className="w-12 h-12 flex items-center justify-center bg-transparent rounded-full"
                 onClick={handleFileButtonClick}
@@ -165,7 +165,9 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
         </div>
         <div className="text-R-10 text-sub02">부모님께 보낼 메시지</div>
         <div
-          className={`${message ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black`}
+          className={`${
+            message ? "bg-main02/20" : "bg-grey01/20"
+          } rounded-lg text-R-12 shadow-md text-black`}
         >
           <textarea
             value={message}
