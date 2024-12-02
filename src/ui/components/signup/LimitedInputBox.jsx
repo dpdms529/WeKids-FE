@@ -86,6 +86,15 @@ const LimitedInputBox = ({
         boxShadow: "none",
       };
     }
+    else if (!isCompleted && value && !isFocused) {
+      return {
+        ...baseStyles,
+        border: "1px solid #A3A3A3",
+        borderRadius: "12px",
+        color: "#000000",
+        boxShadow: "none",
+      };
+    }
   };
 
   const containerStyles = {
