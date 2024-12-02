@@ -18,8 +18,10 @@ export const useSignUpStore = create(
       setBirthday: (birthday) => set({ birthday: birthday }),
       setPassword: (password) => set({ password: password }),
       setGuardianName: (guardianName) => set({ guardianName: guardianName }),
-      setGuardianBirthday: (guardianBirthday) => set({ guardianBirthday: guardianBirthday }),
-      setGuardianPhone: (guardianPhone) => set({ guardianPhone: guardianPhone }),
+      setGuardianBirthday: (guardianBirthday) =>
+        set({ guardianBirthday: guardianBirthday }),
+      setGuardianPhone: (guardianPhone) =>
+        set({ guardianPhone: guardianPhone }),
       clearData: () =>
         set({
           name: "",
@@ -32,6 +34,9 @@ export const useSignUpStore = create(
           guardianPhone: "",
         }),
     }),
-    { name: "signup-storage", storage: createJSONStorage(() => sessionStorage) }
-  )
+    {
+      name: "signup-storage",
+      storage: createJSONStorage(() => sessionStorage),
+    },
+  ),
 );

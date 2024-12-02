@@ -15,7 +15,11 @@ export default function Page() {
     <section>
       <Flex direction="column" justify="between">
         <Box>
-          <TopBar name="조예은" balance={balance} accountNumber="1111-11-111111" />
+          <TopBar
+            name="조예은"
+            balance={balance}
+            accountNumber="1111-11-111111"
+          />
         </Box>
         <Box className="cursor-pointer">
           <TransactionFilter />
