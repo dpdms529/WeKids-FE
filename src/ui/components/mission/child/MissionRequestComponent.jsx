@@ -87,10 +87,10 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
       <div className="flex flex-col gap-1 mb-5 pt-10 px-7 w-full">
-        <div className="text-black text-R-15">{data[5]}</div>
+        <div className="text-sub02 text-R-15">{data[5]}</div>
       </div>
       <div className="flex flex-col pb-10 px-7 w-full gap-2 mb-3 overflow-auto">
-        <div className="text-R-10">미션 완료 방법</div>
+        <div className="text-R-10 text-sub02">미션 완료 방법</div>
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           {data[1]}
         </div>
@@ -163,7 +163,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
             </div>
           )}
         </div>
-        <div className="text-R-10">부모님께 보낼 메시지</div>
+        <div className="text-R-10 text-sub02">부모님께 보낼 메시지</div>
         <div
           className={`${message ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black`}
         >
