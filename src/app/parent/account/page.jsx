@@ -11,7 +11,11 @@ export default function Page() {
   return (
     <div className="flex flex-col w-full h-full">
       <Header />
-      {isClicked ? <AccountList /> : <Identification setIsChecked={setIsClicked} />}
+      {isClicked ? (
+        <AccountList />
+      ) : (
+        <Identification setIsChecked={setIsClicked} />
+      )}
     </div>
   );
 }

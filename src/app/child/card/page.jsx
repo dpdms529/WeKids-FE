@@ -32,16 +32,32 @@ export default function Page() {
               실적한도 제한 없이 어쩌고 저쩌고 <br /> 위키즈 카드에 대한 설명
             </div>
             <div className="flex flex-row justify-between px-9">
-              <Image src="/images/familyImg.svg" alt="family" width={25} height={25} />
+              <Image
+                src="/images/familyImg.svg"
+                alt="family"
+                width={25}
+                height={25}
+              />
               <div className="h-8 border-l-2 border-white"></div>
-              <Image src="/images/busImg.svg" alt="bus" width={25} height={25} />
+              <Image
+                src="/images/busImg.svg"
+                alt="bus"
+                width={25}
+                height={25}
+              />
               <div className="h-8 border-l-2 border-white"></div>
               <Pencil1Icon className="w-6 h-6" />
             </div>
           </div>
           <div className="flex flex-row w-full justify-between">
             {Object.values(imgSrc).map((img, idx) => (
-              <Image key={idx} src={`/images/${img}.svg`} alt={`${img}`} width={54} height={54} />
+              <Image
+                key={idx}
+                src={`/images/${img}.svg`}
+                alt={`${img}`}
+                width={54}
+                height={54}
+              />
             ))}
           </div>
         </div>

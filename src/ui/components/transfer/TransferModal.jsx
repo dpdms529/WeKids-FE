@@ -58,7 +58,12 @@ const TransferModal = ({
         </p>
       </div>
       <div className="flex flex-row w-[393px] space-x-3 mt-7 px-8 pb-2">
-        <CustomButton size="small" color="gray" rounded={true} onClick={modalHandler}>
+        <CustomButton
+          size="small"
+          color="gray"
+          rounded={true}
+          onClick={modalHandler}
+        >
           취소
         </CustomButton>
         <CustomButton size="medium" rounded={true} onClick={handleSubmit}>
