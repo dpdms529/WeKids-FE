@@ -1,21 +1,16 @@
-import Image from "next/image";
-import Link from "next/link";
+import { MessageBox } from "../mission/MessageBox";
+import { AccountCardLayout } from "./AccountCardLayout";
 
-const EmptyAccountCard = () => {
+export const EmptyAccountCard = ({ name }) => {
   return (
-    <div className="w-[332px] h-[299px] flex flex-col items-center p-[20px] space-y-3 rounded-[13px] bg-main02">
-      <div className="w-full">
-        <p>등록된 계좌가 없습니다!</p>
-        <p>계좌를 먼저 등록해주세요!</p>
-      </div>
-      <Link
-        href="/parent/account"
-        className="flex flex-col items-center bg-white w-[285px] h-[121px] rounded-[10px]"
-      >
-        <Image src="/images/favicon.svg" alt="파비콘" width={78} height={52} />
-        <p>계좌 가져오기</p>
-      </Link>
-      <div className="w-[282px] h-[58px] border">티니핑들 이미지</div>
+    <div className="flex flex-col items-center">
+      <AccountCardLayout title={name + " 자녀님 위키즈 카드가 없네요!"}>
+        <MessageBox
+          subtitle={`위키즈 체크카드\n발급하러 가기`}
+          description="우리 아이의 경제공부, 위키즈 체크카드로 해결!"
+          imgUrl ="/images/noCardIconImg.svg"
+        />
+      </AccountCardLayout>
     </div>
   );
 };
