@@ -34,7 +34,8 @@ export const agreeAccountInquiry = async (identification) => {
     Cookie: `Authorization=${authorization}`,
   };
 
-  const residentRegistrationNumber = identification.slice(0, 6) + "-" + identification.slice(6);
+  const residentRegistrationNumber =
+    identification.slice(0, 6) + "-" + identification.slice(6);
 
   const response = await fetch(`${BASE_URL}/parents/agree-account-inquiry`, {
     method: "POST",
