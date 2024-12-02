@@ -76,7 +76,9 @@ export default function ButtonGroup({
                 : selectedTopButtons.includes(button.id),
             )}
           >
-            {button.label}
+            <span className="text-R-10 whitespace-nowrap overflow-hidden">
+              {button.label}
+            </span>
           </button>
         ))}
       </div>
@@ -99,7 +101,7 @@ export default function ButtonGroup({
                   : "invert-50 brightness-150"
               }
             />
-            <span className="whitespace-nowrap overflow-hidden">
+            <span className="text-R-10 whitespace-nowrap overflow-hidden">
               {button.label}
             </span>
           </button>

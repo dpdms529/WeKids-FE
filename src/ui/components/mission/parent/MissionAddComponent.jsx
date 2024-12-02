@@ -53,7 +53,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className="w-full flex flex-col text-B-22 mb-5 px-7 pt-10">
+      <div className="w-full flex flex-col text-B-18 mb-5 px-7 pt-10">
         미션 등록하기
       </div>
       <div className="flex flex-col w-full overflow-y-auto gap-3 h-full mb-1 px-7 pb-10">
