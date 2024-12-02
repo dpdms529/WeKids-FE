@@ -1,5 +1,5 @@
-import MissionCard from "./MissionCard";
-import Image from "next/image";
+import MissionCard from "@/src/ui/components/mission/MissionCard";
+import FilterHeader from "@/src/ui/components/mission/list/FilterHeader";
 
 const DUMMY_MISSIONS = [
   {
@@ -80,23 +80,11 @@ export default function MissionList() {
     return (
 
       <div className="flex flex-col w-full">
-        <div className="flex items-center gap-1 mb-4 px-1 ml-3">
-          <Image
-            src="/images/filters.svg"
-            alt="filter icon"
-            width={16}
-            height={16}
-          />
-          <span className="text-sm font-medium">FILTER</span>
+        <FilterHeader />
+        <div className="flex flex-col items-center gap-2">
+          {DUMMY_MISSIONS.map((mission) => (
+          <MissionCard key={mission.missionId} mission={mission} />))}
         </div>
-      <div className="flex flex-col items-center gap-2">
-        {DUMMY_MISSIONS.map((mission) => (
-          <MissionCard 
-            key={mission.missionId} 
-            mission={mission} 
-          />
-        ))}
-      </div>
       </div>
     );
   }

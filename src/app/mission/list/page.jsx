@@ -1,6 +1,6 @@
 "use client";
 import Header from "@/src/ui/layout/Header";
-import MissionList from "@/src/ui/components/mission/MissionList";
+import MissionList from "@/src/ui/components/mission/list/MissionList";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 
 export default function Page() {
