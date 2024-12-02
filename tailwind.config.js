@@ -29,11 +29,11 @@ module.exports = {
         grey01: "#D3D3D3",
       },
       fontSize: {
-        "B-32": ["18px", { lineHeight: "normal", fontWeight: 700 }],
         "B-32": ["32px", { lineHeight: "normal", fontWeight: 700 }],
         "B-28": ["28px", { lineHeight: "normal", fontWeight: 700 }],
         "B-22": ["22px", { lineHeight: "normal", fontWeight: 700 }],
         "B-20": ["20px", { lineHeight: "normal", fontWeight: 700 }],
+        "B-18": ["18px", { lineHeight: "normal", fontWeight: 700 }],
         "R-28": ["28px", { lineHeight: "normal", fontWeight: 400 }],
         "R-20": ["20px", { lineHeight: "normal", fontWeight: 400 }],
         "R-18": ["18px", { lineHeight: "normal", fontWeight: 400 }],
