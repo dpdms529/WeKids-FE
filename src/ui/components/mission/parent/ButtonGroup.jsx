@@ -63,6 +63,7 @@ export default function ButtonGroup({
 
   return (
     <div className="flex flex-col w-full">
+      <div className="text-R-10 mb-1 text-sub02">미션을 수행할 자녀</div>
       <div className="flex flex-row justify-between gap-3 w-full mb-2">
         {topButtons.map((button) => (
           <button
@@ -79,7 +80,7 @@ export default function ButtonGroup({
           </button>
         ))}
       </div>
-      <div className="text-R-14 mb-1 mt-2">미션 카테고리</div>
+      <div className="text-R-10 mb-1 mt-2 text-sub02">미션 카테고리</div>
       <div className="flex flex-row justify-between gap-2 w-full">
         {bottomButtons.map((button) => (
           <button
