@@ -19,6 +19,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
   const [period, setPeriod] = useState(new Date());
   const [message, setMessage] = useState("");
   const [checked, setChecked] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   const AddAndCloseModal = () => {
     setIsModalOpen(false);
@@ -58,6 +59,11 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
     event.stopPropagation();
   };
 
+  const handleDragLeave = (event) => {
+    event.preventDefault();
+    setIsDragging(false); // 드래그 상태 해제
+  };
+
   const handleDrop = (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -71,10 +77,6 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const handleCheckboxChange = () => {
-    setChecked((prev) => !prev);
   };
 
   const handleDeleteFile = () => {
@@ -130,7 +132,12 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
               </button>
             </div>
           ) : (
-            <div className="flex flex-col items-center">
+            <div
+              className="flex flex-col items-center"
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
               <button
                 className="w-12 h-12 flex items-center justify-center bg-transparent rounded-full"
                 onClick={handleFileButtonClick}
