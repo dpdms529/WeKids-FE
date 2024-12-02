@@ -1,6 +1,6 @@
 import CustomButton from "../atoms/CustomButton";
 
-export default function MissionConfirmModal({ setParentOpen, setOpen }) {
+export default function MissionConfirmModal({ setParentOpen, setOpen, text }) {
   const handleConfirm = () => {
     setParentOpen(false);
     setOpen(false);
@@ -16,10 +16,10 @@ export default function MissionConfirmModal({ setParentOpen, setOpen }) {
           ✕
         </button>
         <div className="flex flex-col items-center gap-12">
-          <p className="text-center text-black text-R-14">
-            작성 중인 미션이 있습니다. <br />
-            그래도 나가시겠습니까?
-          </p>
+          <div
+            dangerouslySetInnerHTML={{ __html: text }} // HTML 태그로 렌더링
+            className="text-R-14 text-center text-black/80"
+          ></div>
           <div className="w-full h-[40px]">
             <CustomButton
               size="mediumLarge"

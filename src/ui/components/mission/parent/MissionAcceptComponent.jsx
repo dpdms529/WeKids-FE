@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import CustomButton from "../atoms/CustomButton";
+import CustomButton from "../../atoms/CustomButton";
 import Image from "next/image";
-import Profile from "../atoms/Profile";
-import MissionConfirmModal from "./MissionConfirmModal";
+import Profile from "../../atoms/Profile";
+import MissionConfirmModal from "../MissionConfirmModal";
 
 const data = {
   1: "미션 설명이 들어갑니다. 미션 설명은 총 몇 자 인가요? 넓이 영역에 대해 한번 고려 해보셔야 할 것 같습니다. 보통 설명이 이렇게까지 길어지는 일이 있을지는 잘 모르겠습니다. 부모님이 자식에게 이 만큼 설명하는 것이 아이 연령을 고려했을 때 불필요한 일일 수도 있습니다만 저희는 최대 길이 영역을 고려하여 디자인 진행을 해야합니다",
@@ -46,7 +46,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
             imagePath="https://ssl.pstatic.net/static/pwe/address/img_profile.png"
           />
         </div>
-        <div className="text-black text-R-15 flex flex-row">
+        <div className="text-sub02 text-R-15 flex flex-row">
           {data[5]}
           <Image
             src="images/trashImg.svg"
@@ -58,29 +58,30 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
         </div>
       </div>
       <div className="flex flex-col w-full gap-2 mb-3 px-7 pb-10 overflow-auto">
-        <div className="text-R-10">미션 완료 방법</div>
-        <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-black">
+        <div className="text-R-10 text-sub02">미션 완료 방법</div>
+        <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           {data[1]}
         </div>
-        <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-10 shadow-md text-black">
-          미션 성공 시 총 <strong>{reward}</strong> 원을 받을 수 있어요
+        <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
+          미션 성공 시 총 <span className="text-sub02">{reward}</span> 원을 받을
+          수 있어요
         </div>
-        <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-10 shadow-md text-black">
+        <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           🍪{" "}
-          <strong className="text-main01">
+          <span className="text-sub02">
             {period ? getCurrentDateInKoreanFormat() : ""}
-          </strong>{" "}
+          </span>{" "}
           까지 완료할 수 있어요
         </div>
 
-        <div className="text-R-10 mt-6">미션 완료 인증하기</div>
+        <div className="text-R-10 mt-6 text-sub02">미션 완료 인증하기</div>
         <div className="flex flex-row justify-center py-3 px-7 bg-main02/20 w-full h-32 border shadow-md rounded-lg">
           <div className="flex flex-row bg-white">
             <Image src={imgPath} alt="Example Image" width={100} height={100} />
           </div>
         </div>
-        <div className="text-R-10 mt-6">자녀가 작성한 메시지</div>
-        <div className="p-3 bg-main02/20 border rounded-lg text-R-10 shadow-md text-black">
+        <div className="text-R-10 mt-6 text-sub02">자녀가 작성한 메시지</div>
+        <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-black/60">
           {data[4]}
         </div>
         <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-9">
@@ -97,6 +98,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
               <MissionConfirmModal
                 setParentOpen={setIsModalOpen}
                 setOpen={setConfirmModalOpen}
+                text={`아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`}
               />
             )}
           </div>

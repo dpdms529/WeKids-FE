@@ -2,7 +2,7 @@
 import { useState } from "react";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import MissionModal from "@/src/ui/components/mission/MissionModal";
-import MissionAcceptComponent from "@/src/ui/components/mission/MissionAcceptComponent";
+import MissionAcceptComponent from "@/src/ui/components/mission/parent/MissionAcceptComponent";
 
 const imgPath = "/images/hachupingImg.svg";
 
