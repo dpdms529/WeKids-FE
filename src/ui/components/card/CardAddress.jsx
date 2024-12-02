@@ -4,12 +4,7 @@ import Script from "next/script";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { useState } from "react";
 
-export default function CardAddress({
-  address,
-  postcode,
-  setAddress,
-  setPostcode,
-}) {
+const CardAddress = ({ address, postcode, setAddress, setPostcode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExistCode, setExistCode] = useState(false);
   const searchPostCodeHandler = () => {
@@ -67,18 +62,14 @@ export default function CardAddress({
       >
         <div className="flex flex-col w-full h-full justify-center items-center gap-5 mt-12">
           <div className="text-R-20 text-black">배송지 등록 완료</div>
-          <div className="text-R-14 text-black/60">
-            배송지 등록이 완료 되었습니다.
-          </div>
-          <CustomButton
-            size="mediumLarge"
-            rounded={true}
-            onClick={modalHandler}
-          >
+          <div className="text-R-14 text-black/60">배송지 등록이 완료 되었습니다.</div>
+          <CustomButton size="mediumLarge" rounded={true} onClick={modalHandler}>
             확인
           </CustomButton>
         </div>
       </Modal>
     </div>
   );
-}
+};
+
+export default CardAddress;

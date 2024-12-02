@@ -1,7 +1,7 @@
 import { signOut } from "@/auth";
 import CustomButton from "../atoms/CustomButton";
 
-export function SignOut() {
+export const SignOut = async () => {
   return (
     <form
       action={async () => {
@@ -12,4 +12,4 @@ export function SignOut() {
       <CustomButton type="submit">로그아웃</CustomButton>
     </form>
   );
-}
+};

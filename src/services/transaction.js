@@ -17,14 +17,7 @@ export const submitTransfer = async (data) => {
   return responseBody ? JSON.parse(responseBody) : {};
 };
 
-export const fetchTransactions = async ({
-  page,
-  start,
-  end,
-  size = 5,
-  type,
-  accountId,
-}) => {
+export const fetchTransactions = async ({ page, start, end, size = 5, type, accountId }) => {
   const url = `${BASE_URL}/accounts/${accountId}/transactions`;
 
   console.log("Fetching URL:", url);
@@ -34,7 +27,7 @@ export const fetchTransactions = async ({
       `${url}?page=${page}&start=${start}&end=${end}&type=${type}&size=${size}`,
       {
         method: "GET",
-      },
+      }
     );
 
     if (!response.ok) {
@@ -58,13 +51,7 @@ export const fetchTransactions = async ({
   }
 };
 
-export const useTransactionList = ({
-  accountId = 4,
-  start,
-  end,
-  type,
-  size = 5,
-}) => {
+export const useTransactionList = ({ accountId = 4, start, end, type, size = 5 }) => {
   console.log(type);
   return useInfiniteQuery({
     queryKey: ["transactions", accountId, start, end, type, size],

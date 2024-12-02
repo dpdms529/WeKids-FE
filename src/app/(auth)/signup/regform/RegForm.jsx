@@ -31,9 +31,7 @@ export default function RegForm({ data }) {
         <CustomButton
           rounded="true"
           className={`w-full border border-black/80 ${
-            topChecked && bottomChecked
-              ? "bg-main01"
-              : "bg-stone-300 hover:bg-stone-300"
+            topChecked && bottomChecked ? "bg-main01" : "bg-stone-300 hover:bg-stone-300"
           }`}
           onClick={() => {
             if (topChecked && bottomChecked) {

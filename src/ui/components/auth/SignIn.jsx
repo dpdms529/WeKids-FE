@@ -37,7 +37,6 @@ export default function SignIn({ children }) {
   }
 
   console.log(data);
-
   useSignUpStore.persist.clearStorage();
 
   return (

@@ -3,15 +3,15 @@
 import { auth } from "@/auth";
 import { BASE_URL } from "../constants/url";
 
-const session = await auth();
-const authorization = session?.user?.Authorization;
-
-const headers = {
-  "Content-Type": "application/json",
-  Cookie: `Authorization=${authorization}`,
-};
-
 export const fetchAccounts = async () => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+
   const response = await fetch(`${BASE_URL}/accounts/baas`, {
     method: "GET",
     headers: headers,
@@ -27,6 +27,14 @@ export const fetchAccounts = async () => {
 };
 
 export const fetchChildAccounts = async () => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+
   const response = await fetch(`${BASE_URL}/accounts/children`, {
     method: "GET",
     headers: headers,
