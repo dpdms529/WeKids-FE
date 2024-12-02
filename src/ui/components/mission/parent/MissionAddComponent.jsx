@@ -118,7 +118,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
                 size="mediumLarge"
                 rounded={true}
                 onClick={handleCancel}
-                className="flex text-R-18 bg-stone-300 hover:bg-neutral-400 w-full"
+                className="flex bg-stone-300 hover:bg-neutral-400 text-R-15 w-full"
               >
                 취 소
               </CustomButton>
@@ -128,7 +128,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
                 size="mediumLarge"
                 rounded={true}
                 onClick={AddAndCloseModal}
-                className={` ${!checked ? "bg-stone-300 hover:bg-neutral-400" : "bg-main03 hover:bg-main01"} text-R-18  w-full`}
+                className={` ${!checked ? "bg-stone-300 hover:bg-neutral-400" : "bg-main03 hover:bg-main01"} text-R-15 w-full`}
               >
                 미 션 등 록
               </CustomButton>
