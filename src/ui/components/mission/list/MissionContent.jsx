@@ -1,6 +1,6 @@
-import StateIcon from "./StateIcon";
-import StateBadge from "./list/StateBadge";
-import MissionFooter from "./MissionFooter";
+import StateIcon from "./StateIcon";  
+import StateBadge from "./StateBadge";  
+import MissionFooter from "./MissionFooter";  
 
 export default function MissionContent({ mission }) {
   return (
@@ -18,7 +18,7 @@ export default function MissionContent({ mission }) {
       <div className="flex flex-col justify-center flex-shrink-0 text-L-12 text-xs text-[#123F6D]">
         {mission.content}
       </div>
-      <MissionFooter mission={mission} />
+        <MissionFooter mission={mission} />
     </div>
   );
 }

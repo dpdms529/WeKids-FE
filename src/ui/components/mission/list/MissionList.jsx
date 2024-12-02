@@ -1,4 +1,4 @@
-import MissionCard from "@/src/ui/components/mission/MissionCard";
+import MissionCard from "@/src/ui/components/mission/list/MissionCard";
 import FilterHeader from "@/src/ui/components/mission/list/FilterHeader";
 
 const DUMMY_MISSIONS = [
