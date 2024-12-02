@@ -26,7 +26,7 @@ const childAccountNullData = {
 
 export default async function ChildHome() {
   // const data = await getchildAccounts();
-  const data = await childAccountNullData;
+  const data = await childAccountData;
 
   if (!data) {
     return <div>Loading...</div>;
@@ -36,5 +36,5 @@ export default async function ChildHome() {
     return <EmptyAccountCard name={data.name} />;
   }
 
-  return <BlueCardBox accountData={data} />;
+  return <BlueCardBox selectedAccount={data} />;
 }
