@@ -55,10 +55,7 @@ const InputTextBox = ({
   };
 
   return (
-    <div
-      className="relative transition-all duration-200"
-      style={{ width, height }}
-    >
+    <div className="relative transition-all duration-200" style={{ width, height }}>
       <textarea
         value={value}
         onChange={handleChange}

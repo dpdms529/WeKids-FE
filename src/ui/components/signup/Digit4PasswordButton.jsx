@@ -1,15 +1,7 @@
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
 
-export default function Page({
-  pwd,
-  isInput,
-  allow,
-  setIsInput,
-  setPwd,
-  setAllowed,
-  onSubmit,
-}) {
+export default function Page({ pwd, isInput, allow, setIsInput, setPwd, setAllowed, onSubmit }) {
   const inputHandler = (num) => {
     if (num === "⌫") {
       const updateInput = [...isInput];
@@ -46,9 +38,7 @@ export default function Page({
           rounded="true"
           onClick={handleClick}
           className={`mt-auto w-full ${
-            allow
-              ? "bg-main02"
-              : "bg-stone-300 hover:bg-stone-300 pointer-events-none"
+            allow ? "bg-main02" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"
           }`}
         >
           확인

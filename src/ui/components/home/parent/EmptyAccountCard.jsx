@@ -1,36 +1,23 @@
-import { urlPath } from "@/src/constants/common";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import { Flex } from "@radix-ui/themes";
+import Image from "next/image";
 import Link from "next/link";
 
-const NoAccountCard = ({
-  width = "331px",
-  height = "532px",
-  mainText = "등록된 계좌가 없어요.",
-  subText = "계좌를 먼저 등록해 주세요.",
-  buttonText = "계좌 가져오기",
-  textColor = "text-white",
-  onButtonClick,
-}) => {
+const EmptyAccountCard = () => {
   return (
-    <Flex
-      direction="column"
-      align="center"
-      justify="between"
-      className="bg-main02 rounded-[10px] relative overflow-hidden border border-black"
-      style={{ width, height }}
-    >
-      <div className="flex-1 flex flex-col items-start justify-center">
-        <p className={`${textColor} text-R-20 mb-3`}>{mainText}</p>
-        <p className={`${textColor} text-R-20`}>{subText}</p>
+    <div className="w-[332px] h-[299px] flex flex-col items-center p-[20px] space-y-3 rounded-[13px] bg-main02">
+      <div className="w-full">
+        <p>등록된 계좌가 없습니다!</p>
+        <p>계좌를 먼저 등록해주세요!</p>
       </div>
-      <div className="border border-t-black">
-        <Link href={urlPath.PARENT_ACCOUNT}>
-          <CustomButton onClick={onButtonClick}>{buttonText}</CustomButton>
-        </Link>
-      </div>
-    </Flex>
+      <Link
+        href="/parent/account"
+        className="flex flex-col items-center bg-white w-[285px] h-[121px] rounded-[10px]"
+      >
+        <Image src="/images/favicon.svg" alt="파비콘" width={78} height={52} />
+        <p>계좌 가져오기</p>
+      </Link>
+      <div className="w-[282px] h-[58px] border">티니핑들 이미지</div>
+    </div>
   );
 };
 
-export default NoAccountCard;
+export default EmptyAccountCard;

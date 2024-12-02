@@ -69,11 +69,11 @@ export const urlPath = {
 
   SIGNUP_SELECT: "/signup/select", // 부모 자녀 선택(임시)
   SIGNUP_REGFOM: "/signup/regform", //회원가입 개인정보 입력
-  SIGNUP_REGFOM_PHONE: "/signup/regform/phone", //회원가입 개인정보 입력
-  SELECT_PARENT_PASSWORD: "/signup/select/parent/password",
-  SELECT_PARENT_PASSWORD_CONFIRM: "/signup/select/parent/password/confirm",
-  SELECT_CHILD_APPLY: "/signup/select/child/parent-apply",
-  SELECT_CHILD_APPLY_CONFIRM: "/signup/select/child/parent-apply/confirm",
+  SIGNUP_REGFOM_PHONE: "/signup/phone", //회원가입 개인정보 입력
+  SELECT_PARENT_PASSWORD: "/signup/password",
+  SELECT_PARENT_PASSWORD_CONFIRM: "/signup/password/confirm",
+  SELECT_CHILD_APPLY: "/signup/parent-apply",
+  SELECT_CHILD_APPLY_CONFIRM: "/signup/parent-apply/confirm",
   CARD_VERIFICATION_CONFIRM: "/parent/card/verification/confirm",
 
   //자식에서 카드신청 url

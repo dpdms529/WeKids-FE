@@ -1,21 +1,12 @@
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorAccount from "@/src/ui/components/signup/SelectorAccount";
 import { fetchAccounts } from "@/src/services/account";
-import { useQuery } from "@tanstack/react-query";
-import Loader from "../atoms/Loader";
 
-export default function AccountItem({ selectedIndex, setSelectedIndex }) {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["accountData"], // queryKey를 객체 형태로 전달
-    queryFn: fetchAccounts, // service에서 가져온 queryFn 지정
-  });
-  if (isLoading) {
-    return (
-      <div>
-        <Loader />
-      </div>
-    );
-  }
+
+export default async function AccountItem({ selectedIndex, setSelectedIndex }) {
+  const data = await fetchAccounts();
+
+  console.log(data);
 
   const toggleAccountSelection = (index) => {
     setSelectedIndex((prev) => (prev === index ? null : index));
@@ -33,9 +24,7 @@ export default function AccountItem({ selectedIndex, setSelectedIndex }) {
         <div className="flex">
           <div className="pointer-events-none text-black/80 h-10 w-full flex text-R-20 bg-stone-300 hover:bg-neutral-400 rounded-[11px] items-center justify-between px-4 my-4">
             <span className="text-left">총 {itemCount} 개</span>
-            <span className="text-right">
-              {totalBalance.toLocaleString()} 원
-            </span>
+            <span className="text-right">{totalBalance.toLocaleString()} 원</span>
           </div>
         </div>
       </div>

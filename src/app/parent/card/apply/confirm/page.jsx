@@ -27,11 +27,7 @@ const CardIssueCompleteNodelivery = () => {
       </div>
 
       <div>
-        <CustomButton
-          size={"large"}
-          rounded={false}
-          onClick={() => router.push(urlPath.HOME)}
-        >
+        <CustomButton size={"large"} rounded={false} onClick={() => router.push(urlPath.HOME)}>
           배송지 등록하러가기
         </CustomButton>
       </div>

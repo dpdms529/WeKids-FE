@@ -1,12 +1,23 @@
-import { BASE_URL } from "@/src/constants/url";
+"use server";
+
+import { auth } from "@/auth";
+import { BASE_URL } from "../constants/url";
+
+const session = await auth();
+const authorization = session?.user?.Authorization;
+
+const headers = {
+  "Content-Type": "application/json",
+  Cookie: `Authorization=${authorization}`,
+};
 
 // 디자인 생성
 export const designCreate = async (data) => {
+  console.log(data);
+
   const response = await fetch(`${BASE_URL}/design`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: headers,
     body: JSON.stringify(data),
   });
   console.log(response);
@@ -14,7 +25,7 @@ export const designCreate = async (data) => {
     throw new Error(`Failed to post data: ${response.statusText}`);
   }
 
-  const responseBody = await response.text();
+  const responseBody = await response.body();
   return responseBody ? JSON.parse(responseBody) : {};
 };
 
@@ -22,15 +33,13 @@ export const designCreate = async (data) => {
 export const designFetch = async () => {
   const response = await fetch(`${BASE_URL}/design`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: headers,
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch data: ${response.statusText}`);
+    throw new Error(`Failed to fetch data: ${response.status}`);
   }
 
-  const responseBody = await response.text();
-  return responseBody ? JSON.parse(responseBody) : {};
+  const data = await response.json();
+  return data;
 };
