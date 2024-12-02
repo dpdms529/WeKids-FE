@@ -78,7 +78,6 @@ const DUMMY_MISSIONS = [
 
 export default function MissionList() {
     return (
-
       <div className="flex flex-col w-full">
         <FilterHeader />
         <div className="flex flex-col items-center gap-2">
