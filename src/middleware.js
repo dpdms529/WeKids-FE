@@ -16,5 +16,7 @@ export default auth(async (request) => {
 });
 
 export const config = {
-  matcher: ["/((?!api|onboard|signout|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!api|onboard|signout|_next/static|_next/image|favicon.ico).*)",
+  ],
 };

@@ -22,7 +22,11 @@ const ParentApprove = () => {
       </div>
 
       <div className="mb-12">
-        <CustomButton size="mediumLarge" rounded={true} className="text-R-20 mx-auto">
+        <CustomButton
+          size="mediumLarge"
+          rounded={true}
+          className="text-R-20 mx-auto"
+        >
           부모님 정보 다시 입력 하기
         </CustomButton>
       </div>

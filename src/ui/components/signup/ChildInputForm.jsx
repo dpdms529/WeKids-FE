@@ -13,7 +13,9 @@ export default function ChildInputForm({ setAllChecked }) {
   const [residentback, setResidentback] = useState("");
 
   useEffect(() => {
-    setAllChecked(name !== "" && residentfront.length == 6 && residentback.length == 7);
+    setAllChecked(
+      name !== "" && residentfront.length == 6 && residentback.length == 7,
+    );
   }, [name, residentfront, residentback]);
 
   const handleFrontChange = (value) => {
@@ -43,7 +45,9 @@ export default function ChildInputForm({ setAllChecked }) {
         </div>
       </div>
       <div className="flex flex-col gap-5 w-max-full">
-        <div className="flex flex-row items-start text-R-20 text-black/80">자녀의 주민등록번호</div>
+        <div className="flex flex-row items-start text-R-20 text-black/80">
+          자녀의 주민등록번호
+        </div>
         <div className="flex flex-row w-full gap-2">
           <LimitedInputBox
             placeholder={"주민등록번호"}
@@ -74,7 +78,11 @@ export default function ChildInputForm({ setAllChecked }) {
           <div>
             <FileTextIcon className="w-20 h-20" />
           </div>
-          <CustomButton onClick={openModal} rounded="true" className="w-full mt-3">
+          <CustomButton
+            onClick={openModal}
+            rounded="true"
+            className="w-full mt-3"
+          >
             발급하기
           </CustomButton>
           <Modal
@@ -86,8 +94,12 @@ export default function ChildInputForm({ setAllChecked }) {
             deletebutton={false}
           >
             <div className="flex flex-col gap-4 items-center justify-center p-10">
-              <div className="flex text-R-20 text-black/80">아이를 확인중이에요.</div>
-              <div className="text-R-14 text-black/80">5초정도의 시간이 소요될 수 있어요.</div>
+              <div className="flex text-R-20 text-black/80">
+                아이를 확인중이에요.
+              </div>
+              <div className="text-R-14 text-black/80">
+                5초정도의 시간이 소요될 수 있어요.
+              </div>
               <div className="flex items-center justify-center mt-4">
                 <Loader size="medium" />
               </div>

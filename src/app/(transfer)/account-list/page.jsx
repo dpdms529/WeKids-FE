@@ -14,7 +14,8 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태 관리
   const [error, setError] = useState(null); // 에러 상태 관리
   const router = useRouter();
-  const { selectedAccount, setSelectedAccount, setChildrenAccounts } = useTransactionStore();
+  const { selectedAccount, setSelectedAccount, setChildrenAccounts } =
+    useTransactionStore();
 
   // 계좌 데이터 가져오기
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function Page() {
       });
       router.push(urlPath.TRANSFER);
     },
-    [setSelectedAccount]
+    [setSelectedAccount],
   );
 
   if (isLoading) {

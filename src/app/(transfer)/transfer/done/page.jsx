@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 
 const Page = () => {
-  const { selectedAccount, transferAmount, clearTransferData } = useTransactionStore();
+  const { selectedAccount, transferAmount, clearTransferData } =
+    useTransactionStore();
   const [transferData, setTransferData] = useState({
     sendUser: "",
     amount: 0,
@@ -53,7 +54,12 @@ const Page = () => {
           </p>
           <div className="flex items-center justify-center text-R-14 text-neutral-300 pt-4">
             {transferData.bankName} {transferData.accountNumber}
-            <ChevronRightIcon width="16" height="16" stroke="text-neutral-300" strokeWidth={0.5} />
+            <ChevronRightIcon
+              width="16"
+              height="16"
+              stroke="text-neutral-300"
+              strokeWidth={0.5}
+            />
           </div>
         </div>
       </div>

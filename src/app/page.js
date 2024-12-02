@@ -14,7 +14,11 @@ export default async function Home() {
   const memberType = session.user.role;
 
   const components =
-    memberType === "ROLE_PARENT" ? <ParentHome authorization={authorization} /> : <ChildHome />;
+    memberType === "ROLE_PARENT" ? (
+      <ParentHome authorization={authorization} />
+    ) : (
+      <ChildHome />
+    );
 
   return (
     <div className="flex flex-col w-full h-full space-y-8">

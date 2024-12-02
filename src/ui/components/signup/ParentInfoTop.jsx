@@ -32,7 +32,9 @@ export default function ParentInfoTop() {
   const router = useRouter();
   useEffect(() => {
     setAllCheck(
-      guardianName != "" && !guardianBirthday.includes(" ") && !guardianPhone.includes(" ")
+      guardianName != "" &&
+        !guardianBirthday.includes(" ") &&
+        !guardianPhone.includes(" "),
     );
   }, [guardianName, guardianBirthday, guardianPhone]);
 
@@ -60,7 +62,8 @@ export default function ParentInfoTop() {
     let updatedDate;
     switch (type) {
       case 1:
-        updatedDate = stringValue.padEnd(8, " ").slice(0, 4) + guardianBirthday.slice(4);
+        updatedDate =
+          stringValue.padEnd(8, " ").slice(0, 4) + guardianBirthday.slice(4);
         break;
       case 2:
         updatedDate =
@@ -69,7 +72,8 @@ export default function ParentInfoTop() {
           guardianBirthday.slice(6);
         break;
       case 3:
-        updatedDate = guardianBirthday.slice(0, 6) + stringValue.padEnd(2, " ").slice(0, 2);
+        updatedDate =
+          guardianBirthday.slice(0, 6) + stringValue.padEnd(2, " ").slice(0, 2);
         break;
       default:
         break;
@@ -85,10 +89,13 @@ export default function ParentInfoTop() {
         break;
       case 2:
         phoneNumber =
-          guardianPhone.slice(0, 3) + value.padEnd(4, " ").slice(0, 4) + guardianPhone.slice(7);
+          guardianPhone.slice(0, 3) +
+          value.padEnd(4, " ").slice(0, 4) +
+          guardianPhone.slice(7);
         break;
       case 3:
-        phoneNumber = guardianPhone.slice(0, 7) + value.padEnd(4, " ").slice(0, 4);
+        phoneNumber =
+          guardianPhone.slice(0, 7) + value.padEnd(4, " ").slice(0, 4);
         break;
       default:
         break;
@@ -110,7 +117,9 @@ export default function ParentInfoTop() {
           만 14세 미만의 가입자는 <br />
           보호자의 동의가 필요해요.
         </div>
-        <div className="text-R-14 text-main04">보호자에게 동의 요청 문자를 보내주세요.</div>
+        <div className="text-R-14 text-main04">
+          보호자에게 동의 요청 문자를 보내주세요.
+        </div>
         <div className="flex flex-col gap-2">
           <div className="text-R-20">법정 대리인 이름</div>
           <div className="flex w-full">
@@ -167,7 +176,11 @@ export default function ParentInfoTop() {
             />
           </div>
         </div>
-        {blank ? <p className="mt-2 text-sm text-red-500">빈칸을 입력해주세요.</p> : ""}
+        {blank ? (
+          <p className="mt-2 text-sm text-red-500">빈칸을 입력해주세요.</p>
+        ) : (
+          ""
+        )}
         <div></div>
         {isRequest ? (
           <>
@@ -175,7 +188,11 @@ export default function ParentInfoTop() {
               {time}초 전까지 동의해야 해요.
             </div>
             <div className="flex flex-col items-center w-full">
-              <CustomButton size="medium" rounded={true} onClick={() => setTime(100)}>
+              <CustomButton
+                size="medium"
+                rounded={true}
+                onClick={() => setTime(100)}
+              >
                 재요청 하기
               </CustomButton>
             </div>
@@ -222,7 +239,12 @@ export default function ParentInfoTop() {
         height="h-[443px]"
         deletebutton={true}
       >
-        <CharacterCard imgHeight={150} imgWidth={150} radius="rounded-none" className="border-none">
+        <CharacterCard
+          imgHeight={150}
+          imgWidth={150}
+          radius="rounded-none"
+          className="border-none"
+        >
           <div className="text-white text-R-28">
             부모님 동의를 기다리고 <br /> 있어요!!
           </div>

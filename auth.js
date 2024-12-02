@@ -113,7 +113,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const cookie = await cookies();
         const authorization = cookie.get("Authorization")?.value;
         if (authorization) {
-          return signIn("credentials", { token: authorization, redirect: false });
+          return signIn("credentials", {
+            token: authorization,
+            redirect: false,
+          });
         }
       }
       return !!auth;
