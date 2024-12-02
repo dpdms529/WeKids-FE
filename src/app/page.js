@@ -2,8 +2,8 @@ import Header from "../ui/layout/Header";
 import "./globals.css";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import ParentHome from "../ui/Components/home/parent/ParentHome";
-import ChildHome from "../ui/Components/home/child/ChildView";
+import ParentHome from "../ui/components/home/parent/ParentHome";
+import ChildHome from "../ui/components/home/child/ChildView";
 
 export default async function Home() {
   const session = await auth();

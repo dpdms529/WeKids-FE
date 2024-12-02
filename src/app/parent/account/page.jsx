@@ -1,7 +1,7 @@
 "use client";
 
 import Identification from "@/src/ui/components/account/Identification";
-import AccountList from "@/src/ui/Components/account/AccountList";
+import AccountList from "@/src/ui/components/account/AccountList";
 import Header from "@/src/ui/layout/Header";
 import { useState } from "react";
 

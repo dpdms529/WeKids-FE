@@ -1,6 +1,6 @@
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import SignIn from "@/src/ui/Components/auth/SignIn";
-import ConfirmItem from "@/src/ui/Components/signup/ConfirmItem";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import SignIn from "@/src/ui/components/auth/SignIn";
+import ConfirmItem from "@/src/ui/components/signup/ConfirmItem";
 
 export default function Page() {
   return (
