@@ -1,8 +1,6 @@
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorAccount from "@/src/ui/components/signup/SelectorAccount";
 import { fetchAccounts } from "@/src/services/account";
-// import { useQuery } from "@tanstack/react-query";
-// import Loader from "../atoms/Loader";
 
 export default async function AccountItem({ selectedIndex, setSelectedIndex }) {
   const data = await fetchAccounts();

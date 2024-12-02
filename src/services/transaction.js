@@ -2,17 +2,11 @@ import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../constants/url";
 
 export const submitTransfer = async (data) => {
-  const session = await auth();
-  const authorization = session?.user?.Authorization;
-
-  const headers = {
-    "Content-Type": "application/json",
-    Cookie: `Authorization=${authorization}`,
-  };
-
   const response = await fetch(`${BASE_URL}/transactions`, {
     method: "POST",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(data),
   });
   if (response.status !== 201) {
@@ -23,22 +17,7 @@ export const submitTransfer = async (data) => {
   return responseBody ? JSON.parse(responseBody) : {};
 };
 
-export const fetchTransactions = async ({
-  page,
-  start,
-  end,
-  size = 5,
-  type,
-  accountId,
-}) => {
-  const session = await auth();
-  const authorization = session?.user?.Authorization;
-
-  const headers = {
-    "Content-Type": "application/json",
-    Cookie: `Authorization=${authorization}`,
-  };
-
+export const fetchTransactions = async ({ page, start, end, size = 5, type, accountId }) => {
   const url = `${BASE_URL}/accounts/${accountId}/transactions`;
 
   console.log("Fetching URL:", url);
@@ -48,8 +27,7 @@ export const fetchTransactions = async ({
       `${url}?page=${page}&start=${start}&end=${end}&type=${type}&size=${size}`,
       {
         method: "GET",
-        headers: headers,
-      },
+      }
     );
 
     if (!response.ok) {
@@ -73,13 +51,7 @@ export const fetchTransactions = async ({
   }
 };
 
-export const useTransactionList = ({
-  accountId = 4,
-  start,
-  end,
-  type,
-  size = 5,
-}) => {
+export const useTransactionList = ({ accountId = 4, start, end, type, size = 5 }) => {
   console.log(type);
   return useInfiniteQuery({
     queryKey: ["transactions", accountId, start, end, type, size],
@@ -95,14 +67,6 @@ export const useTransactionList = ({
 };
 
 export const fetchTransactionById = async (transactionId) => {
-  const session = await auth();
-  const authorization = session?.user?.Authorization;
-
-  const headers = {
-    "Content-Type": "application/json",
-    Cookie: `Authorization=${authorization}`,
-  };
-
   try {
     if (!transactionId) {
       throw new Error("Transaction ID is required");
@@ -112,7 +76,6 @@ export const fetchTransactionById = async (transactionId) => {
 
     const response = await fetch(url, {
       method: "GET",
-      headers: headers,
     });
 
     if (!response.ok) {
