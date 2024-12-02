@@ -42,7 +42,6 @@ export default function MissionCardLayout({
                 />
               </div>
             </div>
-            {/* </div> */}
           </div>
         </div>
       </div>
