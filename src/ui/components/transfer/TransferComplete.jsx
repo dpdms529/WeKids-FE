@@ -1,7 +1,8 @@
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-
+import Link from "next/link";
+import { urlPath } from "@/src/constants/common";
 const MESSAGES = {
   COMPLETE: {
     TITLE: (name) => `${name}님에게`,
@@ -17,7 +18,6 @@ const MESSAGES = {
 };
 
 const TransferComplete = ({ 
-    onComplete,
     transferData = {
       sendUser: "",
       amount: 0,
@@ -30,6 +30,12 @@ const TransferComplete = ({
     // type이 유효한지 확인하고, 유효하지 않으면 COMPLETE 사용
     const messageType = MESSAGES[type] ? type : "COMPLETE";
     const messages = MESSAGES[messageType];
+    
+    // type에 따라 다른 경로 설정
+    const nextPath = type === "CONFIRM" 
+      ? urlPath.MISSION_TRANSFER_PASSWORD  // 비밀번호 입력 페이지로
+      : urlPath.HOME;  // 완료 후 홈으로
+
     return (
       <main className="min-h-screen bg-white flex flex-col">
         <div className="flex-1 flex flex-col items-center justify-center">
@@ -65,12 +71,17 @@ const TransferComplete = ({
         <div className="px-5 pb-8">
           <div className="flex gap-2">
             <ShareButton rounded={true} />
-            <CustomButton
-              rounded={true}
-              onClick={onComplete}
-            >
-              <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
-            </CustomButton>
+            <Link href={nextPath} className="flex-1">
+              <CustomButton
+                rounded={true}
+                size="medium"
+                color="main"
+              >
+                <span className="text-R-20">
+                {MESSAGES.BUTTONS.CONFIRM}
+                </span>
+              </CustomButton>
+            </Link>
           </div>
         </div>
       </main>

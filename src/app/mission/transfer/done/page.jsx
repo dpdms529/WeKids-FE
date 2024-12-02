@@ -1,6 +1,5 @@
 import { urlPath } from "@/src/constants/common";
 import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
-import Link from "next/link";
 
 export default async function Page() {
   
@@ -13,11 +12,10 @@ export default async function Page() {
     memo: "메모입력..",
   };
 
-  return ( // 미션 목록으로 이동하게 변경
-    <Link href={urlPath.HOME}> 
+  return ( 
       <TransferComplete 
         transferData={transferData}
-      />
-    </Link>
+        type="COMPLETE"
+      />  
   );
 };

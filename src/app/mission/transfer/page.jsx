@@ -1,6 +1,4 @@
-import { urlPath } from "@/src/constants/common";
 import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
-import Link from "next/link";
 
 export default async function TransferDonePage() {
 
@@ -13,11 +11,9 @@ export default async function TransferDonePage() {
   };
 
   return (
-    <Link href={urlPath.MISSION_TRANSFER_PASSWORD}>
       <TransferComplete
         transferData={transferData}
         type="CONFIRM"
       />
-    </Link>
   );
 }
