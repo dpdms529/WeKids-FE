@@ -9,9 +9,9 @@ export default function SignIn({ children }) {
     useSignUpStore();
 
   let data = {
-    birthday: "1998-05-29",
+    birthday: "1985-05-29",
     name: name,
-    phone: "010-1234-5678",
+    phone: "010-8765-4321",
     simplePassword: 111111,
     email: email,
     social: "naver",
@@ -20,10 +20,11 @@ export default function SignIn({ children }) {
   };
 
   if (userType === "CHILD") {
-    data["birthday"] = "2017-05-29";
+    data["birthday"] = "2017-03-15";
+    data["phone"] = "010-1234-4321";
     data["guardianName"] = guardianName;
-    data["guardianBirthday"] = "1983-05-15";
-    data["guardianPhone"] = "010-1234-5678";
+    data["guardianBirthday"] = "1985-05-29";
+    data["guardianPhone"] = "010-8765-4321";
   }
 
   console.log(data);
