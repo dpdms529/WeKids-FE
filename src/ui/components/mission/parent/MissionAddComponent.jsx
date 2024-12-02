@@ -55,7 +55,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
       <Toaster />
-      <a className="text-B-18 mb-5 px-7 pt-10">미션 등록하기</a>
+      <p className="text-B-18 mb-5 px-7 pt-10">미션 등록하기</p>
       <div className="w-full overflow-y-auto gap-3 h-full mb-1 px-7 pb-10">
         <div className="flex flex-col gap-1">
           <ButtonGroup
@@ -63,7 +63,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
             setBottomButtonChecked={setCategory}
           />
           <div className="flex flex-col gap-1 mb-5 mt-5">
-            <a className="text-R-10 text-sub02">미션명</a>
+            <p className="text-R-10 text-sub02">미션명</p>
             <div
               className={`${title != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
             >
@@ -77,7 +77,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
           </div>
         </div>
         <div className="flex flex-col gap-1 mb-5">
-          <a className="text-R-10 text-sub02">미션 완료 방법</a>
+          <p className="text-R-10 text-sub02">미션 완료 방법</p>
           <div
             className={`${method != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
           >
@@ -90,7 +90,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
           </div>
         </div>
         <div className="flex flex-col gap-1 mb-5">
-          <a className="text-R-10 text-sub02">미션 완료 시 수령 금액</a>
+          <p className="text-R-10 text-sub02">미션 완료 시 수령 금액</p>
           <div
             className={`${reward != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
           >
