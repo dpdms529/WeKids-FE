@@ -84,11 +84,11 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
   };
 
   return (
-    <div className="flex flex-col w-full justify-center items-center p-10 h-full">
-      <div className="flex flex-col gap-1 mb-5 w-full">
+    <div className="flex flex-col w-full justify-center items-center h-full">
+      <div className="flex flex-col gap-1 mb-5 pt-10 px-10 w-full">
         <div className="text-black text-R-15">{data[5]}</div>
       </div>
-      <div className="flex flex-col w-full gap-2 mb-3 overflow-auto scrollbar-hide">
+      <div className="flex flex-col pb-10 px-10 w-full gap-2 mb-3 overflow-auto">
         <div className="text-R-10">미션 완료 방법</div>
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-black">
           {data[1]}
@@ -150,7 +150,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
                 type="file"
                 onChange={handleFileOnChange}
               />
-              <p className="text-R-14 text-black/40 mt-2">
+              <p className="text-R-10 text-black/40 mt-2">
                 드래그하거나 파일을 업로드하세요.
               </p>
             </div>
