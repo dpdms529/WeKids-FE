@@ -16,7 +16,7 @@ const data = {
 
 const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
   const [checked, setChecked] = useState(false);
-  const [reward, setReward] = useState(0);
+  const [reward, setReward] = useState(1000000000000000);
   const [period, setPeriod] = useState(new Date());
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
   const [text, setText] = useState('');
@@ -71,7 +71,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
           {data[1]}
         </div>
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
-          미션 성공 시 총 <span className="text-sub02">{reward}</span> 원을 받을
+          미션 성공 시 총 <span className="text-sub02">{reward.toLocaleString()}</span> 원을 받을
           수 있어요
         </div>
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
