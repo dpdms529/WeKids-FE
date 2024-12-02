@@ -9,7 +9,7 @@ export default function Page() {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <div className="flex flex-col w-full h-full">
+    <div className="flex flex-col w-full h-screen overflow-y-hidden">
       <Header />
       {isClicked ? (
         <AccountList />

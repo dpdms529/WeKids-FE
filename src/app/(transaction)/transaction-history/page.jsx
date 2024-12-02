@@ -4,11 +4,11 @@ import { TransactionFilter } from "@/src/ui/components/transaction/transaction-h
 import { TransactionsView } from "@/src/ui/components/transaction/transaction-history/TransactionsView";
 import { Box, Flex } from "@radix-ui/themes";
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+
 
 export default function Page() {
-  const searchParam = useSearchParams(); // useSearchParams 훅 사용
-  const color = searchParam.get("color");
+  
+  
   const [balance, setBalance] = useState(0);
 
   return (

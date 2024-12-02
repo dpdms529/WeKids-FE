@@ -1,5 +1,5 @@
 "use client";
-import { useTransactionList } from "@/src/services/transaction";
+import { useTransactionList } from "@/src/query/transactionQuery";
 import { Flex } from "@radix-ui/themes";
 import {
   RangeEnum,
