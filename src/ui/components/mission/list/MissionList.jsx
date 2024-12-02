@@ -2,10 +2,17 @@ import MissionCard from "@/src/ui/components/mission/list/MissionCard";
 import FilterHeader from "@/src/ui/components/mission/list/FilterHeader";
 import { useMissionFilterStore } from "@/src/stores/missionFilterStore";
 
-export default function MissionList() {
+export default function MissionList({ isParent }) {
     const { selectedChild, selectedCategory } = useMissionFilterStore();
 
     const filteredMissions = DUMMY_MISSIONS.filter(mission => {
+      // 자식 화면일 경우 로그인한 자신의 미션만 보여줌
+      if (!isParent) {
+        // TODO: 실제 로그인한 자식 사용자의 ID나 이름으로 수정 필요
+        const currentChildName = "안찬웅"; // 예시
+        return mission.childName === currentChildName;
+      }
+      // 부모 화면일 경우 필터링 적용
       const matchesChild = selectedChild === 'ALL' || mission.childName === selectedChild;
       const matchesCategory = !selectedCategory || mission.category === selectedCategory;
       console.log('Mission:', mission.childName, 'Selected:', selectedChild, 'Matches:', matchesChild); // 디버깅용
@@ -14,10 +21,10 @@ export default function MissionList() {
 
     return (
      <div className="flex flex-col w-full">
-        <FilterHeader />
+        {isParent && <FilterHeader />}
         <div className="flex flex-col items-center gap-2">
           {filteredMissions.map((mission) => (
-          <MissionCard key={mission.missionId} mission={mission} />))}
+          <MissionCard key={mission.missionId} mission={mission} isParent={isParent}/>))}
         </div>
       </div>
     );

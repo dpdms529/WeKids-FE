@@ -9,7 +9,7 @@ export default function Page() {
         <Header />
         <div className="p-4 flex-1 overflow-hidden flex flex-col">
           <div className="flex-1 overflow-y-auto custom-scrollbar">
-            <MissionList />
+          <MissionList isParent={true} />
           </div>
         </div>
         

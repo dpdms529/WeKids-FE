@@ -1,10 +1,15 @@
 import StateIcon from "./StateIcon";  
 import StateBadge from "./StateBadge";  
 import MissionFooter from "./MissionFooter";  
+import ChildMissionContent from "./ChildMissionContent";
 
-export default function MissionContent({ mission }) {
+export default function MissionContent({ mission, isParent }) {
+  if (!isParent) {
+    return <ChildMissionContent mission={mission} />;
+  }
+  
   return (
-    <div>
+    <div className={`${!isParent ? 'w-full' : ''}`}>
       <div className="flex items-center gap-2 mb-2 -ml-1">
         <StateBadge state={mission.state} />
         <div className="px-2 py-1 bg-white rounded-full">
@@ -18,7 +23,10 @@ export default function MissionContent({ mission }) {
       <div className="flex flex-col justify-center flex-shrink-0 text-L-12 text-xs text-[#123F6D]">
         {mission.content}
       </div>
-        <MissionFooter mission={mission} />
+      <MissionFooter 
+        mission={mission} 
+        isParent={isParent}
+      />
     </div>
   );
 }
