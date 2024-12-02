@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
 const InputDateBox = ({
-  width = 313,
-  height = 40, // 높이를 조정
+  width = "100%",
+  height = 40,
   value = "",
   label = "💡미션 만료일",
   onChange,
+  className,
 }) => {
   const [dateValue, setDateValue] = useState(value);
 
@@ -26,18 +27,18 @@ const InputDateBox = ({
       {label && (
         <label
           htmlFor="date-input"
-          className="block text-R-14 font-medium text-black mb-2" // 라벨과 입력창 간격 추가
+          className="block text-R-14 font-medium text-black mb-2"
         >
           {label}
         </label>
       )}
-      <div className="bg-blue-100 rounded-lg shadow-md">
+      <div className={`rounded-lg shadow-md ${className}`}>
         <input
           id="date-input"
           type="date"
           value={dateValue}
           onChange={handleChange}
-          className="w-full h-full p-2 bg-blue-100 rounded-md text-R-12 text-black resize-none outline-none"
+          className={`w-full h-full p-2 bg-transparent rounded-md text-R-12 ${value != "" ? "text-black/80" : "text-neutral-400"}  resize-none outline-none`}
           style={{ height }} // 높이를 직접 지정
         />
       </div>

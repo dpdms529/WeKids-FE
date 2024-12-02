@@ -52,12 +52,12 @@ export default function ButtonGroup({
 
   const getButtonClasses = (id, isSelected) => {
     const baseClasses =
-      "flex-grow h-8 flex items-center justify-center py-2 text-R-12 font-medium transition-all duration-200";
+      "flex-grow h-8 flex items-center justify-center rounded-md py-2 text-R-12 font-medium transition-all duration-200";
 
     if (isSelected) {
       return `${baseClasses} bg-main02 text-white`; // 선택된 버튼 스타일
     } else {
-      return `${baseClasses} bg-black/10 text-neutral-400`; // 선택되지 않은 버튼 스타일
+      return `${baseClasses} bg-grey01/20 text-neutral-400`; // 선택되지 않은 버튼 스타일
     }
   };
 
@@ -79,27 +79,30 @@ export default function ButtonGroup({
           </button>
         ))}
       </div>
-      <div className="text-R-14 mb-1 mt-2">💡미션 카테고리</div>
-      <div className="flex flex-row justify-between gap-3 w-full">
-        <div className="flex flex-row justify-between gap-3 w-full">
-          {bottomButtons.map((button) => (
-            <button
-              key={button.id}
-              onClick={() => handleBottomButtonClick(button.id)}
-              className={`${getButtonClasses(button.id, button.id === selectedBottomButton)} flex items-center gap-2`}
-            >
-              <Image
-                src={button.icon}
-                alt={button.label}
-                width={16}
-                height={16}
-              />
-              <span className="whitespace-nowrap overflow-hidden">
-                {button.label}
-              </span>
-            </button>
-          ))}
-        </div>
+      <div className="text-R-14 mb-1 mt-2">미션 카테고리</div>
+      <div className="flex flex-row justify-between gap-2 w-full">
+        {bottomButtons.map((button) => (
+          <button
+            key={button.id}
+            onClick={() => handleBottomButtonClick(button.id)}
+            className={`${getButtonClasses(button.id, button.id === selectedBottomButton)} flex items-center gap-2`}
+          >
+            <Image
+              src={button.icon}
+              alt={button.label}
+              width={10}
+              height={10}
+              className={
+                selectedBottomButton === button.id
+                  ? "invert brightness-100"
+                  : "invert-50 brightness-150"
+              }
+            />
+            <span className="whitespace-nowrap overflow-hidden">
+              {button.label}
+            </span>
+          </button>
+        ))}
       </div>
     </div>
   );

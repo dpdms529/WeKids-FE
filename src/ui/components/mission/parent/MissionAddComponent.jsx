@@ -1,9 +1,9 @@
 "use client";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputDateBox from "@/src/ui/components/atoms/InputDateBox";
-import ButtonGroup from "@/src/ui/components/mission/ButtonGroup";
-import MissionConfirmModal from "./MissionConfirmModal";
+import MissionConfirmModal from "../MissionConfirmModal";
 import { useEffect, useState } from "react";
+import ButtonGroup from "./ButtonGroup";
 
 export default function MissionAddComponent({ setIsModalOpen }) {
   const [child, setChild] = useState([]);
@@ -52,20 +52,24 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   };
 
   return (
-    <div className="flex flex-col w-full justify-center items-center p-10 h-full">
-      <div className="w-full flex flex-col text-B-22 mb-5">미션 등록하기</div>
-      <div className="flex flex-col w-full overflow-y-auto scrollbar-hide gap-3 h-full mb-1">
+    <div className="flex flex-col w-full justify-center items-center h-full">
+      <div className="w-full flex flex-col text-B-22 mb-5 px-7 pt-10">
+        미션 등록하기
+      </div>
+      <div className="flex flex-col w-full overflow-y-auto gap-3 h-full mb-1 px-7 pb-10">
         <div className="flex flex-col gap-1">
-          <div className="text-R-14">💡미션을 수행할 자녀</div>
+          <div className="text-R-14">미션을 수행할 자녀</div>
           <ButtonGroup
             setTopButtonChecked={setChild}
             setBottomButtonChecked={setCategory}
           />
           <div className="flex flex-col gap-1 mb-5 mt-5">
-            <div className="text-R-14">💡미션명</div>
-            <div className="bg-blue-100 rounded-lg text-R-12 shadow-md text-black">
+            <div className="text-R-10">미션명</div>
+            <div
+              className={`${title != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
+            >
               <textarea
-                className="w-full h-8 bg-blue-100 rounded-md resize-none outline-none p-2"
+                className="w-full h-8 bg-transparent rounded-md resize-none outline-none p-2"
                 placeholder="미션명을 입력해주세요."
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -74,10 +78,12 @@ export default function MissionAddComponent({ setIsModalOpen }) {
           </div>
         </div>
         <div className="flex flex-col gap-1 mb-5">
-          <div className="text-R-14">💡미션 완료 방법</div>
-          <div className="bg-blue-100 rounded-lg text-R-12 shadow-md text-black">
+          <div className="text-R-10">미션 완료 방법</div>
+          <div
+            className={`${method != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
+          >
             <textarea
-              className="w-full h-32 bg-blue-100 rounded-md resize-none outline-none p-2"
+              className="w-full h-32 bg-transparent rounded-md resize-none outline-none p-2"
               placeholder="아이가 미션을 완료할 수 있게 설명을 입력해 주세요."
               value={method}
               onChange={(e) => setMethod(e.target.value)}
@@ -85,22 +91,25 @@ export default function MissionAddComponent({ setIsModalOpen }) {
           </div>
         </div>
         <div className="flex flex-col gap-1 mb-5">
-          <div className="text-R-14">💡미션 완료 시 수령 금액</div>
-          <div className="bg-blue-100 rounded-lg text-R-12 shadow-md text-black">
+          <div className="text-R-10">미션 완료 시 수령 금액</div>
+          <div
+            className={`${reward != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
+          >
             <input
               type="text"
-              className="w-full h-8 bg-blue-100 rounded-md outline-none p-2"
+              className="w-full h-8 bg-transparent rounded-md outline-none p-2"
               placeholder="미션 완료 시 아이가 수령할 금액을 입력해주세요."
               value={reward}
               onChange={handleRewardChange}
             />
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <InputDateBox
             value={period}
             onChange={(value) => setPeriod(value)}
-            label="💡미션 만료일"
+            label="미션 만료일"
+            className={`${period != "" ? "bg-main02/20" : "bg-grey01/20"}`}
           />
         </div>
         <div className="flex flex-col w-full gap-2">

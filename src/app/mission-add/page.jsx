@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import MissionAddComponent from "@/src/ui/components/mission/MissionAddComponent";
+import MissionAddComponent from "@/src/ui/components/mission/parent/MissionAddComponent";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import MissionModal from "@/src/ui/components/mission/MissionModal";
 
