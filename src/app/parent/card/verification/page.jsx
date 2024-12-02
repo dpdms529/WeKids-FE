@@ -42,9 +42,7 @@ export default function Page() {
           <CustomButton
             rounded="true"
             className={`w-full ${
-              topChecked && bottomChecked
-                ? "bg-main02"
-                : "bg-stone-300 hover:bg-stone-300"
+              topChecked && bottomChecked ? "bg-main02" : "bg-stone-300 hover:bg-stone-300"
             }`}
             onClick={clickHandler}
           >
@@ -52,10 +50,7 @@ export default function Page() {
           </CustomButton>
         </Link>
         <Link href={urlPath.HOME}>
-          <CustomButton
-            rounded="true"
-            className="w-full bg-stone-300 hover:bg-stone-300"
-          >
+          <CustomButton rounded="true" className="w-full bg-stone-300 hover:bg-stone-300">
             닫기
           </CustomButton>
         </Link>

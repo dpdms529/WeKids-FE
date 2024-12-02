@@ -9,7 +9,7 @@ export default function SignIn({ children }) {
     useSignUpStore();
 
   let data = {
-    birthday: "2017-05-29",
+    birthday: "1998-05-29",
     name: name,
     phone: "010-1234-5678",
     simplePassword: 111111,
@@ -20,6 +20,7 @@ export default function SignIn({ children }) {
   };
 
   if (userType === "CHILD") {
+    data["birthday"] = "2017-05-29";
     data["guardianName"] = guardianName;
     data["guardianBirthday"] = "1983-05-15";
     data["guardianPhone"] = "010-1234-5678";

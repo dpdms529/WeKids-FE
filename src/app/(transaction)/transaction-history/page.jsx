@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import TopBar from "@/src/ui/components/transaction/transaction-history/TopBar";
 import { TransactionFilter } from "@/src/ui/components/transaction/transaction-history/TransactionFilter";
 import { TransactionsView } from "@/src/ui/components/transaction/transaction-history/TransactionsView";
@@ -15,11 +15,7 @@ export default function Page() {
     <section>
       <Flex direction="column" justify="between">
         <Box>
-          <TopBar
-            name="조예은"
-            balance={balance}
-            accountNumber="1111-11-111111"
-          />
+          <TopBar name="조예은" balance={balance} accountNumber="1111-11-111111" />
         </Box>
         <Box className="cursor-pointer">
           <TransactionFilter />

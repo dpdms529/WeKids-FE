@@ -69,5 +69,4 @@ const TransferModal = ({
   );
 };
 
-
 export default TransferModal;
