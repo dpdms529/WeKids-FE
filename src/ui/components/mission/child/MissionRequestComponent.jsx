@@ -167,7 +167,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
         <div
           className={`${
             message ? "bg-main02/20" : "bg-grey01/20"
-          } rounded-lg text-R-12 shadow-md text-black`}
+          } rounded-lg text-R-12 shadow-md`}
         >
           <textarea
             value={message}
