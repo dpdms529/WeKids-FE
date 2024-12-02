@@ -3,17 +3,15 @@
 import { auth } from "@/auth";
 import { BASE_URL } from "../constants/url";
 
-const session = await auth();
-const authorization = session?.user?.Authorization;
-
-const headers = {
-  "Content-Type": "application/json",
-  Cookie: `Authorization=${authorization}`,
-};
-
 // 디자인 생성
 export const designCreate = async (data) => {
-  console.log(data);
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
 
   const response = await fetch(`${BASE_URL}/design`, {
     method: "POST",
@@ -31,6 +29,14 @@ export const designCreate = async (data) => {
 
 // 디자인 조회
 export const designFetch = async () => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+
   const response = await fetch(`${BASE_URL}/design`, {
     method: "GET",
     headers: headers,

@@ -49,7 +49,7 @@ export default function AccountList() {
           account={account.accountNumber}
           balance={account.balance}
         />
-      </ParentChildSelector>
+      </ParentChildSelector>,
     );
   });
 
@@ -67,7 +67,9 @@ export default function AccountList() {
       </div>
 
       <Link href={urlPath.HOME} onClick={clickHandler}>
-        <CustomButton color={selectedIndex ? "main" : "gray"}>가져오기</CustomButton>
+        <CustomButton color={selectedIndex ? "main" : "gray"}>
+          가져오기
+        </CustomButton>
       </Link>
     </div>
   );

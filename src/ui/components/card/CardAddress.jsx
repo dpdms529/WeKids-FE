@@ -4,7 +4,7 @@ import Script from "next/script";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { useState } from "react";
 
-export default function CardAddress({ address, postcode, setAddress, setPostcode }) {
+const CardAddress = ({ address, postcode, setAddress, setPostcode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExistCode, setExistCode] = useState(false);
   const searchPostCodeHandler = () => {
@@ -70,4 +70,6 @@ export default function CardAddress({ address, postcode, setAddress, setPostcode
       </Modal>
     </div>
   );
-}
+};
+
+export default CardAddress;

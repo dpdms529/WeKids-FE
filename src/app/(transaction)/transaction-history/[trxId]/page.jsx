@@ -18,7 +18,7 @@ const TransactionDetailPage = ({ params }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (data?.memo && memo === "") {
+    if (data?.memo) {
       setMemo(data.memo);
     }
   }, [data]);
@@ -27,22 +27,25 @@ const TransactionDetailPage = ({ params }) => {
 
   const handleUpdateMemo = () => {
     console.log("HandleUpdateMemo called");
-    if (!trxId || !memo.trim()) {
+    if (!trxId) {
       return;
     }
-
-    mutate(
-      { transactionId: trxId, memo },
-      {
-        onSuccess: () => {
-          console.log("메모 업데이트 성공!");
-          router.push(`${urlPath.TRANSACTION_HISTORY}?color=YELLOW`);
-        },
-        onError: (error) => {
-          console.error("메모 업데이트 실패:", error.message);
-        },
-      }
-    );
+    if (memo == "") {
+      router.push(`${urlPath.TRANSACTION_HISTORY}?color=YELLOW`);
+    } else {
+      mutate(
+        { transactionId: trxId, memo },
+        {
+          onSuccess: () => {
+            console.log("메모 업데이트 성공!");
+            router.push(`${urlPath.TRANSACTION_HISTORY}?color=YELLOW`);
+          },
+          onError: (error) => {
+            console.error("메모 업데이트 실패:", error.message);
+          },
+        }
+      );
+    }
   };
 
   if (isLoading) {

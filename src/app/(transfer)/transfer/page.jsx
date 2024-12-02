@@ -122,7 +122,7 @@ export default function Page() {
         transferAmount={transferAmount}
         clearTransferData={clearTransferData}
         sendUser={sendUser}
-        children={childrenAccounts}
+        childrenAccounts={childrenAccounts}
         isShaking={isShaking}
         handleUserChange={handleUserChange}
       />
@@ -132,7 +132,11 @@ export default function Page() {
           handleSetMaxAmount={handleSetMaxAmount}
         />
         <div className="w-[393px] mt-9">
-          <KeyPad number={handleNumberClick} buttonHeight="h-14" buttonWidth="w-[393px]" />
+          <KeyPad
+            number={handleNumberClick}
+            buttonHeight="h-14"
+            buttonWidth="w-[393px]"
+          />
         </div>
         <CustomButton
           onClick={handleButtonClick}

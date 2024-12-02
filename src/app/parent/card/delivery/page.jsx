@@ -19,7 +19,7 @@ export default function Page() {
     toast(
       <div>
         입력되지 않은 사항이 있습니다. <br /> 모두 입력해주세요.
-      </div>
+      </div>,
     );
   };
 
@@ -35,9 +35,14 @@ export default function Page() {
       <Toaster position="top-center" />
       <div className="flex flex-col items-center gap-2">
         <div className="flex flex-col h-1/2">
-          <div className="flex flex-col items-center text-R-20 text-black/80">배송지 선택하기</div>
+          <div className="flex flex-col items-center text-R-20 text-black/80">
+            배송지 선택하기
+          </div>
           <div className="flex w-[196px] h-[312px] mt-6">
-            <CardCharacter selectedCharacter="DADAPING" selectedColor="bg-blueDada" />
+            <CardCharacter
+              selectedCharacter="DADAPING"
+              selectedColor="bg-blueDada"
+            />
           </div>
         </div>
         <div className="flex flex-col h-1/2">
@@ -55,7 +60,10 @@ export default function Page() {
             setAddress={setAddress}
           />
           <div className="flex flex-col items-center h-[102px] justify-end">
-            <Link href={urlPath.PARENT_CARD_DELIVERY_COMPLETE} onClick={clickHandler}>
+            <Link
+              href={urlPath.PARENT_CARD_DELIVERY_COMPLETE}
+              onClick={clickHandler}
+            >
               <CustomButton
                 size={"mediumLarge"}
                 rounded={true}

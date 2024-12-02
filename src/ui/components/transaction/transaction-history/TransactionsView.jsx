@@ -1,7 +1,11 @@
 "use client";
 import { useTransactionList } from "@/src/services/transaction";
 import { Flex } from "@radix-ui/themes";
-import { RangeEnum, useTransFilterStore, TypeEnum } from "@/src/stores/transactionStore";
+import {
+  RangeEnum,
+  useTransFilterStore,
+  TypeEnum,
+} from "@/src/stores/transactionStore";
 import Link from "next/link";
 import { urlPath } from "@/src/constants/common";
 import { formatDate } from "@/src/util/dateUtils";
@@ -13,7 +17,8 @@ import { useColorStore } from "@/src/stores/cardStore";
 
 export const TransactionsView = ({ accountId, setBalance }) => {
   const size = 5; // 페이지당 데이터 수
-  const { search, sortingType, range, startDate, endDate, type } = useTransFilterStore();
+  const { search, sortingType, range, startDate, endDate, type } =
+    useTransFilterStore();
 
   const now = new Date();
   const MonthsAgo = new Date();
@@ -40,7 +45,11 @@ export const TransactionsView = ({ accountId, setBalance }) => {
       setStart(formatToLocalDate(MonthsAgo)); // 포맷팅 후 설정
       setEnd(formatToLocalDate(now)); // 현재 날짜 설정
     } else if (range === RangeEnum.LAST_MONTH) {
-      const firstDayLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1); // 지난달 1일
+      const firstDayLastMonth = new Date(
+        now.getFullYear(),
+        now.getMonth() - 1,
+        1,
+      ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
       setEnd(formatToLocalDate(lastDayLastMonth)); // 포맷팅 후 설정
@@ -54,14 +63,20 @@ export const TransactionsView = ({ accountId, setBalance }) => {
     }
   }, [range, type, startDate, endDate]);
 
-  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage, error } =
-    useTransactionList({
-      accountId,
-      start,
-      end,
-      type: typetoEng,
-      size,
-    });
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+    error,
+  } = useTransactionList({
+    accountId,
+    start,
+    end,
+    type: typetoEng,
+    size,
+  });
 
   useEffect(() => {
     if (start && end) {
@@ -98,7 +113,9 @@ export const TransactionsView = ({ accountId, setBalance }) => {
       ?.flatMap((page) => page.transactions) // 모든 페이지의 트랜잭션 병합
       ?.filter((transaction) => {
         // 검색어 필터링
-        const matchesSearch = transaction.title.toLowerCase().includes(search.toLowerCase());
+        const matchesSearch = transaction.title
+          .toLowerCase()
+          .includes(search.toLowerCase());
 
         // 트랜잭션 유형 필터링 (프론트의 type 변수를 서버 값과 매핑)
 
@@ -108,7 +125,8 @@ export const TransactionsView = ({ accountId, setBalance }) => {
         const endDate = range?.end ? new Date(range.end) : null;
 
         const matchesDate =
-          (!startDate || transactionDate >= startDate) && (!endDate || transactionDate <= endDate);
+          (!startDate || transactionDate >= startDate) &&
+          (!endDate || transactionDate <= endDate);
 
         return matchesSearch && matchesDate;
       })
@@ -122,7 +140,10 @@ export const TransactionsView = ({ accountId, setBalance }) => {
       }) || [];
 
   return (
-    <Flex direction="column" className="bg-white h-[53vh] overflow-auto scrollbar-hide">
+    <Flex
+      direction="column"
+      className="bg-white h-[53vh] overflow-auto scrollbar-hide"
+    >
       <InfiniteScroll
         pageStart={0}
         hasMore={hasNextPage}
