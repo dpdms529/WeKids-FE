@@ -90,7 +90,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
               size="mediumLarge"
               rounded={true}
               onClick={AddAndCloseModal}
-              className="text-R-18 bg-main02 w-full"
+              className="text-R-15 bg-main02 w-full"
             >
               승인
             </CustomButton>
@@ -107,7 +107,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
               size="mediumLarge"
               rounded={true}
               onClick={() => setIsModalOpen(false)}
-              className="flex text-R-18 bg-red01 hover:bg-red-700 w-full"
+              className="flex text-R-15 bg-red01 hover:bg-red-700 w-full"
             >
               반려
             </CustomButton>
