@@ -2,7 +2,7 @@
 import { useState } from "react";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import MissionModal from "@/src/ui/components/mission/MissionModal";
-import MissionRequestComponent from "@/src/ui/components/mission/MissionRequestComponent";
+import MissionRequestComponent from "@/src/ui/components/mission/child/MissionRequestComponent";
 
 export default function Page() {
   const [isModalOpen, setIsModalOpen] = useState(false);
