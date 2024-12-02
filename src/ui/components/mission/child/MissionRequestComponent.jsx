@@ -5,7 +5,7 @@ import imageCompression from "browser-image-compression";
 
 const data = {
   1: "미션 설명이 들어갑니다. 미션 설명은 총 몇 자 인가요? 넓이 영역에 대해 한번 고려 해보셔야 할 것 같습니다. 보통 설명이 이렇게까지 길어지는 일이 있을지는 잘 모르겠습니다. 부모님이 자식에게 이 만큼 설명하는 것이 아이 연령을 고려했을 때 불필요한 일일 수도 있습니다만 저희는 최대 길이 영역을 고려하여 디자인 진행을 해야합니다",
-  2: "미션 성공 시 총 30,000원을 받을 수 있어요 💙",
+  2: "미션 성공 시 총 30,000원을 받을 수 있어요.",
   3: "🍪 2024년 11월 20일 (수) 까지 완료할 수 있어요",
   4: "아이가 메시지를 작성하지 않았습니다. ",
   5: "이곳에 미션명이 들어갑니다.",
@@ -14,7 +14,7 @@ const data = {
 const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
   const [previewURL, setPreviewURL] = useState("");
   const fileRef = useRef();
-  const [reward, setReward] = useState(0);
+  const [reward, setReward] = useState(1000000000);
   const [period, setPeriod] = useState(new Date());
   const [message, setMessage] = useState("");
   const [isDragging, setIsDragging] = useState(false);
@@ -83,19 +83,19 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className="flex flex-col gap-1 mb-5 pt-10 px-7 w-full">
+      <div className=" gap-1 mb-5 pt-10 px-7 w-full">
         <div className="text-sub02 text-R-15">{data[5]}</div>
       </div>
       <div className="flex flex-col pb-10 px-7 w-full gap-2 mb-3 overflow-auto">
-        <div className="text-R-10 text-sub02">미션 완료 방법</div>
+        <p className="text-R-10 text-sub02">미션 완료 방법</p>
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           {data[1]}
         </div>
-        <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
-          미션 성공 시 총 <span className="text-sub02">{reward}</span> 원을 받을
+        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
+          미션 성공 시 총 <span className="text-sub02">{reward.toLocaleString()}</span> 원을 받을
           수 있어요
-        </div>
-        <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
+        </p>
+        <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           🍪{" "}
           <span className="text-sub02">
             {period
@@ -103,9 +103,9 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
               : ""}
           </span>{" "}
           까지 완료할 수 있어요
-        </div>
+        </p>
 
-        <div className="text-R-10 mt-6 text-sub02">미션 완료 인증하기</div>
+        <p className="text-R-10 mt-6 text-sub02">미션 완료 인증하기</p>
         <div
           className={`flex flex-col items-center justify-center p-3 mb-6 ${
             isDragging ? "bg-white" : "bg-main02/20"
@@ -139,7 +139,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
           ) : (
             <div className="flex flex-col items-center">
               <button
-                className="w-12 h-12 flex items-center justify-center bg-transparent rounded-full"
+                className="w-12 h-12 items-center justify-center bg-transparent rounded-full"
                 onClick={handleFileButtonClick}
               >
                 <Image
@@ -163,7 +163,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
             </div>
           )}
         </div>
-        <div className="text-R-10 text-sub02">부모님께 보낼 메시지</div>
+        <p className="text-R-10 text-sub02">부모님께 보낼 메시지</p>
         <div
           className={`${
             message ? "bg-main02/20" : "bg-grey01/20"
@@ -175,8 +175,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
             className="w-full h-8 bg-transparent rounded-md resize-none outline-none p-2 text-black/80"
           ></textarea>
         </div>
-        <div className="flex flex-row w-full justify-center h-[40px] px-10 mt-9">
-          <div className="flex flex-col h-full w-full">
+          <div className="flex flex-col h-[40px] px-10 mt-9 items-center">
             <CustomButton
               size="mediumLarge"
               rounded={true}
@@ -185,7 +184,6 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
             >
               미 션 완 료
             </CustomButton>
-          </div>
         </div>
       </div>
     </div>
