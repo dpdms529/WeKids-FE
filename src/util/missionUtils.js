@@ -21,11 +21,11 @@ export function formatDate(dateString) {
   
   export function getBackgroundStyle(state) {
     const styles = {
-      ACC: "bg-[#52B6E7]", 
-      NEW: "bg-[#DCF0FA]",
+      ACC: "bg-[#9BD5F1]", 
+      NEW: "bg-[#57A9FB] opacity-20",
       PRO: "bg-[#DCF0FA]",
-      REJ: "bg-[#FCDADA]",
-      DONE: "bg-[#F6F6F6]"
+      REJ: "bg-[#FCDADA] flex-shrink-0",
+      DONE: "bg-stone-300"
     };
     return styles[state] || "bg-[#52B6E7]";
   }
