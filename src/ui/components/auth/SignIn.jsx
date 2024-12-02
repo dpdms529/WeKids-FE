@@ -5,16 +5,8 @@ import { signIn } from "next-auth/react";
 
 export default function SignIn({ children }) {
   const { userType } = useUserTypeStore();
-  const {
-    email,
-    name,
-    phone,
-    birthday,
-    password,
-    guardianName,
-    guardianBirthday,
-    guardianPhone,
-  } = useSignUpStore();
+  const { email, name, phone, birthday, password, guardianName, guardianBirthday, guardianPhone } =
+    useSignUpStore();
 
   let data = {
     birthday: "1985-05-29",
@@ -36,7 +28,6 @@ export default function SignIn({ children }) {
   }
 
   console.log(data);
-
   useSignUpStore.persist.clearStorage();
 
   return (

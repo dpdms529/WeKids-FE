@@ -3,15 +3,15 @@
 import { auth } from "@/auth";
 import { BASE_URL } from "../constants/url";
 
-const session = await auth();
-const authorization = session?.user?.Authorization;
-
-const headers = {
-  "Content-Type": "application/json",
-  Cookie: `Authorization=${authorization}`,
-};
-
 export const getParentsAccounts = async () => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+
   const response = await fetch(`${BASE_URL}/parents`, {
     method: "GET",
     headers: headers,
@@ -26,6 +26,14 @@ export const getParentsAccounts = async () => {
 };
 
 export const agreeAccountInquiry = async (identification) => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+
   const residentRegistrationNumber =
     identification.slice(0, 6) + "-" + identification.slice(6);
 

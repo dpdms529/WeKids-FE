@@ -122,7 +122,7 @@ export default function Page() {
         transferAmount={transferAmount}
         clearTransferData={clearTransferData}
         sendUser={sendUser}
-        children={childrenAccounts}
+        childrenAccounts={childrenAccounts}
         isShaking={isShaking}
         handleUserChange={handleUserChange}
       />
