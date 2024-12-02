@@ -3,14 +3,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
 import Link from "next/link";
 
-export default function Page({
-  pwd,
-  isInput,
-  allow,
-  setIsInput,
-  setPwd,
-  setAllowed,
-}) {
+export default function Page({ pwd, isInput, allow, setIsInput, setPwd, setAllowed }) {
   const inputHandler = (num) => {
     if (num === "⌫") {
       const updateInput = [...isInput];
@@ -41,16 +34,11 @@ export default function Page({
   return (
     <>
       <div className="flex flex-col h-1/5 p-10">
-        <Link
-          href={urlPath.SELECT_PARENT_PASSWORD_CONFIRM}
-          onClick={handleClick}
-        >
+        <Link href={urlPath.SELECT_PARENT_PASSWORD_CONFIRM} onClick={handleClick}>
           <CustomButton
             rounded="true"
             className={`mt-auto w-full ${
-              allow
-                ? "bg-main02"
-                : "bg-stone-300 hover:bg-stone-300 pointer-events-none"
+              allow ? "bg-main02" : "bg-stone-300 hover:bg-stone-300 pointer-events-none"
             }`}
           >
             확인
