@@ -1,6 +1,6 @@
-import AccountView from "./HasAccount";
 import { getParentsAccounts } from "@/src/services/parents";
-import NoAccountView from "./NoAccountView";
+import EmptyAccountCard from "./EmptyAccountCard";
+import AccountView from "./HasAccount";
 
 export default async function ParentHome() {
   const data = await getParentsAccounts();
@@ -10,7 +10,7 @@ export default async function ParentHome() {
   }
 
   if (data.parent.accountNumber === null) {
-    return <NoAccountView />;
+    return <EmptyAccountCard />;
   }
 
   return <AccountView accountData={data} />;
