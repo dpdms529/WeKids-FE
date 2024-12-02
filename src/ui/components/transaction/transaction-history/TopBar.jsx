@@ -1,6 +1,9 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
-import { useUserCardColorStore, useUserTypeStore } from "@/src/stores/userStore";
+import {
+  useUserCardColorStore,
+  useUserTypeStore,
+} from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
@@ -39,7 +42,12 @@ export default function TopBar({ name, balance, accountNumber }) {
       direction="column"
       className={`${bgColorClass} h-[40vh]`}
     >
-      <Flex align="center" justify="between" direction="row" className="w-full pt-8 pl-3 pr-3">
+      <Flex
+        align="center"
+        justify="between"
+        direction="row"
+        className="w-full pt-8 pl-3 pr-3"
+      >
         <Link href={urlPath.HOME}>
           <ArrowLeftIcon className="w-5 h-5 text-black/80" />
         </Link>
@@ -56,13 +64,20 @@ export default function TopBar({ name, balance, accountNumber }) {
         >
           {accountNumber}
         </p>
-        <h2 className="text-black/80 text-B-32 mt-4">{Number(balance).toLocaleString()}원</h2>
+        <h2 className="text-black/80 text-B-32 mt-4">
+          {Number(balance).toLocaleString()}원
+        </h2>
       </Flex>
       <Flex justify="between" direction="row" className="gap-3 m-8 mt-4">
         {userType === "PARENT" && (
           <>
             <Link href={urlPath.TRANSFER}>
-              <CustomButton className="text-R-14" size="small" color="black10" rounded={true}>
+              <CustomButton
+                className="text-R-14"
+                size="small"
+                color="black10"
+                rounded={true}
+              >
                 용돈주기
               </CustomButton>
             </Link>

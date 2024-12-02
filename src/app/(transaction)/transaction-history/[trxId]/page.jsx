@@ -1,6 +1,9 @@
 "use client";
 import { use } from "react";
-import { useTransactionDetail, useUpdateTransactionMemo } from "@/src/services/transaction";
+import {
+  useTransactionDetail,
+  useUpdateTransactionMemo,
+} from "@/src/services/transaction";
 import Loader from "@/src/ui/components/atoms/Loader";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import Memo from "@/src/ui/components/transaction/detail/Memo";
@@ -30,10 +33,9 @@ const TransactionDetailPage = ({ params }) => {
     if (!trxId) {
       return;
     }
-    if(memo == ""){
+    if (memo == "") {
       router.push(`${urlPath.TRANSACTION_HISTORY}?color=YELLOW`);
-    }
-    else{
+    } else {
       mutate(
         { transactionId: trxId, memo },
         {
@@ -44,10 +46,9 @@ const TransactionDetailPage = ({ params }) => {
           onError: (error) => {
             console.error("메모 업데이트 실패:", error.message);
           },
-        }
+        },
       );
     }
-    
   };
 
   if (isLoading) {
@@ -61,12 +62,17 @@ const TransactionDetailPage = ({ params }) => {
   return (
     <div className="bg-white w-full h-full flex flex-col items-center justify-between">
       <div className="w-full px-5 py-10">
-        <div className="w-full flex items-center text-B-22 my-5">{data.title}</div>
+        <div className="w-full flex items-center text-B-22 my-5">
+          {data.title}
+        </div>
         <Memo memo={memo} setMemo={setMemo} />
         <hr />
         <div className="w-full">
           <TransactionDetail label="거래시각" value={data.createdAt} />
-          <TransactionDetail label="거래구분" value={data.type === "DEPOSIT" ? "입금" : "출금"} />
+          <TransactionDetail
+            label="거래구분"
+            value={data.type === "DEPOSIT" ? "입금" : "출금"}
+          />
           <TransactionDetail label="거래금액" value={data.amount} />
           <TransactionDetail label="거래 후 잔액" value={data.balance} />
         </div>

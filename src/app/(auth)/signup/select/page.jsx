@@ -20,7 +20,7 @@ export default function Page() {
     }
   };
   return (
-    <div className="flex flex-col h-screen bg-white overflow-y-auto w-full items-center px-10">
+    <div className="flex flex-col h-screen w-full bg-white overflow-y-auto items-center px-10">
       <div className="my-20 py-2">
         <a className="text-B-28">부모인가요? 자녀인가요?</a>
       </div>

@@ -1,6 +1,10 @@
 import LimitedInputBox from "./LimitedInputBox";
 
-export default function IdentificationForm({ title, identification, setIdentification }) {
+export default function IdentificationForm({
+  title,
+  identification,
+  setIdentification,
+}) {
   const InputTextHandler = (value, idx) => {
     let number;
     switch (idx) {

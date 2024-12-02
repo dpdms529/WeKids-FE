@@ -9,8 +9,16 @@ import { useSignUpStore } from "@/src/stores/accountStore";
 
 export default function Top({ setAllChecked, data }) {
   const [phoneChecked, setphoneChecked] = useState(false);
-  const { name, email, phone, birthday, setName, setEmail, setPhone, setBirthday } =
-    useSignUpStore();
+  const {
+    name,
+    email,
+    phone,
+    birthday,
+    setName,
+    setEmail,
+    setPhone,
+    setBirthday,
+  } = useSignUpStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -20,7 +28,9 @@ export default function Top({ setAllChecked, data }) {
   }, []);
 
   useEffect(() => {
-    email !== "" && name !== "" ? setphoneChecked(true) : setphoneChecked(false); // 추후에 구현
+    email !== "" && name !== ""
+      ? setphoneChecked(true)
+      : setphoneChecked(false); // 추후에 구현
     setAllChecked(email !== "" && name !== "");
   }, [phone, email, name, setAllChecked]);
 

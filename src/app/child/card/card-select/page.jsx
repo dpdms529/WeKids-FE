@@ -27,7 +27,10 @@ const CardDesignSelector = () => {
         <h2 className="R-20 mb-4 text-left w-full">카드 디자인 선택</h2>
         <div className="w-[331px] h-[935px] flex-shrink-0 rounded-[10px] border border-black bg-white p-4">
           <div className="flex flex-col items-center mt-4">
-            <CardCharacter selectedCharacter={selectedCharacter} selectedColor={selectedColor} />
+            <CardCharacter
+              selectedCharacter={selectedCharacter}
+              selectedColor={selectedColor}
+            />
           </div>
           <div className="text-center mb-12 mt-10">
             <h3 className="R-20 mb-3">배경색</h3>
@@ -66,7 +69,10 @@ const CardDesignSelector = () => {
         <CustomButton size="large" onClick={() => setIsModalOpen(true)}>
           확인
         </CustomButton>
-        <CardIssueModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <CardIssueModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       </div>
     </div>
   );
