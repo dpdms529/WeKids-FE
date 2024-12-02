@@ -30,21 +30,20 @@ export default function ButtonGroup({
       setTopButtonChecked(allSelections);
       setIsAllSelected(!isAllSelected);
     } else {
-      const newSelection = selectedTopButtons.includes(id)
-        ? selectedTopButtons.filter((button) => button !== id)
-        : [...selectedTopButtons, id];
-
+      const newSelection = selectedTopButtons.includes(id) ? selectedTopButtons.filter((button) => button !== id) : [...selectedTopButtons, id];
       setSelectedTopButtons(newSelection);
       setTopButtonChecked(newSelection);
       setIsAllSelected(false);
     }
   };
+  
 
   const handleBottomButtonClick = (id) => {
-    if (id == selectedBottomButton) {
+    if(id == selectedBottomButton){
       setSelectedBottomButton("");
-      setBottomButtonChecked("");
-    } else {
+    setBottomButtonChecked("");
+    }
+    else{
       setSelectedBottomButton(id);
       setBottomButtonChecked(id);
     }
@@ -63,7 +62,7 @@ export default function ButtonGroup({
 
   return (
     <div className="flex flex-col w-full">
-      <div className="text-R-10 mb-1 text-sub02">미션을 수행할 자녀</div>
+      <a className="text-R-10 mb-1 text-sub02">미션을 수행할 자녀</a>
       <div className="flex flex-row justify-between gap-3 w-full mb-2">
         {topButtons.map((button) => (
           <button
@@ -82,7 +81,7 @@ export default function ButtonGroup({
           </button>
         ))}
       </div>
-      <div className="text-R-10 mb-1 mt-2 text-sub02">미션 카테고리</div>
+      <a className="text-R-10 mb-1 mt-2 text-sub02">미션 카테고리</a>
       <div className="flex flex-row justify-between gap-2 w-full">
         {bottomButtons.map((button) => (
           <button
