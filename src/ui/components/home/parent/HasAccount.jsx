@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Profile from "../../atoms/Profile";
 import BlueCardBox from "../BlueCardBox";
-import NoButtonAccountCard from "./AccountGuide";
 import { useAccountStore } from "@/src/stores/userStore";
 
 export default function AccountView({ accountData }) {
