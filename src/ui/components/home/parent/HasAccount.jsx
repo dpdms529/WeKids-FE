@@ -30,7 +30,7 @@ export default function AccountView({ accountData }) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex space-x-3 mb-6 ml-1 mt-4">
+      <div className="flex space-x-3 mb-6 ml-1">
         {/* 부모 프로필 */}
         <div
           className="relative cursor-pointer"
@@ -92,14 +92,10 @@ export default function AccountView({ accountData }) {
       </div>
 
       <div className="flex justify-center">
-        {selectedAccount ? (
-          selectedAccount.accountNumber ? (
-            <BlueCardBox selectedAccount={selectedAccount} />
-          ) : (
-            <NoButtonAccountCard mainText="자녀의 카드 발급을" />
-          )
+        {selectedAccount?.accountNumber ? (
+          <BlueCardBox selectedAccount={selectedAccount} />
         ) : (
-          <NoButtonAccountCard />
+          <ChildNoCard />
         )}
       </div>
     </div>
