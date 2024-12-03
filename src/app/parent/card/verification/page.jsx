@@ -31,10 +31,13 @@ export default function Page() {
       <div className="flex flex-1 flex-col overflow-y-auto scrollbar-hide">
         <ChildInputForm setAllChecked={setTopChecked} />
         <div className="mt-12 mb-1 text-R-20 text-black/80">
-          <div className="px-8">
+          <div className="px-10 mb-4">
             아이의 계좌를 만들기 위해 <br /> OOO님의 동의가 필요해요
           </div>
-          <Bottom setAllChecked={setBottomChecked} />
+          <div className="flex flex-col items-center">
+            <Bottom setAllChecked={setBottomChecked} />
+          </div>
+          
         </div>
       </div>
       <div className="flex flex-col px-10 py-5 gap-6">

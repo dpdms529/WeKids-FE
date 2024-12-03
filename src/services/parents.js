@@ -6,11 +6,12 @@ import { BASE_URL } from "../constants/url";
 export const getParentsAccounts = async () => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
-
+  
   const headers = {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
+  console.log(headers);
 
   const response = await fetch(`${BASE_URL}/parents`, {
     method: "GET",
@@ -20,8 +21,11 @@ export const getParentsAccounts = async () => {
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
-
+  
   const data = await response.json();
+  if(data){
+    console.log(data.parent);
+  }
   return data;
 };
 
