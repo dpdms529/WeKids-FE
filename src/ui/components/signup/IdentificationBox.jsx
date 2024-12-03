@@ -1,7 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
 import IdentificationForm from "./IdentificationForm";
-import { useEffect, useState } from "react";
 
 export default function IdentificationBox({
   setChecked,
@@ -9,35 +9,17 @@ export default function IdentificationBox({
   identification,
   setIdentification,
 }) {
-  // const [identification, setIdentification] = useState("".padStart(13, " "));
-  const [checkidentification, setCheckIdentification] = useState(
-    "".padStart(13, " "),
-  );
-
   useEffect(() => {
-    const isEmpty =
-      identification.includes(" ") || checkidentification.includes(" ");
-    const isMismatch = identification !== checkidentification;
-    setErrorCode([
-      !isMismatch,
-      !identification.includes(" "),
-      !checkidentification.includes(" "),
-    ]);
-    setChecked(!isEmpty && !isMismatch);
-  }, [identification, checkidentification, setChecked, setErrorCode]);
+    const isEmpty = identification.includes(" ");
+    setErrorCode([true, !identification.includes(" ")]);
+    setChecked(!isEmpty);
+  }, [identification, setChecked, setErrorCode]);
 
   return (
-    <>
-      <IdentificationForm
-        title="주민번호"
-        identification={identification}
-        setIdentification={setIdentification}
-      />
-      <IdentificationForm
-        title="주민번호 확인"
-        identification={checkidentification}
-        setIdentification={setCheckIdentification}
-      />
-    </>
+    <IdentificationForm
+      title="주민번호"
+      identification={identification}
+      setIdentification={setIdentification}
+    />
   );
 }
