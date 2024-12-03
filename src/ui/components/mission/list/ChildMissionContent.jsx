@@ -3,6 +3,7 @@ import MissionFooter from "./MissionFooter";
 import StateIconBadge from "./StateIconBadge";
 
 export default function ChildMissionContent({ mission }) {
+    
     return (
       <div className="flex items-start justify-between">
         <div className="flex-1 mt-2">
@@ -19,7 +20,7 @@ export default function ChildMissionContent({ mission }) {
         <div className="flex flex-col items-end gap-1">
           <StateBadge state={mission.state} />
           <StateIconBadge state={mission.state} />
-          <MissionFooter mission={mission} />
+          <div className="mt-2"><MissionFooter mission={mission} /></div>
         </div>
       </div>
     );

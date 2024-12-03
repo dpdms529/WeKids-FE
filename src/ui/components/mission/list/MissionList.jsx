@@ -15,7 +15,7 @@ export default function MissionList({ isParent }) {
       // 부모 화면일 경우 필터링 적용
       const matchesChild = selectedChild === 'ALL' || mission.childName === selectedChild;
       const matchesCategory = !selectedCategory || mission.category === selectedCategory;
-      console.log('Mission:', mission.childName, 'Selected:', selectedChild, 'Matches:', matchesChild); // 디버깅용
+      
       return matchesChild && matchesCategory;
     });
 
