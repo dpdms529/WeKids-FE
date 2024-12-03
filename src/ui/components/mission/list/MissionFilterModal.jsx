@@ -18,7 +18,14 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
       <div className="p-6">
         {/* 헤더 */}
         <div className="flex justify-between items-center mb-8">
-          <button onClick={onClose} className="text-2xl">×</button>
+        <button onClick={onClose} className="p-1">
+            <Image 
+              src="/images/cross.svg"
+              alt="닫기"
+              width={20}
+              height={20}
+            />
+          </button>
           <button 
             onClick={onClose}
             className="text-black/80 hover:text-black transition-colors"
@@ -29,14 +36,14 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
 
         {/* 자녀 필터 */}
         <div className="mb-12">
-          <h3 className="text-B-14 text-lg mb-1">자녀</h3>
+          <h3 className="text-B-14 mb-1">자녀</h3>
           <div className="border-t border-gray-200 pt-4">
             <div className="flex gap-2">
               {children.map((child) => (
                 <button
                   key={child}
-                  className={`px-4 py-2 rounded-lg text-gray-500 transition-colors
-                    ${selectedChild === child ? 'bg-main02' : 'bg-gray-50'}`}
+                  className={`px-4 py-2 rounded-lg text-black/40 transition-colors
+                    ${selectedChild === child ? 'bg-main02' : 'bg-gray-200/20'}`}
                   onClick={() => setSelectedChild(child)}
                 >
                   {child}
@@ -48,14 +55,14 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
 
         {/* 미션 필터 */}
         <div>
-          <h3 className="text-B-14 text-lg mb-1">미션</h3>
-          <div className="border-t border-gray-200 pt-4">
+          <h3 className="text-B-14 mb-1">미션</h3>
+          <div className="border-t text-gray01 pt-4">
             <div className="grid grid-cols-3 gap-2 mb-2">
               {categories.slice(0, 3).map((category) => (
                 <button
                   key={category.id}
                   className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-colors
-                    ${selectedCategory === category.id ? 'bg-main02' : 'bg-gray-50'}`}
+                    ${selectedCategory === category.id ? 'bg-main02' : 'bg-gray-200/20'}`}
                   onClick={() => setSelectedCategory(category.id)}
                 >
                   <Image 
@@ -64,13 +71,13 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
                     width={16}
                     height={16}
                   />
-                  <span className="text-gray-500">{category.name}</span>
+                  <span className="text-black/40">{category.name}</span>
                 </button>
               ))}
             </div>
             <button
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors
-                ${selectedCategory === 'ETC' ? 'bg-main02' : 'bg-gray-50'}`}
+                ${selectedCategory === 'ETC' ? 'bg-main02' : 'bg-gray-200/20'}`}
               onClick={() => setSelectedCategory('ETC')}
             >
               <Image 
@@ -79,7 +86,7 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
                 width={16}
                 height={16}
               />
-              <span className="text-gray-500">기타</span>
+              <span className="text-black/40">기타</span>
             </button>
           </div>
         </div>

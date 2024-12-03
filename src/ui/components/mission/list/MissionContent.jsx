@@ -20,7 +20,7 @@ export default function MissionContent({ mission, isParent }) {
       <div className="flex flex-col justify-center flex-shrink-0 text-R-14 truncate whitespace-nowrap overflow-hidden -mt-1">
         {mission.title}
       </div>
-      <div className="flex flex-col justify-center flex-shrink-0 text-L-12 text-xs text-[#123F6D]">
+      <div className="flex flex-col justify-center flex-shrink-0 text-L-12">
         {mission.content}
       </div>
       <MissionFooter 

@@ -13,7 +13,7 @@ export default function ProfileSection({ mission }) {
         />
       </div>
       <div className="flex flex-col justify-center w-[67px] h-[18px] bg-main02 rounded-b-[10px] mt-3 flex-shrink-0">
-        <span className="text-[10px] text-white text-center">{mission.childName}</span>
+        <span className="text-L-10 text-white text-center">{mission.childName}</span>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ export default function FilterHeader() {
           width={16}
           height={16}
         />
-        <span className="text-sm font-medium">FILTER</span>
+        <span className="text-R-13">FILTER</span>
       </div>
 
       <MissionFilterModal 

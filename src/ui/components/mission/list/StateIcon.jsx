@@ -36,7 +36,7 @@ const StateIcon = ({ state }) => {
         width={16}
         height={16}
       />
-      <span className="text-xs text-gray-600">{stateInfo.text}</span>
+      <span className="text-R-10">{stateInfo.text}</span>
     </div>
   );
 };
