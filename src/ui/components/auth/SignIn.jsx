@@ -17,11 +17,11 @@ export default function SignIn({ children }) {
   } = useSignUpStore();
 
   let data = {
-    birthday: "1999-12-21",
-    name: "구자빈",
-    phone: "010-8962-0547",
+    birthday: "2000-10-13",
+    name: "최윤정",
+    phone: "010-3131-4970",
     simplePassword: 123456,
-    email: "koreanjb1221@naver.com",
+    email: "cbj0010@naver.com",
     social: "naver",
     memberType: "PARENT",
     redirectTo: "/",
@@ -36,8 +36,8 @@ export default function SignIn({ children }) {
     data["guardianPhone"] = "010-1234-5678";
   }
 
-  console.log(data);
-  useSignUpStore.persist.clearStorage();
+  // console.log(data);
+  // let data = useSignUpStore.persist.clearStorage();
 
   return (
     <form

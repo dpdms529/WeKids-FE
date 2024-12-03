@@ -1,4 +1,4 @@
-import { getParentsAccounts } from "@/src/services/parents";
+import { getParentsAccounts } from "@/src/apis/parents";
 import AccountView from "./HasAccount";
 import NoAccountCard from "./NoAccountCard";
 

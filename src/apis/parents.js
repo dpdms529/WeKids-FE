@@ -48,7 +48,13 @@ export const agreeAccountInquiry = async (identification) => {
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
-  console.log(response);
+  console.log("response어떻게 들어옴?" + response);
+  console.log({
+    status: response.status,
+    statusText: response.statusText,
+    headers: Object.fromEntries(response.headers),
+    ok: response.ok,
+  });
 
   return response.status === 204;
 };
