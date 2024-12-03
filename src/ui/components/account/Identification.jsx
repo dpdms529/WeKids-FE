@@ -4,7 +4,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import IdentificationBox from "@/src/ui/components/signup/IdentificationBox";
 import toast, { Toaster } from "react-hot-toast";
 import { validationMessages } from "@/src/constants/assign";
-import { agreeAccountInquiry } from "@/src/services/parents";
+import { agreeAccountInquiry } from "@/src/apis/parents";
 
 export default function Identification({ setIsChecked }) {
   const [assignCheck, setAssignChecked] = useState(false);

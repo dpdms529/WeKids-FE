@@ -17,13 +17,13 @@ export default function SignIn({ children }) {
   } = useSignUpStore();
 
   let data = {
-    birthday: "1999-12-21",
-    name: "구자빈",
-    phone: "010-8962-0547",
+    birthday: "1998-01-15",
+    name: "안찬웅",
+    phone: "010-1234-1234",
     simplePassword: 123456,
-    email: "koreanjb1221@naver.com",
+    email: "1stevering@naver.com",
     social: "naver",
-    memberType: "PARENT",
+    memberType: "CHILD",
     redirectTo: "/",
   };
 

@@ -14,11 +14,12 @@ const CardDesignSelector = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCharacterClick = (character) => {
+    //console.log("Selected color:", character);
     setSelectedCharacter(character);
   };
 
   const handleColorClick = (colorClass) => {
-    console.log("Selected color:", colorClass);
+    //console.log("Selected color:", colorClass);
     setSelectedColor(colorClass);
   };
 

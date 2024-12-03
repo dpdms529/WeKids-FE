@@ -4,7 +4,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { designFetch } from "@/src/services/design";
+import { designFetch } from "@/src/apis/design";
 
 export default function ChoiceDesign({
   title,

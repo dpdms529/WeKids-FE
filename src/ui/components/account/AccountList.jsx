@@ -2,7 +2,7 @@ import { urlPath } from "@/src/constants/common";
 import { useEffect, useState } from "react";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Link from "next/link";
-import { fetchAccounts } from "@/src/services/account";
+import { fetchAccounts } from "@/src/apis/account";
 import ParentChildSelector from "../signup/ParentChildSelector";
 import SelectorAccount from "../signup/SelectorAccount";
 

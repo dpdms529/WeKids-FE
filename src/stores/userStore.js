@@ -2,7 +2,7 @@
 import { create } from "zustand";
 
 export const useUserTypeStore = create((set) => ({
-  userType: "", // 'PARENT' or 'CHILD'
+  userType: "CHILD", // 'PARENT' or 'CHILD'
   setUserType: (type) => set({ userType: type }),
 }));
 

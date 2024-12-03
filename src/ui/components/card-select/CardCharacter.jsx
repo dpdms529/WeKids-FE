@@ -3,12 +3,12 @@ import { useUserStore } from "@/src/stores/userStore";
 import Image from "next/image";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
-  const colorClass = colorTypeMap[selectedColor]?.colorClass || "bg-pinkHachu";
+  
   const userName = useUserStore((state) => state.userName);
 
   return (
     <div
-      className={`relative w-[196px] h-[312px] flex-shrink-0 rounded-[14px] border border-black ${colorClass} shadow-2xl flex flex-col items-center justify-center`}
+      className={`relative w-[196px] h-[312px] flex-shrink-0 rounded-[14px] border border-black ${selectedColor} shadow-2xl flex flex-col items-center justify-center`}
     >
       <Image
         src="/images/logoImg.svg"
