@@ -22,16 +22,15 @@ export default function ChoiceDesign({
   useEffect(() => {
     const fetchDesign = async () => {
       try {
-        setIsLoading(true);
-        console.log("!!!!!")
+        console.log("Fetching design...");
         const data = await designFetch();
         console.log(data);
         setDesignData(data);
-        setChildChacter(data?.character || character);
-        setChildColor(data?.color || color);
+        // setChildChacter(data?.character || character);
+        // setChildColor(data?.color || color);
       } catch (error) {
+        console.error("Error fetching design:", error.message);
       } finally {
-        setIsLoading(false);
         
       }
     };
