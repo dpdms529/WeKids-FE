@@ -14,22 +14,9 @@ export default function Page() {
   const router = useRouter();
   const { registerPassword } = useCardStore();
 
-  const mutation = useMutation({
-    mutationFn: async (password) => {
-      return await registerPassword(password);
-    },
-    onSuccess: (data) => {
-      router.push(urlPath.PARENT_CARD_CONFIRM);
-    },
-    onError: (error) => {
-      console.error("비밀번호 등록 실패:", error);
-    },
-  });
-
+  
   const handleSubmit = () => {
-    if (allow) {
-      mutation.mutate(pwd);
-    }
+    router.push(urlPath.PARENT_CARD_CONFIRM);
   };
 
   return (

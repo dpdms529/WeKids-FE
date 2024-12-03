@@ -36,7 +36,7 @@ export const designFetch = async () => {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
-
+  console.log("input")
   const response = await fetch(`${BASE_URL}/design`, {
     method: "GET",
     headers: headers,

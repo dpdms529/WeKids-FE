@@ -5,18 +5,24 @@ import React, { useState, useEffect } from "react";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Modal from "../atoms/Modal";
 import Loader from "../atoms/Loader";
+import { useSensitiveDataStore } from "@/src/stores/cardStore";
 
-export default function ChildInputForm({ setAllChecked, parentName, childName="김우리" }) {
+export default function ChildInputForm({ setAllChecked, parentName }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
   const [residentfront, setResidentfront] = useState("");
   const [residentback, setResidentback] = useState("");
+  const { setResidentRegistrationNumber, getResidentRegistrationNumber } = useSensitiveDataStore();
 
   useEffect(() => {
+    if (residentfront.length === 6 && residentback.length === 7) {
+      setResidentRegistrationNumber(`${residentfront}-${residentback}`);
+      console.log(getResidentRegistrationNumber());
+    }
     setAllChecked(
       name !== "" && residentfront.length == 6 && residentback.length == 7,
     );
-  }, [name, residentfront, residentback]);
+  }, [name, residentfront, residentback, setResidentRegistrationNumber]);
 
   const handleFrontChange = (value) => {
     setResidentfront(value.slice(0, 6));
@@ -70,7 +76,7 @@ export default function ChildInputForm({ setAllChecked, parentName, childName="�
         </div>
         <div className="flex flex-col mt-3 gap-3">
           <div className="text-R-14 text-neutral-400">
-            {parentName}님이 {childName}님의 <br /> 법정대리인이 맞는지 확인하기 위해{" "}
+            {parentName}님이 아이의<br /> 법정대리인이 맞는지 확인하기 위해{" "}
           </div>
           <div className="text-R-20 text-black/80">
             가족관계증명서와 <br /> 기본증명서를 발급할게요{" "}

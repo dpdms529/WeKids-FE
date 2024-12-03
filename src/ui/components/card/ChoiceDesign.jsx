@@ -5,6 +5,7 @@ import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { designFetch } from "@/src/services/design";
+import { useColorStore } from "@/src/stores/cardStore";
 
 export default function ChoiceDesign({
   title,
@@ -16,16 +17,22 @@ export default function ChoiceDesign({
 }) {
   const [designData, setDesignData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const {setChildChacter, setChildColor} = useColorStore();
 
   useEffect(() => {
     const fetchDesign = async () => {
       try {
         setIsLoading(true);
+        console.log("!!!!!")
         const data = await designFetch();
+        console.log(data);
         setDesignData(data);
+        setChildChacter(data?.character || character);
+        setChildColor(data?.color || color);
       } catch (error) {
       } finally {
         setIsLoading(false);
+        
       }
     };
     fetchDesign();

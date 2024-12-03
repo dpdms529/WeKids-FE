@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSensitiveDataStore } from "@/src/stores/cardStore";
 export default function PasswordTop({
   isInput,
   pwd,
@@ -9,7 +10,7 @@ export default function PasswordTop({
 }) {
   const [check, setChecked] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
-
+  const {setAccountPassword, getAccountPassword} = useSensitiveDataStore();
   useEffect(() => {
     if (isShaking) {
       const timeout = setTimeout(() => {
@@ -32,7 +33,15 @@ export default function PasswordTop({
     } else if (isInput[index - 1] === true && check === 1) {
       const firstValue = pwd.slice(0, index);
       const secondValue = pwd.slice(index, index * 2);
-      firstValue == secondValue ? setAllowed(true) : setIsShaking(true);
+      if (firstValue === secondValue) {
+        // 비밀번호가 일치하면 처리
+        setAllowed(true);
+        setAccountPassword(firstValue);
+        console.log(getAccountPassword());
+      } else {
+        // 비밀번호가 일치하지 않으면 흔들림 애니메이션 처리
+        setIsShaking(true);
+      }
     }
   }, [isInput[index - 1]]);
 
