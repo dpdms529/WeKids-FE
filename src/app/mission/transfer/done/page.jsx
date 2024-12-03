@@ -1,4 +1,3 @@
-import { urlPath } from "@/src/constants/common";
 import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
 
 export default async function Page() {
