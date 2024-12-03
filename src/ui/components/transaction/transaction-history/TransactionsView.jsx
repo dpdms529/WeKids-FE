@@ -15,9 +15,9 @@ import { formatToLocalDate } from "@/src/constants/transaction";
 import { useEffect, useState } from "react";
 import { useColorStore } from "@/src/stores/cardStore";
 
-export const TransactionsView = ({ accountId, setBalance }) => {
+export const TransactionsView = ({ accountId }) => {
   const size = 5; // 페이지당 데이터 수
-  const { search, sortingType, range, startDate, endDate, type } =
+  const { search, sortingType, range, startDate, endDate, type, balance, setBalance } =
     useTransFilterStore();
 
   const now = new Date();
@@ -87,13 +87,14 @@ export const TransactionsView = ({ accountId, setBalance }) => {
   useEffect(() => {
     if (data?.pages?.[0]?.balance !== undefined) {
       setBalance(data.pages[0].balance); // 첫 페이지의 balance를 설정
+      console.log(data.pages[0].balance);
     }
   }, [data, setBalance]);
 
   // Intersection Observer가 뷰에 들어올 때 다음 페이지 가져오기
 
   if (isLoading && !data) {
-    return <div>Loading...</div>; // 첫 로딩
+    return <div>Loading...</div>;
   }
 
   if (error) {

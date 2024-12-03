@@ -36,7 +36,7 @@ export default function Identification({ setIsChecked }) {
     <>
       <Toaster position="top-center" />
       <div className="flex flex-col w-full h-full justify-around py-[40px] scrollbar-hide">
-        <div className="flex flex-col w-full h-full px-[40px] items-center">
+        <div className="flex flex-col w-full h-[540px] px-[40px] items-center">
           <div className="text-R-20 mb-[30px]">
             계좌를 불러오기 위해서는 <br />
             주민등록 번호가 필요해요!
@@ -51,8 +51,8 @@ export default function Identification({ setIsChecked }) {
             <SignUpFooter setAllChecked={setAssignChecked} />
           </div>
         </div>
-
-        <CustomButton
+      <div className="mt-auto">
+      <CustomButton
           onClick={() => {
             if (!(assignCheck && identificationCheck)) {
               notify();
@@ -64,6 +64,8 @@ export default function Identification({ setIsChecked }) {
         >
           확인
         </CustomButton>
+      </div>
+        
       </div>
     </>
   );

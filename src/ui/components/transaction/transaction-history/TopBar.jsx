@@ -1,5 +1,6 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
+import { useTransFilterStore } from "@/src/stores/transactionStore";
 import {
   useUserCardColorStore,
   useUserTypeStore,
@@ -10,10 +11,10 @@ import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function TopBar({ name, balance, accountNumber }) {
+export default function TopBar({ name, accountNumber }) {
   const bgColorClass = useUserCardColorStore((state) => state.userCardColor);
-  console.log("bgColorClass " + bgColorClass);
   const { userType } = useUserTypeStore();
+  const {balance} = useTransFilterStore();
   // const bgColorClass = colorTypeMap[userColor].colorClass;
 
   const copyToClipboard = (text) => {

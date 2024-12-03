@@ -67,19 +67,20 @@ export const fetchTransactions = async ({
 };
 
 export const fetchTransactionById = async (transactionId) => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
   try {
     if (!transactionId) {
       throw new Error("Transaction ID is required");
     }
 
-    const url = `${BASE_URL}/transactions/${transactionId}`;
-
-    const response = await fetch(url, {
+    const response = await fetch(`${BASE_URL}/transactions/${transactionId}`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+      headers: headers,
     });
 
     if (!response.ok) {
@@ -96,25 +97,26 @@ export const fetchTransactionById = async (transactionId) => {
   }
 };
 
-const updateTransactionMemo = async ({ transactionId, memo }) => {
-  if (!transactionId || memo === undefined || memo.trim() === "") {
-    throw new Error("Transaction ID와 메모는 필수입니다.");
-  }
-
-  const url = `${BASE_URL}/transactions/${transactionId}/memo`;
-
-  const response = await fetch(url, {
+export const updateTransactionMemo = async ({ transactionId, memo }) => {
+  console.log("input")
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+  console.log("Request data:", { transactionId, memo });
+  const response = await fetch(`${BASE_URL}/transactions/${transactionId}/memo`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ memo }),
+    headers,
+    body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
   });
-  if (response.status !== 204) {
-    const errorBody = await response.text();
-    console.error("Error response:", errorBody);
-    throw new Error(`Error: ${response.status}, ${errorBody}`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to update memo: ${response.statusText}`);
   }
+  
+  return response.status !== 204 ? await response.json() : null;
 };
 
 

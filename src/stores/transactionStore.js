@@ -34,6 +34,9 @@ export const SortEnum = {
 const today = new Date();
 
 export const useTransFilterStore = create((set) => ({
+  balance: 0,
+  setBalance: (newBalance) => set({balance: newBalance}),
+
   range: RangeEnum.ONE_MONTH,
   setRange: (newRange) => set({ range: newRange }),
 
@@ -59,4 +62,8 @@ export const useTransFilterStore = create((set) => ({
       startDate: today,
       endDate: today,
     }),
+
+    clearBalance : () => 
+      set({balance: 0})
 }));
+

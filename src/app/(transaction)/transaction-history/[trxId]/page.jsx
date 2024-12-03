@@ -1,6 +1,6 @@
 "use client";
 import { use } from "react";
-import { useTransactionDetail, useUpdateTransactionMemo } from "@/src/services/transaction";
+import { useTransactionDetail, useUpdateTransactionMemo } from "@/src/query/transactionQuery";
 import Loader from "@/src/ui/components/atoms/Loader";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import Memo from "@/src/ui/components/transaction/detail/Memo";

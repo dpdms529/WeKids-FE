@@ -1,5 +1,5 @@
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
-import { fetchTransactions, fetchTransactionById, updateTransactionMemo } from "../services/transaction";
+import { useQuery, useInfiniteQuery, useMutation } from "@tanstack/react-query";
+import { fetchTransactions, fetchTransactionById, updateTransactionMemo } from "../services/transaction"; 
 export const useTransactionList = ({
     accountId = 4,
     start,
@@ -30,15 +30,14 @@ export const useTransactionList = ({
 
   export const useUpdateTransactionMemo = () => {
     return useMutation({
-      mutationFn: updateTransactionMemo,
-      onMutate: (variables) => {
-        console.log("Mutation started with variables:", variables);
+      mutationFn: ({ transactionId, memo }) =>{
+        return updateTransactionMemo({ transactionId, memo });
       },
-      onError: (error, variables, context) => {
-        console.error("Mutation failed:", error, variables, context);
+      onSuccess: (data) => {
+        console.log("메모 업데이트 성공:", data);
       },
-      onSuccess: (data, variables, context) => {
-        console.log("Mutation succeeded:", data, variables, context);
+      onError: (error) => {
+        console.error("메모 업데이트 실패:", error.message);
       },
     });
   };
