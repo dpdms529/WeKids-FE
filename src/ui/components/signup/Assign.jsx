@@ -39,11 +39,11 @@ export default function Assign({ text, isChecked, onChange, option }) {
         <div
           className={`text-R-10 ml-5 flex-grow ${checked ? "text-black/80" : "text-neutral-400"}`}
         >
-          {option ? "필수 동의" : "선택 동의"}
+          {text.title}
         </div>
         <ChevronDownIcon className="text-rignt" onClick={OpenCheckBox} />
       </div>
-      {isOpen && <a className="mx-7">{text} </a>}
+      {isOpen && <a className="mx-7 px-4 text-R-14">{text.content} </a>}
     </div>
   );
 }

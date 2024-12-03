@@ -19,7 +19,7 @@ export default function Page() {
       return await registerPassword(password);
     },
     onSuccess: (data) => {
-      router.push(urlPath.SELECT_PARENT_PASSWORD_CONFIRM);
+      router.push(urlPath.PARENT_CARD_CONFIRM);
     },
     onError: (error) => {
       console.error("비밀번호 등록 실패:", error);

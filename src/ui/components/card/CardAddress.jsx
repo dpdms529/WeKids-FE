@@ -8,6 +8,10 @@ const CardAddress = ({ address, postcode, setAddress, setPostcode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExistCode, setExistCode] = useState(false);
   const searchPostCodeHandler = () => {
+    if (!window.daum) {
+      console.error("Daum API is not loaded yet");
+      return;
+    }
     const width = Math.round(window.innerWidth * 0.5);
     const height = Math.round(window.innerHeight * 0.5);
     new daum.Postcode({
@@ -30,7 +34,7 @@ const CardAddress = ({ address, postcode, setAddress, setPostcode }) => {
   return (
     <div className="flex flex-col h-[130px]">
       <Script
-        src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+        src="http//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
         strategy="beforeInteractive"
       />
       <div className="mb-3">배송지를 입력해 주세요.</div>

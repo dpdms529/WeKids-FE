@@ -6,7 +6,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Modal from "../atoms/Modal";
 import Loader from "../atoms/Loader";
 
-export default function ChildInputForm({ setAllChecked }) {
+export default function ChildInputForm({ setAllChecked, parentName, childName="김우리" }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState("");
   const [residentfront, setResidentfront] = useState("");
@@ -70,7 +70,7 @@ export default function ChildInputForm({ setAllChecked }) {
         </div>
         <div className="flex flex-col mt-3 gap-3">
           <div className="text-R-14 text-neutral-400">
-            000님이 000님의 <br /> 법정대리인이 맞는지 확인하기 위해{" "}
+            {parentName}님이 {childName}님의 <br /> 법정대리인이 맞는지 확인하기 위해{" "}
           </div>
           <div className="text-R-20 text-black/80">
             가족관계증명서와 <br /> 기본증명서를 발급할게요{" "}

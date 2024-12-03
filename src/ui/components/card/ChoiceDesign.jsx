@@ -42,7 +42,7 @@ export default function ChoiceDesign({
       </div>
       <div className="text-white">{subText}</div>
       <Link href={linkUrl}>
-        <CustomButton size="mediumLarge" rounded={true} className="bg-main02">
+        <CustomButton size="mediumLarge" rounded={true} className="bg-main02 text-R-20">
           {buttonText}
         </CustomButton>
       </Link>
