@@ -2,7 +2,6 @@
 import PasswordTop from "@/src/ui/components/signup/PasswordTop";
 import Digit4PasswordButton from "@/src/ui/components/signup/Digit4PasswordButton";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { useCardStore } from "@/src/stores/cardStore";
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
