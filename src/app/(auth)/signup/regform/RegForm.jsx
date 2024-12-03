@@ -21,7 +21,9 @@ export default function RegForm({ data }) {
   return (
     <div className="flex flex-col w-full h-full bg-white py-[36px]">
       <Toaster position="top-center" />
-      <div className="text-R-20 text-black/80 mb-[57px] px-[24px]">개인정보 입력</div>
+      <div className="text-R-20 text-black/80 mb-[57px] px-[24px]">
+        개인정보 입력
+      </div>
       <div className="flex flex-col items-center w-full h-full px-[30px] space-y-[48px] overflow-y-auto scrollbar-hide">
         <Top setAllChecked={setTopChecked} data={data} />
         <Bottom setAllChecked={setBottomChecked} />
@@ -31,7 +33,9 @@ export default function RegForm({ data }) {
         <CustomButton
           rounded="true"
           className={`w-full border border-black/80 ${
-            topChecked && bottomChecked ? "bg-main01" : "bg-stone-300 hover:bg-stone-300"
+            topChecked && bottomChecked
+              ? "bg-main01"
+              : "bg-stone-300 hover:bg-stone-300"
           }`}
           onClick={() => {
             if (topChecked && bottomChecked) {

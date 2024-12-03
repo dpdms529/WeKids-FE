@@ -30,20 +30,20 @@ export default function ButtonGroup({
       setTopButtonChecked(allSelections);
       setIsAllSelected(!isAllSelected);
     } else {
-      const newSelection = selectedTopButtons.includes(id) ? selectedTopButtons.filter((button) => button !== id) : [...selectedTopButtons, id];
+      const newSelection = selectedTopButtons.includes(id)
+        ? selectedTopButtons.filter((button) => button !== id)
+        : [...selectedTopButtons, id];
       setSelectedTopButtons(newSelection);
       setTopButtonChecked(newSelection);
       setIsAllSelected(false);
     }
   };
-  
 
   const handleBottomButtonClick = (id) => {
-    if(id == selectedBottomButton){
+    if (id == selectedBottomButton) {
       setSelectedBottomButton("");
-    setBottomButtonChecked("");
-    }
-    else{
+      setBottomButtonChecked("");
+    } else {
       setSelectedBottomButton(id);
       setBottomButtonChecked(id);
     }
