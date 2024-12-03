@@ -1,6 +1,6 @@
 "use client";
 import { urlPath } from "@/src/constants/common";
-import { fetchChildAccounts } from "@/src/services/account";
+import { fetchChildAccounts } from "@/src/apis/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";

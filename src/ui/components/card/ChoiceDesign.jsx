@@ -4,7 +4,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { designFetch } from "@/src/services/design";
+import { designFetch } from "@/src/apis/design";
 import { useColorStore } from "@/src/stores/cardStore";
 
 export default function ChoiceDesign({
@@ -26,8 +26,8 @@ export default function ChoiceDesign({
         const data = await designFetch();
         console.log(data);
         setDesignData(data);
-        // setChildChacter(data?.character || character);
-        // setChildColor(data?.color || color);
+        setChildChacter(data?.character || character);
+        setChildColor(data?.color || color);
       } catch (error) {
         console.error("Error fetching design:", error.message);
       } finally {

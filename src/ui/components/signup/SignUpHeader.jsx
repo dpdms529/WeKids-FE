@@ -24,11 +24,12 @@ export default function Top({ setAllChecked, data }) {
   useEffect(() => {
     setEmail(data.email);
     setName(data.name);
+    setPhone(data.phone);
     setBirthday(data.birthday);
   }, []);
 
   useEffect(() => {
-    email !== "" && name !== ""
+    email !== "" && name !== "" && phone !== ""
       ? setphoneChecked(true)
       : setphoneChecked(false); // 추후에 구현
     setAllChecked(email !== "" && name !== "");
@@ -39,8 +40,8 @@ export default function Top({ setAllChecked, data }) {
   };
 
   return (
-    <div className="flex flex-col w-full h-fit space-y-[48px]">
-      <div className="flex flex-col gap-[9px] ">
+    <div className="flex flex-col w-[313px] h-fit space-y-[48px]">
+      <div className="flex flex-col w-full gap-[9px]">
         <label className="text-R-20 text-black/80">이메일</label>
         <InputTextBox text={email} onChange={setEmail} />
       </div>
@@ -50,6 +51,7 @@ export default function Top({ setAllChecked, data }) {
       </div>
       <div className="flex flex-col gap-[9px] ">
         <label className="text-R-20 text-black/80">휴대폰 인증</label>
+        <InputTextBox text={phone} onChange={setPhone} />
         <CustomButton
           key={phoneChecked}
           rounded="true"

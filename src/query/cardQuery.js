@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { fetchCardName, registerPassword } from "@/src/services/card"
+import { fetchCardName, registerPassword } from "@/src/apis/card"
 
 // Fetch Card Name (클라이언트)
 export const useFetchCardName = (id) => {

@@ -1,5 +1,5 @@
 import { useQuery, useInfiniteQuery, useMutation } from "@tanstack/react-query";
-import { fetchTransactions, fetchTransactionById, updateTransactionMemo } from "../services/transaction"; 
+import { fetchTransactions, fetchTransactionById, updateTransactionMemo } from "../apis/transaction"; 
 export const useTransactionList = ({
     accountId = 4,
     start,

@@ -1,6 +1,5 @@
 import { urlPath } from "@/src/constants/common";
 import PopupMessage from "@/src/ui/components/molecules/PopupMessage";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const CardIssueModal = ({ isOpen, onClose }) => {
