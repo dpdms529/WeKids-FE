@@ -58,6 +58,29 @@ export const colorTypeMap = {
   },
 };
 
+export const missionColorMap = {
+  ACC: {
+    background: "bg-blue01/80",
+    iconBg: "bg-main02",
+  },
+  NEW: {
+    background: "bg-main02/20",
+    iconBg: "bg-pink01",
+  },
+  SUB: {
+    background: "bg-purple01/20",
+    iconBg: "bg-purple01",
+  },
+  REJ: {
+    background: "bg-red01/20",
+    iconBg: "bg-red01",
+  },
+  DONE: {
+    background: "bg-gray01/20",
+    iconBg: "bg-gray01",
+  },
+};
+
 export const urlPath = {
   HOME: "/",
   TRANSACTION_HISTORY: "/transaction-history", //거래 조회
@@ -66,6 +89,7 @@ export const urlPath = {
   DONE: "/transfer/done",
   ALARM: "/alarm",
   ALARM_CARD: "/alarm/card",
+  MISSION: "/mission",
 
   SIGNUP_SELECT: "/signup/select", // 부모 자녀 선택(임시)
   SIGNUP_REGFOM: "/signup/regform", //회원가입 개인정보 입력
