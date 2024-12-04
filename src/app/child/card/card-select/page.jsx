@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { characterInfoMap } from "@/src/constants/common";
+import { characterInfoMap, ColorTypeMap } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import ColorButton from "@/src/ui/components/card-select/ColorButton";
@@ -50,7 +50,7 @@ export default function CardDesignSelector() {
             <h3 className="R-20 mb-3">배경색</h3>
             <div className="flex justify-center">
               <div className="grid grid-cols-3 gap-5 justify-items-center">
-                {Object.values(characterInfoMap).map((info) => (
+                {Object.values(ColorTypeMap).map((info) => (
                   <ColorButton
                     key={info.colorClass}
                     colorClass={info.colorClass}
