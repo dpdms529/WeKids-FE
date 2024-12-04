@@ -1,4 +1,5 @@
 "use client";
+import { userdata } from "@/src/constants/userdata";
 import { useSignUpStore } from "@/src/stores/accountStore";
 import { useUserTypeStore } from "@/src/stores/userStore";
 import { signIn } from "next-auth/react";
@@ -16,16 +17,7 @@ export default function SignIn({ children }) {
     guardianPhone,
   } = useSignUpStore();
 
-  let data = {
-    birthday: "2000-10-13",
-    name: "최윤정",
-    phone: "010-3131-4970",
-    simplePassword: 123456,
-    email: "cbj0010@naver.com",
-    social: "naver",
-    memberType: "PARENT",
-    redirectTo: "/",
-  };
+  let data = userdata;
 
   if (userType === "CHILD") {
     data["birthday"] = "2017-03-15";
