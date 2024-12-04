@@ -83,9 +83,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className=" gap-1 mb-5 pt-10 px-7 w-full">
-        <div className="text-sub02 text-R-15">{data[5]}</div>
-      </div>
+      <div className=" gap-1 mb-5 pt-10 px-7 w-full text-sub02 text-R-15">{data[5]}</div>
       <div className="flex flex-col pb-10 px-7 w-full gap-2 mb-3 overflow-auto">
         <p className="text-R-10 text-sub02">미션 완료 방법</p>
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
