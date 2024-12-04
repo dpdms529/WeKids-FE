@@ -2,20 +2,25 @@
 import { auth } from "@/auth";
 import { BASE_URL } from "../constants/url";
 
-export const submitTransfer = async (data) => {
+export const submitTransfer = async ({parentAccountNumber, childAccountNumber
+  , amount, sender, receiver, simplePassword
+}) => {
+  console.log(parentAccountNumber)
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
   const response = await fetch(`${BASE_URL}/transactions`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
+    headers ,
+    body: JSON.stringify({parentAccountNumber, childAccountNumber
+      , amount, sender, receiver, simplePassword
+    }),
   });
-  if (response.status !== 201) {
-    throw new Error(`Failed to post data. Status: ${response.status}`);
-  }
-
-  const responseBody = await response.text();
-  return responseBody ? JSON.parse(responseBody) : {};
+  
+  return response.status !== 204 ? await response.json() : null;
 };
 
 export const fetchTransactions = async ({

@@ -8,7 +8,7 @@ const TransferAmountDisplay = ({
   selectedAccount,
   transferAmount,
   clearTransferData,
-  children,
+  childrenAccounts,
   sendUser,
   isShaking,
   handleUserChange,
@@ -45,7 +45,7 @@ const TransferAmountDisplay = ({
               value={selectedAccount.name}
               onChange={handleUserChange}
             >
-              {children.map((user, index) => (
+              {childrenAccounts.map((user, index) => (
                 <option key={index} value={user.name}>
                   {user.name}
                 </option>
