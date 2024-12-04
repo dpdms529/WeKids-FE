@@ -1,23 +1,22 @@
 "use client";
 
+import AccountList from "@/src/ui/components/account/AccountList";
 import Identification from "@/src/ui/components/account/Identification";
-import Account from "@/src/ui/components/account/Account";
 import Header from "@/src/ui/layout/Header";
 import { useState } from "react";
 
 export default function Page() {
   const [isClicked, setIsClicked] = useState(false);
+  console.log(isClicked);
 
   return (
-    <div className="flex flex-col bg-white w-[393px] h-screen overflow-y-hidden">
+    <div className="flex flex-col w-full h-full">
       <Header />
-      <div className="overflow-y-hidden scrollbar-hide">
-        {isClicked ? (
-          <Account />
-        ) : (
-          <Identification setIsChecked={setIsClicked} />
-        )}
-      </div>
+      {isClicked ? (
+        <AccountList />
+      ) : (
+        <Identification setIsChecked={setIsClicked} />
+      )}
     </div>
   );
 }

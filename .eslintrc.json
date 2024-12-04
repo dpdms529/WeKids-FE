@@ -11,8 +11,6 @@
       {
         "endOfLine": "auto"
       }
-    ],
-    "func-style": ["error", "expression"], // 함수 표현식 사용을 강제 (선택 사항)
-    "indent": ["error", 2] // 들여쓰기: 공백 2칸 강제
+    ]
   }
 }

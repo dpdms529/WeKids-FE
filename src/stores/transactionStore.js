@@ -8,7 +8,8 @@ export const useTransactionStore = create((set) => ({
   setSelectedAccount: (account) => set({ selectedAccount: account }),
   setTransferAmount: (amount) => set({ transferAmount: amount }),
   setChildrenAccounts: (accounts) => set({ childrenAccounts: accounts }),
-  clearTransferData: () => set({ selectedAccount: null, transferAmount: 0, childrenAccounts: [] }),
+  clearTransferData: () =>
+    set({ selectedAccount: null, transferAmount: 0, childrenAccounts: [] }),
 }));
 
 // useTransFilterStore

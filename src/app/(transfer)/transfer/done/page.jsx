@@ -1,12 +1,12 @@
 "use client";
-import { useState, useEffect } from "react";
 import { urlPath } from "@/src/constants/common";
 import { useRouter } from "next/navigation";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
 
 const Page = () => {
-  const { selectedAccount, transferAmount, clearTransferData } = useTransactionStore();
+  const { selectedAccount, transferAmount, clearTransferData } =
+    useTransactionStore();
   const [transferData, setTransferData] = useState({
     sendUser: "",
     amount: 0,
@@ -30,8 +30,8 @@ const Page = () => {
 
   const completeTransfer = () => {
     clearTransferData();
-    router.push(urlPath.HOME)
-  }
+    router.push(urlPath.HOME);
+  };
 
   return <TransferComplete transferData={transferData} onComplete={completeTransfer} />
 };

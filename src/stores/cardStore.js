@@ -15,7 +15,6 @@ export const useCardStore = create((set) => ({
   },
 
   registerPassword: async (password) => {
-    
     const last4Digits = password.slice(-4);
 
     try {
@@ -23,23 +22,21 @@ export const useCardStore = create((set) => ({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-            
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           password: last4Digits,
-          residentRegistrationNumber: "000000-0000000"
+          residentRegistrationNumber: "000000-0000000",
         }),
-        credentials: 'include',
+        credentials: "include",
       });
-      
+
       const responseText = await response.text();
 
       if (!response.ok) {
         return null;
       }
-      
-      return responseText ? JSON.parse(responseText) : {};
 
+      return responseText ? JSON.parse(responseText) : {};
     } catch (error) {
       return null;
     }
@@ -47,7 +44,7 @@ export const useCardStore = create((set) => ({
 }));
 
 export const useColorStore = create((set) => ({
-    color: "",
-    setColor: (color) => set({color: color}),
-    removeColor: () => set({ color: "" }),
-}))
+  color: "",
+  setColor: (color) => set({ color: color }),
+  removeColor: () => set({ color: "" }),
+}));

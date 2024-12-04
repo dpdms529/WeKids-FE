@@ -1,12 +1,14 @@
 import { urlPath } from "@/src/constants/common";
 import PopupMessage from "@/src/ui/components/molecules/PopupMessage";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const CardIssueModal = ({ isOpen, onClose }) => {
+  const router = useRouter();
 
   const handleConfirm = () => {
     // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
-    router.push(urlPath.HOME);
+    router.push(urlPath.CHILD_CARD_COMPLETE);
     onClose();
   };
   return (
@@ -24,7 +26,7 @@ const CardIssueModal = ({ isOpen, onClose }) => {
           </span>
         }
         // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
-        buttonText={<Link href={urlPath.CHILD_CARD_COMPLETE}>확인</Link>}
+        buttonText="확인"
         onClose={onClose}
         onConfirm={handleConfirm}
         width="375px"

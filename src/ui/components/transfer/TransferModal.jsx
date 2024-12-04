@@ -1,5 +1,5 @@
+import { submitTransfer } from "@/src/apis/transaction";
 import { urlPath } from "@/src/constants/common";
-import { submitTransfer } from "@/src/services/transaction";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Modal from "@/src/ui/components/atoms/Modal";
 import Profile from "@/src/ui/components/atoms/Profile";
@@ -58,7 +58,12 @@ const TransferModal = ({
         </p>
       </div>
       <div className="flex flex-row w-[393px] space-x-3 mt-7 px-8 pb-2">
-        <CustomButton size="small" color="gray" rounded={true} onClick={modalHandler}>
+        <CustomButton
+          size="small"
+          color="gray"
+          rounded={true}
+          onClick={modalHandler}
+        >
           취소
         </CustomButton>
         <CustomButton size="medium" rounded={true} onClick={handleSubmit}>
@@ -68,6 +73,5 @@ const TransferModal = ({
     </Modal>
   );
 };
-
 
 export default TransferModal;

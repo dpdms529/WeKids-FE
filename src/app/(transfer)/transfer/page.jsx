@@ -1,6 +1,6 @@
 "use client";
+import { fetchChildAccounts } from "@/src/apis/account";
 import { urlPath } from "@/src/constants/common";
-import { fetchChildAccounts } from "@/src/services/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
@@ -12,8 +12,8 @@ import { useQuery } from "@tanstack/react-query";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
-
-const sendUser = { // 추후에 홈에서 zustand로 로그인중인 부모의 이름이나 정보를 담아두는 걸로
+const sendUser = {
+  // 추후에 홈에서 zustand로 로그인중인 부모의 이름이나 정보를 담아두는 걸로
   name: "강현우",
   accountNumber: "1002-913-023908",
   balance: 1000000,
@@ -49,15 +49,17 @@ export default function Page() {
   }, [isShaking]);
 
   const { data, error, isLoading } = useQuery({
-    queryKey: ['accountData'], // queryKey를 객체 형태로 전달
+    queryKey: ["accountData"], // queryKey를 객체 형태로 전달
     queryFn: fetchChildAccounts, // service에서 가져온 queryFn 지정
   });
 
   if (isLoading) {
-    return <div><Loader/></div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
-
-  
 
   const modalHandler = () => setIsModalOpen(!isModalOpen);
 
@@ -120,7 +122,7 @@ export default function Page() {
         transferAmount={transferAmount}
         clearTransferData={clearTransferData}
         sendUser={sendUser}
-        children={childrenAccounts}
+        childrenAccounts={childrenAccounts}
         isShaking={isShaking}
         handleUserChange={handleUserChange}
       />

@@ -27,6 +27,8 @@ module.exports = {
         red01: "#F24646",
         purple01: "#E1B2C6",
         grey01: "#D3D3D3",
+        pink01: "#F8DEE7",
+        redHover: "#B91C1C"
       },
       fontSize: {
         "B-32": ["32px", { lineHeight: "normal", fontWeight: 700 }],
@@ -44,13 +46,16 @@ module.exports = {
         "L-20": ["20px", { lineHeight: "normal", fontWeight: 300 }],
         "L-12": ["12px", { lineHeight: "normal", fontWeight: 300 }],
         "L-10": ["10px", { lineHeight: "normal", fontWeight: 300 }],
+
       },
       fontFamily: {
-        Pretend: ["Pretendard-Bold", "sans-serif"],
-        WooridaumR: ["Pretendard-Regular", "sans-serif"],
-        WooridaumL: ["Pretendard-Light", "sans-serif"],
+        "L-12": ["12px", { lineHeight: "normal", fontWeight: 300 }],
+        "L-10": ["10px", { lineHeight: "normal", fontWeight: 300 }],
       },
+      PretendardB: ["Pretendard-Bold", "sans-serif"],
+      PretendardR: ["Pretendard-Regular", "sans-serif"],
+      PretendardL: ["Pretendard-Light", "sans-serif"],
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

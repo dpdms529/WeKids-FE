@@ -1,19 +1,11 @@
+import { fetchAccounts } from "@/src/apis/account";
 import ParentChildSelector from "@/src/ui/components/signup/ParentChildSelector";
 import SelectorAccount from "@/src/ui/components/signup/SelectorAccount";
-import { fetchAccounts } from "@/src/services/account";
-import { useQuery } from '@tanstack/react-query';
-import Loader from "../atoms/Loader";
 
-export default function AccountItem({ selectedIndex, setSelectedIndex }) {
+export default async function AccountItem({ selectedIndex, setSelectedIndex }) {
+  const data = await fetchAccounts();
 
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['accountData'], // queryKey를 객체 형태로 전달
-    queryFn: fetchAccounts, // service에서 가져온 queryFn 지정
-  });
-  if (isLoading) {
-    return <div><Loader/></div>;
-  }
-
+  console.log(data);
 
   const toggleAccountSelection = (index) => {
     setSelectedIndex((prev) => (prev === index ? null : index));
@@ -39,7 +31,6 @@ export default function AccountItem({ selectedIndex, setSelectedIndex }) {
       </div>
       <div className="flex flex-col max-w-full overflow-y-auto mx-7">
         {data.map((account, index) => (
-          
           <ParentChildSelector
             key={index}
             isSelected={selectedIndex == index}
@@ -53,7 +44,6 @@ export default function AccountItem({ selectedIndex, setSelectedIndex }) {
             />
           </ParentChildSelector>
         ))}
-        
       </div>
     </div>
   );
