@@ -17,8 +17,8 @@ export default function MissionConfirmModal({ setParentOpen, setOpen, text }) {
         </button>
         <div className="flex flex-col items-center gap-12">
           <div
-            dangerouslySetInnerHTML={{ __html: text }} // HTML 태그로 렌더링
-            className="text-R-14 text-center text-black/80"
+            dangerouslySetInnerHTML={{ __html: text }}
+            className="text-R-14 text-black/80"
           ></div>
           <div className="w-full h-[40px]">
             <CustomButton

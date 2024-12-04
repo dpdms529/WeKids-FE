@@ -1,9 +1,6 @@
-"use client";
-
-import { urlPath } from "@/src/constants/common";
-import CustomButton from "@/src/ui/Components/atoms/CustomButton";
-import ConfirmItem from "@/src/ui/Components/signup/ConfirmItem";
-import Link from "next/link";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
+import SignIn from "@/src/ui/components/auth/SignIn";
+import ConfirmItem from "@/src/ui/components/signup/ConfirmItem";
 
 export default function Page() {
   return (
@@ -14,11 +11,11 @@ export default function Page() {
         </div>
 
         <div className="flex h-1/6 w-full items-end pb-1">
-          <Link href={urlPath.HOME}>
+          <SignIn>
             <CustomButton size="mediumLarge" rounded={true}>
               확인
             </CustomButton>
-          </Link>
+          </SignIn>
         </div>
       </div>
     </div>

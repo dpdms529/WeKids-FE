@@ -174,9 +174,7 @@ export const TransactionsView = ({ accountId, setBalance }) => {
                 </div>
                 <div className="flex flex-col items-end">
                   <span
-                    className={`text-R-18 ${
-                      transaction.type === "DEPOSIT" ? "text-main01" : ""
-                    }`}
+                    className={`text-R-18 ${transaction.type === "DEPOSIT" ? "text-main01" : ""}`}
                   >
                     {transaction.type === "DEPOSIT" ? "" : "-"}
                     {transaction.amount.toLocaleString()}원

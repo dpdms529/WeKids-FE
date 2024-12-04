@@ -16,6 +16,8 @@ export default function Page() {
   const router = useRouter();
   const { selectedAccount, setSelectedAccount, setChildrenAccounts } =
     useTransactionStore();
+  const { selectedAccount, setSelectedAccount, setChildrenAccounts } =
+    useTransactionStore();
 
   // 계좌 데이터 가져오기
   useEffect(() => {
@@ -45,6 +47,7 @@ export default function Page() {
       router.push(urlPath.TRANSFER);
     },
     [setSelectedAccount],
+    [setSelectedAccount],
   );
 
   if (isLoading) {
@@ -69,6 +72,15 @@ export default function Page() {
       </div>
       <div className="flex-1 overflow-y-auto scrollbar-hide">
         {accounts.map((user, idx) => (
+          <TransferItem
+            imgPath={`/images/${user.profile}`}
+            key={user.accountId}
+            name={user.name}
+            account={user.accountNumber}
+            bank={"우리은행"}
+            isSelected={user.accountId === selectedAccount?.id}
+            onClick={(e) => handleSelect(user, e)}
+          />
           <TransferItem
             imgPath={`/images/${user.profile}`}
             key={user.accountId}
