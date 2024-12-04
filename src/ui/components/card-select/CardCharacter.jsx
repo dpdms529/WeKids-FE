@@ -4,6 +4,7 @@ import Image from "next/image";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
   const colorClass = colorTypeMap[selectedColor]?.colorClass || "bg-pinkHachu";
+  const imagePath = characterInfoMap[selectedCharacter]?.imagePath || "/images/hachupingImg.svg";
   const userName = useUserStore((state) => state.userName);
 
   return (
@@ -26,8 +27,8 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
         style={{ width: "auto", height: "auto" }}
       />
       <Image
-        src={characterInfoMap[selectedCharacter].imagePath}
-        alt={characterInfoMap[selectedCharacter].name}
+        src={imagePath}
+        alt="character name"
         width={192}
         height={191}
         priority

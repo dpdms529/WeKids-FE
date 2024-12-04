@@ -4,7 +4,7 @@ import { urlPath } from "@/src/constants/common";
 import CardDisplay from "@/src/ui/components/card/CardDisplay";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Header from "@/src/ui/layout/Header";
-import { useSensitiveDataStore } from "@/src/stores/cardStore";
+import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
 import { useRegisterPassword } from "@/src/query/cardQuery";
 import Link from "next/link";
 
@@ -15,14 +15,13 @@ const DesignChracterColor = {
 
 const CardIssueCompleteNodelivery = () => {
   const { getChildId, getResidentRegistrationNumber, getCardPassword, getAccountPassword } = useSensitiveDataStore();
+  const {childcharacter, childcolor} = useColorStore();
   const { mutate, isLoading } = useRegisterPassword();
+  useEffect(() => {
+    console.log(childcharacter, childcolor)
+  }, [])
 
   useEffect(() => {
-    console.log("컴포넌트가 마운트되었습니다.");
-    console.log(getChildId());
-    console.log(getResidentRegistrationNumber());
-    console.log(getCardPassword());
-    console.log(getAccountPassword());
     // 요청을 자동으로 보냄
     mutate(
       {
@@ -50,8 +49,8 @@ const CardIssueCompleteNodelivery = () => {
       <Header />
       <div className="flex-grow flex items-center justify-center">
         <CardDisplay
-          selectedCharacter={DesignChracterColor.character}
-          selectedColor={DesignChracterColor.color}
+          selectedCharacter={childcharacter ? childcharacter : DesignChracterColor.character}
+          selectedColor={childcolor ? childcolor : DesignChracterColor.color}
           buttonText="뒷면보기"
           message="카드 발급을 완료했습니다!"
         />

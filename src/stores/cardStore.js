@@ -85,10 +85,10 @@ export const useColorStore = create((set) => ({
   childcharacter: "",
   childcolor: "",
   setColor: (color) => set({ color: color }),
-  setChildCharacter: "",
-  setChildColor: "",
+  setChildCharacter: (childcharacter) => set({ childcharacter: childcharacter }),
+  setChildColor: (childcolor) => set({ childcolor: childcolor }),
   removeColor: () => set({ color: "" }),
-  removeChildCharacter: () => set({character: ""}),
+  removeChildCharacter: () => set({childcharacter: ""}),
   removeChildColor: () => set({childcolor: ""}),
 }));
 

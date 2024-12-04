@@ -17,7 +17,7 @@ export default function ChoiceDesign({
 }) {
   const [designData, setDesignData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const {setChildChacter, setChildColor} = useColorStore();
+  const {setChildCharacter, setChildColor} = useColorStore();
 
   useEffect(() => {
     const fetchDesign = async () => {
@@ -26,7 +26,7 @@ export default function ChoiceDesign({
         const data = await designFetch();
         console.log(data);
         setDesignData(data);
-        setChildChacter(data?.character || character);
+        setChildCharacter(data?.character || character);
         setChildColor(data?.color || color);
       } catch (error) {
         console.error("Error fetching design:", error.message);
