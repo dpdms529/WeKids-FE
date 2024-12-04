@@ -1,5 +1,5 @@
+import { getParentsAccounts } from "@/src/apis/parents";
 import { useQuery } from "@tanstack/react-query";
-import { getParentsAccounts } from "@/src/services/parents";
 
 export const useParentsAccounts = (authorization) => {
   return useQuery({

@@ -37,18 +37,31 @@ export const agreeAccountInquiry = async (identification) => {
   const residentRegistrationNumber =
     identification.slice(0, 6) + "-" + identification.slice(6);
 
-  const response = await fetch(`${BASE_URL}/parents/agree-account-inquiry`, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({
-      residentRegistrationNumber: residentRegistrationNumber,
-    }),
-  });
+  try {
+    const response = await fetch(`${BASE_URL}/parents/agree-account-inquiry`, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify({
+        residentRegistrationNumber: residentRegistrationNumber,
+      }),
+    });
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+    if (!response.ok) {
+      return {
+        success: false,
+        status: response.status,
+        message: "주민번호가 틀렸습니다. 다시 입력해주세요.",
+      };
+    }
+
+    return {
+      success: true,
+      status: response.status,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "오류가 발생했습니다. 다시 시도해주세요",
+    };
   }
-  console.log(response);
-
-  return response.status === 204;
 };
