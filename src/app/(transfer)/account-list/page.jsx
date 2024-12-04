@@ -37,7 +37,6 @@ export default function Page() {
   // 계좌 선택 핸들러
   const handleSelect = useCallback(
     (user, e) => {
-      // Link의 기본 동작 방지
       setSelectedAccount({
         id: user.accountId,
         name: user.name,

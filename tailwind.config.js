@@ -27,6 +27,7 @@ module.exports = {
         red01: "#F24646",
         purple01: "#E1B2C6",
         grey01: "#D3D3D3",
+        redHover: "#B91C1C"
       },
       fontSize: {
         "B-32": ["32px", { lineHeight: "normal", fontWeight: 700 }],

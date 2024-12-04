@@ -5,10 +5,11 @@ import CustomButton from "../../atoms/CustomButton";
 import Image from "next/image";
 import Profile from "../../atoms/Profile";
 import MissionConfirmModal from "../MissionConfirmModal";
+import { getCurrentDateInKoreanFormat } from "@/src/constants/mission";
 
 const data = {
   1: "미션 설명이 들어갑니다. 미션 설명은 총 몇 자 인가요? 넓이 영역에 대해 한번 고려 해보셔야 할 것 같습니다. 보통 설명이 이렇게까지 길어지는 일이 있을지는 잘 모르겠습니다. 부모님이 자식에게 이 만큼 설명하는 것이 아이 연령을 고려했을 때 불필요한 일일 수도 있습니다만 저희는 최대 길이 영역을 고려하여 디자인 진행을 해야합니다",
-  2: "미션 성공 시 총 30,000원을 받을 수 있어요 💙",
+  2: "미션 성공 시 총 30,000원을 받을 수 있어요",
   3: "🍪 2024년 11월 20일 (수) 까지 완료할 수 있어요",
   4: "아이가 메시지를 작성하지 않았습니다. ",
   5: "이곳에 미션명이 들어갑니다.",
@@ -33,16 +34,6 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
     }
     
     //setIsModalOpen(false);
-  };
-  const getCurrentDateInKoreanFormat = () => {
-    const year = period.getFullYear();
-    const month = String(period.getMonth() + 1).padStart(2, "0");
-    const day = String(period.getDate()).padStart(2, "0");
-
-    const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
-    const weekDay = weekDays[period.getDay()];
-
-    return `${year}년 ${month}월 ${day}일 (${weekDay})`;
   };
 
   return (
@@ -115,7 +106,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
               size="mediumLarge"
               rounded={true}
               onClick={() => AddAndCloseModal("denied")}
-              className="flex text-R-15 bg-red01 hover:bg-red-700 w-full"
+              className="flex text-R-15 bg-red01 hover:bg-redHover w-full"
             >
               반려
             </CustomButton>
