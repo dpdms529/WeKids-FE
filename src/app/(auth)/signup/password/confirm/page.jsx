@@ -9,7 +9,6 @@ export default function Page() {
         <div className="flex flex-col gap-6 h-5/6 justify-center items-center">
           <ConfirmItem />
         </div>
-
         <div className="flex h-1/6 w-full items-end pb-1">
           <SignIn>
             <CustomButton size="mediumLarge" rounded={true}>

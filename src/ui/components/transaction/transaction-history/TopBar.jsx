@@ -1,20 +1,22 @@
 "use client";
-import { urlPath } from "@/src/constants/common";
-import {
-  useUserCardColorStore,
-  useUserTypeStore,
-} from "@/src/stores/userStore";
+import { colorTypeMap, urlPath } from "@/src/constants/common";
+import { useTransFilterStore } from "@/src/stores/transactionStore";
+import { useAccountStore, useUserTypeStore } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
+import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function TopBar({ name, balance, accountNumber }) {
-  const bgColorClass = useUserCardColorStore((state) => state.userCardColor);
-  console.log("bgColorClass " + bgColorClass);
+export default function TopBar({ name, accountNumber }) {
   const { userType } = useUserTypeStore();
-  // const bgColorClass = colorTypeMap[userColor].colorClass;
+  const { balance } = useTransFilterStore();
+  const { accountInfo } = useAccountStore();
+
+  useEffect(() => {
+    console.log(accountInfo.color + "?????");
+  }, [accountInfo]);
 
   const copyToClipboard = (text) => {
     navigator.clipboard
@@ -40,7 +42,7 @@ export default function TopBar({ name, balance, accountNumber }) {
       align="center"
       justify="between"
       direction="column"
-      className={`${bgColorClass} h-[40vh]`}
+      className={`${colorTypeMap[accountInfo.color]?.colorClass || "default-bg"} h-[40vh]`}
     >
       <Flex
         align="center"
@@ -51,7 +53,7 @@ export default function TopBar({ name, balance, accountNumber }) {
         <Link href={urlPath.HOME}>
           <ArrowLeftIcon className="w-5 h-5 text-black/80" />
         </Link>
-        <h1 className="text-black/80">{name}의 통장</h1>
+        <h1 className="text-black/80">{accountInfo.name}의 통장</h1>
         <Box onClick={handleSettingsClick}>
           <GearIcon className="w-5 h-5 text-black/80" />
         </Box>
@@ -59,10 +61,10 @@ export default function TopBar({ name, balance, accountNumber }) {
       <Flex direction="column" align="center">
         <p
           className="text-R-14 underline text-black/40 text cursor-pointer"
-          onClick={() => copyToClipboard(accountNumber)}
+          onClick={() => copyToClipboard(accountInfo.accountNumber)}
           title="클릭하여 복사"
         >
-          {accountNumber}
+          {accountInfo.accountNumber}
         </p>
         <h2 className="text-black/80 text-B-32 mt-4">
           {Number(balance).toLocaleString()}원

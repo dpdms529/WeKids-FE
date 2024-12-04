@@ -5,16 +5,16 @@ import StateBadge from "@/src/ui/components/mission/list/StateBadge";
 
 export default function Page() {
   const states = ["ACC", "NEW", "PRO", "REJ", "DONE"];
-  const isParent = false;  // 현재 child 페이지이므로 false
+  const isParent = false; // 현재 child 페이지이므로 false
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
       <Header />
       <div className="flex gap-1 px-10 py-6">
         {states.map((state) => (
-          <StateBadge 
-            key={state} 
-            state={state} 
+          <StateBadge
+            key={state}
+            state={state}
             isParent={false}
             isHeader={true}
           />

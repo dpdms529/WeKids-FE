@@ -33,7 +33,12 @@ const Page = () => {
     router.push(urlPath.HOME);
   };
 
-  return <TransferComplete transferData={transferData} onComplete={completeTransfer} />
+  return (
+    <TransferComplete
+      transferData={transferData}
+      onComplete={completeTransfer}
+    />
+  );
 };
 
 export default Page;

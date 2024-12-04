@@ -29,22 +29,18 @@ export const designCreate = async (data) => {
 
 // 디자인 조회
 export const designFetch = async () => {
+  console.log("??");
   const session = await auth();
   const authorization = session?.user?.Authorization;
-
   const headers = {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
-
   const response = await fetch(`${BASE_URL}/design`, {
     method: "GET",
     headers: headers,
+    memberId: 1,
   });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch data: ${response.status}`);
-  }
 
   const data = await response.json();
   return data;

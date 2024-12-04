@@ -1,19 +1,22 @@
 "use client";
 
 import { urlPath } from "@/src/constants/common";
+import { useColorStore } from "@/src/stores/cardStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import CardAddress from "@/src/ui/components/card/CardAddress";
 import CardAddressBottom from "@/src/ui/components/card/CardAddressBottom";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { colorTypeMap } from "@/src/constants/common";
 
 export default function Page() {
   const [postcode, setPostcode] = useState("");
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const { childcharacter, childcolor } = useColorStore();
 
   const notify = () => {
     toast(
@@ -22,6 +25,11 @@ export default function Page() {
       </div>,
     );
   };
+
+  useEffect(() => {
+    console.log(childcharacter);
+    console.log(childcolor);
+  }, []);
 
   const clickHandler = (e) => {
     if (phone === "" || name === "" || address === "") {
@@ -40,8 +48,8 @@ export default function Page() {
           </div>
           <div className="flex w-[196px] h-[312px] mt-6">
             <CardCharacter
-              selectedCharacter="DADAPING"
-              selectedColor="bg-blueDada"
+              selectedCharacter={childcharacter ? childcharacter : "DADAPING"}
+              selectedColor={childcolor ? childcolor : "BLUE"}
             />
           </div>
         </div>

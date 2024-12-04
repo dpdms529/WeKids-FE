@@ -20,19 +20,19 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
   const [reward, setReward] = useState(1000000000000000);
   const [period, setPeriod] = useState(new Date());
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const AddAndCloseModal = (type) => {
     // 추후에 api 연결하고 분기처리
-    if(type == "accept"){
-      setText(`아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`)
+    if (type == "accept") {
+      setText(
+        `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`,
+      );
       setConfirmModalOpen(true);
-      
-    }
-    else if(type == "denied"){
-      setText(`반려 버튼을 누르셨습니다. <br /> 정말 반려하시겠습니까?`)
+    } else if (type == "denied") {
+      setText(`반려 버튼을 누르셨습니다. <br /> 정말 반려하시겠습니까?`);
       setConfirmModalOpen(true);
     }
-    
+
     //setIsModalOpen(false);
   };
 
@@ -62,8 +62,9 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
           {data[1]}
         </div>
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
-          미션 성공 시 총 <span className="text-sub02">{reward.toLocaleString()}</span> 원을 받을
-          수 있어요
+          미션 성공 시 총{" "}
+          <span className="text-sub02">{reward.toLocaleString()}</span> 원을
+          받을 수 있어요
         </div>
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           🍪{" "}

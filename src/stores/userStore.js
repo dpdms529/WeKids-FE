@@ -20,7 +20,6 @@ export const useUserCardColorStore = create((set) => ({
   setCardColor: (color) => set({ userCardColor: color }),
 }));
 
-
 const encrypt = (data) => {
   return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();
 };
@@ -38,10 +37,12 @@ export const useAccountStore = create(
         name: "",
         color: "",
       },
+      accountId: "",
       setAccountInfo: (info) =>
         set((state) => ({
           accountInfo: { ...state.accountInfo, ...info },
         })),
+      setAccountId: (id) => set({ accountId: id }),
       clearAccountInfo: () =>
         set({
           accountInfo: {
@@ -50,6 +51,7 @@ export const useAccountStore = create(
             color: "",
           },
         }),
+      clearAccountId: () => set({ accountId: "" }),
     }),
     {
       name: "account-storage",
@@ -72,9 +74,6 @@ export const useAccountStore = create(
           sessionStorage.removeItem(name);
         },
       },
-    }
-  )
+    },
+  ),
 );
-
-
-

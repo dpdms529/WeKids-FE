@@ -4,24 +4,24 @@ const StateIcon = ({ state }) => {
     const stateInfo = {
       ACC: {
         icon: "/images/trashImg.svg",
-        text: "청소"
+        text: "청소",
       },
       NEW: {
         icon: "/images/pencilImg.svg",
-        text: "자기계발"
+        text: "자기계발",
       },
       PRO: {
         icon: "/images/pinImg.svg",
-        text: "생활습관"
+        text: "생활습관",
       },
       REJ: {
         icon: "/images/ectImg.svg",
-        text: "기타"
+        text: "기타",
       },
       DONE: {
         icon: "/images/trashImg.svg",
-        text: "청소"
-      }
+        text: "청소",
+      },
     };
     return stateInfo[state] || stateInfo.NEW;
   };

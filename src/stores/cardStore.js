@@ -1,5 +1,68 @@
 import { create } from "zustand";
 import { BASE_URL } from "@/src/constants/url";
+import CryptoJS from "crypto-js";
+
+const secretKey = process.env.NEXT_PUBLIC_PROFILE_SECRET_KEY || "default-key";
+
+const encrypt = (data) => {
+  return CryptoJS.AES.encrypt(data, secretKey).toString();
+};
+
+// 복호화 함수
+const decrypt = (encryptedData) => {
+  const bytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
+  return bytes.toString(CryptoJS.enc.Utf8);
+};
+
+// Zustand Store
+export const useSensitiveDataStore = create((set, get) => ({
+  childId: 1,
+  residentRegistrationNumber: "",
+  accountPassword: "1234",
+  cardPassword: "",
+
+  // childId 관리
+  setChildId: (id) => set({ childId: id }),
+  getChildId: () => get().childId,
+
+  // 주민등록번호 관리
+  setResidentRegistrationNumber: (number) =>
+    set({ residentRegistrationNumber: number }),
+  getResidentRegistrationNumber: () => get().residentRegistrationNumber,
+
+  // 계좌 비밀번호 관리
+  setAccountPassword: (password) => set({ accountPassword: password }),
+  getAccountPassword: () => get().accountPassword,
+
+  // 카드 비밀번호 관리
+  setCardPassword: (password) => set({ cardPassword: password }),
+  getCardPassword: () => get().cardPassword,
+
+  // 암호화된 데이터 저장
+  setEncryptedChildId: (id) => set({ childId: encrypt(id) }),
+  setEncryptedResidentRegistrationNumber: (number) =>
+    set({ residentRegistrationNumber: encrypt(number) }),
+  setEncryptedAccountPassword: (password) =>
+    set({ accountPassword: encrypt(password) }),
+  setEncryptedCardPassword: (password) =>
+    set({ cardPassword: encrypt(password) }),
+
+  // 암호화된 데이터 복호화
+  getDecryptedChildId: () => decrypt(get().childId),
+  getDecryptedResidentRegistrationNumber: () =>
+    decrypt(get().residentRegistrationNumber),
+  getDecryptedAccountPassword: () => decrypt(get().accountPassword),
+  getDecryptedCardPassword: () => decrypt(get().cardPassword),
+
+  // 데이터 초기화
+  clearData: () =>
+    set({
+      childId: null,
+      residentRegistrationNumber: "",
+      accountPassword: "",
+      cardPassword: "",
+    }),
+}));
 
 export const useCardStore = create((set) => ({
   cardName: "",
@@ -13,38 +76,17 @@ export const useCardStore = create((set) => ({
       console.error("Failed to fetch card name:", error);
     }
   },
-
-  registerPassword: async (password) => {
-    const last4Digits = password.slice(-4);
-
-    try {
-      const response = await fetch(`${BASE_URL}/accounts/cards/issue`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          password: last4Digits,
-          residentRegistrationNumber: "000000-0000000",
-        }),
-        credentials: "include",
-      });
-
-      const responseText = await response.text();
-
-      if (!response.ok) {
-        return null;
-      }
-
-      return responseText ? JSON.parse(responseText) : {};
-    } catch (error) {
-      return null;
-    }
-  },
 }));
 
 export const useColorStore = create((set) => ({
   color: "",
+  childcharacter: "",
+  childcolor: "",
   setColor: (color) => set({ color: color }),
+  setChildCharacter: (childcharacter) =>
+    set({ childcharacter: childcharacter }),
+  setChildColor: (childcolor) => set({ childcolor: childcolor }),
   removeColor: () => set({ color: "" }),
+  removeChildCharacter: () => set({ childcharacter: "" }),
+  removeChildColor: () => set({ childcolor: "" }),
 }));

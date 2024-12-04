@@ -1,7 +1,6 @@
 import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
 
 export default async function TransferDonePage() {
-
   const transferData = {
     sendUser: "xx",
     amount: "xx",
@@ -10,10 +9,5 @@ export default async function TransferDonePage() {
     memo: "메모입력..",
   };
 
-  return (
-      <TransferComplete
-        transferData={transferData}
-        type="CONFIRM"
-      />
-  );
+  return <TransferComplete transferData={transferData} type="CONFIRM" />;
 }

@@ -83,15 +83,18 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className=" gap-1 mb-5 pt-10 px-7 w-full text-sub02 text-R-15">{data[5]}</div>
+      <div className=" gap-1 mb-5 pt-10 px-7 w-full text-sub02 text-R-15">
+        {data[5]}
+      </div>
       <div className="flex flex-col pb-10 px-7 w-full gap-2 mb-3 overflow-auto">
         <p className="text-R-10 text-sub02">미션 완료 방법</p>
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           {data[1]}
         </div>
         <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
-          미션 성공 시 총 <span className="text-sub02">{reward.toLocaleString()}</span> 원을 받을
-          수 있어요
+          미션 성공 시 총{" "}
+          <span className="text-sub02">{reward.toLocaleString()}</span> 원을
+          받을 수 있어요
         </p>
         <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           🍪{" "}
@@ -173,15 +176,15 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
             className="w-full h-8 bg-transparent rounded-md resize-none outline-none p-2 text-black/80"
           ></textarea>
         </div>
-          <div className="flex flex-col h-[40px] px-10 mt-9 items-center">
-            <CustomButton
-              size="mediumLarge"
-              rounded={true}
-              onClick={AddAndCloseModal}
-              className="text-R-20 bg-main02 w-full"
-            >
-              미 션 완 료
-            </CustomButton>
+        <div className="flex flex-col h-[40px] px-10 mt-9 items-center">
+          <CustomButton
+            size="mediumLarge"
+            rounded={true}
+            onClick={AddAndCloseModal}
+            className="text-R-20 bg-main02 w-full"
+          >
+            미 션 완 료
+          </CustomButton>
         </div>
       </div>
     </div>

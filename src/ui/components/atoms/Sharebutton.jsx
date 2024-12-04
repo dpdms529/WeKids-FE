@@ -10,8 +10,8 @@ const ShareButton = ({
   onClick,
 }) => {
   const handleClick = (e) => {
-    e.stopPropagation();  // 이벤트 전파 중단
-    e.preventDefault();    // 기본 동작 방지
+    e.stopPropagation(); // 이벤트 전파 중단
+    e.preventDefault(); // 기본 동작 방지
     if (onClick) onClick(e);
   };
 

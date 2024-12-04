@@ -3,17 +3,23 @@
 import { useEffect, useState } from "react";
 import Profile from "../../atoms/Profile";
 import BlueCardBox from "../BlueCardBox";
-import ChildNoCard from "./ChildNoCard";
+import { useAccountStore } from "@/src/stores/userStore";
 
 export default function AccountView({ accountData }) {
   const [selectedAccount, setSelectedAccount] = useState(
     accountData?.parent || null,
   );
   const [selectedProfile, setSelectedProfile] = useState("parent");
+  const { setAccountInfo } = useAccountStore();
 
   useEffect(() => {
     if (accountData) {
       setSelectedAccount(accountData.parent);
+      setAccountInfo({
+        accountNumber: accountData.parent.accountNumber,
+        name: accountData.parent.name,
+        color: accountData.parent.color,
+      });
     }
   }, [accountData]);
 
