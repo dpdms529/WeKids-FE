@@ -1,5 +1,6 @@
 import { agreeAccountInquiry } from "@/src/apis/parents";
 import { validationMessages } from "@/src/constants/assign";
+import { showToast } from "@/src/constants/toast";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import IdentificationBox from "@/src/ui/components/signup/IdentificationBox";
 import SignUpFooter from "@/src/ui/components/signup/SignUpFooter";
@@ -14,22 +15,38 @@ export default function Identification({ setIsChecked }) {
 
   const notify = () => {
     if (!errorCode[0]) {
-      toast(validationMessages[1]);
+      showToast.error(validationMessages[1]);
     }
     if (!errorCode[1]) {
-      toast(validationMessages[2]);
+      showToast.error(validationMessages[2]);
     }
     if (!errorCode[2]) {
-      toast(validationMessages[3]);
+      showToast.error(validationMessages[3]);
     }
     if (!assignCheck) {
-      toast(validationMessages[4]);
+      showToast.error(validationMessages[4]);
     }
   };
 
   const handleCheck = async () => {
-    const isAgreed = await agreeAccountInquiry(identification);
-    setIsChecked(isAgreed === true);
+    try {
+      const response = await agreeAccountInquiry(identification);
+      console.log("Response:", response);
+
+      if (response.status === 401) {
+        showToast.error("주민번호가 틀렸습니다. 다시 입력해주세요!");
+        return;
+      }
+
+      if (response.status === 204) {
+        setIsChecked(true);
+      } else {
+        showToast.error("오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("오류가 발생했습니다. 다시 시도해주세요.");
+    }
   };
 
   return (
