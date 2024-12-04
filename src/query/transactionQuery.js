@@ -5,7 +5,7 @@ import {
   updateTransactionMemo,
 } from "../apis/transaction";
 export const useTransactionList = ({
-  accountId = 4,
+  accountId,
   start,
   end,
   type,

@@ -12,8 +12,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { formatToLocalDate } from "@/src/constants/transaction";
+import { useAccountStore } from "@/src/stores/userStore";
+import { urlPath } from "@/src/constants/common"; 
 
-export const TransactionsView = ({ accountId }) => {
+export const TransactionsView = () => {
   const size = 5; // 페이지당 데이터 수
   const {
     search,
@@ -25,10 +27,11 @@ export const TransactionsView = ({ accountId }) => {
     balance,
     setBalance,
   } = useTransFilterStore();
+  const {accountId} = useAccountStore();
 
   const now = new Date();
   const MonthsAgo = new Date();
-  MonthsAgo.setMonth(now.getMonth() - 3);
+  MonthsAgo.setMonth(now.getMonth() - 100);
   const [start, setStart] = useState(formatToLocalDate(MonthsAgo));
   const [end, setEnd] = useState(formatToLocalDate(now));
   const [typetoEng, setTypeToEng] = useState("ALL");
@@ -77,7 +80,7 @@ export const TransactionsView = ({ accountId }) => {
     hasNextPage,
     error,
   } = useTransactionList({
-    accountId,
+    accountId: accountId,
     start,
     end,
     type: typetoEng,
