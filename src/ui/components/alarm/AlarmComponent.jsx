@@ -7,22 +7,17 @@ import { useMutation } from "@tanstack/react-query";
 import { useUpdateAlarmChecked } from "@/src/query/alarmQuery";
 
 const AlarmComponent = ({ data }) => {
-  const [alarms, setAlarms] = useState(data);
 
   const { mutate, isLoading: isUpdating } = useUpdateAlarmChecked();
 
   const OnCheckClicker = (idx) => {
-    console.log("?");
-    if (!idx) {
-      return;
-    }
+    console.log(idx);
     
       mutate(
-        { alarmId: idx },
+        { alarmId: idx + 1 },
         {
           onSuccess: () => {
             console.log("메모 업데이트 성공!");
-            router.push(`${urlPath.TRANSACTION_HISTORY}`);
           },
           onError: (error) => {
             console.error("메모 업데이트 실패:", error.message);
@@ -35,7 +30,7 @@ const AlarmComponent = ({ data }) => {
   return (
     <>
       <div className="flex flex-col w-full h-5/6 overflow-y-auto scrollbar-hide">
-        {alarms.map((alarm, index) => (
+        {data.map((alarm, index) => (
           <AlarmCard
             key={index}
             index={index}

@@ -5,6 +5,7 @@ export const useUpdateAlarmChecked = () => {
     console.log("?")
     return useMutation({
       mutationFn: ({ alarmId }) => {
+        console.log(alarmId)
         return CheckAlarmData({ alarmId });
       },
       onSuccess: (data) => {

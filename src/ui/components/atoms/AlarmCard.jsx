@@ -10,8 +10,7 @@ import { alarmData } from "@/src/constants/assign";
 import Image from "next/image";
 import Link from "next/link";
 import { urlPath } from "@/src/constants/common";
-import { CheckAlarmData } from "@/src/apis/alarm";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const EMOTICON = {
   MESSAGE: EnvelopeClosedIcon,
@@ -29,6 +28,7 @@ const AlarmCard = ({
   targetState,
   isChecked,
   className,
+  onClick,
 }) => {
 
   
@@ -41,7 +41,7 @@ const AlarmCard = ({
 
   return (
     <Link href={urlPath.ALARM_CARD}>
-      <div
+      <div onClick={onClick}
         className={`flex flex-row w-full h-[149px] ${isChecked ? "bg-white" : "bg-main03"} px-6 pt-6 pb-5 gap-5 ${className}`}
       >
         <div className="flex items-start">

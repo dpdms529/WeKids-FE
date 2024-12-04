@@ -57,7 +57,7 @@ export const fetchAlarmData = async () => {
 
 
   export const CheckAlarmData = async ({alarmId}) => {
-    console.log(alarmId);
+    console.log({alarmId});
     const session = await auth();
     const authorization = session?.user?.Authorization;
     const headers = {
@@ -68,7 +68,7 @@ export const fetchAlarmData = async () => {
     const response = await fetch(
       `${BASE_URL}/alarms/${alarmId}/check`,
       {
-        method: "POST",
+        method: "PATCH",
         headers,
       },
     );
