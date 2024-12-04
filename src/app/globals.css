@@ -15,40 +15,40 @@
 }
 
 @font-face {
-  font-family: "Pretendard-Light";
+  font-family: "PretendardL";
   font-weight: 300;
   src: url("/fonts/Pretendard-Light.ttf");
 }
 
 @font-face {
-  font-family: "Pretendard-Regular";
+  font-family: "PretendardR";
   font-weight: 400;
   src: url("/fonts/Pretendard-Regular.ttf");
 }
 
 @font-face {
-  font-family: "Pretendard-Bold";
+  font-family: "PretendardB";
   font-weight: 700;
   src: url("/fonts/Pretendard-Bold.ttf");
 }
 
-.Pretendard-Light {
-  font-family: "Pretendard-Light";
+.PretendardL {
+  font-family: "PretendardL";
 }
 
-.Pretendard-Bold {
-  font-family: "Pretendard-Bold";
+.PretendardB {
+  font-family: "PretendardB";
 }
 
-.Pretendard-Regular {
-  font-family: "Pretendard-Regular";
+.PretendardR {
+  font-family: "PretendardR";
 }
 
 body {
   width: 100%;
   color: var(--foreground);
   background: var(--background);
-  font-family: "Pretendard-Regular", "Pretendard-Bold", "Pretendard-Light";
+  font-family: "PretendardR", "PretendardB", "PretendardL";
 }
 
 .wrapper {

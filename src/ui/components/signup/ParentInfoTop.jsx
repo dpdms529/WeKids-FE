@@ -9,11 +9,21 @@ import Modal from "@/src/ui/components/atoms/Modal";
 import CharacterCard from "@/src/ui/components/atoms/CharacterCard";
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
+import { useSignUpStore } from "@/src/stores/accountStore";
+import SignIn from "../auth/SignIn";
 
 export default function ParentInfoTop() {
-  const [name, setName] = useState("");
-  const [birth, setBirth] = useState("".padStart(8, " "));
-  const [phone, setPhone] = useState("".padStart(11, " ")); // 부모 폰
+  const {
+    guardianName,
+    guardianBirthday,
+    guardianPhone,
+    setGuardianName,
+    setGuardianBirthday,
+    setGuardianPhone,
+  } = useSignUpStore();
+  // const [name, setName] = useState("");
+  // const [birth, setBirth] = useState("".padStart(8, " "));
+  // const [phone, setPhone] = useState("".padStart(11, " ")); // 부모 폰
   const [time, setTime] = useState(0);
   const [allCheck, setAllCheck] = useState(false);
   const [isRequest, setIsRequest] = useState(false);
@@ -21,15 +31,19 @@ export default function ParentInfoTop() {
   const [blank, setBlank] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    setAllCheck(name != "" && !birth.includes(" ") && !phone.includes(" "));
-  }, [name, birth, phone]);
+    setAllCheck(
+      guardianName != "" &&
+        !guardianBirthday.includes(" ") &&
+        !guardianPhone.includes(" "),
+    );
+  }, [guardianName, guardianBirthday, guardianPhone]);
 
   useEffect(() => {
     if (time <= 0) {
       if (time === 0 && isRequest) {
-        setName("");
-        setBirth("".padStart(8, " "));
-        setPhone("".padStart(11, " "));
+        setGuardianName("");
+        setGuardianBirthday("".padStart(8, " "));
+        setGuardianPhone("".padStart(11, " "));
         setIsRequest(false);
         setIsOpen(false);
       }
@@ -48,41 +62,45 @@ export default function ParentInfoTop() {
     let updatedDate;
     switch (type) {
       case 1:
-        updatedDate = stringValue.padEnd(8, " ").slice(0, 4) + birth.slice(4);
+        updatedDate =
+          stringValue.padEnd(8, " ").slice(0, 4) + guardianBirthday.slice(4);
         break;
       case 2:
         updatedDate =
-          birth.slice(0, 4) +
+          guardianBirthday.slice(0, 4) +
           stringValue.padEnd(2, " ").slice(0, 2) +
-          birth.slice(6);
+          guardianBirthday.slice(6);
         break;
       case 3:
         updatedDate =
-          birth.slice(0, 6) + stringValue.padEnd(2, " ").slice(0, 2);
+          guardianBirthday.slice(0, 6) + stringValue.padEnd(2, " ").slice(0, 2);
         break;
       default:
         break;
     }
-    setBirth(updatedDate);
+    setGuardianBirthday(updatedDate);
   };
 
   const OnChangePhoneHandler = (value, type) => {
     let phoneNumber;
     switch (type) {
       case 1:
-        phoneNumber = value.padEnd(3, " ").slice(0, 3) + phone.slice(3);
+        phoneNumber = value.padEnd(3, " ").slice(0, 3) + guardianPhone.slice(3);
         break;
       case 2:
         phoneNumber =
-          phone.slice(0, 3) + value.padEnd(4, " ").slice(0, 4) + phone.slice(7);
+          guardianPhone.slice(0, 3) +
+          value.padEnd(4, " ").slice(0, 4) +
+          guardianPhone.slice(7);
         break;
       case 3:
-        phoneNumber = phone.slice(0, 7) + value.padEnd(4, " ").slice(0, 4);
+        phoneNumber =
+          guardianPhone.slice(0, 7) + value.padEnd(4, " ").slice(0, 4);
         break;
       default:
         break;
     }
-    setPhone(phoneNumber);
+    setGuardianPhone(phoneNumber);
   };
 
   const modalHandler = () => {
@@ -107,8 +125,8 @@ export default function ParentInfoTop() {
           <div className="flex w-full">
             <InputTextBox
               placeholder="이름을 입력하세요"
-              text={name}
-              onChange={setName}
+              text={guardianName}
+              onChange={setGuardianName}
             />
           </div>
         </div>
@@ -138,22 +156,22 @@ export default function ParentInfoTop() {
             <LimitedInputBox
               placeholder="010"
               maxLength={3}
-              text={phone.slice(0, 3).replace(/\s/g, "")}
-              value={phone.slice(0, 3).replace(/\s/g, "")}
+              text={guardianPhone.slice(0, 3).replace(/\s/g, "")}
+              value={guardianPhone.slice(0, 3).replace(/\s/g, "")}
               onChange={(e) => OnChangePhoneHandler(e, 1)}
             />
             <LimitedInputBox
               placeholder="0000"
               maxLength={4}
-              text={phone.slice(3, 7).replace(/\s/g, "")}
-              value={phone.slice(3, 7).replace(/\s/g, "")}
+              text={guardianPhone.slice(3, 7).replace(/\s/g, "")}
+              value={guardianPhone.slice(3, 7).replace(/\s/g, "")}
               onChange={(e) => OnChangePhoneHandler(e, 2)}
             />
             <LimitedInputBox
               placeholder="0000"
               maxLength={4}
-              text={phone.slice(7, 11).replace(/\s/g, "")}
-              value={phone.slice(7, 11).replace(/\s/g, "")}
+              text={guardianPhone.slice(7, 11).replace(/\s/g, "")}
+              value={guardianPhone.slice(7, 11).replace(/\s/g, "")}
               onChange={(e) => OnChangePhoneHandler(e, 3)}
             />
           </div>
@@ -184,22 +202,33 @@ export default function ParentInfoTop() {
         )}
       </div>
       <div className="fixed w-full bottom-5 justify-center pt-10">
-        <CustomButton
-          color={allCheck ? "main" : "gray"}
-          onClick={() => {
-            if (isRequest) {
-              modalHandler();
-            } else if (allCheck) {
-              setBlank(false);
-              setIsRequest(true); // 상태 업데이트
-              setTime(100);
-            } else {
-              setBlank(true);
-            }
-          }}
-        >
-          {isRequest ? "동의 확인" : "동의 요청하기"}
-        </CustomButton>
+        {isRequest ? (
+          <SignIn>
+            <CustomButton
+              color={allCheck ? "main" : "gray"}
+              onClick={() => {
+                modalHandler();
+              }}
+            >
+              동의 확인
+            </CustomButton>
+          </SignIn>
+        ) : (
+          <CustomButton
+            color={allCheck ? "main" : "gray"}
+            onClick={() => {
+              if (allCheck) {
+                setBlank(false);
+                setIsRequest(true); // 상태 업데이트
+                setTime(100);
+              } else {
+                setBlank(true);
+              }
+            }}
+          >
+            동의 요청하기
+          </CustomButton>
+        )}
       </div>
       <Modal
         isOpen={isOpen}
