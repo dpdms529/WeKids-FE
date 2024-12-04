@@ -22,22 +22,29 @@ export const fetchCardName = async (id) => {
 };
 
 // Register Password (서버)
-export const registerPassword = async (password) => {
+export const registerPassword = async ({cardPassword, residentRegistrationNumber, accountPassword, childId}) => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+  console.log("input")
   try {
     const response = await fetch(`${BASE_URL}/accounts/cards/issue`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: headers,
       body: JSON.stringify({
-        password: password,
-        residentRegistrationNumber: "000000-0000000",
-        memberId: 1,
+        cardPassword: cardPassword,
+        accountPassword: accountPassword,
+        residentRegistrationNumber: residentRegistrationNumber,
+        childId: childId
       }),
       credentials: "include",
     });
 
     const responseText = await response.text();
+    console.log(responseText)
 
     if (!response.ok) {
       return null;
