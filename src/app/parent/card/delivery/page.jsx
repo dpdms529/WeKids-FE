@@ -16,7 +16,7 @@ export default function Page() {
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const {childcharacter, childcolor} = useColorStore();
+  const { childcharacter, childcolor } = useColorStore();
 
   const notify = () => {
     toast(
@@ -27,9 +27,9 @@ export default function Page() {
   };
 
   useEffect(() => {
-    console.log(childcharacter)
-    console.log(childcolor)
-  }, [])
+    console.log(childcharacter);
+    console.log(childcolor);
+  }, []);
 
   const clickHandler = (e) => {
     if (phone === "" || name === "" || address === "") {

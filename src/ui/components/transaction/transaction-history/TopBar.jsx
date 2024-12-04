@@ -1,10 +1,7 @@
 "use client";
 import { colorTypeMap, urlPath } from "@/src/constants/common";
 import { useTransFilterStore } from "@/src/stores/transactionStore";
-import {
-  useAccountStore,
-  useUserTypeStore,
-} from "@/src/stores/userStore";
+import { useAccountStore, useUserTypeStore } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
@@ -14,11 +11,11 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function TopBar({ name, accountNumber }) {
   const { userType } = useUserTypeStore();
-  const {balance} = useTransFilterStore();
+  const { balance } = useTransFilterStore();
   const { accountInfo } = useAccountStore();
 
-  useEffect(() =>  {
-    console.log(accountInfo.color + "?????")
+  useEffect(() => {
+    console.log(accountInfo.color + "?????");
   }, [accountInfo]);
 
   const copyToClipboard = (text) => {

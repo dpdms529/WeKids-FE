@@ -18,7 +18,7 @@ export default function ChoiceDesign({
 }) {
   const [designData, setDesignData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const {setChildCharacter, setChildColor} = useColorStore();
+  const { setChildCharacter, setChildColor } = useColorStore();
 
   useEffect(() => {
     const fetchDesign = async () => {
@@ -32,7 +32,6 @@ export default function ChoiceDesign({
       } catch (error) {
         console.error("Error fetching design:", error.message);
       } finally {
-        
       }
     };
     fetchDesign();
@@ -49,7 +48,11 @@ export default function ChoiceDesign({
       </div>
       <div className="text-white">{subText}</div>
       <Link href={linkUrl}>
-        <CustomButton size="mediumLarge" rounded={true} className="bg-main02 text-R-20">
+        <CustomButton
+          size="mediumLarge"
+          rounded={true}
+          className="bg-main02 text-R-20"
+        >
           {buttonText}
         </CustomButton>
       </Link>

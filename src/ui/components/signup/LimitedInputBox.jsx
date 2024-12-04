@@ -85,8 +85,7 @@ const LimitedInputBox = ({
         color: "#000000",
         boxShadow: "none",
       };
-    }
-    else {
+    } else {
       return {
         ...baseStyles,
         border: "1px solid #A3A3A3",

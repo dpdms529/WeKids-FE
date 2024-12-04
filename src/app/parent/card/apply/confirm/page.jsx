@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect } from "react";
 import { urlPath } from "@/src/constants/common";
 import CardDisplay from "@/src/ui/components/card/CardDisplay";
@@ -14,12 +14,17 @@ const DesignChracterColor = {
 };
 
 const CardIssueCompleteNodelivery = () => {
-  const { getChildId, getResidentRegistrationNumber, getCardPassword, getAccountPassword } = useSensitiveDataStore();
-  const {childcharacter, childcolor} = useColorStore();
+  const {
+    getChildId,
+    getResidentRegistrationNumber,
+    getCardPassword,
+    getAccountPassword,
+  } = useSensitiveDataStore();
+  const { childcharacter, childcolor } = useColorStore();
   const { mutate, isLoading } = useRegisterPassword();
   useEffect(() => {
-    console.log(childcharacter, childcolor)
-  }, [])
+    console.log(childcharacter, childcolor);
+  }, []);
 
   useEffect(() => {
     // 요청을 자동으로 보냄
@@ -36,7 +41,7 @@ const CardIssueCompleteNodelivery = () => {
         onError: (error) => {
           console.error("비밀번호 등록 실패:", error.message);
         },
-      }
+      },
     );
   }, []); // 빈 의존성 배열로 마운트 시 한 번만 실행
 
@@ -49,7 +54,9 @@ const CardIssueCompleteNodelivery = () => {
       <Header />
       <div className="flex-grow flex items-center justify-center">
         <CardDisplay
-          selectedCharacter={childcharacter ? childcharacter : DesignChracterColor.character}
+          selectedCharacter={
+            childcharacter ? childcharacter : DesignChracterColor.character
+          }
           selectedColor={childcolor ? childcolor : DesignChracterColor.color}
           buttonText="뒷면보기"
           message="카드 발급을 완료했습니다!"

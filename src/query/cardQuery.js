@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { fetchCardName, registerPassword } from "@/src/apis/card"
+import { fetchCardName, registerPassword } from "@/src/apis/card";
 
 // Fetch Card Name (클라이언트)
 export const useFetchCardName = (id) => {
@@ -10,10 +10,9 @@ export const useFetchCardName = (id) => {
     () => fetchCardName(id), // 서버 API 호출 함수 사용
     {
       enabled: !!id, // id가 존재할 때만 쿼리 실행
-    }
+    },
   );
 };
-
 
 export const useRegisterPassword = () => {
   return useMutation({
@@ -28,4 +27,3 @@ export const useRegisterPassword = () => {
     },
   });
 };
-

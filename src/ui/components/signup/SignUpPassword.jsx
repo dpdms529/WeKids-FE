@@ -6,18 +6,18 @@ import { useEffect, useState } from "react";
 import { useSignUpStore } from "@/src/stores/accountStore";
 
 export default function SignUpPassword() {
-    const [isInput, setIsInput] = useState(Array(6).fill(false));
-    const [pwd, setPwd] = useState("");
-    const [allow, setAllowed] = useState(false);
-    const { setSimplePassword } = useSignUpStore();
+  const [isInput, setIsInput] = useState(Array(6).fill(false));
+  const [pwd, setPwd] = useState("");
+  const [allow, setAllowed] = useState(false);
+  const { setSimplePassword } = useSignUpStore();
 
-    useEffect(() => {
-        allow && setSimplePassword(pwd.slice(0,6))
-    }, [allow])
+  useEffect(() => {
+    allow && setSimplePassword(pwd.slice(0, 6));
+  }, [allow]);
 
-    return (
-        <>
-        <PasswordTop
+  return (
+    <>
+      <PasswordTop
         isInput={isInput}
         pwd={pwd}
         setIsInput={setIsInput}
@@ -33,6 +33,6 @@ export default function SignUpPassword() {
         setPwd={setPwd}
         setAllowed={setAllowed}
       />
-        </>
-    );
+    </>
+  );
 }

@@ -15,8 +15,16 @@ import InfiniteScroll from "react-infinite-scroller";
 
 export const TransactionsView = ({ accountId }) => {
   const size = 5; // 페이지당 데이터 수
-  const { search, sortingType, range, startDate, endDate, type, balance, setBalance } =
-    useTransFilterStore();
+  const {
+    search,
+    sortingType,
+    range,
+    startDate,
+    endDate,
+    type,
+    balance,
+    setBalance,
+  } = useTransFilterStore();
 
   const now = new Date();
   const MonthsAgo = new Date();
@@ -46,7 +54,7 @@ export const TransactionsView = ({ accountId }) => {
       const firstDayLastMonth = new Date(
         now.getFullYear(),
         now.getMonth() - 1,
-        1
+        1,
       ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정

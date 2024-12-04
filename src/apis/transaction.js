@@ -1,4 +1,4 @@
-'use server'
+"use server";
 import { auth } from "@/auth";
 import { BASE_URL } from "../constants/url";
 
@@ -44,7 +44,7 @@ export const fetchTransactions = async ({
         headers: headers,
       },
     );
-    
+
     if (!response.ok) {
       // HTTP 상태 코드가 200-299가 아니면 에러 처리
       const errorMessage = await response.text();
@@ -98,7 +98,7 @@ export const fetchTransactionById = async (transactionId) => {
 };
 
 export const updateTransactionMemo = async ({ transactionId, memo }) => {
-  console.log("input")
+  console.log("input");
   const session = await auth();
   const authorization = session?.user?.Authorization;
   const headers = {
@@ -106,17 +106,18 @@ export const updateTransactionMemo = async ({ transactionId, memo }) => {
     Cookie: `Authorization=${authorization}`,
   };
   console.log("Request data:", { transactionId, memo });
-  const response = await fetch(`${BASE_URL}/transactions/${transactionId}/memo`, {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
-  });
+  const response = await fetch(
+    `${BASE_URL}/transactions/${transactionId}/memo`,
+    {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
+    },
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to update memo: ${response.statusText}`);
   }
-  
+
   return response.status !== 204 ? await response.json() : null;
 };
-
-

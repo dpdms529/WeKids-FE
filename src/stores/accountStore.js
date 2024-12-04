@@ -16,7 +16,8 @@ export const useSignUpStore = create(
       setEmail: (email) => set({ email: email }),
       setPhone: (phone) => set({ phone: phone }),
       setBirthday: (birthday) => set({ birthday: birthday }),
-      setSimplePassword: (simplePassword) => set({ simplePassword: simplePassword }),
+      setSimplePassword: (simplePassword) =>
+        set({ simplePassword: simplePassword }),
       setGuardianName: (guardianName) => set({ guardianName: guardianName }),
       setGuardianBirthday: (guardianBirthday) =>
         set({ guardianBirthday: guardianBirthday }),

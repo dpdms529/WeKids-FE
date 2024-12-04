@@ -13,7 +13,6 @@ export default function Page() {
   const router = useRouter();
   const { registerPassword } = useCardStore();
 
-  
   const handleSubmit = () => {
     router.push(urlPath.PARENT_CARD_CONFIRM);
   };

@@ -6,7 +6,7 @@ import { BASE_URL } from "../constants/url";
 export const getParentsAccounts = async () => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
-  
+
   const headers = {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
@@ -21,9 +21,9 @@ export const getParentsAccounts = async () => {
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
-  
+
   const data = await response.json();
-  if(data){
+  if (data) {
     console.log(data.parent);
   }
   return data;

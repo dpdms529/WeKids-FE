@@ -14,18 +14,24 @@ const DesignChracterColor = {
 
 const CardIssueComplete = () => {
   const router = useRouter();
-  const {childcharacter, childcolor} = useColorStore();
+  const { childcharacter, childcolor } = useColorStore();
   useEffect(() => {
     console.log(childcharacter, childcolor);
-  }, [])
+  }, []);
 
   return (
     <div className="flex flex-col justify-between h-screen bg-white">
       <Header />
       <div className="flex-grow flex items-center justify-center">
         <CardDisplay
-          selectedCharacter={childcharacter != "" ? childcharacter : DesignChracterColor.character}
-          selectedColor={childcolor != "" ? childcolor : DesignChracterColor.color}
+          selectedCharacter={
+            childcharacter != ""
+              ? childcharacter
+              : DesignChracterColor.character
+          }
+          selectedColor={
+            childcolor != "" ? childcolor : DesignChracterColor.color
+          }
           buttonText="뒷면보기"
           message="카드 발급을 완료했습니다!"
         />

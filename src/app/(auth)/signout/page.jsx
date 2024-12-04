@@ -1,10 +1,8 @@
-import { SignOut } from '@/src/ui/components/auth/SignOut'
-import React from 'react'
+import { SignOut } from "@/src/ui/components/auth/SignOut";
+import React from "react";
 
 const signoutPage = () => {
-  return (
-    <SignOut/>
-  )
-}
+  return <SignOut />;
+};
 
-export default signoutPage
+export default signoutPage;

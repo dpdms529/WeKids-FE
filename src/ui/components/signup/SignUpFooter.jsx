@@ -20,7 +20,9 @@ export default function Bottom({ setAllChecked, option = 3 }) {
   }, [checkedItems]);
 
   useEffect(() => {
-    allCheck ? setCheckedItems(Array(assigndata.length).fill(true)) : setCheckedItems(Array(assigndata.length).fill(false));
+    allCheck
+      ? setCheckedItems(Array(assigndata.length).fill(true))
+      : setCheckedItems(Array(assigndata.length).fill(false));
   }, [allCheck]);
 
   const handleCheckboxChange = (index, isChecked) => {

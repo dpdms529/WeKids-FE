@@ -19,9 +19,8 @@ const account = {
 };
 
 export default function AccountHistoryHeader({ name, accountNumber }) {
+  const { balance, setBalance } = useTransFilterStore();
 
-  const {balance, setBalance} = useTransFilterStore();
-  
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)

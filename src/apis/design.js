@@ -29,7 +29,7 @@ export const designCreate = async (data) => {
 
 // 디자인 조회
 export const designFetch = async () => {
-  console.log("??")
+  console.log("??");
   const session = await auth();
   const authorization = session?.user?.Authorization;
   const headers = {
@@ -41,8 +41,6 @@ export const designFetch = async () => {
     headers: headers,
     memberId: 1,
   });
-
-  
 
   const data = await response.json();
   return data;

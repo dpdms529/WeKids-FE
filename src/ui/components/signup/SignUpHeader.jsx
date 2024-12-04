@@ -44,7 +44,8 @@ export default function Top({ setAllChecked, data }) {
 
     switch (type) {
       case 1:
-        phoneNumber = value.padEnd(3, " ").slice(0, 3) + "-" + paddedPhone.slice(4);
+        phoneNumber =
+          value.padEnd(3, " ").slice(0, 3) + "-" + paddedPhone.slice(4);
         break;
       case 2:
         phoneNumber =

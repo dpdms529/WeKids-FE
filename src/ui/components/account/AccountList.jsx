@@ -16,7 +16,7 @@ export default function AccountList() {
   };
 
   useEffect(() => {
-    console.log(selectedIndex)
+    console.log(selectedIndex);
     const fetchData = async () => {
       try {
         const response = await fetchAccounts();
@@ -50,7 +50,7 @@ export default function AccountList() {
           account={account.accountNumber}
           balance={account.balance}
         />
-      </ParentChildSelector>
+      </ParentChildSelector>,
     );
   });
 

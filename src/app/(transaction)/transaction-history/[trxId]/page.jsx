@@ -1,6 +1,9 @@
 "use client";
 import { use } from "react";
-import { useTransactionDetail, useUpdateTransactionMemo } from "@/src/query/transactionQuery";
+import {
+  useTransactionDetail,
+  useUpdateTransactionMemo,
+} from "@/src/query/transactionQuery";
 import Loader from "@/src/ui/components/atoms/Loader";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import Memo from "@/src/ui/components/transaction/detail/Memo";
@@ -41,7 +44,7 @@ const TransactionDetailPage = ({ params }) => {
           onError: (error) => {
             console.error("메모 업데이트 실패:", error.message);
           },
-        }
+        },
       );
     }
   };

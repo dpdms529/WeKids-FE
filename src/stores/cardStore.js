@@ -76,8 +76,6 @@ export const useCardStore = create((set) => ({
       console.error("Failed to fetch card name:", error);
     }
   },
-
- 
 }));
 
 export const useColorStore = create((set) => ({
@@ -85,11 +83,10 @@ export const useColorStore = create((set) => ({
   childcharacter: "",
   childcolor: "",
   setColor: (color) => set({ color: color }),
-  setChildCharacter: (childcharacter) => set({ childcharacter: childcharacter }),
+  setChildCharacter: (childcharacter) =>
+    set({ childcharacter: childcharacter }),
   setChildColor: (childcolor) => set({ childcolor: childcolor }),
   removeColor: () => set({ color: "" }),
-  removeChildCharacter: () => set({childcharacter: ""}),
-  removeChildColor: () => set({childcolor: ""}),
+  removeChildCharacter: () => set({ childcharacter: "" }),
+  removeChildColor: () => set({ childcolor: "" }),
 }));
-
-

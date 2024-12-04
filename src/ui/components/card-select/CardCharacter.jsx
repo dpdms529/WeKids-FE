@@ -4,7 +4,9 @@ import Image from "next/image";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
   const colorClass = colorTypeMap[selectedColor]?.colorClass || "bg-pinkHachu";
-  const imagePath = characterInfoMap[selectedCharacter]?.imagePath || "/images/hachupingImg.svg";
+  const imagePath =
+    characterInfoMap[selectedCharacter]?.imagePath ||
+    "/images/hachupingImg.svg";
   const userName = useUserStore((state) => state.userName);
 
   return (

@@ -1,7 +1,6 @@
 import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
 
 export default async function Page() {
-  
   // const data = await getXXXXX(); 데이터 가져오기
   const transferData = {
     sendUser: "최윤정",
@@ -11,10 +10,5 @@ export default async function Page() {
     memo: "메모입력..",
   };
 
-  return ( 
-      <TransferComplete 
-        transferData={transferData}
-        type="COMPLETE"
-      />  
-  );
-};
+  return <TransferComplete transferData={transferData} type="COMPLETE" />;
+}

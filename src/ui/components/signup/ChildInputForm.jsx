@@ -12,7 +12,8 @@ export default function ChildInputForm({ setAllChecked, parentName }) {
   const [name, setName] = useState("");
   const [residentfront, setResidentfront] = useState("");
   const [residentback, setResidentback] = useState("");
-  const { setResidentRegistrationNumber, getResidentRegistrationNumber } = useSensitiveDataStore();
+  const { setResidentRegistrationNumber, getResidentRegistrationNumber } =
+    useSensitiveDataStore();
 
   useEffect(() => {
     if (residentfront.length === 6 && residentback.length === 7) {
@@ -76,7 +77,8 @@ export default function ChildInputForm({ setAllChecked, parentName }) {
         </div>
         <div className="flex flex-col mt-3 gap-3">
           <div className="text-R-14 text-neutral-400">
-            {parentName}님이 아이의<br /> 법정대리인이 맞는지 확인하기 위해{" "}
+            {parentName}님이 아이의
+            <br /> 법정대리인이 맞는지 확인하기 위해{" "}
           </div>
           <div className="text-R-20 text-black/80">
             가족관계증명서와 <br /> 기본증명서를 발급할게요{" "}

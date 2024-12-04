@@ -3,14 +3,19 @@ import Image from "next/image";
 import { useMissionFilterStore } from "@/src/stores/missionFilterStore";
 
 export const MissionFilterModal = ({ isOpen, onClose }) => {
-  const { selectedChild, setSelectedChild, selectedCategory, setSelectedCategory } = useMissionFilterStore();
+  const {
+    selectedChild,
+    setSelectedChild,
+    selectedCategory,
+    setSelectedCategory,
+  } = useMissionFilterStore();
 
-  const children = ['ALL', '안찬웅', '최윤정', '구자빈'];
+  const children = ["ALL", "안찬웅", "최윤정", "구자빈"];
   const categories = [
-    { id: 'HOUSE_WORK', name: '청소', icon: 'trashImg' },
-    { id: 'SELF_DEVELOPMENT', name: '자기계발', icon: 'pencilImg' },
-    { id: 'LIFE_HABITS', name: '생활습관', icon: 'pinImg' },
-    { id: 'ETC', name: '기타', icon: 'ectImg' }
+    { id: "HOUSE_WORK", name: "청소", icon: "trashImg" },
+    { id: "SELF_DEVELOPMENT", name: "자기계발", icon: "pencilImg" },
+    { id: "LIFE_HABITS", name: "생활습관", icon: "pinImg" },
+    { id: "ETC", name: "기타", icon: "ectImg" },
   ];
 
   return (
@@ -18,15 +23,10 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
       <div className="p-6">
         {/* 헤더 */}
         <div className="flex justify-between items-center mb-8">
-        <button onClick={onClose} className="p-1">
-            <Image 
-              src="/images/cross.svg"
-              alt="닫기"
-              width={20}
-              height={20}
-            />
+          <button onClick={onClose} className="p-1">
+            <Image src="/images/cross.svg" alt="닫기" width={20} height={20} />
           </button>
-          <button 
+          <button
             onClick={onClose}
             className="text-black/80 hover:text-black transition-colors"
           >
@@ -43,7 +43,7 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
                 <button
                   key={child}
                   className={`px-4 py-2 rounded-lg text-black/40 transition-colors
-                    ${selectedChild === child ? 'bg-main02' : 'bg-gray-200/20'}`}
+                    ${selectedChild === child ? "bg-main02" : "bg-gray-200/20"}`}
                   onClick={() => setSelectedChild(child)}
                 >
                   {child}
@@ -62,10 +62,10 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
                 <button
                   key={category.id}
                   className={`flex items-center gap-1 px-3 py-2 rounded-lg transition-colors
-                    ${selectedCategory === category.id ? 'bg-main02' : 'bg-gray-200/20'}`}
+                    ${selectedCategory === category.id ? "bg-main02" : "bg-gray-200/20"}`}
                   onClick={() => setSelectedCategory(category.id)}
                 >
-                  <Image 
+                  <Image
                     src={`/images/${category.icon}.svg`}
                     alt={category.name}
                     width={16}
@@ -77,10 +77,10 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
             </div>
             <button
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors
-                ${selectedCategory === 'ETC' ? 'bg-main02' : 'bg-gray-200/20'}`}
-              onClick={() => setSelectedCategory('ETC')}
+                ${selectedCategory === "ETC" ? "bg-main02" : "bg-gray-200/20"}`}
+              onClick={() => setSelectedCategory("ETC")}
             >
-              <Image 
+              <Image
                 src="/images/ectImg.svg"
                 alt="기타"
                 width={16}
