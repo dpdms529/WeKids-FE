@@ -1,13 +1,14 @@
 "use client";
 
+import { fetchChildAccounts } from "@/src/apis/account";
 import { urlPath } from "@/src/constants/common";
 import { fetchChildAccounts } from "@/src/apis/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import Loader from "@/src/ui/components/atoms/Loader";
 import TransferItem from "@/src/ui/components/atoms/TransferItem";
 import Link from "next/link";
-import { useCallback, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Page() {
   const [accounts, setAccounts] = useState([]); // 데이터를 저장할 상태
@@ -37,7 +38,6 @@ export default function Page() {
   // 계좌 선택 핸들러
   const handleSelect = useCallback(
     (user, e) => {
-      // Link의 기본 동작 방지
       setSelectedAccount({
         id: user.accountId,
         name: user.name,
@@ -45,6 +45,7 @@ export default function Page() {
       });
       router.push(urlPath.TRANSFER);
     },
+    [setSelectedAccount],
     [setSelectedAccount],
   );
 

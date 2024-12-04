@@ -34,7 +34,7 @@ export const fetchTransactions = async ({
       `${url}?page=${page}&start=${start}&end=${end}&type=${type}&size=${size}`,
       {
         method: "GET",
-      },
+      }
     );
 
     if (!response.ok) {

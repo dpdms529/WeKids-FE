@@ -1,10 +1,12 @@
 "use client";
 
+import { designFetch } from "@/src/apis/design";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { designFetch } from "@/src/apis/design";
+import { useColorStore } from "@/src/stores/cardStore";
 
 export default function ChoiceDesign({
   title,
@@ -16,16 +18,20 @@ export default function ChoiceDesign({
 }) {
   const [designData, setDesignData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { setChildCharacter, setChildColor } = useColorStore();
 
   useEffect(() => {
     const fetchDesign = async () => {
       try {
-        setIsLoading(true);
+        console.log("Fetching design...");
         const data = await designFetch();
+        console.log(data);
         setDesignData(data);
+        setChildCharacter(data?.character || character);
+        setChildColor(data?.color || color);
       } catch (error) {
+        console.error("Error fetching design:", error.message);
       } finally {
-        setIsLoading(false);
       }
     };
     fetchDesign();
@@ -42,7 +48,11 @@ export default function ChoiceDesign({
       </div>
       <div className="text-white">{subText}</div>
       <Link href={linkUrl}>
-        <CustomButton size="mediumLarge" rounded={true} className="bg-main02">
+        <CustomButton
+          size="mediumLarge"
+          rounded={true}
+          className="bg-main02 text-R-20"
+        >
           {buttonText}
         </CustomButton>
       </Link>

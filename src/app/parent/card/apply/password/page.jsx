@@ -2,7 +2,6 @@
 import PasswordTop from "@/src/ui/components/signup/PasswordTop";
 import Digit4PasswordButton from "@/src/ui/components/signup/Digit4PasswordButton";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { useCardStore } from "@/src/stores/cardStore";
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
@@ -14,22 +13,8 @@ export default function Page() {
   const router = useRouter();
   const { registerPassword } = useCardStore();
 
-  const mutation = useMutation({
-    mutationFn: async (password) => {
-      return await registerPassword(password);
-    },
-    onSuccess: (data) => {
-      router.push(urlPath.SELECT_PARENT_PASSWORD_CONFIRM);
-    },
-    onError: (error) => {
-      console.error("비밀번호 등록 실패:", error);
-    },
-  });
-
   const handleSubmit = () => {
-    if (allow) {
-      mutation.mutate(pwd);
-    }
+    router.push(urlPath.PARENT_CARD_CONFIRM);
   };
 
   return (

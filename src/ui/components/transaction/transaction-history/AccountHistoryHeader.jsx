@@ -1,10 +1,10 @@
 "use client";
 import { colorTypeMap, urlPath } from "@/src/constants/common";
+import { useTransFilterStore } from "@/src/stores/transactionStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const account = {
   childId: 1,
@@ -18,8 +18,9 @@ const account = {
   character: "하츄핑",
 };
 
-export default function AccountHistoryHeader({ name, balance, accountNumber }) {
-  const router = useRouter();
+export default function AccountHistoryHeader({ name, accountNumber }) {
+  const { balance, setBalance } = useTransFilterStore();
+
   const copyToClipboard = (text) => {
     navigator.clipboard
       .writeText(text)

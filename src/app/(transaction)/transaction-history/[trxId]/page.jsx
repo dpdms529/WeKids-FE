@@ -3,15 +3,13 @@ import { use } from "react";
 import {
   useTransactionDetail,
   useUpdateTransactionMemo,
-} from "@/src/services/transaction";
+} from "@/src/query/transactionQuery";
 import Loader from "@/src/ui/components/atoms/Loader";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import Memo from "@/src/ui/components/transaction/detail/Memo";
 import TransactionDetail from "@/src/ui/components/transaction/detail/TransactionDetail";
-import { useState, useEffect } from "react";
-import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { useRouter } from "next/navigation";
-import { urlPath } from "@/src/constants/common";
+import { use, useEffect, useState } from "react";
 
 const TransactionDetailPage = ({ params }) => {
   const resolvedParams = use(params);

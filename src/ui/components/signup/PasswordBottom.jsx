@@ -10,6 +10,7 @@ export default function Page({
   setIsInput,
   setPwd,
   setAllowed,
+  type,
 }) {
   const inputHandler = (num) => {
     if (num === "⌫") {
@@ -38,13 +39,17 @@ export default function Page({
     }
   };
 
+  // type에 따라 다른 경로 반환
+  const getRedirectPath = () => {
+    return type === "transfer"
+      ? urlPath.MISSION_TRANSFER_DONE
+      : urlPath.SELECT_PARENT_PASSWORD_CONFIRM;
+  };
+
   return (
     <>
       <div className="flex flex-col h-1/5 p-10">
-        <Link
-          href={urlPath.SELECT_PARENT_PASSWORD_CONFIRM}
-          onClick={handleClick}
-        >
+        <Link href={getRedirectPath()} onClick={handleClick}>
           <CustomButton
             rounded="true"
             className={`mt-auto w-full ${

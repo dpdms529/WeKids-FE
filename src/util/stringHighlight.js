@@ -3,7 +3,7 @@
 export const highlightText = (
   text,
   highlights,
-  highlightClass = "text-main02"
+  highlightClass = "text-main02",
 ) => {
   const parts = text.split(new RegExp(`(${highlights.join("|")})`, "g"));
   return parts.map((part, index) =>
@@ -13,6 +13,6 @@ export const highlightText = (
       </span>
     ) : (
       part
-    )
+    ),
   );
 };
