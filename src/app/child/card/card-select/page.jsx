@@ -7,20 +7,32 @@ import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import ColorButton from "@/src/ui/components/card-select/ColorButton";
 import CharacterButton from "@/src/ui/components/card-select/CharacterButton";
 import CardIssueModal from "@/src/ui/components/card-select/CardIssueModal";
+import { designCreate } from "@/src/apis/design";
+import { useDesignStore } from "@/src/stores/designStore";
 
-const CardDesignSelector = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState("DADAPING");
-  const [selectedColor, setSelectedColor] = useState("BLUE");
+export default function CardDesignSelector() {
+  const {
+    selectedCharacter,
+    selectedColor,
+    setSelectedCharacter,
+    setSelectedColor,
+  } = useDesignStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleCharacterClick = (character) => {
-    //console.log("Selected color:", character);
-    setSelectedCharacter(character);
-  };
+  const handleConfirm = async () => {
+    try {
+      const designData = {
+        character: selectedCharacter,
+        color: selectedColor,
+      };
+      console.log("Sending design data:", designData); // 데이터 확인
 
-  const handleColorClick = (colorClass) => {
-    //console.log("Selected color:", colorClass);
-    setSelectedColor(colorClass);
+      const response = await designCreate(designData);
+      console.log("Design created:", response); // 응답 확인
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error("Failed to create design:", error);
+    }
   };
 
   return (
@@ -42,7 +54,7 @@ const CardDesignSelector = () => {
                   <ColorButton
                     key={info.colorClass}
                     colorClass={info.colorClass}
-                    onClick={() => handleColorClick(info.colorClass)}
+                    onClick={() => setSelectedColor(info.colorClass)}
                   />
                 ))}
               </div>
@@ -59,7 +71,7 @@ const CardDesignSelector = () => {
                     character={character}
                     imagePath={characterInfoMap[character].imagePath}
                     className="w-12 h-12 cursor-pointer"
-                    onClick={() => handleCharacterClick(character)}
+                    onClick={() => setSelectedCharacter(character)}
                   />
                 ))}
               </div>
@@ -68,7 +80,7 @@ const CardDesignSelector = () => {
         </div>
       </div>
       <div className="w-full flex-col flex mt-10 mb-4">
-        <CustomButton size="large" onClick={() => setIsModalOpen(true)}>
+        <CustomButton size="large" onClick={handleConfirm}>
           확인
         </CustomButton>
         <CardIssueModal
@@ -78,6 +90,4 @@ const CardDesignSelector = () => {
       </div>
     </div>
   );
-};
-
-export default CardDesignSelector;
+}

@@ -3,7 +3,6 @@ import { useUserStore } from "@/src/stores/userStore";
 import Image from "next/image";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
-  
   const userName = useUserStore((state) => state.userName);
 
   return (
