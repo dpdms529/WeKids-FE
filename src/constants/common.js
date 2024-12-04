@@ -77,7 +77,7 @@ export const missionColorMap = {
   },
   DONE: {
     background: "bg-gray01/20",
-    iconBg: "bg-gray01",
+    iconBg: "bg-neutral-400",
   },
 };
 
