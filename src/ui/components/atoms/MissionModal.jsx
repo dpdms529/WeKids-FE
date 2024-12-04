@@ -13,7 +13,7 @@ const MissionModal = ({ isOpen, setOpen, children }) => {
           ✕
         </button>
 
-        <div className="overflow-auto h-full">{children}</div>
+        <div className="overflow-auto scrollbar-hide h-full">{children}</div>
       </div>
     </div>
   );
