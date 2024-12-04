@@ -38,10 +38,12 @@ export const useAccountStore = create(
         name: "",
         color: "",
       },
+      accountId: "",
       setAccountInfo: (info) =>
         set((state) => ({
           accountInfo: { ...state.accountInfo, ...info },
         })),
+      setAccountId: (id) => set({ accountId: id }),
       clearAccountInfo: () =>
         set({
           accountInfo: {
@@ -50,6 +52,7 @@ export const useAccountStore = create(
             color: "",
           },
         }),
+      clearAccountId: () => set({accountId: ""}),
     }),
     {
       name: "account-storage",
