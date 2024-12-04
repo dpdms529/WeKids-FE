@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import ChildHome from "../ui/components/home/child/ChildView";
+
+import ChildHome from "../ui/components/home/child/ChildHome";
 import ChildMissionCard from "../ui/components/home/mission/ChildMissionCard";
 import ParentMissionCard from "../ui/components/home/mission/ParentMissionCard";
 import ParentHome from "../ui/components/home/parent/ParentHome";
