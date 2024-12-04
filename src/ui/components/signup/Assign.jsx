@@ -42,7 +42,7 @@ export default function Assign({ text, isChecked, onChange, option }) {
         </div>
         <ChevronDownIcon className="text-rignt" onClick={OpenCheckBox} />
       </div>
-      {isOpen && <a className="mx-7 px-4 text-R-14">{text.content} </a>}
+      {isOpen && <a className="mx-7 px-2 text-R-10 text-neutral-400">{text.content} </a>}
     </div>
   );
 }
