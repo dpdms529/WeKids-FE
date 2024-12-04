@@ -4,6 +4,10 @@ import { persist } from "zustand/middleware";
 import CryptoJS from "crypto-js";
 
 const secretKey = process.env.NEXT_PUBLIC_PROFILE_SECRET_KEY || "default-key";
+import { persist } from "zustand/middleware";
+import CryptoJS from "crypto-js";
+
+const secretKey = process.env.NEXT_PUBLIC_PROFILE_SECRET_KEY || "default-key";
 
 export const useUserTypeStore = create((set) => ({
   userType: "", // 'PARENT' or 'CHILD'

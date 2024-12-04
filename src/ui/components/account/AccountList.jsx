@@ -1,5 +1,5 @@
+import { fetchAccounts } from "@/src/apis/account";
 import { urlPath } from "@/src/constants/common";
-import { useEffect, useState } from "react";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Link from "next/link";
 import { fetchAccounts } from "@/src/apis/account";
@@ -50,7 +50,7 @@ export default function AccountList() {
           account={account.accountNumber}
           balance={account.balance}
         />
-      </ParentChildSelector>,
+      </ParentChildSelector>
     );
   });
 
