@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import MissionAddComponent from "@/src/ui/components/mission/parent/MissionAddComponent";
+import MissionRequestComponent from "./child/MissionRequestComponent";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import MissionModal from "@/src/ui/components/mission/MissionModal";
+import MissionModal from "@/src/ui/components/atoms/MissionModal";
 
 export default function MissionDetail() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +17,7 @@ export default function MissionDetail() {
         미션 등록하기
       </CustomButton>
       <MissionModal isOpen={isModalOpen} setOpen={setIsModalOpen}>
-        <MissionAddComponent setIsModalOpen={setIsModalOpen} />
+        <MissionRequestComponent setIsModalOpen={setIsModalOpen} />
       </MissionModal>
     </>
   );

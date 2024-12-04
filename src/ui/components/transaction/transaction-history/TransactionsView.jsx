@@ -1,19 +1,18 @@
 "use client";
-import { useTransactionList } from "@/src/services/transaction";
-import { Flex } from "@radix-ui/themes";
+import { useTransactionList } from "@/src/apis/transaction";
+import { urlPath } from "@/src/constants/common";
+import { formatToLocalDate } from "@/src/constants/transaction";
 import {
   RangeEnum,
-  useTransFilterStore,
   TypeEnum,
+  useTransFilterStore,
 } from "@/src/stores/transactionStore";
-import Link from "next/link";
-import { urlPath } from "@/src/constants/common";
-import { formatDate } from "@/src/util/dateUtils";
-import InfiniteScroll from "react-infinite-scroller";
 import Loader from "@/src/ui/components/atoms/Loader";
-import { formatToLocalDate } from "@/src/constants/transaction";
+import { formatDate } from "@/src/util/dateUtils";
+import { Flex } from "@radix-ui/themes";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useColorStore } from "@/src/stores/cardStore";
+import InfiniteScroll from "react-infinite-scroller";
 
 export const TransactionsView = ({ accountId, setBalance }) => {
   const size = 5; // 페이지당 데이터 수
@@ -48,7 +47,7 @@ export const TransactionsView = ({ accountId, setBalance }) => {
       const firstDayLastMonth = new Date(
         now.getFullYear(),
         now.getMonth() - 1,
-        1,
+        1
       ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
