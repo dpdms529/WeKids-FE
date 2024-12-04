@@ -8,10 +8,10 @@ import {
 } from "@/src/stores/transactionStore";
 import Loader from "@/src/ui/components/atoms/Loader";
 import { formatDate } from "@/src/util/dateUtils";
-import { Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
+import { formatToLocalDate } from "@/src/constants/transaction";
 
 export const TransactionsView = ({ accountId }) => {
   const size = 5; // 페이지당 데이터 수
