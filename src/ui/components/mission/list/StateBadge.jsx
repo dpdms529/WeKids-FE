@@ -16,11 +16,14 @@ const StateBadge = ({
   const stateInfo = getStateInfo(state);
   const baseClasses = `flex justify-center items-center ${height} ${px} text-white ${radius} ${stateInfo.iconBg}`;
   const buttonClasses = isButton ? "cursor-pointer hover:opacity-90" : "";
-
+  const Component = isButton ? "button" : "div";
   return (
-    <button className={`${baseClasses} ${buttonClasses}`} onClick={onClick}>
+    <Component
+      className={`${baseClasses} ${buttonClasses}`}
+      onClick={isButton ? onClick : undefined}
+    >
       <span className={textSize}>{state}</span>
-    </button>
+    </Component>
   );
 };
 
