@@ -57,6 +57,7 @@ export default function CardDesignSelector() {
                     <ColorButton
                       key={color}
                       colorClass={colorTypeMap[color].colorClass}
+                      isSelected={selectedColor === color}
                       onClick={() => {
                         setSelectedColor(color);
                       }}
