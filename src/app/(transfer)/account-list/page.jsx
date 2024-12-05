@@ -35,9 +35,9 @@ export default function Page() {
     fetchAccounts();
   }, [setChildrenAccounts]);
 
-  useEffect (() => {
+  useEffect(() => {
     console.log(selectedAccount);
-  }, [selectedAccount])
+  }, [selectedAccount]);
 
   // 계좌 선택 핸들러
   const handleSelect = useCallback(

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   ChevronRightIcon,
   EnvelopeClosedIcon,
@@ -22,7 +22,7 @@ const EMOTICON = {
 
 const AlarmCard = ({
   index,
-  type, 
+  type,
   missionName = "설거지 ",
   targetId,
   targetState,
@@ -30,10 +30,6 @@ const AlarmCard = ({
   className,
   onClick,
 }) => {
-
-  
-
-
   const data = alarmData[type || "MISSION"];
   if (!data) return null;
   const SelectedIcon =
@@ -41,7 +37,8 @@ const AlarmCard = ({
 
   return (
     <Link href={urlPath.ALARM_CARD}>
-      <div onClick={onClick}
+      <div
+        onClick={onClick}
         className={`flex flex-row w-full h-[149px] ${isChecked ? "bg-white" : "bg-main03"} px-6 pt-6 pb-5 gap-5 ${className}`}
       >
         <div className="flex items-start">

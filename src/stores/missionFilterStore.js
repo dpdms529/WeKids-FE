@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
 export const ChildEnum = {
   ALL: "ALL",
@@ -16,14 +16,14 @@ export const CategoryEnum = {
 };
 
 export const useMissionFilterStore = create((set) => ({
-  selectedChild: 'ALL',
+  selectedChild: "ALL",
   selectedCategory: null,
   setSelectedChild: (child) => set({ selectedChild: child }),
-  setSelectedCategory: (category) => set({ selectedCategory: category }) // 객체 키와 값이 같은 이름일 때는 이렇게 축약 가능
+  setSelectedCategory: (category) => set({ selectedCategory: category }), // 객체 키와 값이 같은 이름일 때는 이렇게 축약 가능
 }));
 
 export const useMissionIDStore = create((set) => ({
-  missionId: '',
+  missionId: "",
   setMissionId: (id) => set({ missionId: id }),
-  clearMissionId: () => set({missionId:''}),
+  clearMissionId: () => set({ missionId: "" }),
 }));

@@ -83,7 +83,8 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
     } finally {
       setTempSelectedChild(null);
       setTempSelectedCategory(null);
-      onClose();    }
+      onClose();
+    }
   };
 
   const handleClose = () => {

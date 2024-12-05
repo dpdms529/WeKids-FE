@@ -53,14 +53,24 @@ export const useUpdateTransactionMemo = () => {
   });
 };
 
-
 export const useTransaction = () => {
   return useMutation({
-    mutationFn: ({ parentAccountNumber, childAccountNumber,
-      amount, sender, receiver, simplePassword
-     }) => {
-      return submitTransfer({ parentAccountNumber, childAccountNumber,
-        amount, sender, receiver, simplePassword });
+    mutationFn: ({
+      parentAccountNumber,
+      childAccountNumber,
+      amount,
+      sender,
+      receiver,
+      simplePassword,
+    }) => {
+      return submitTransfer({
+        parentAccountNumber,
+        childAccountNumber,
+        amount,
+        sender,
+        receiver,
+        simplePassword,
+      });
     },
     onSuccess: (data) => {
       console.log("성공:", data);

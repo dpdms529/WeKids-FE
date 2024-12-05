@@ -1,28 +1,26 @@
-'use client';
+"use client";
 
 import { useColorStore } from "@/src/stores/cardStore";
 import AlarmCard from "../atoms/AlarmCard";
 import { useUpdateAlarmChecked } from "@/src/query/alarmQuery";
 
 const AlarmComponent = ({ data }) => {
-
   const { mutate, isLoading: isUpdating } = useUpdateAlarmChecked();
-  const {setChildId} = useColorStore();
+  const { setChildId } = useColorStore();
 
   const OnCheckClicker = (idx) => {
     setChildId(data[idx].targetId);
-      mutate(
-        { alarmId: idx + 1 },
-        {
-          onSuccess: () => {
-            console.log("성공!");
-          },
-          onError: (error) => {
-            console.error("실패:", error.message);
-          },
+    mutate(
+      { alarmId: idx + 1 },
+      {
+        onSuccess: () => {
+          console.log("성공!");
         },
-      );
-    
+        onError: (error) => {
+          console.error("실패:", error.message);
+        },
+      },
+    );
   };
 
   return (

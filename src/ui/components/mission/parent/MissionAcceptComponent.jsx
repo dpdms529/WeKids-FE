@@ -24,21 +24,19 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const router = useRouter();
-  const {setMissionId} = useMissionIDStore();
+  const { setMissionId } = useMissionIDStore();
   const deadlineDate = new Date(deadline);
 
-// 예: 특정 로직 처리 후 출력
-const formattedDeadline = `${deadlineDate.getFullYear()}년 ${
-  deadlineDate.getMonth() + 1
-}월 ${deadlineDate.getDate()}일`;
-
-
+  // 예: 특정 로직 처리 후 출력
+  const formattedDeadline = `${deadlineDate.getFullYear()}년 ${
+    deadlineDate.getMonth() + 1
+  }월 ${deadlineDate.getDate()}일`;
 
   useEffect(() => {
     const fetchMissionDetail = async () => {
       try {
         const missionDetail = await showMissionDetail({ missionId });
-        console.log(missionDetail)
+        console.log(missionDetail);
         setCategory(missionDetail.category);
         setAmount(missionDetail.amount);
         setTitle(missionDetail.title);
@@ -55,19 +53,17 @@ const formattedDeadline = `${deadlineDate.getFullYear()}년 ${
     fetchMissionDetail();
   }, []);
 
-
   const AddAndCloseModal = (type) => {
-
     // 추후에 api 연결하고 분기처리
     if (type == "accept") {
-      if(state == "SUBMIT"){
+      if (state == "SUBMIT") {
         setText(
           `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`,
         );
-      }else{
+      } else {
         router.push(urlPath.MISSION_TRANSFER);
       }
-      
+
       setConfirmModalOpen(true);
     } else if (type == "denied") {
       setText(`반려 버튼을 누르셨습니다. <br /> 정말 반려하시겠습니까?`);
@@ -108,17 +104,18 @@ const formattedDeadline = `${deadlineDate.getFullYear()}년 ${
           받을 수 있어요
         </div>
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
-          🍪{" "}
-          <span className="text-sub02">
-            {formattedDeadline}
-          </span>{" "}
-          까지 완료할 수 있어요
+          🍪 <span className="text-sub02">{formattedDeadline}</span> 까지 완료할
+          수 있어요
         </div>
 
         <div className="text-R-10 mt-6 text-sub02">미션 완료 인증하기</div>
         <div className="flex flex-row justify-center py-3 px-7 bg-main02/20 w-full h-32 border shadow-md rounded-lg">
           <div className="flex flex-row bg-white">
-            {image ? <Image src={image} alt="Example Image" width={100} height={100} /> : "" }
+            {image ? (
+              <Image src={image} alt="Example Image" width={100} height={100} />
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className="text-R-10 mt-6 text-sub02">자녀가 작성한 메시지</div>

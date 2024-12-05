@@ -79,9 +79,9 @@ export default function Page() {
           </div>
           <div className="flex flex-col text-R-10 text-black/40 gap-2">
             {assigndata.map((item, idx) => (
-            <div key={idx}>
-              <div>{item.title}</div>
-              <div>{item.content}</div>
+              <div key={idx}>
+                <div>{item.title}</div>
+                <div>{item.content}</div>
               </div>
             ))}
           </div>

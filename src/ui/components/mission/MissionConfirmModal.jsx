@@ -1,10 +1,15 @@
 import CustomButton from "../atoms/CustomButton";
 
-export default function MissionConfirmModal({ setParentOpen, setOpen, text, onClick }) {
+export default function MissionConfirmModal({
+  setParentOpen,
+  setOpen,
+  text,
+  onClick,
+}) {
   const handleConfirm = () => {
     setParentOpen(false);
     setOpen(false);
-    if(onClick){
+    if (onClick) {
       onClick();
     }
   };

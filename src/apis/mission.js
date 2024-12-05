@@ -56,7 +56,7 @@ export const showMissionList = async ({ state, category, child }) => {
     {
       method: "GET",
       headers: headers,
-    }
+    },
   );
 
   if (!response.ok) {
@@ -165,7 +165,7 @@ export const getMissionList = async (params = {}) => {
     {
       method: "GET",
       headers: headers,
-    }
+    },
   );
 
   if (!response.ok) {
@@ -181,7 +181,7 @@ export const getMissionList = async (params = {}) => {
   console.log("Received mission list:", data); // 받은 데이터 로깅
   console.log(
     "Number of missions:",
-    Array.isArray(data) ? data.length : "Not an array"
+    Array.isArray(data) ? data.length : "Not an array",
   ); // 배열인 경우 길이 출력
 
   if (Array.isArray(data) && data.length > 0) {

@@ -13,7 +13,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { useAccountStore } from "@/src/stores/userStore";
-import { urlPath } from "@/src/constants/common"; 
+import { urlPath } from "@/src/constants/common";
 
 export const TransactionsView = () => {
   const size = 5; // 페이지당 데이터 수
@@ -27,7 +27,7 @@ export const TransactionsView = () => {
     balance,
     setBalance,
   } = useTransFilterStore();
-  const {accountId} = useAccountStore();
+  const { accountId } = useAccountStore();
 
   const now = new Date();
   const MonthsAgo = new Date();
@@ -57,7 +57,7 @@ export const TransactionsView = () => {
       const firstDayLastMonth = new Date(
         now.getFullYear(),
         now.getMonth() - 1,
-        1
+        1,
       ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정

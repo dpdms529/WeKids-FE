@@ -25,7 +25,7 @@ const ParentMissionList = ({ missiondata }) => {
 
   return (
     <div
-      className={ 
+      className={
         // onClick={handleMissionClick}
         `w-[322px] rounded-xl ${bgColor} px-5 py-3 shadow-md`
       }

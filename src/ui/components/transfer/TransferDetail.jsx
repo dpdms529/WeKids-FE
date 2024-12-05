@@ -15,9 +15,7 @@ import PasswordTop from "../signup/PasswordTop";
 import PasswordBottom from "../signup/PasswordBottom";
 import TransferPassword from "./TransferPassword";
 
-
-
-export default function TransferDetail({userdata}) {
+export default function TransferDetail({ userdata }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
   const {
@@ -33,7 +31,7 @@ export default function TransferDetail({userdata}) {
 
   useEffect(() => {
     if (first) {
-        console.log(userdata);
+      console.log(userdata);
       setTransferAmount(0);
       setFirst(false);
     }
@@ -115,51 +113,53 @@ export default function TransferDetail({userdata}) {
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-white mt-5">
-        {!transfer ? 
+      {!transfer ? (
         <>
-        <TransferAmountDisplay
-        selectedAccount={selectedAccount}
-        transferAmount={transferAmount}
-        clearTransferData={clearTransferData}
-        sendUser={userdata.parent}
-        childrenAccounts={userdata.children}
-        isShaking={isShaking}
-        handleUserChange={handleUserChange}
-      />
-      <div className="bottom-0 fixed">
-        <TransferOptions
-          handleAddAmount={handleAddAmount}
-          handleSetMaxAmount={handleSetMaxAmount}
-        />
-        <div className="w-[393px] mt-9">
-          <KeyPad
-            number={handleNumberClick}
-            buttonHeight="h-14"
-            buttonWidth="w-[393px]"
+          <TransferAmountDisplay
+            selectedAccount={selectedAccount}
+            transferAmount={transferAmount}
+            clearTransferData={clearTransferData}
+            sendUser={userdata.parent}
+            childrenAccounts={userdata.children}
+            isShaking={isShaking}
+            handleUserChange={handleUserChange}
           />
-        </div>
-        <CustomButton
-          onClick={handleButtonClick}
-          // 버튼 비활성화 및 호버 효과 제거
-          className={`${isButtonDisabled ? "bg-stone-300 cursor-not-allowed pointer-events-none" : ""}`}
-        >
-          다음
-        </CustomButton>
-      </div>
-      <TransferModal
-        isModalOpen={isModalOpen}
-        modalHandler={modalHandler}
-        selectedAccount={selectedAccount}
-        transferAmount={transferAmount}
-        sendUser={userdata.parent}
-        setTransfer={setTransfer}
-      />
-      </> : 
-      <TransferPassword
-      selectedAccount={selectedAccount}
-      transferAmount={transferAmount}
-      sendUser={userdata.parent} />}
-      
+          <div className="bottom-0 fixed">
+            <TransferOptions
+              handleAddAmount={handleAddAmount}
+              handleSetMaxAmount={handleSetMaxAmount}
+            />
+            <div className="w-[393px] mt-9">
+              <KeyPad
+                number={handleNumberClick}
+                buttonHeight="h-14"
+                buttonWidth="w-[393px]"
+              />
+            </div>
+            <CustomButton
+              onClick={handleButtonClick}
+              // 버튼 비활성화 및 호버 효과 제거
+              className={`${isButtonDisabled ? "bg-stone-300 cursor-not-allowed pointer-events-none" : ""}`}
+            >
+              다음
+            </CustomButton>
+          </div>
+          <TransferModal
+            isModalOpen={isModalOpen}
+            modalHandler={modalHandler}
+            selectedAccount={selectedAccount}
+            transferAmount={transferAmount}
+            sendUser={userdata.parent}
+            setTransfer={setTransfer}
+          />
+        </>
+      ) : (
+        <TransferPassword
+          selectedAccount={selectedAccount}
+          transferAmount={transferAmount}
+          sendUser={userdata.parent}
+        />
+      )}
     </div>
   );
 }

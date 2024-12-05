@@ -11,9 +11,12 @@ export const ChildMissionHome = ({ initialData }) => {
 
   useEffect(() => {
     const filterMissions = () => {
-      const filtered = selectedStates.length > 0
-        ? updateData.filter((mission) => selectedStates.includes(mission.state)) // 선택된 상태 중 하나라도 포함
-        : updateData; // 선택된 상태가 없으면 전체 데이터
+      const filtered =
+        selectedStates.length > 0
+          ? updateData.filter((mission) =>
+              selectedStates.includes(mission.state),
+            ) // 선택된 상태 중 하나라도 포함
+          : updateData; // 선택된 상태가 없으면 전체 데이터
       setFilteredData(filtered);
     };
 
@@ -21,10 +24,11 @@ export const ChildMissionHome = ({ initialData }) => {
   }, [selectedStates, updateData]);
 
   const toggleState = (state) => {
-    setSelectedStates((prevStates) =>
-      prevStates.includes(state)
-        ? prevStates.filter((s) => s !== state) // 이미 선택된 상태는 제거
-        : [...prevStates, state] // 새로운 상태는 추가
+    setSelectedStates(
+      (prevStates) =>
+        prevStates.includes(state)
+          ? prevStates.filter((s) => s !== state) // 이미 선택된 상태는 제거
+          : [...prevStates, state], // 새로운 상태는 추가
     );
   };
 

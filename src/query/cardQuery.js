@@ -16,8 +16,18 @@ export const useFetchCardName = (id) => {
 
 export const useRegisterPassword = () => {
   return useMutation({
-    mutationFn: ({ cardPassword, residentRegistrationNumber, accountPassword, childId }) => {
-      return registerPassword({cardPassword, residentRegistrationNumber, accountPassword, childId});
+    mutationFn: ({
+      cardPassword,
+      residentRegistrationNumber,
+      accountPassword,
+      childId,
+    }) => {
+      return registerPassword({
+        cardPassword,
+        residentRegistrationNumber,
+        accountPassword,
+        childId,
+      });
     },
     onSuccess: (data) => {
       console.log("비밀번호 등록 성공:", data);

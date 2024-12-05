@@ -1,9 +1,7 @@
-
 import { getParentsAccounts } from "@/src/apis/parents";
 import TransferDetail from "@/src/ui/components/transfer/TransferDetail";
 
 export default async function Page() {
-  
   const data = await getParentsAccounts();
 
   return (
