@@ -69,7 +69,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, imgPath }) => {
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           🍪{" "}
           <span className="text-sub02">
-            {period ? getCurrentDateInKoreanFormat() : ""}
+            {period ? getCurrentDateInKoreanFormat(period) : ""}
           </span>{" "}
           까지 완료할 수 있어요
         </div>

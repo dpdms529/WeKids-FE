@@ -2,22 +2,35 @@
 import { auth } from "@/auth";
 import { BASE_URL } from "../constants/url";
 
-export const applyMission = async ({title, content, deadline, amount, category, childId
+export const createMission = async ({
+  title,
+  content,
+  deadline,
+  amount,
+  category,
+  childId,
 }) => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
+
   const headers = {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
+
   const response = await fetch(`${BASE_URL}/missions`, {
     method: "POST",
-    headers ,
-    body: JSON.stringify({title, content, deadline, amount, category, childId
-    }),
+    headers,
+    body: JSON.stringify({ title, content, deadline, amount, category, childId }),
   });
-  
-  return response.status !== 204 ? await response.json() : null;
+
+  if (!response.ok) {
+    const errorMessage = await response.text();
+    throw new Error(`Server Error: ${response.status} - ${errorMessage}`);
+  }
+
+  // 응답 본문이 없으므로 JSON 변환을 시도하지 않음
+  return response;
 };
 
 export const showMissionList = async ({state, category, child}) => {

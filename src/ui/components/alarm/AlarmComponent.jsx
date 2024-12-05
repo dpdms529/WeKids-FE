@@ -15,10 +15,10 @@ const AlarmComponent = ({ data }) => {
         { alarmId: idx + 1 },
         {
           onSuccess: () => {
-            console.log("메모 업데이트 성공!");
+            console.log("성공!");
           },
           onError: (error) => {
-            console.error("메모 업데이트 실패:", error.message);
+            console.error("실패:", error.message);
           },
         },
       );
