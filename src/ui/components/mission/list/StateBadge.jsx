@@ -1,15 +1,30 @@
-import { getStatusStyle, getStatusText } from "@/src/util/missionUtils";
+import { missionColorMap } from "@/src/constants/common";
 
-export default function StateBadge({ state, isHeader = false }) {
-  const badgeSize = !isHeader
-    ? "w-[43px] h-[18px] rounded-full"
-    : "w-[58px] h-[33px] rounded-[7px]";
+const StateBadge = ({
+  state,
+  isButton = false,
+  textSize = "text-R-12",
+  radius = "rounded-lg",
+  height = "h-[18px]",
+  px = "px-2",
+  onClick, // onClick prop 추가
+}) => {
+  const getStateInfo = (state) => {
+    return missionColorMap[state] || missionColorMap.NEW;
+  };
 
+  const stateInfo = getStateInfo(state);
+  const baseClasses = `flex justify-center items-center ${height} ${px} text-white ${radius} ${stateInfo.iconBg}`;
+  const buttonClasses = isButton ? "cursor-pointer hover:opacity-90" : "";
+  const Component = isButton ? "button" : "div";
   return (
-    <div
-      className={`flex items-center justify-center text-R-14 text-white ${badgeSize} ${getStatusStyle(state)}`}
+    <Component
+      className={`${baseClasses} ${buttonClasses}`}
+      onClick={isButton ? onClick : undefined}
     >
-      {getStatusText(state)}
-    </div>
+      <span className={textSize}>{state}</span>
+    </Component>
   );
-}
+};
+
+export default StateBadge;

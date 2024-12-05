@@ -1,6 +1,8 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
+import Link from "next/link";
+import { urlPath } from "../constants/common";
 import ChildHome from "../ui/components/home/child/ChildHome";
 import ChildMissionCard from "../ui/components/home/mission/ChildMissionCard";
 import ParentMissionCard from "../ui/components/home/mission/ParentMissionCard";
@@ -25,13 +27,15 @@ export default async function Home() {
           <ChildHome authorization={authorization} />
         )}
       </div>
-      <div className="flex justify-center">
-        {memberType === "ROLE_PARENT" ? (
-          <ParentMissionCard />
-        ) : (
-          <ChildMissionCard />
-        )}
-      </div>
+      <Link href={urlPath.MISSION}>
+        <div className="flex justify-center cursor-pointer">
+          {memberType === "ROLE_PARENT" ? (
+            <ParentMissionCard />
+          ) : (
+            <ChildMissionCard />
+          )}
+        </div>
+      </Link>
     </div>
   );
 }

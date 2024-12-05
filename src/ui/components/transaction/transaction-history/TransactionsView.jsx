@@ -1,17 +1,17 @@
 "use client";
+import { formatToLocalDate } from "@/src/constants/transaction";
 import { useTransactionList } from "@/src/query/transactionQuery";
-import { Flex } from "@radix-ui/themes";
 import {
   RangeEnum,
   TypeEnum,
   useTransFilterStore,
 } from "@/src/stores/transactionStore";
 import Loader from "@/src/ui/components/atoms/Loader";
-import { formatDate } from "@/src/util/dateUtils";
+import { formatShortDate } from "@/src/util/dateUtils";
+import { Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
-import { formatToLocalDate } from "@/src/constants/transaction";
 
 export const TransactionsView = ({ accountId }) => {
   const size = 5; // 페이지당 데이터 수
@@ -169,7 +169,7 @@ export const TransactionsView = ({ accountId }) => {
                 <div className="flex flex-col">
                   <div className="flex gap-4">
                     <span className="text-gray-600 text-R-14">
-                      {formatDate(transaction.createAt)}
+                      {formatShortDate(transaction.createAt)}
                     </span>
                     <div className="flex flex-col gap-1">
                       <span className="text-R-14">{transaction.title}</span>

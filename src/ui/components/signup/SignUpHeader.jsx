@@ -66,7 +66,7 @@ export default function Top({ setAllChecked, data }) {
   };
 
   return (
-    <div className="flex flex-col w-[313px] h-fit space-y-[48px]">
+    <div className="flex flex-col w-[313px] h-fit space-y-7">
       <div className="flex flex-col w-full gap-[9px]">
         <label className="text-R-20 text-black/80">이메일</label>
         <InputTextBox text={email} onChange={setEmail} />
