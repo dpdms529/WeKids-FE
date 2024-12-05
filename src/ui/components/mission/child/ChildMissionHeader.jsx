@@ -9,7 +9,7 @@ const ChildMissionHeader = ({ onStateChange, selectedStates }) => {
   };
 
   return (
-    <div className="w-[314px] mx-auto mb-7 mt-8">
+    <div className="w-[314px] mx-auto mb-7">
       <div className="flex justify-between gap-1">
         {missionStates.map((state) => (
           <StateBadge
