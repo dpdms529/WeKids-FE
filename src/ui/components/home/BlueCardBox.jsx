@@ -1,6 +1,7 @@
 "use client";
 
 import { characterInfoMap, urlPath } from "@/src/constants/common"; // 상대 경로로 불러오기
+import { useTransactionStore } from "@/src/stores/transactionStore";
 import { useAccountStore, useUserCardColorStore } from "@/src/stores/userStore";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { Text } from "@radix-ui/themes";
@@ -12,15 +13,12 @@ import toast, { Toaster } from "react-hot-toast"; // Toaster 및 toast 불러오
 const BlueCardBox = ({ selectedAccount }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState(""); // backgroundColorClass 상태 추가
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
-  const { setAccountId, setAccountInfo } = useAccountStore();
+  const { accountInfo } = useAccountStore();
+  const {setSelectedAccount} = useTransactionStore();
 
   useEffect(() => {
-    setAccountId(selectedAccount.accountId);
-    setAccountInfo({
-      name: selectedAccount.name,
-      accountNumber: selectedAccount.accountNumber,
-      color: selectedAccount.color,
-    });
+    console.log(selectedAccount)
+    setSelectedAccount(selectedAccount);
     if (selectedAccount) {
       const accountCharacterInfo =
         characterInfoMap[selectedAccount.character] || [];
@@ -47,6 +45,15 @@ const BlueCardBox = ({ selectedAccount }) => {
       }
     }
   };
+
+  
+    const clickHandler = (e) => {
+      console.log(selectedAccount)
+      if (selectedAccount == null) {
+        e.preventDefault();
+      }
+    };
+  
 
   return (
     <div
@@ -94,7 +101,8 @@ const BlueCardBox = ({ selectedAccount }) => {
             <button>조회</button>
           </Link>
           <Link
-            href={urlPath.TRANSFER}
+            href={accountInfo.accountNumber != selectedAccount.accountNumber ? urlPath.TRANSFER : urlPath.ACCOUNT_LIST}
+            onClick={clickHandler}
             className="flex-1 py-4 text-center text-R-20 hover:bg-white/10 transition-colors"
           >
             <button>이체</button>

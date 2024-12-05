@@ -2,8 +2,8 @@
 import { urlPath } from "@/src/constants/common";
 import { useRouter } from "next/navigation";
 import { useTransactionStore } from "@/src/stores/transactionStore";
-import TransferComplete from "@/src/ui/components/transfer/TransferComplete";
 import { useState, useEffect } from "react";
+import TransferResult from "@/src/ui/components/transfer/TransferResult";
 
 const Page = () => {
   const { selectedAccount, transferAmount, clearTransferData } =
@@ -35,7 +35,7 @@ const Page = () => {
   };
 
   return (
-    <TransferComplete
+    <TransferResult
       transferData={transferData}
       onComplete={completeTransfer}
     />
