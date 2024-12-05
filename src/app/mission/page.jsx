@@ -5,9 +5,6 @@ import ParentMissionHome from "@/src/ui/components/mission/parent/ParentMissionH
 
 import Header from "@/src/ui/layout/Header";
 
-
-
-
 const page = async () => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
