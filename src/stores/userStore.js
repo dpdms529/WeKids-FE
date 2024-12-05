@@ -6,7 +6,7 @@ import CryptoJS from "crypto-js";
 const secretKey = process.env.NEXT_PUBLIC_PROFILE_SECRET_KEY || "default-key";
 
 export const useUserTypeStore = create((set) => ({
-  userType: "CHILD", // 'PARENT' or 'CHILD'
+  userType: "", // 'PARENT' or 'CHILD'
   setUserType: (type) => set({ userType: type }),
 }));
 
