@@ -1,3 +1,4 @@
+"use client";
 import { missionColorMap } from "@/src/constants/common";
 import { formatDate } from "@/src/util/missionUtils";
 
@@ -10,9 +11,24 @@ const ParentMissionList = ({ missiondata }) => {
     missiondata?.state && missionColorMap[missiondata.state]
       ? missionColorMap[missiondata.state].background
       : missionColorMap.NEW.background;
+  //todo 필요하면 쓰세요
+  //     const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const handleMissionClick = () => {
+  //   setIsModalOpen(true);
+  // };
+
+  // const handleCloseModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   return (
-    <div className={`w-[322px] rounded-xl ${bgColor} px-5 py-3 shadow-md`}>
+    <div
+      className={
+        // onClick={handleMissionClick}
+        `w-[322px] rounded-xl ${bgColor} px-5 py-3 shadow-md`
+      }
+    >
       <div className="flex gap-3">
         <div className="flex items-center">
           <ChildProfileSection
