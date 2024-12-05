@@ -7,14 +7,13 @@ import { ChildNoMissionCard } from "./ChildNoMissionCard";
 export const ChildMissionHome = ({ data }) => {
   const [selectedState, setSelectedState] = useState(null);
   console.log(selectedState);
-  
 
   const filteredData = selectedState
     ? data.filter((mission) => mission.state === selectedState)
     : data;
 
   return (
-    <div className="overflow-hidden mb-10">
+    <div className="overflow-hidden mt-10">
       {data.length === 0 ? (
         <ChildNoMissionCard />
       ) : (
