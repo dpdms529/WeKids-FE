@@ -1,4 +1,5 @@
-import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+"use server";
+import { auth } from "@/auth";
 import { BASE_URL } from "../constants/url";
 
 export const submitTransfer = async (data) => {
@@ -25,6 +26,12 @@ export const fetchTransactions = async ({
   type,
   accountId,
 }) => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
   const url = `${BASE_URL}/accounts/${accountId}/transactions`;
 
   console.log("Fetching URL:", url);
@@ -34,6 +41,7 @@ export const fetchTransactions = async ({
       `${url}?page=${page}&start=${start}&end=${end}&type=${type}&size=${size}`,
       {
         method: "GET",
+        headers: headers,
       }
     );
 
@@ -58,37 +66,21 @@ export const fetchTransactions = async ({
   }
 };
 
-export const useTransactionList = ({
-  accountId = 4,
-  start,
-  end,
-  type,
-  size = 5,
-}) => {
-  console.log(type);
-  return useInfiniteQuery({
-    queryKey: ["transactions", accountId, start, end, type, size],
-    queryFn: ({ pageParam = 0 }) =>
-      fetchTransactions({ page: pageParam, start, end, accountId, type, size }),
-    getNextPageParam: (lastPage, allPages) => {
-      console.log("Last Page:", lastPage);
-      console.log("HasNext:", lastPage?.hasNext);
-      console.log("Next Page Index:", allPages.length);
-      return lastPage?.hasNext ? allPages.length : undefined;
-    },
-  });
-};
-
 export const fetchTransactionById = async (transactionId) => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
   try {
     if (!transactionId) {
       throw new Error("Transaction ID is required");
     }
 
-    const url = `${BASE_URL}/transactions/${transactionId}`;
-
-    const response = await fetch(url, {
+    const response = await fetch(`${BASE_URL}/transactions/${transactionId}`, {
       method: "GET",
+      headers: headers,
     });
 
     if (!response.ok) {
@@ -105,47 +97,27 @@ export const fetchTransactionById = async (transactionId) => {
   }
 };
 
-export const useTransactionDetail = (transactionId) => {
-  return useQuery({
-    queryKey: ["transaction", transactionId],
-    queryFn: () => fetchTransactionById(transactionId),
-    enabled: !!transactionId,
-  });
-};
+export const updateTransactionMemo = async ({ transactionId, memo }) => {
+  console.log("input");
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+  console.log("Request data:", { transactionId, memo });
+  const response = await fetch(
+    `${BASE_URL}/transactions/${transactionId}/memo`,
+    {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
+    }
+  );
 
-const updateTransactionMemo = async ({ transactionId, memo }) => {
-  if (!transactionId || memo === undefined || memo.trim() === "") {
-    throw new Error("Transaction ID와 메모는 필수입니다.");
+  if (!response.ok) {
+    throw new Error(`Failed to update memo: ${response.statusText}`);
   }
 
-  const url = `${BASE_URL}/transactions/${transactionId}/memo`;
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ memo }),
-  });
-  if (response.status !== 204) {
-    const errorBody = await response.text();
-    console.error("Error response:", errorBody);
-    throw new Error(`Error: ${response.status}, ${errorBody}`);
-  }
-};
-
-export const useUpdateTransactionMemo = () => {
-  console.log("Initializing useUpdateTransactionMemo");
-  return useMutation({
-    mutationFn: updateTransactionMemo,
-    onMutate: (variables) => {
-      console.log("Mutation started with variables:", variables);
-    },
-    onError: (error, variables, context) => {
-      console.error("Mutation failed:", error, variables, context);
-    },
-    onSuccess: (data, variables, context) => {
-      console.log("Mutation succeeded:", data, variables, context);
-    },
-  });
+  return response.status !== 204 ? await response.json() : null;
 };
