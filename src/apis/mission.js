@@ -76,7 +76,7 @@ export const showMissionList = async ({state, category, child}) => {
       });
   
     if (!response.ok) {
-      throw new Error("Failed to fetch child accounts");
+      throw new Error("Failed to mission");
     }
   
     // response.json() 호출은 한 번만 수행

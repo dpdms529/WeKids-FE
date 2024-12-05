@@ -4,6 +4,7 @@ import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { urlPath } from "@/src/constants/common";
 import { useEffect } from "react";
+import Link from "next/link";
 
 
 const MESSAGES = {
@@ -21,7 +22,7 @@ const MESSAGES = {
 };
 
 const TransferDone = ({
-  type = "CONFIRM",
+  type = "COMPLETE",
   childName,
   amount,
   accountNumber,
@@ -74,11 +75,11 @@ const TransferDone = ({
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton rounded={true} />
-          
-            <CustomButton onClick={() => setType("SEND")} rounded={true} size="medium" color="main">
+          <Link href={urlPath.HOME}>
+            <CustomButton rounded={true} size="medium" color="main">
               <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
             </CustomButton>
-          
+            </Link>
         </div>
       </div>
     </main>
