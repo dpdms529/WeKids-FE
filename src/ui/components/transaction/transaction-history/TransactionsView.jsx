@@ -31,7 +31,7 @@ export const TransactionsView = () => {
 
   const now = new Date();
   const MonthsAgo = new Date();
-  MonthsAgo.setMonth(now.getMonth() - 100);
+  MonthsAgo.setMonth(now.getMonth() - 3);
   const [start, setStart] = useState(formatToLocalDate(MonthsAgo));
   const [end, setEnd] = useState(formatToLocalDate(now));
   const [typetoEng, setTypeToEng] = useState("ALL");
