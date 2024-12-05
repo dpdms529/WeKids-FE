@@ -1,3 +1,4 @@
+import { NoMissionCardLayout } from "../NoMissionCardLayout";
 import { NoMissionMessageBox } from "../NoMissionMessageBox";
 
 export const ChildNoMissionCard = () => {
