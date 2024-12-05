@@ -3,7 +3,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import KeyPad from "@/src/ui/components/atoms/KeyPad";
 import Link from "next/link";
 
-export default function Page({
+export default function PasswordSecondBottom({
   pwd,
   isInput,
   allow,
@@ -11,39 +11,56 @@ export default function Page({
   setPwd,
   setAllowed,
   type,
+  isSingleInput = false,
+  onConfirmClick,
 }) {
   const inputHandler = (num) => {
+    const updateInput = [...isInput];
     if (num === "⌫") {
-      const updateInput = [...isInput];
-      const index = updateInput.lastIndexOf(true);
-      if (index != -1) {
+      // 뒤로 가기 처리
+      const index = pwd.length - 1;
+      if (index >= 0) {
         updateInput[index] = false;
+        setPwd(pwd.slice(0, -1));
+        setIsInput(updateInput);
+        setAllowed(false);
       }
+    } else if (num !== "" && pwd.length < (isSingleInput ? 6 : 12)) {
+      // 새로운 입력 처리
+      updateInput[pwd.length] = true;
+      setPwd(pwd + num);
       setIsInput(updateInput);
-      setAllowed(false);
-      pwd.length != 6 ? setPwd(pwd.slice(0, -1)) : "";
-    } else if (num != "") {
-      const updateInput = [...isInput];
-      const index = updateInput.indexOf(false);
-      if (index != -1) {
-        updateInput[index] = true;
+      if (isSingleInput && pwd.length === 5) {
+        setAllowed(true);
+      } else if (!isSingleInput && pwd.length === 11) {
+        const firstPwd = pwd.slice(0, 6);
+        const secondPwd = pwd.slice(6, 12);
+        if (firstPwd === secondPwd) {
+          setAllowed(true);
+        } else {
+          setAllowed(false);
+        }
       }
-      setIsInput(updateInput);
-      pwd.length != 12 ? setPwd(pwd + num) : "";
     }
   };
 
   const handleClick = (e) => {
-    if (!allow) {
+    if (onConfirmClick) {
+      onConfirmClick(e);
+    } else if (!allow) {
       e.preventDefault();
     }
   };
 
-  // type에 따라 다른 경로 반환
   const getRedirectPath = () => {
-    return type === "transfer"
-      ? urlPath.MISSION_TRANSFER_DONE
-      : urlPath.SELECT_PARENT_PASSWORD_CONFIRM;
+    switch (type) {
+      case "transfer":
+        return urlPath.MISSION_TRANSFER_DONE;
+      case "childtransfer":
+        return urlPath.DONE;
+      default:
+        return urlPath.SELECT_PARENT_PASSWORD_CONFIRM;
+    }
   };
 
   return (

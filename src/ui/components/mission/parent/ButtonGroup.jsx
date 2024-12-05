@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useState } from "react";
-import Image from "next/image";
 import missionCategories from "@/src/constants/mission";
 
 export default function ButtonGroup({
@@ -61,6 +60,7 @@ export default function ButtonGroup({
   };
 
   return (
+    
     <div className="flex flex-col w-full">
       <p className="text-R-10 mb-1 text-sub02">미션을 수행할 자녀</p>
       <div className="flex flex-row justify-between gap-3 w-full mb-2">
@@ -73,7 +73,7 @@ export default function ButtonGroup({
               button.id === "all"
                 ? isAllSelected
                 : selectedTopButtons.includes(button.id)
-                : selectedTopButtons.includes(button.id)
+                
             )}
           >
             <span className="text-R-10 whitespace-nowrap overflow-hidden">

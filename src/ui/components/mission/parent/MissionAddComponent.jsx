@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import MissionConfirmModal from "../MissionConfirmModal";
 import ButtonGroup from "./ButtonGroup";
-import toast, { Toaster } from "react-hot-toast";
 import missionCategories from "@/src/constants/mission";
 import { getParentsAccounts } from "@/src/apis/parents";
 import { useCreateMission } from "@/src/query/missionQuery";
