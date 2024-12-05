@@ -1,7 +1,7 @@
+import imageCompression from "browser-image-compression";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import CustomButton from "../../atoms/CustomButton";
-import Image from "next/image";
-import imageCompression from "browser-image-compression";
 
 const data = {
   1: "미션 설명이 들어갑니다. 미션 설명은 총 몇 자 인가요? 넓이 영역에 대해 한번 고려 해보셔야 할 것 같습니다. 보통 설명이 이렇게까지 길어지는 일이 있을지는 잘 모르겠습니다. 부모님이 자식에게 이 만큼 설명하는 것이 아이 연령을 고려했을 때 불필요한 일일 수도 있습니다만 저희는 최대 길이 영역을 고려하여 디자인 진행을 해야합니다",
@@ -167,7 +167,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
         <p className="text-R-10 text-sub02">부모님께 보낼 메시지</p>
         <div
           className={`${
-            message ? "bg-main02/20" : "bg-grey01/20"
+            message ? "bg-main02/20" : "bg-gray01/20"
           } rounded-lg text-R-12 shadow-md`}
         >
           <textarea

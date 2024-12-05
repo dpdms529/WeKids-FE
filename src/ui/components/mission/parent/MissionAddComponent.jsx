@@ -1,10 +1,10 @@
 "use client";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputDateBox from "@/src/ui/components/atoms/InputDateBox";
-import MissionConfirmModal from "../MissionConfirmModal";
 import { useEffect, useState } from "react";
-import ButtonGroup from "./ButtonGroup";
 import toast, { Toaster } from "react-hot-toast";
+import MissionConfirmModal from "../MissionConfirmModal";
+import ButtonGroup from "./ButtonGroup";
 
 export default function MissionAddComponent({ setIsModalOpen }) {
   const [child, setChild] = useState([]);
@@ -65,7 +65,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
           <div className="flex flex-col gap-1 mb-5 mt-5">
             <p className="text-R-10 text-sub02">미션명</p>
             <div
-              className={`${title != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
+              className={`${title != "" ? "bg-main02/20" : "bg-gray01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
             >
               <textarea
                 className="w-full h-8 bg-transparent rounded-md resize-none outline-none p-2"
@@ -79,7 +79,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
         <div className="flex flex-col gap-1 mb-5">
           <p className="text-R-10 text-sub02">미션 완료 방법</p>
           <div
-            className={`${method != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
+            className={`${method != "" ? "bg-main02/20" : "bg-gray01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
           >
             <textarea
               className="w-full h-32 bg-transparent rounded-md resize-none outline-none p-2"
@@ -92,7 +92,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
         <div className="flex flex-col gap-1 mb-5">
           <p className="text-R-10 text-sub02">미션 완료 시 수령 금액</p>
           <div
-            className={`${reward != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
+            className={`${reward != "" ? "bg-main02/20" : "bg-gray01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
           >
             <input
               type="text"
@@ -108,7 +108,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
             value={period}
             onChange={(value) => setPeriod(value)}
             label="미션 만료일"
-            className={`${period != "" ? "bg-main02/20" : "bg-grey01/20"}`}
+            className={`${period != "" ? "bg-main02/20" : "bg-gray01/20"}`}
           />
         </div>
         <div className="flex flex-col w-full gap-2">

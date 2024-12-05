@@ -1,5 +1,5 @@
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function ButtonGroup({
   setTopButtonChecked,
@@ -56,7 +56,7 @@ export default function ButtonGroup({
     if (isSelected) {
       return `${baseClasses} bg-main02 text-white`; // 선택된 버튼 스타일
     } else {
-      return `${baseClasses} bg-grey01/20 text-neutral-400`; // 선택되지 않은 버튼 스타일
+      return `${baseClasses} bg-gray01/20 text-neutral-400`; // 선택되지 않은 버튼 스타일
     }
   };
 
@@ -72,7 +72,7 @@ export default function ButtonGroup({
               button.id,
               button.id === "all"
                 ? isAllSelected
-                : selectedTopButtons.includes(button.id),
+                : selectedTopButtons.includes(button.id)
             )}
           >
             <span className="text-R-10 whitespace-nowrap overflow-hidden">
