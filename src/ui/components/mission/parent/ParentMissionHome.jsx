@@ -10,7 +10,7 @@ const ParentMissionHome = ({ data }) => {
         {data.length === 0 ? (
           <ParentNoMissionCard />
         ) : (
-          <div className="flex-1 overflow-y-auto custom-scrollbar mt-4">
+          <div className="flex-1 overflow-y-auto custom-scrollbar space-y-4 ">
             {data.map((mission) => (
               <ParentMissionList
                 key={mission.missionId}
