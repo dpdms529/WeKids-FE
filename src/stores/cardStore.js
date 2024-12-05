@@ -81,6 +81,7 @@ export const useCardStore = create((set) => ({
 // 카드 디자인 관리
 export const useColorStore = create((set) => ({
   color: "",
+  childId: null,
   childcharacter: "",
   childcolor: "",
   design: "",
@@ -89,6 +90,7 @@ export const useColorStore = create((set) => ({
     set({ childcharacter: childcharacter }),
   setDesign: (design) => set(design),
   setChildColor: (childcolor) => set({ childcolor: childcolor }),
+  removeChildId: () => set({childId: null}),
   removeColor: () => set({ color: "" }),
   removeChildCharacter: () => set({ childcharacter: "" }),
   removeChildColor: () => set({ childcolor: "" }),

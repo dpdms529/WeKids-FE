@@ -1,7 +1,7 @@
 "use client";
 
 import { characterInfoMap, urlPath } from "@/src/constants/common"; // 상대 경로로 불러오기
-import { useUserCardColorStore } from "@/src/stores/userStore";
+import { useAccountStore, useUserCardColorStore } from "@/src/stores/userStore";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { Text } from "@radix-ui/themes";
 import Image from "next/image";
@@ -12,8 +12,15 @@ import toast, { Toaster } from "react-hot-toast"; // Toaster 및 toast 불러오
 const BlueCardBox = ({ selectedAccount }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState(""); // backgroundColorClass 상태 추가
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
+  const { setAccountId, setAccountInfo } = useAccountStore();
 
   useEffect(() => {
+    setAccountId(selectedAccount.accountId);
+    setAccountInfo({
+      name: selectedAccount.name,
+      accountNumber: selectedAccount.accountNumber,
+      color: selectedAccount.color,
+    });
     if (selectedAccount) {
       const accountCharacterInfo =
         characterInfoMap[selectedAccount.character] || [];

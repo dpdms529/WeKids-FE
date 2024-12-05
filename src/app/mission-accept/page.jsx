@@ -16,12 +16,13 @@ export default function Page() {
         size="mediumLarge"
         rounded={true}
       >
-        미션 등록하기
+        미션 승인하기
       </CustomButton>
       <MissionModal isOpen={isModalOpen} setOpen={setIsModalOpen}>
         <MissionAcceptComponent
           setIsModalOpen={setIsModalOpen}
           imgPath={imgPath}
+          missionId={1}
         />
       </MissionModal>
     </div>

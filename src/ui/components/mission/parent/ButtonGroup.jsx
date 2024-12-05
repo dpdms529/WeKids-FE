@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+import missionCategories from "@/src/constants/mission";
 
 export default function ButtonGroup({
+  childrenData, // 외부에서 받아오는 자녀 데이터
   setTopButtonChecked,
   setBottomButtonChecked,
 }) {
@@ -11,21 +14,18 @@ export default function ButtonGroup({
 
   const topButtons = [
     { id: "all", label: "ALL" },
-    { id: "child1", label: "아이1" },
-    { id: "child2", label: "아이2" },
-    { id: "child3", label: "아이3" },
+    ...childrenData.map((child) => ({
+      id: child.childId,
+      label: child.name,
+    })),
   ];
 
-  const bottomButtons = [
-    { id: "cleaning", label: "청소", icon: "/images/trashImg.svg" },
-    { id: "habit", label: "생활습관", icon: "/images/pinImg.svg" },
-    { id: "improve", label: "자기계발", icon: "/images/pencilImg.svg" },
-    { id: "etc", label: "기타", icon: "/images/ectImg.svg" },
-  ];
 
   const handleTopButtonClick = (id) => {
     if (id === "all") {
-      const allSelections = isAllSelected ? [] : ["child1", "child2", "child3"];
+      const allSelections = isAllSelected
+        ? []
+        : childrenData.map((child) => child.childId);
       setSelectedTopButtons(allSelections);
       setTopButtonChecked(allSelections);
       setIsAllSelected(!isAllSelected);
@@ -73,6 +73,7 @@ export default function ButtonGroup({
               button.id === "all"
                 ? isAllSelected
                 : selectedTopButtons.includes(button.id)
+                : selectedTopButtons.includes(button.id)
             )}
           >
             <span className="text-R-10 whitespace-nowrap overflow-hidden">
@@ -83,7 +84,7 @@ export default function ButtonGroup({
       </div>
       <p className="text-R-10 mb-1 mt-2 text-sub02">미션 카테고리</p>
       <div className="flex flex-row justify-between gap-2 w-full">
-        {bottomButtons.map((button) => (
+        {missionCategories.map((button) => (
           <button
             key={button.id}
             onClick={() => handleBottomButtonClick(button.id)}

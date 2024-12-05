@@ -4,7 +4,6 @@ import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { urlPath } from "@/src/constants/common";
 import { useEffect } from "react";
-import { showMissionDetail } from "@/src/apis/mission";
 
 
 const MESSAGES = {
@@ -21,40 +20,19 @@ const MESSAGES = {
   },
 };
 
-const TransferComplete = ({
-  type = "COMPLETE",
-  missionId,
+const TransferDone = ({
+  type = "CONFIRM",
   childName,
-  setChildName,
   amount,
-  setAmount,
   accountNumber,
-  setType,
 }) => {
   // type이 유효한지 확인하고, 유효하지 않으면 COMPLETE 사용
   const messageType = MESSAGES[type] ? type : "COMPLETE";
   const messages = MESSAGES[messageType];
   
   useEffect(() => {
-    console.log(missionId)
-    
-      const fetchMissionDetail = async () => {
-        try {
-          const missionDetail = await showMissionDetail({ missionId });
-          setChildName(missionDetail.childName);
-          setAmount(missionDetail.amount);
-          console.log(amount)
-          
-        } catch (error) {
-          console.error("Failed to fetch mission details:", error);
-        }
-      };
-  
-      fetchMissionDetail();
-    
-    console.log("??")
-    
-  }, []);
+    console.log(childName);
+  },[])
 
   // type에 따라 다른 경로 설정
   const nextPath =
@@ -107,4 +85,4 @@ const TransferComplete = ({
   );
 };
 
-export default TransferComplete;
+export default TransferDone;

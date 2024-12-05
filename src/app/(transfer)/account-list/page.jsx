@@ -2,7 +2,6 @@
 
 import { fetchChildAccounts } from "@/src/apis/account";
 import { urlPath } from "@/src/constants/common";
-import { fetchChildAccounts } from "@/src/apis/account";
 import { useTransactionStore } from "@/src/stores/transactionStore";
 import Loader from "@/src/ui/components/atoms/Loader";
 import TransferItem from "@/src/ui/components/atoms/TransferItem";
@@ -25,6 +24,7 @@ export default function Page() {
         const data = await fetchChildAccounts(); // 데이터 가져오기
         setAccounts(data); // 가져온 데이터를 상태에 저장
         setChildrenAccounts(data); // 전역 상태에 저장
+        console.log(data);
       } catch (error) {
         setError(error.message); // 에러 처리
       } finally {
@@ -34,6 +34,10 @@ export default function Page() {
 
     fetchAccounts();
   }, [setChildrenAccounts]);
+
+  useEffect (() => {
+    console.log(selectedAccount);
+  }, [selectedAccount])
 
   // 계좌 선택 핸들러
   const handleSelect = useCallback(
@@ -45,7 +49,6 @@ export default function Page() {
       });
       router.push(urlPath.TRANSFER);
     },
-    [setSelectedAccount],
     [setSelectedAccount],
   );
 

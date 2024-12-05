@@ -1,9 +1,10 @@
 "use client";
-import { use } from "react";
+import { urlPath } from "@/src/constants/common";
 import {
   useTransactionDetail,
   useUpdateTransactionMemo,
 } from "@/src/query/transactionQuery";
+import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Loader from "@/src/ui/components/atoms/Loader";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import Memo from "@/src/ui/components/transaction/detail/Memo";
@@ -32,14 +33,14 @@ const TransactionDetailPage = ({ params }) => {
       return;
     }
     if (memo == "") {
-      router.push(`${urlPath.TRANSACTION_HISTORY}?color=YELLOW`);
+      router.push(`${urlPath.TRANSACTION_HISTORY}`);
     } else {
       mutate(
         { transactionId: trxId, memo },
         {
           onSuccess: () => {
             console.log("메모 업데이트 성공!");
-            router.push(`${urlPath.TRANSACTION_HISTORY}?color=YELLOW`);
+            router.push(`${urlPath.TRANSACTION_HISTORY}`);
           },
           onError: (error) => {
             console.error("메모 업데이트 실패:", error.message);

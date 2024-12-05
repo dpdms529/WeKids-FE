@@ -21,37 +21,38 @@ export const assigndata = [
   },
 ];
 
-export const alarmData = [
-  {
+export const alarmData = {
+  MISSION: {
     emoticon: "COMPLETED",
     title: "완료 미션 바로 보기",
     description: (missionName) =>
       `미션을 확인해보세요. <br/>아이가 ${missionName}미션을 완료했습니다.`,
   },
-  {
+  CARD: {
     emoticon: "CARD",
     title: "등록된 카드 디자인 확인하기",
     description: () =>
       `아이가 만든 카드 디자인을 확인하고 카드를 발행해주세요!`,
   },
-  {
+  DOCUMENT: {
     emoticon: "DOCUMENT",
     title: "협상 제안서 바로 보기",
     description: () =>
       `용돈 협상 제안서를 확인해보세요. <br/>아이가 용돈 협상 제안서를 등록했습니다!`,
   },
-  {
+  ANNOUNCEMENT: {
     emoticon: "ANNOUNCEMENT",
     title: "휴일에도 자동이체가 가능합니다!",
     description: () => `2024년 10월 7일부터 휴일에도 자동이체가 가능해요!`,
   },
-  {
+  MESSAGE: {
     emoticon: "MESSAGE",
     title: "부모 동의 알림 확인하기",
     description: () =>
       `가족관계 증명서 확인해주기. <br/>아이가 소셜로그인 가입을 위한 부모 동의 알림을 보냈습니다!`,
   },
-];
+};
+
 
 export const generateYears = (startYear, endYear) => {
   return Array.from(

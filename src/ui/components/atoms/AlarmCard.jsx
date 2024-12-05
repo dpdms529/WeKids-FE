@@ -1,3 +1,4 @@
+'use client'
 import {
   ChevronRightIcon,
   EnvelopeClosedIcon,
@@ -9,6 +10,7 @@ import { alarmData } from "@/src/constants/assign";
 import Image from "next/image";
 import Link from "next/link";
 import { urlPath } from "@/src/constants/common";
+import { useRouter } from "next/navigation";
 
 const EMOTICON = {
   MESSAGE: EnvelopeClosedIcon,
@@ -19,25 +21,28 @@ const EMOTICON = {
 };
 
 const AlarmCard = ({
-  case: number = 2,
+  index,
+  type, 
   missionName = "설거지 ",
-  width = "w-full",
-  height = "h-[149px]",
-  radius = "",
-  border = "",
-  date = "11월 21일",
-  isIssued = true,
+  targetId,
+  targetState,
+  isChecked,
   className,
+  onClick,
 }) => {
-  const data = alarmData[number];
+
+  
+
+
+  const data = alarmData[type || "MISSION"];
   if (!data) return null;
   const SelectedIcon =
     data.emoticon != "NOTIFICATION" ? EMOTICON[data.emoticon] : "";
 
   return (
     <Link href={urlPath.ALARM_CARD}>
-      <div
-        className={`flex flex-row ${width} ${height} ${radius} ${border} ${isIssued ? "bg-main03" : "bg-white"} px-6 pt-6 pb-5 gap-5 ${className}`}
+      <div onClick={onClick}
+        className={`flex flex-row w-full h-[149px] ${isChecked ? "bg-white" : "bg-main03"} px-6 pt-6 pb-5 gap-5 ${className}`}
       >
         <div className="flex items-start">
           {SelectedIcon && SelectedIcon != "" ? (
@@ -60,9 +65,6 @@ const AlarmCard = ({
               .map((line, index) => (
                 <p key={index}>{line}</p>
               ))}
-          </div>
-          <div className="flex flex-col text-R-10 text-black/40 mt-auto">
-            {date}
           </div>
         </div>
         <div className="flex w-1/4 items-center justify-end">

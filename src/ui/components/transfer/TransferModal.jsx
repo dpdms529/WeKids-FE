@@ -1,9 +1,8 @@
-import { submitTransfer } from "@/src/apis/transaction";
-import { urlPath } from "@/src/constants/common";
+
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Modal from "@/src/ui/components/atoms/Modal";
 import Profile from "@/src/ui/components/atoms/Profile";
-import { useMutation } from "@tanstack/react-query";
+
 import { useRouter } from "next/navigation";
 
 const TransferModal = ({
@@ -12,31 +11,14 @@ const TransferModal = ({
   selectedAccount,
   transferAmount,
   sendUser,
+  setTransfer,
 }) => {
   const router = useRouter();
-  const mutation = useMutation({
-    mutationFn: submitTransfer,
-  });
-
-  const handleSubmit = () => {
-    const data = {
-      parentAccountNumber: sendUser.accountNumber,
-      childAccountNumber: selectedAccount.accountNumber,
-      amount: transferAmount,
-      sender: sendUser.name,
-      receiver: selectedAccount.name,
-    };
-
-    mutation.mutate(data, {
-      onSuccess: () => {
-        alert("이체가 성공적으로 완료되었습니다!");
-        router.push(urlPath.DONE);
-      },
-      onError: (error) => {
-        alert("이체 실패: " + error.message);
-      },
-    });
-  };
+  const submitTransfer = () => {
+    modalHandler();
+    setTransfer(true);
+  }
+  
 
   return (
     <Modal
@@ -66,7 +48,7 @@ const TransferModal = ({
         >
           취소
         </CustomButton>
-        <CustomButton size="medium" rounded={true} onClick={handleSubmit}>
+        <CustomButton size="medium" rounded={true} onClick={submitTransfer}>
           이체하기
         </CustomButton>
       </div>

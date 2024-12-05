@@ -21,3 +21,9 @@ export const useMissionFilterStore = create((set) => ({
   setSelectedChild: (child) => set({ selectedChild: child }),
   setSelectedCategory: (category) => set({ selectedCategory: category }) // 객체 키와 값이 같은 이름일 때는 이렇게 축약 가능
 }));
+
+export const useMissionIDStore = create((set) => ({
+  missionId: '',
+  setMissionId: (id) => set({ missionId: id }),
+  clearMissionId: () => set({missionId:''}),
+}));

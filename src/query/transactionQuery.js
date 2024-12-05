@@ -3,9 +3,10 @@ import {
   fetchTransactions,
   fetchTransactionById,
   updateTransactionMemo,
+  submitTransfer,
 } from "../apis/transaction";
 export const useTransactionList = ({
-  accountId = 4,
+  accountId,
   start,
   end,
   type,
@@ -48,6 +49,24 @@ export const useUpdateTransactionMemo = () => {
     },
     onError: (error) => {
       console.error("메모 업데이트 실패:", error.message);
+    },
+  });
+};
+
+
+export const useTransaction = () => {
+  return useMutation({
+    mutationFn: ({ parentAccountNumber, childAccountNumber,
+      amount, sender, receiver, simplePassword
+     }) => {
+      return submitTransfer({ parentAccountNumber, childAccountNumber,
+        amount, sender, receiver, simplePassword });
+    },
+    onSuccess: (data) => {
+      console.log("성공:", data);
+    },
+    onError: (error) => {
+      console.error("실패:", error.message);
     },
   });
 };
