@@ -1,5 +1,6 @@
 "use client";
 import { fetchChildAccounts } from "@/src/apis/account";
+import { getMissionList } from "@/src/apis/mission";
 import { useMissionFilterStore } from "@/src/stores/missionFilterStore";
 import Modal from "@/src/ui/components/atoms/Modal";
 import Image from "next/image";
@@ -15,6 +16,9 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
   } = useMissionFilterStore();
 
   const [children, setChildren] = useState([]);
+  const [tempSelectedChild, setTempSelectedChild] = useState(selectedChild);
+  const [tempSelectedCategory, setTempSelectedCategory] =
+    useState(selectedCategory);
 
   useEffect(() => {
     const loadChildAccounts = async () => {
@@ -29,6 +33,66 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
     loadChildAccounts();
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      setTempSelectedChild(selectedChild);
+      setTempSelectedCategory(selectedCategory);
+    }
+  }, [isOpen, selectedChild, selectedCategory]);
+
+  const handleConfirm = async () => {
+    try {
+      // 1. 선택한 필터로 먼저 조회
+      const selectedParams = {
+        child: tempSelectedChild?.accountId || "",
+        category: tempSelectedCategory || "",
+      };
+      const filteredResult = await getMissionList(selectedParams);
+
+      if (filteredResult && filteredResult.length > 0) {
+        // 선택한 필터로 결과가 있는 경우
+        setSelectedChild(tempSelectedChild);
+        setSelectedCategory(tempSelectedCategory);
+      } else if (tempSelectedChild) {
+        // 2. 결과가 없고 자녀가 선택된 경우, 해당 자녀의 전체 미션 조회
+        const childOnlyParams = {
+          child: tempSelectedChild.accountId,
+          category: "",
+        };
+        const childMissions = await getMissionList(childOnlyParams);
+
+        if (childMissions && childMissions.length > 0) {
+          // 3. 자녀의 전체 미션이 있는 경우
+          setSelectedChild(tempSelectedChild);
+          setSelectedCategory(null);
+        } else {
+          // 4. 자녀의 전체 미션도 없는 경우
+          setSelectedChild(null);
+          setSelectedCategory(null);
+        }
+      } else {
+        // 자녀가 선택되지 않은 경우 모든 필터 초기화
+        setSelectedChild(null);
+        setSelectedCategory(null);
+      }
+    } catch (error) {
+      console.error("Failed to fetch missions:", error);
+      // 에러 발생 시 모든 필터 초기화
+      setSelectedChild(null);
+      setSelectedCategory(null);
+    } finally {
+      setTempSelectedChild(null);
+      setTempSelectedCategory(null);
+      onClose();    }
+  };
+
+  const handleClose = () => {
+    // Modal을 닫을 때 임시 상태를 초기화
+    setTempSelectedChild(null);
+    setTempSelectedCategory(null);
+    onClose();
+  };
+
   const categories = [
     { type: "HOUSE_WORK" },
     { type: "SELF_DEVELOPMENT" },
@@ -37,13 +101,13 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
   ];
 
   return (
-    <Modal isOpen={isOpen} modalHandler={onClose}>
+    <Modal isOpen={isOpen} modalHandler={handleClose}>
       <div className="p-6">
         <div className="flex justify-between items-center">
-          <button onClick={onClose}>
+          <button onClick={handleClose}>
             <Image src="/images/cross.svg" alt="닫기" width={24} height={24} />
           </button>
-          <button onClick={onClose} className="text-B-16">
+          <button onClick={handleConfirm} className="text-B-16">
             확인
           </button>
         </div>
@@ -53,11 +117,10 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
           <h3 className="text-B-16 text-sub01">자녀</h3>
           <div className="border-t border-gray01/10 pt-4 mt-4">
             <div className="flex gap-2">
-              {/* ALL 버튼 */}
               <button
-                onClick={() => setSelectedChild(null)}
+                onClick={() => setTempSelectedChild(null)}
                 className={`px-4 py-2 rounded-lg ${
-                  selectedChild === null
+                  tempSelectedChild === null
                     ? "bg-main02 text-white"
                     : "bg-gray01/10 text-sub02"
                 }`}
@@ -65,18 +128,12 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
                 All
               </button>
 
-              {/* 자녀 리스트 */}
               {children.map((child) => (
                 <button
                   key={child.accountId}
-                  onClick={
-                    () =>
-                      selectedChild?.accountId === child.accountId
-                        ? setSelectedChild(null) // 자녀 선택 해제
-                        : setSelectedChild(child) // 자녀 선택
-                  }
+                  onClick={() => setTempSelectedChild(child)}
                   className={`px-4 py-2 rounded-lg ${
-                    selectedChild?.accountId === child.accountId
+                    tempSelectedChild?.accountId === child.accountId
                       ? "bg-main02 text-white"
                       : "bg-gray01/10 text-sub02"
                   }`}
@@ -98,8 +155,8 @@ export const MissionFilterModal = ({ isOpen, onClose }) => {
                   key={category.type}
                   missionType={category.type}
                   isButton={true}
-                  onClick={() => setSelectedCategory(category.type)}
-                  selected={selectedCategory === category.type}
+                  onClick={() => setTempSelectedCategory(category.type)}
+                  selected={tempSelectedCategory === category.type}
                 />
               ))}
             </div>

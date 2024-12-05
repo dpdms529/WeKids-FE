@@ -10,7 +10,8 @@ const ParentMissionList = ({ missiondata }) => {
   const bgColor =
     missiondata?.state && missionColorMap[missiondata.state]
       ? missionColorMap[missiondata.state].background
-      : missionColorMap.NEW.background;
+      : missionColorMap["NEW"].background;
+
   //todo 필요하면 쓰세요
   //     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,13 +25,13 @@ const ParentMissionList = ({ missiondata }) => {
 
   return (
     <div
-      className={
+      className={ 
         // onClick={handleMissionClick}
         `w-[322px] rounded-xl ${bgColor} px-5 py-3 shadow-md`
       }
     >
       <div className="flex gap-3">
-        <div className="flex items-center">
+        <div className="flex items-cente">
           <ChildProfileSection
             profileUrl={missiondata.childProfile}
             childName={missiondata.childName}

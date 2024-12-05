@@ -1,42 +1,37 @@
 "use client";
+import { getMissionList } from "@/src/apis/mission";
 import { useMissionFilterStore } from "@/src/stores/missionFilterStore";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomButton from "../../atoms/CustomButton";
 import FilterHeader from "./FilterHeader";
 import ParentMissionList from "./ParentMissionList";
 import { ParentNoMissionCard } from "./ParentNoMissionCard";
 
-const ParentMissionHome = ({ data }) => {
+const ParentMissionHome = ({ initialData }) => {
   const { selectedChild, selectedCategory } = useMissionFilterStore();
-  const [updateData, setData] = useState(data);
+  const [updateData, setData] = useState(initialData || []);
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const fetchMissions = async () => {
-  //     setIsLoading(true);
-  //     try {
-  //       const queryParams = new URLSearchParams();
+  useEffect(() => {
+    const fetchFilteredMissions = async () => {
+      setIsLoading(true);
+      try {
+        const params = {
+          child: selectedChild ? selectedChild.accountId : "",
+          category: selectedCategory || "",
+        };
+        const newData = await getMissionList(params);
+        setData(newData);
+      } catch (error) {
+        console.error("Failed to fetch missions:", error);
+        setData([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  //       if (selectedChild && selectedChild !== "ALL") {
-  //         queryParams.append("child", selectedChild);
-  //       }
-  //       if (selectedCategory) {
-  //         queryParams.append("category", selectedCategory);
-  //       }
-
-  //       const response = await fetch(`/api/missions?${queryParams.toString()}`);
-  //       const newData = await response.json();
-  //       setData(newData);
-  //     } catch (error) {
-  //       console.error("Failed to fetch missions:", error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchMissions();
-  // }, [selectedChild, selectedCategory]);
+    fetchFilteredMissions();
+  }, [selectedChild, selectedCategory]);
 
   return (
     <div className="flex flex-col min-h-screen">

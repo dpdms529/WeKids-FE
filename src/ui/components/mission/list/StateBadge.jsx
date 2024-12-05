@@ -10,7 +10,7 @@ const StateBadge = ({
   onClick, // onClick prop 추가
 }) => {
   const getStateInfo = (state) => {
-    return missionColorMap[state] || missionColorMap.NEW;
+    return missionColorMap[state] || missionColorMap["NEW"];
   };
 
   const stateInfo = getStateInfo(state);
@@ -22,7 +22,7 @@ const StateBadge = ({
       className={`${baseClasses} ${buttonClasses}`}
       onClick={isButton ? onClick : undefined}
     >
-      <span className={textSize}>{state}</span>
+      <span className={textSize}>{stateInfo.text}</span>
     </Component>
   );
 };
