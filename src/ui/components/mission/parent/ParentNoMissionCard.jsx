@@ -38,7 +38,7 @@ export const ParentNoMissionCard = () => {
               key={type}
               className="bg-white rounded-xl py-2 px-4 flex items-center justify-center gap-2"
             >
-              <CategoryBadge missionType={type} />
+              <CategoryBadge missionType={type} isButton={false} />
             </div>
           ))}
         </div>

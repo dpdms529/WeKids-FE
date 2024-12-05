@@ -1,5 +1,14 @@
 import Image from "next/image";
-const CategoryBadge = ({ missionType }) => {
+const CategoryBadge = ({
+  missionType,
+  isButton = false,
+  onClick,
+  selected = false,
+  textSize = "text-R-10",
+  radius = "rounded-lg",
+  height = "h-[18px]",
+  px = "px-2",
+}) => {
   const getStateInfo = (missionType) => {
     const stateInfo = {
       HOUSE_WORK: {
@@ -23,9 +32,19 @@ const CategoryBadge = ({ missionType }) => {
   };
 
   const stateInfo = getStateInfo(missionType);
+  const Component = isButton ? "button" : "div";
 
   return (
-    <div className="h-[18px] flex items-center bg-white rounded-md px-2">
+    <Component
+      onClick={isButton ? onClick : undefined}
+      className={`flex items-center ${height} ${px} ${radius} ${
+        isButton
+          ? selected
+            ? "bg-main02 text-white"
+            : "bg-gray01/10 text-sub02"
+          : "bg-white text-sub02"
+      } ${isButton ? "cursor-pointer hover:opacity-90" : ""}`}
+    >
       <Image
         src={stateInfo.icon}
         alt={`${missionType} icon`}
@@ -33,8 +52,8 @@ const CategoryBadge = ({ missionType }) => {
         height={14}
         className="mr-1"
       />
-      <span className="text-R-10">{stateInfo.text}</span>
-    </div>
+      <span className={textSize}>{stateInfo.text}</span>
+    </Component>
   );
 };
 

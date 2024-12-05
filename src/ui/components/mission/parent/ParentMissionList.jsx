@@ -39,7 +39,10 @@ const ParentMissionList = ({ missiondata }) => {
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
             <StateBadge state={missiondata.state} />
-            <CategoryBadge missionType={missiondata.category} />
+            <CategoryBadge
+              missionType={missiondata.category}
+              isButton={false}
+            />
           </div>
           <div className="space-y-1">
             <h3 className="text-R-14 text-sub02">{missiondata.title}</h3>

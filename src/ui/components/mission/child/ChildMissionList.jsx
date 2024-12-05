@@ -19,7 +19,7 @@ export default function ChildMissionList({ missiondata }) {
         </div>
         <div className="flex flex-col items-end gap-2 shrink-0">
           <StateBadge state={missiondata.state} />
-          <CategoryBadge missionType={missiondata.category} />
+          <CategoryBadge missionType={missiondata.category} isButton={false} />
         </div>
       </div>
       <p className="text-R-10 text-sub02/60 text-right mt-3">

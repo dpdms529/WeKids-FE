@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { ChildMissionHome } from "@/src/ui/components/mission/child/ChildMissionHome";
-import { ParentMissionHome } from "@/src/ui/components/mission/parent/ParentMissionHome";
+import ParentMissionHome from "@/src/ui/components/mission/parent/ParentMissionHome";
+
 import Header from "@/src/ui/layout/Header";
 
 export const MISSION_DUMMY = [
@@ -23,7 +24,7 @@ export const MISSION_DUMMY = [
     state: "NEW",
     deadline: "2024년 11월 20일 (수) 까지",
     category: "SELF_DEVELOPMENT",
-    childName: "달달핑",
+    childName: "조예은",
     childProfile: "/images/daldalpingImg.svg",
     image: null,
     memo: null,
@@ -35,7 +36,7 @@ export const MISSION_DUMMY = [
     state: "SUB",
     deadline: "2024년 11월 20일 (수) 까지",
     category: "HOUSE_WORK",
-    childName: "초롱핑",
+    childName: "조예은",
     childProfile: "/images/chorongpingImg.svg",
     image: null,
     memo: null,
@@ -75,18 +76,22 @@ const page = async () => {
   if (!authorization) redirect("/onboard");
   const memberType = session.user.role;
   const data = MISSION_DUMMY;
-  return (
-    <>
-      <Header />
 
-      <div className="flex justify-center">
-        {memberType === "ROLE_PARENT" ? (
-          <ParentMissionHome data={data} />
-        ) : (
-          <ChildMissionHome data={data} />
-        )}
+  return (
+    <div className="flex flex-col h-screen">
+      <div className="flex-none">
+        <Header />
       </div>
-    </>
+      <div className="flex-1 overflow-y-auto">
+        <div className="flex justify-center">
+          {memberType === "ROLE_PARENT" ? (
+            <ParentMissionHome data={data} />
+          ) : (
+            <ChildMissionHome data={data} />
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
