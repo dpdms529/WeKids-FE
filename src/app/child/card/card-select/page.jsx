@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import { designCreate } from "@/src/apis/design";
 import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
+import { useColorStore } from "@/src/stores/cardStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
-import ColorButton from "@/src/ui/components/card-select/ColorButton";
-import CharacterButton from "@/src/ui/components/card-select/CharacterButton";
 import CardIssueModal from "@/src/ui/components/card-select/CardIssueModal";
-import { designCreate } from "@/src/apis/design";
-import { useColorStore } from "@/src/stores/cardStore";
+import CharacterButton from "@/src/ui/components/card-select/CharacterButton";
+import ColorButton from "@/src/ui/components/card-select/ColorButton";
+import { useState } from "react";
 
 export default function CardDesignSelector() {
   const {
@@ -79,6 +79,7 @@ export default function CardDesignSelector() {
                     imagePath={characterInfoMap[character].imagePath}
                     className="w-12 h-12 cursor-pointer"
                     onClick={() => setSelectedCharacter(character)}
+                    isSelected={selectedCharacter === character}
                   />
                 ))}
               </div>
