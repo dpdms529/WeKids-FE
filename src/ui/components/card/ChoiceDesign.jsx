@@ -15,8 +15,8 @@ export default function ChoiceDesign({
   character = "HEARTSPRING",
   color = "PINK2",
 }) {
-  const [designData, setDesignData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [design, setDesign] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { setChildCharacter, setChildColor } = useColorStore();
 
   useEffect(() => {
@@ -25,12 +25,15 @@ export default function ChoiceDesign({
         console.log("Fetching design...");
         const data = await designFetch();
         console.log(data);
-        setDesignData(data);
-        setChildCharacter(data?.character || character);
-        setChildColor(data?.color || color);
+        setDesign(data); // zustand에 저장
+        if (setChildCharacter && setChildColor) {
+          setChildCharacter(data?.character || character);
+          setChildColor(data?.color || color);
+        }
       } catch (error) {
         console.error("Error fetching design:", error.message);
       } finally {
+        setIsLoading(false);
       }
     };
     fetchDesign();
@@ -41,8 +44,8 @@ export default function ChoiceDesign({
       <div className="text-R-28 text-white">{title}</div>
       <div className="w-[196px] h-[312px]">
         <CardCharacter
-          selectedCharacter={designData?.character || character}
-          selectedColor={designData?.color || color}
+          selectedCharacter={design?.character || character}
+          selectedColor={design?.color || color}
         />
       </div>
       <div className="text-white">{subText}</div>

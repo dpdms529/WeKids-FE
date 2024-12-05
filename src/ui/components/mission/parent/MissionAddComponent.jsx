@@ -1,8 +1,9 @@
 "use client";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import InputDateBox from "@/src/ui/components/atoms/InputDateBox";
-import MissionConfirmModal from "../MissionConfirmModal";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import MissionConfirmModal from "../MissionConfirmModal";
 import ButtonGroup from "./ButtonGroup";
 import toast, { Toaster } from "react-hot-toast";
 import missionCategories from "@/src/constants/mission";
@@ -137,7 +138,7 @@ export default function MissionAddComponent({ setIsModalOpen }) {
           <div className="flex flex-col gap-1 mb-5 mt-5">
             <p className="text-R-10 text-sub02">미션명</p>
             <div
-              className={`${title != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
+              className={`${title != "" ? "bg-main02/20" : "bg-gray01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
             >
               <textarea
                 className="w-full h-8 bg-transparent rounded-md resize-none outline-none p-2"

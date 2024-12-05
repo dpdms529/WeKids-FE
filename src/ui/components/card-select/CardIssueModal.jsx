@@ -1,12 +1,15 @@
 import { urlPath } from "@/src/constants/common";
 import PopupMessage from "@/src/ui/components/molecules/PopupMessage";
 import { useRouter } from "next/navigation";
+import { useColorStore } from "@/src/stores/cardStore";
 
-const CardIssueModal = ({ isOpen, onClose }) => {
+const CardIssueModal = ({ isOpen, onClose, onConfirm }) => {
   const router = useRouter();
+  const setDesign = useColorStore((state) => state.setDesign);
 
   const handleConfirm = () => {
-    // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
+    const design = useColorStore.getState().design;
+    setDesign(design);
     router.push(urlPath.CHILD_CARD_COMPLETE);
     onClose();
   };
@@ -24,7 +27,6 @@ const CardIssueModal = ({ isOpen, onClose }) => {
             이대로 발급할까요?
           </span>
         }
-        // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
         buttonText="확인"
         onClose={onClose}
         onConfirm={handleConfirm}

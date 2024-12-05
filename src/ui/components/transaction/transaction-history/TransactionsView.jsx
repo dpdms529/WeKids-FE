@@ -1,13 +1,14 @@
 "use client";
+import { formatToLocalDate } from "@/src/constants/transaction";
 import { useTransactionList } from "@/src/query/transactionQuery";
-import { Flex } from "@radix-ui/themes";
 import {
   RangeEnum,
   TypeEnum,
   useTransFilterStore,
 } from "@/src/stores/transactionStore";
 import Loader from "@/src/ui/components/atoms/Loader";
-import { formatDate } from "@/src/util/dateUtils";
+import { formatShortDate } from "@/src/util/dateUtils";
+import { Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
@@ -57,7 +58,7 @@ export const TransactionsView = () => {
       const firstDayLastMonth = new Date(
         now.getFullYear(),
         now.getMonth() - 1,
-        1,
+        1
       ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정
@@ -172,7 +173,7 @@ export const TransactionsView = () => {
                 <div className="flex flex-col">
                   <div className="flex gap-4">
                     <span className="text-gray-600 text-R-14">
-                      {formatDate(transaction.createAt)}
+                      {formatShortDate(transaction.createAt)}
                     </span>
                     <div className="flex flex-col gap-1">
                       <span className="text-R-14">{transaction.title}</span>

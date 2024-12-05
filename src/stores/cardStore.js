@@ -78,18 +78,29 @@ export const useCardStore = create((set) => ({
   },
 }));
 
+// 카드 디자인 관리
 export const useColorStore = create((set) => ({
   color: "",
   childId: null,
   childcharacter: "",
   childcolor: "",
-  setChildId: (id) => set({childId: id}),
+  design: "",
   setColor: (color) => set({ color: color }),
   setChildCharacter: (childcharacter) =>
     set({ childcharacter: childcharacter }),
+  setDesign: (design) => set(design),
   setChildColor: (childcolor) => set({ childcolor: childcolor }),
   removeChildId: () => set({childId: null}),
   removeColor: () => set({ color: "" }),
   removeChildCharacter: () => set({ childcharacter: "" }),
   removeChildColor: () => set({ childcolor: "" }),
+  removeDesign: () => set({ design: "" }),
+
+  reset: () =>
+    set({
+      color: "",
+      childcharacter: "",
+      childcolor: "",
+      design: "",
+    }),
 }));

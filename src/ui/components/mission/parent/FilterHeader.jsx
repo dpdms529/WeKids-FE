@@ -1,6 +1,7 @@
+"use client";
 import Image from "next/image";
 import { useState } from "react";
-import { MissionFilterModal } from "./MissionFilterModal";
+import { MissionFilterModal } from "../list/MissionFilterModal";
 
 export default function FilterHeader() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,7 +9,7 @@ export default function FilterHeader() {
   return (
     <>
       <div
-        className="flex items-center gap-1 mb-4 px-1 ml-3 cursor-pointer"
+        className="flex items-center mt-3 gap-1 cursor-pointer"
         onClick={() => setIsModalOpen(true)}
       >
         <Image
