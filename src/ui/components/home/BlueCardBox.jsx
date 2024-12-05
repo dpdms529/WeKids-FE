@@ -2,7 +2,7 @@
 
 import { characterInfoMap, urlPath } from "@/src/constants/common"; // 상대 경로로 불러오기
 import { useTransactionStore } from "@/src/stores/transactionStore";
-import { useAccountStore, useUserCardColorStore } from "@/src/stores/userStore";
+import { useAccountStore, useSelectUserStore, useUserCardColorStore } from "@/src/stores/userStore";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { Text } from "@radix-ui/themes";
 import Image from "next/image";
@@ -13,16 +13,24 @@ import toast, { Toaster } from "react-hot-toast"; // Toaster 및 toast 불러오
 const BlueCardBox = ({ selectedAccount }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState(""); // backgroundColorClass 상태 추가
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
-  const { accountInfo } = useAccountStore();
+  const { accountInfo, setAccountId } = useAccountStore();
   const {setSelectedAccount} = useTransactionStore();
-
+  const {setSelectedAccountId, setSelectedAccountInfo} = useSelectUserStore();
+  
   useEffect(() => {
-    console.log(selectedAccount)
-    setSelectedAccount(selectedAccount);
+    
+    
     if (selectedAccount) {
+      console.log(selectedAccount.accountId)
+      console.log(selectedAccount)
+      setSelectedAccountId(selectedAccount.accountId);
+      setSelectedAccountInfo({
+        name: selectedAccount.name,
+        accountNumber: selectedAccount.accountNumber,
+        color: selectedAccount.color,
+      });
       const accountCharacterInfo =
         characterInfoMap[selectedAccount.character] || [];
-
       const bgClass = accountCharacterInfo.colorClass
         ? `${accountCharacterInfo.colorClass}` // 예: bg-color-dalbo
         : "bg-main02"; // colorClass가 없으면 기본값을 bg-main02로 설정
