@@ -1,15 +1,18 @@
 import { urlPath } from "@/src/constants/common";
 import PopupMessage from "@/src/ui/components/molecules/PopupMessage";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useColorStore } from "@/src/stores/cardStore";
 
-const CardIssueModal = ({ isOpen, onClose }) => {
-  // 서버 컴포넌트에서 useRouter 사용 불가
-  // const router = useRouter();
-  // const handleConfirm = () => {
-  //   // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
-  //   router.push(urlPath.CHILD_CARD_COMPLETE);
-  //   onClose();
-  // };
+const CardIssueModal = ({ isOpen, onClose, onConfirm }) => {
+  const router = useRouter();
+  const setDesign = useColorStore((state) => state.setDesign);
+
+  const handleConfirm = () => {
+    const design = useColorStore.getState().design;
+    setDesign(design);
+    router.push(urlPath.CHILD_CARD_COMPLETE);
+    onClose();
+  };
   return (
     <div>
       <PopupMessage
@@ -24,10 +27,9 @@ const CardIssueModal = ({ isOpen, onClose }) => {
             이대로 발급할까요?
           </span>
         }
-        // { TODO: PARENT/CARD/COMPLETE 부모 동의 대기 뷰로 이동 }
         buttonText="확인"
         onClose={onClose}
-        // onConfirm={handleConfirm}
+        onConfirm={handleConfirm}
         width="375px"
         height="208px"
       />
