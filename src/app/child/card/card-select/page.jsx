@@ -25,11 +25,13 @@ export default function CardDesignSelector() {
       const data = {
         character: selectedCharacter,
         color: selectedColor,
+        userId: userId,
       };
       console.log("Sending design data:", data);
       const response = await designCreate(data);
       console.log("Design created:", response);
       setIsModalOpen(true);
+      clearUserInfo(); //데이터 삭제
     } catch (error) {
       console.error("Failed to create design:", error);
     }

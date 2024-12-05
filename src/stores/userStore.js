@@ -1,7 +1,7 @@
 // stores/userTypeStore.js
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import CryptoJS from "crypto-js";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 const secretKey = process.env.NEXT_PUBLIC_PROFILE_SECRET_KEY || "default-key";
 
@@ -10,10 +10,20 @@ export const useUserTypeStore = create((set) => ({
   setUserType: (type) => set({ userType: type }),
 }));
 
-export const useUserStore = create((set) => ({
-  userName: "응애핑",
-  setUserName: (name) => set({ userName: name }),
-}));
+export const useUserStore = create(
+  persist(
+    (set) => ({
+      userName: "",
+      userId: null,
+      setUserInfo: (name, id) => set({ userName: name, userId: id }),
+      clearUserInfo: () => set({ userName: "", userId: null }), // 데이터 초기화 함수 추가
+    }),
+    {
+      name: "user-storage",
+      storage: createJSONStorage(() => sessionStorage),
+    }
+  )
+);
 
 export const useUserCardColorStore = create((set) => ({
   userCardColor: "",
@@ -74,6 +84,6 @@ export const useAccountStore = create(
           sessionStorage.removeItem(name);
         },
       },
-    },
-  ),
+    }
+  )
 );

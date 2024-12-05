@@ -1,5 +1,6 @@
 import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
 import { useUserStore } from "@/src/stores/userStore";
+import { convertToPingName } from "@/src/util/userUtil";
 import Image from "next/image";
 
 const CardCharacter = ({ selectedCharacter, selectedColor }) => {
@@ -36,7 +37,9 @@ const CardCharacter = ({ selectedCharacter, selectedColor }) => {
         priority
         className="w-[192px] h-[191px] flex-shrink-0 mt-10"
       />
-      <p className="text-R-20 mt-5 text-black/40">{userName}</p>
+      <p className="text-R-20 mt-5 text-black/40">
+        {convertToPingName(userName)}
+      </p>
     </div>
   );
 };
