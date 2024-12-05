@@ -1,6 +1,8 @@
+'use client'
+import { useEffect } from "react";
 import CustomButton from "../atoms/CustomButton";
 
-export default function MissionConfirmModal({ setParentOpen, setOpen, text, onClick }) {
+export default function MissionConfirmModal({ setParentOpen, setOpen, text, onClick, denied, missionId }) {
   const handleConfirm = () => {
     setParentOpen(false);
     setOpen(false);
@@ -8,6 +10,29 @@ export default function MissionConfirmModal({ setParentOpen, setOpen, text, onCl
       onClick();
     }
   };
+
+  useEffect(() => {
+    if(denied) {
+      useEffect(() => {
+        const deleteMissionHandler = async () => {
+          try {
+            const result = await deleteMission({ missionId });
+            if (result) {
+              console.log("Mission deletion response:", result);
+            } else {
+              console.log("Mission deleted successfully");
+            }
+          } catch (error) {
+            console.error("Error deleting mission:", error);
+          }
+        };
+    
+        if (missionId) {
+          deleteMissionHandler();
+        }
+      }, [missionId]);
+    }
+  })
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
