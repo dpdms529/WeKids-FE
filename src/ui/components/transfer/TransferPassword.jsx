@@ -1,10 +1,10 @@
 'use client'
 import { urlPath } from "@/src/constants/common";
-import PasswordTop from "../signup/PasswordTop";
-import PasswordBottom from "../signup/PasswordBottom";
 import { useState } from "react";
 import { useTransaction } from "@/src/query/transactionQuery";
 import { useRouter } from "next/navigation";
+import PasswordSecondTop from "../signup/PasswordSecondTop";
+import PasswordSecondBottom from "../signup/PasswordSecondBottom";
 export default function TransferPassword({selectedAccount, sendUser, transferAmount}) {
     const [isInput, setIsInput] = useState(Array(6).fill(false));
   const [pwd, setPwd] = useState("");
@@ -39,7 +39,7 @@ export default function TransferPassword({selectedAccount, sendUser, transferAmo
       };
     return (
         <>
-        <PasswordTop
+        <PasswordSecondTop
           isInput={isInput}
           pwd={pwd}
           setIsInput={setIsInput}
@@ -48,7 +48,7 @@ export default function TransferPassword({selectedAccount, sendUser, transferAmo
           index={6}
           isSingleInput={true}
         />
-        <PasswordBottom
+        <PasswordSecondBottom
           pwd={pwd}
           isInput={isInput}
           allow={allow}
