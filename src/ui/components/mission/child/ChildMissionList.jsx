@@ -9,7 +9,7 @@ export default function ChildMissionList({ missiondata }) {
       : missionColorMap.NEW.background;
 
   return (
-    <div className={`w-[322px] rounded-xl ${bgColor} p-5`}>
+    <div className={`w-[322px] rounded-xl ${bgColor} p-5 shadow-md`}>
       <div className="flex justify-between">
         <div className="flex-1 space-y-1 ">
           <h3 className="text-R-14 text-black truncate">{missiondata.title}</h3>
