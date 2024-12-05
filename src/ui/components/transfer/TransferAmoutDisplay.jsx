@@ -19,6 +19,10 @@ const TransferAmountDisplay = ({
     }
   }, [selectedAccount]);
 
+  useEffect(() => {
+    
+  },[])
+
   const router = useRouter();
 
   const btnHandler = (action) => {

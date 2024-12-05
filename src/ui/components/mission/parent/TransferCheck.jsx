@@ -1,32 +1,29 @@
-'use client'
-import { urlPath } from "@/src/constants/common";
-import PasswordTop from "../signup/PasswordTop";
-import PasswordBottom from "../signup/PasswordBottom";
-import { useState } from "react";
-import { useTransaction } from "@/src/query/transactionQuery";
+"use client";
+import PasswordTop from "@/src/ui/components/signup/PasswordTop";
+import PasswordBottom from "@/src/ui/components/signup/PasswordBottom";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-export default function TransferPassword({selectedAccount, sendUser, transferAmount}) {
+import { urlPath } from "@/src/constants/common";
+import { useAcceptMission } from "@/src/query/missionQuery";
+
+export default function TransferCheck({missionId, setType}) {
     const [isInput, setIsInput] = useState(Array(6).fill(false));
-  const [pwd, setPwd] = useState("");
-  const [allow, setAllowed] = useState(false);
-  const router = useRouter();
-    const {mutate, isLoading: isUpdating} = useTransaction();
-    
+    const [pwd, setPwd] = useState("");
+    const [allow, setAllowed] = useState(false);
+    const router = useRouter();
+      const {mutate, isLoading: isUpdating} =  useAcceptMission();
+
       const handleSubmit = () => {
-        console.log(transferAmount);
+        console.log(missionId)
         mutate(
             {
-                parentAccountNumber: sendUser.accountNumber,
-                childAccountNumber: selectedAccount.accountNumber,
-                amount: transferAmount,
-                sender: sendUser.name,
-                receiver: selectedAccount.name,
+                missionId: missionId,
                 simplePassword: pwd,
               },
               {
                 onSuccess: () => {
                     alert("이체가 성공적으로 완료되었습니다!");
-                    router.push(urlPath.DONE);
+                    setType("COMPLETE");
                   },
                   onError: (error) => {
                     alert("이체 실패: " + error.message);
@@ -37,8 +34,9 @@ export default function TransferPassword({selectedAccount, sendUser, transferAmo
         
         
       };
-    return (
-        <>
+
+  return (
+    <div className="flex flex-col h-screen max-w-[393px] bg-white overflow-auto">
         <PasswordTop
           isInput={isInput}
           pwd={pwd}
@@ -59,6 +57,6 @@ export default function TransferPassword({selectedAccount, sendUser, transferAmo
           type={"childtransfer"}
           onConfirmClick={handleSubmit}
         />
-      </>
-    );
+    </div>
+  );
 }

@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";import CardDisplay from "@/src/ui/components/card/CardDisplay";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { useColorStore } from "@/src/stores/cardStore";
+import { useEffect } from "react";
 
 const DesignChracterColor = {
     color: "YELLOW",

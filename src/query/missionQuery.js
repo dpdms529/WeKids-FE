@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { createMission } from "../apis/mission";
+import { createMission, missionAccept } from "../apis/mission";
 
 export const useCreateMission = () => {
     return useMutation({
@@ -12,4 +12,17 @@ export const useCreateMission = () => {
       },
     });
   };
+
+  export const useAcceptMission = () => {
+    return useMutation({
+        mutationFn: ({missionId, simplePassword
+        }) => {
+            
+            return missionAccept({missionId, simplePassword}) 
+        },
+        onSuccess: (data) => {
+            console.log("성공:", data);
+          },
+    })
+  }
 

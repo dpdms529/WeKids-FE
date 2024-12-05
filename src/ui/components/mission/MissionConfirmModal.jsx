@@ -4,6 +4,9 @@ export default function MissionConfirmModal({ setParentOpen, setOpen, text, onCl
   const handleConfirm = () => {
     setParentOpen(false);
     setOpen(false);
+    if(onClick){
+      onClick();
+    }
   };
 
   return (

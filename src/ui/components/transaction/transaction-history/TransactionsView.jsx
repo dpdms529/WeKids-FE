@@ -186,7 +186,6 @@ export const TransactionsView = () => {
                   <span
                     className={`text-R-18 ${transaction.type === "DEPOSIT" ? "text-main01" : ""}`}
                   >
-                    {transaction.type === "DEPOSIT" ? "" : "-"}
                     {transaction.amount.toLocaleString()}원
                   </span>
                   <span className="text-neutral-400 text-R-14 mt-2">
