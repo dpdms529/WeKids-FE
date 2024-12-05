@@ -1,18 +1,16 @@
 'use client';
 
-import { CheckAlarmData } from "@/src/apis/alarm";
+import { useColorStore } from "@/src/stores/cardStore";
 import AlarmCard from "../atoms/AlarmCard";
-import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { useUpdateAlarmChecked } from "@/src/query/alarmQuery";
 
 const AlarmComponent = ({ data }) => {
 
   const { mutate, isLoading: isUpdating } = useUpdateAlarmChecked();
+  const {setChildId} = useColorStore();
 
   const OnCheckClicker = (idx) => {
-    console.log(idx);
-    
+    setChildId(data[idx].targetId);
       mutate(
         { alarmId: idx + 1 },
         {

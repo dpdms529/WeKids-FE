@@ -80,12 +80,15 @@ export const useCardStore = create((set) => ({
 
 export const useColorStore = create((set) => ({
   color: "",
+  childId: null,
   childcharacter: "",
   childcolor: "",
+  setChildId: (id) => set({childId: id}),
   setColor: (color) => set({ color: color }),
   setChildCharacter: (childcharacter) =>
     set({ childcharacter: childcharacter }),
   setChildColor: (childcolor) => set({ childcolor: childcolor }),
+  removeChildId: () => set({childId: null}),
   removeColor: () => set({ color: "" }),
   removeChildCharacter: () => set({ childcharacter: "" }),
   removeChildColor: () => set({ childcolor: "" }),
