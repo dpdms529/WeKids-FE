@@ -2,37 +2,14 @@
 import { useEffect } from "react";
 import CustomButton from "../atoms/CustomButton";
 
-export default function MissionConfirmModal({ setParentOpen, setOpen, text, onClick, denied, missionId }) {
+const MissionConfirmModal = ({ setParentOpen, setOpen, text, onConfirm }) => {
   const handleConfirm = () => {
-    setParentOpen(false);
-    setOpen(false);
-    if(onClick){
-      onClick();
+    if (onConfirm) {
+      onConfirm(); // 상위 컴포넌트에서 처리할 로직 실행
     }
+    setParentOpen(false); // 부모 컴포넌트 모달 상태 닫기
+    setOpen(false); // 현재 모달 닫기
   };
-
-  useEffect(() => {
-    if(denied) {
-      useEffect(() => {
-        const deleteMissionHandler = async () => {
-          try {
-            const result = await deleteMission({ missionId });
-            if (result) {
-              console.log("Mission deletion response:", result);
-            } else {
-              console.log("Mission deleted successfully");
-            }
-          } catch (error) {
-            console.error("Error deleting mission:", error);
-          }
-        };
-    
-        if (missionId) {
-          deleteMissionHandler();
-        }
-      }, [missionId]);
-    }
-  })
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -62,4 +39,7 @@ export default function MissionConfirmModal({ setParentOpen, setOpen, text, onCl
       </div>
     </div>
   );
-}
+};
+
+export default MissionConfirmModal;
+
