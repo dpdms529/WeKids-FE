@@ -1,34 +1,34 @@
 "use client";
 
 import React, { useState } from "react";
-import { characterInfoMap, ColorTypeMap } from "@/src/constants/common";
+import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import ColorButton from "@/src/ui/components/card-select/ColorButton";
 import CharacterButton from "@/src/ui/components/card-select/CharacterButton";
 import CardIssueModal from "@/src/ui/components/card-select/CardIssueModal";
 import { designCreate } from "@/src/apis/design";
-import { useDesignStore } from "@/src/stores/designStore";
+import { useColorStore } from "@/src/stores/cardStore";
 
 export default function CardDesignSelector() {
   const {
-    selectedCharacter,
-    selectedColor,
-    setSelectedCharacter,
-    setSelectedColor,
-  } = useDesignStore();
+    childcharacter: selectedCharacter,
+    childcolor: selectedColor,
+    setChildCharacter: setSelectedCharacter,
+    setChildColor: setSelectedColor,
+  } = useColorStore();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleConfirm = async () => {
     try {
-      const designData = {
+      const data = {
         character: selectedCharacter,
         color: selectedColor,
       };
-      console.log("Sending design data:", designData); // 데이터 확인
-
-      const response = await designCreate(designData);
-      console.log("Design created:", response); // 응답 확인
+      console.log("Sending design data:", data);
+      const response = await designCreate(data);
+      console.log("Design created:", response);
       setIsModalOpen(true);
     } catch (error) {
       console.error("Failed to create design:", error);
@@ -50,13 +50,17 @@ export default function CardDesignSelector() {
             <h3 className="R-20 mb-3">배경색</h3>
             <div className="flex justify-center">
               <div className="grid grid-cols-3 gap-5 justify-items-center">
-                {Object.values(ColorTypeMap).map((info) => (
-                  <ColorButton
-                    key={info.colorClass}
-                    colorClass={info.colorClass}
-                    onClick={() => setSelectedColor(info.colorClass)}
-                  />
-                ))}
+                {Object.keys(colorTypeMap).map((color) => {
+                  return (
+                    <ColorButton
+                      key={color}
+                      colorClass={colorTypeMap[color].colorClass}
+                      onClick={() => {
+                        setSelectedColor(color);
+                      }}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
