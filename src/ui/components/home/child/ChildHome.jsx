@@ -15,5 +15,5 @@ export default async function ChildHome() {
     return <EmptyAccountCard name={data.name} />;
   }
 
-  return <BlueCardBox selectedAccount={data} />;
+  return <BlueCardBox selectedAccount={data} isParent={false} />;
 }
