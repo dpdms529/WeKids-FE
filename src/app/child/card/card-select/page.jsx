@@ -1,30 +1,44 @@
 "use client";
 
 import React, { useState } from "react";
-import { characterInfoMap } from "@/src/constants/common";
+import { characterInfoMap, colorTypeMap } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import ColorButton from "@/src/ui/components/card-select/ColorButton";
 import CharacterButton from "@/src/ui/components/card-select/CharacterButton";
 import CardIssueModal from "@/src/ui/components/card-select/CardIssueModal";
+import { designCreate } from "@/src/apis/design";
+import { useColorStore } from "@/src/stores/cardStore";
 
-const CardDesignSelector = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState("DADAPING");
-  const [selectedColor, setSelectedColor] = useState("BLUE");
+export default function CardDesignSelector() {
+  const {
+    childcharacter: selectedCharacter,
+    childcolor: selectedColor,
+    setChildCharacter: setSelectedCharacter,
+    setChildColor: setSelectedColor,
+  } = useColorStore();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleCharacterClick = (character) => {
-    setSelectedCharacter(character);
-  };
-
-  const handleColorClick = (colorClass) => {
-    setSelectedColor(colorClass);
+  const handleConfirm = async () => {
+    try {
+      const data = {
+        character: selectedCharacter,
+        color: selectedColor,
+      };
+      console.log("Sending design data:", data);
+      const response = await designCreate(data);
+      console.log("Design created:", response);
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error("Failed to create design:", error);
+    }
   };
 
   return (
     <div className="flex flex-col justify-center mt-10">
       <div className="flex flex-col items-center">
-        <h2 className="R-20 mb-4 text-left w-full">카드 디자인 선택</h2>
+        <h2 className="flex text-R-20 mb-4 ml-11 w-full">카드 디자인 선택</h2>
         <div className="w-[331px] h-[935px] flex-shrink-0 rounded-[10px] border border-black bg-white p-4">
           <div className="flex flex-col items-center mt-4">
             <CardCharacter
@@ -36,13 +50,17 @@ const CardDesignSelector = () => {
             <h3 className="R-20 mb-3">배경색</h3>
             <div className="flex justify-center">
               <div className="grid grid-cols-3 gap-5 justify-items-center">
-                {Object.values(characterInfoMap).map((info) => (
-                  <ColorButton
-                    key={info.colorClass}
-                    colorClass={info.colorClass}
-                    onClick={() => handleColorClick(info.colorClass)}
-                  />
-                ))}
+                {Object.keys(colorTypeMap).map((color) => {
+                  return (
+                    <ColorButton
+                      key={color}
+                      colorClass={colorTypeMap[color].colorClass}
+                      onClick={() => {
+                        setSelectedColor(color);
+                      }}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -57,7 +75,7 @@ const CardDesignSelector = () => {
                     character={character}
                     imagePath={characterInfoMap[character].imagePath}
                     className="w-12 h-12 cursor-pointer"
-                    onClick={() => handleCharacterClick(character)}
+                    onClick={() => setSelectedCharacter(character)}
                   />
                 ))}
               </div>
@@ -66,7 +84,7 @@ const CardDesignSelector = () => {
         </div>
       </div>
       <div className="w-full flex-col flex mt-10 mb-4">
-        <CustomButton size="large" onClick={() => setIsModalOpen(true)}>
+        <CustomButton size="large" onClick={handleConfirm}>
           확인
         </CustomButton>
         <CardIssueModal
@@ -76,6 +94,4 @@ const CardDesignSelector = () => {
       </div>
     </div>
   );
-};
-
-export default CardDesignSelector;
+}

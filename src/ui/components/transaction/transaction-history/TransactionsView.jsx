@@ -54,7 +54,7 @@ export const TransactionsView = ({ accountId }) => {
       const firstDayLastMonth = new Date(
         now.getFullYear(),
         now.getMonth() - 1,
-        1,
+        1
       ); // 지난달 1일
       const lastDayLastMonth = new Date(now.getFullYear(), now.getMonth(), 0); // 지난달 마지막 날
       setStart(formatToLocalDate(firstDayLastMonth)); // 포맷팅 후 설정

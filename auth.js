@@ -44,7 +44,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             birthday: credentials.birthday,
             name: credentials.name,
             phone: credentials.phone,
-            simplePassword: credentials.simplePassword,
             email: credentials.email,
             social: credentials.social,
             memberType: credentials.memberType,
