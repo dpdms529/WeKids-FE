@@ -22,7 +22,7 @@ export default function Page() {
         <MissionAcceptComponent
           setIsModalOpen={setIsModalOpen}
           imgPath={imgPath}
-          missionId={1}
+          missionId={2}
         />
       </MissionModal>
     </div>

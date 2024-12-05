@@ -32,7 +32,7 @@ export const designCreate = async (data) => {
   }
 };
 
-export const designFetch = async () => {
+export const designFetch = async ({childId}) => {
   const storedDesign = useColorStore.getState().design;
   if (storedDesign) {
     return storedDesign;
@@ -46,7 +46,7 @@ export const designFetch = async () => {
     Cookie: `Authorization=${authorization}`,
   };
 
-  const response = await fetch(`${BASE_URL}/design`, {
+  const response = await fetch(`${BASE_URL}/design/${childId}`, {
     method: "GET",
     headers: headers,
     credentials: "include",

@@ -5,7 +5,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import CardCharacter from "@/src/ui/components/card-select/CardCharacter";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useColorStore } from "@/src/stores/cardStore";
+import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
 
 export default function ChoiceDesign({
   title,
@@ -18,12 +18,14 @@ export default function ChoiceDesign({
   const [design, setDesign] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { setChildCharacter, setChildColor } = useColorStore();
+  const {childId} = useSensitiveDataStore();
 
   useEffect(() => {
+    console.log(childId)
     const fetchDesign = async () => {
       try {
         console.log("Fetching design...");
-        const data = await designFetch();
+        const data = await designFetch({childId});
         console.log(data);
         setDesign(data); // zustand에 저장
         if (setChildCharacter && setChildColor) {
