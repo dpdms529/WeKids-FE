@@ -40,7 +40,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         const missionDetail = await showMissionDetail({ missionId });
         console.log(missionDetail);
         setCategory(missionDetail.category);
-        setAmount(missionDetail.amount || 0); // 기본값을 0으로 설정
+        setAmount(missionDetail.amount); // 기본값을 0으로 설정
         setTitle(missionDetail.title);
         setContent(missionDetail.content);
         setDeadline(missionDetail.deadline || null); // 기본값을 null로 설정

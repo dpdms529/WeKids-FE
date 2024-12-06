@@ -122,8 +122,8 @@ export const showMissionList = async ({state, category, child}) => {
       "Content-Type": "application/json",
       Cookie: `Authorization=${authorization}`,
     };
-    const response = await fetch(`${BASE_URL}/missions/${missionId}`, {
-      method: "DELETE",
+    const response = await fetch(`${BASE_URL}/missions/${missionId}/cancel`, {
+      method: "PATCH",
       headers ,
     });
     
