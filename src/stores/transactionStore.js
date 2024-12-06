@@ -3,16 +3,19 @@ import { create } from "zustand";
 // useTransactionStore
 export const useTransactionStore = create((set) => ({
   selectedAccount: null,
+  childrenAccounts: [],
   transferAmount: 0,
   setSelectedAccount: (account) => set({ selectedAccount: account }),
   setTransferAmount: (amount) => set({ transferAmount: amount }),
-  clearTransferData: () => set({ selectedAccount: null, transferAmount: 0 }),
+  setChildrenAccounts: (accounts) => set({ childrenAccounts: accounts }),
+  clearTransferData: () =>
+    set({ selectedAccount: null, transferAmount: 0, childrenAccounts: [] }),
 }));
 
 // useTransFilterStore
 export const RangeEnum = {
-  ONE_MONTH: "1개월",
   THREE_MONTHS: "3개월",
+  ONE_MONTH: "1개월",
   LAST_MONTH: "지난달",
   CUSTOM: "직접설정",
 };
@@ -20,7 +23,7 @@ export const RangeEnum = {
 export const TypeEnum = {
   ALL: "전체",
   DEPOSIT: "입금만",
-  WITHDRAWAL: "출력만",
+  WITHDRAWAL: "출금만",
 };
 
 export const SortEnum = {
@@ -31,7 +34,10 @@ export const SortEnum = {
 const today = new Date();
 
 export const useTransFilterStore = create((set) => ({
-  range: RangeEnum.ONE_MONTH,
+  balance: 0,
+  setBalance: (newBalance) => set({ balance: newBalance }),
+
+  range: RangeEnum.THREE_MONTHS,
   setRange: (newRange) => set({ range: newRange }),
 
   startDate: today,
@@ -56,4 +62,6 @@ export const useTransFilterStore = create((set) => ({
       startDate: today,
       endDate: today,
     }),
+
+  clearBalance: () => set({ balance: 0 }),
 }));

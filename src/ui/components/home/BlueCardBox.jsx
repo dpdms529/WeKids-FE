@@ -1,64 +1,117 @@
 "use client";
 
-import { useAccountInfoStore } from "@/src/stores/accountStore";
-import { characterInfoMap } from "@/src/constants/common"; // 상대 경로로 불러오기
-import { Text } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
+import { characterInfoMap, urlPath } from "@/src/constants/common";
+import {
+  useAccountStore,
+  useSelectUserStore,
+  useUserCardColorStore,
+} from "@/src/stores/userStore";
 import { CopyIcon } from "@radix-ui/react-icons";
-import { useRouter } from "next/navigation";
-import { urlPath } from "@/src/constants/common";
+import { Text } from "@radix-ui/themes";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
-const BlueCardBox = () => {
-  const { selectedAccount } = useAccountInfoStore(); // Zustand에서 selectedAccount 가져오기
-  const [backgroundColorClass, setBackgroundColorClass] = useState(""); // backgroundColorClass 상태 추가
-  const router = useRouter();
+const BlueCardBox = ({ selectedAccount, isParent }) => {
+  const [backgroundColorClass, setBackgroundColorClass] = useState("");
+  const setCardColor = useUserCardColorStore((state) => state.setCardColor);
+  const { accountInfo } = useAccountStore();
+  const { setSelectedAccountId, setSelectedAccountInfo } = useSelectUserStore();
 
   useEffect(() => {
-    if (selectedAccount) {
-      console.log("selectedAccount.desginType: " + selectedAccount.designType);
-      const accountCharacterInfo = characterInfoMap[selectedAccount.designType] || [];
+    setSelectedAccountId(selectedAccount.accountId);
+    setSelectedAccountInfo({
+      name: selectedAccount.name,
+      accountNumber: selectedAccount.accountNumber,
+      color: selectedAccount.color,
+    });
 
-      console.log("accountCharacterInfo.name " + accountCharacterInfo.name);
+    if (selectedAccount) {
+      const accountCharacterInfo =
+        characterInfoMap[selectedAccount.character] || {};
 
       const bgClass = accountCharacterInfo.colorClass
-        ? `${accountCharacterInfo.colorClass}` // 예: bg-color-dalbo
-        : "bg-main02"; // colorClass가 없으면 기본값을 bg-main02로 설정
-
-      console.log("bgClass " + bgClass);
-
-      setBackgroundColorClass(bgClass); // 상태 업데이트
+        ? accountCharacterInfo.colorClass
+        : "bg-main02";
+      setCardColor(bgClass);
+      setBackgroundColorClass(bgClass);
     }
   }, [selectedAccount]);
 
   if (!selectedAccount) return <div>계좌를 선택해주세요.</div>;
 
+  const handleCopy = async () => {
+    if (selectedAccount) {
+      try {
+        await navigator.clipboard.writeText(selectedAccount.accountNumber); // 계좌번호 복사
+        toast.success("복사가 완료되었습니다!"); // 토스트 메시지 표시
+      } catch (err) {
+        toast.error("복사에 실패했습니다."); // 복사 실패 시 메시지 표시
+        console.error("복사 실패:", err);
+      }
+    }
+  };
+
+  const clickHandler = (e) => {
+    if (selectedAccount == null) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div
-      className={`${backgroundColorClass} w-[330px] h-[252px] text-white rounded-[10px] flex flex-col justify-between relative`}
+      className={`${backgroundColorClass} w-[330px] h-[252px] text-black rounded-[10px] relative overflow-hidden`}
     >
-      {console.log("div " + backgroundColorClass)}
-      <div className="text-left px-5">
-        <div className="flex items-center space-x-2 mt-[25px]">
-          <Text className="wooridaumB text-sm">{selectedAccount.accountNumber}</Text>
-          <CopyIcon />
+      <Toaster position="bottom-center" reverseOrder={false} />
+      <div className="p-5">
+        <div className="w-[180px]">
+          <div className="flex items-center space-x-2 mt-3">
+            <Text className="text-R-10">{selectedAccount.accountNumber}</Text>
+            <CopyIcon onClick={handleCopy} className="cursor-pointer" />
+          </div>
+          <Text className="text-B-28 mt-9">{selectedAccount.name}</Text>
         </div>
-        <Text className="wooridaumB text-xl mt-[32px]">{selectedAccount.name}</Text>
       </div>
-      <div className="absolute right-0 top-0 ">
-        <img src="/images/accountWeebeeImg.svg" alt="Mascot" />
+      <div className="absolute w-full bottom-20 text-right pr-7">
+        <Text className="text-R-28">
+          {selectedAccount.balance.toLocaleString()} 원
+        </Text>
       </div>
-      <Text className="wooridaumB text-[28px] mt-[48px] text-right">
-        {selectedAccount.balance.toLocaleString()} 원
-      </Text>
-      <div className="mt-auto">
-        <div className="w-full h-[1px] bg-white/20"></div>
-        <div className="flex text-white">
-          <button className="flex-1 py-4 text-center border-r border-white/20 hover:bg-white/10 transition-colors" onClick={() => router.push(urlPath.TRANSACTION_HISTORY)}>
-            조회
-          </button>
-          <button className="flex-1 py-4 text-center hover:bg-white/10 transition-colors" onClick={() => router.push(urlPath.ACCOUNT_LIST)}>
-            이체
-          </button>
+      <div className="absolute right-0 bottom-[75px] w-[180px] h-[180px] overflow-hidden">
+        <Image
+          fill
+          src={characterInfoMap[selectedAccount.character].imagePath}
+          alt="Mascot"
+          className="w-full h-full object-cover"
+          style={{
+            objectPosition: "top right",
+            clipPath: "polygon(0 0, 100% 0, 100% 75%, 0 75%)",
+          }}
+        />
+      </div>
+      <div className="absolute bottom-0 w-full">
+        <div className="w-full h-[1px] bg-black"></div>
+        <div className="flex text-black">
+          <Link
+            href={`${urlPath.TRANSACTION_HISTORY}`}
+            className="flex-1 py-4 text-center text-R-20 border-black hover:bg-white/10 transition-colors"
+          >
+            <button>조회</button>
+          </Link>
+          {isParent && (
+            <Link
+              href={
+                accountInfo.accountNumber != selectedAccount.accountNumber
+                  ? urlPath.TRANSFER
+                  : urlPath.ACCOUNT_LIST
+              }
+              onClick={clickHandler}
+              className="flex-1 py-4 text-center border-l border-black text-R-20 hover:bg-white/10 transition-colors"
+            >
+              <button>이체</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

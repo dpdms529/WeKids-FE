@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background:#b2d7f8;
-  --foreground:#171717;
+  --background: #b2d7f8;
+  --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,42 +14,41 @@
   }
 }
 
-@font-face{
-  font-family: "WooridaumL";
+@font-face {
+  font-family: "PretendardL";
   font-weight: 300;
-  src: url("/fonts/WooridaumL.ttf");
+  src: url("/fonts/Pretendard-Light.ttf");
 }
 
-@font-face{
-  font-family: "WooridaumR";
+@font-face {
+  font-family: "PretendardR";
   font-weight: 400;
-  src: url("/fonts/WooridaumR.ttf");
+  src: url("/fonts/Pretendard-Regular.ttf");
 }
 
-@font-face{
-  font-family: "WooridaumB";
+@font-face {
+  font-family: "PretendardB";
   font-weight: 700;
-  src: url("/fonts/WooridaumB.ttf");
+  src: url("/fonts/Pretendard-Bold.ttf");
 }
 
-.wooridaumL{
-  font-family:"WooridaumL";
+.PretendardL {
+  font-family: "PretendardL";
 }
 
-.wooridaumB{
-  font-family:"WooridaumB";
+.PretendardB {
+  font-family: "PretendardB";
 }
 
-.wooridaumR{
-  font-family:"WooridaumR";
+.PretendardR {
+  font-family: "PretendardR";
 }
-
 
 body {
   width: 100%;
   color: var(--foreground);
   background: var(--background);
-  font-family:"WooridaumR","WooridaumB","WooridaumL";
+  font-family: "PretendardR", "PretendardB", "PretendardL";
 }
 
 .wrapper {
@@ -58,12 +57,12 @@ body {
   height: 100vh;
   overflow-y: auto;
   margin: 0 auto;
-  background-color: #a7a1a1;
+  background-color: white;
   position: relative;
   box-sizing: border-box;
 }
-  
-nav{
+
+nav {
   position: fixed;
   left: 50%;
   bottom: 0;
@@ -75,9 +74,23 @@ nav{
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-  20%, 40%, 60%, 80% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
 }
 
 .shake-animation {
@@ -94,4 +107,36 @@ nav{
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 51, 0.06);
+  border-radius: 3px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 51, 0.06) transparent;
+}
+
+@layer components {
+  .loader {
+    @apply w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
+
+  .loader-small {
+    @apply w-6 h-6 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
+
+  .loader-large {
+    @apply w-16 h-16 border-8 border-gray-300 border-t-blue-500 rounded-full animate-spin;
+  }
 }

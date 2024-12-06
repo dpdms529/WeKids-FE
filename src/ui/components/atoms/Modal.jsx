@@ -1,29 +1,41 @@
-import React, { useEffect, useState } from 'react';
-export default function Modal({ isOpen, onClose, children, width = '30%', height = '70vh', translateY = '0%', delete_button = false }) {
-    const [isVisible, setIsVisible] = useState(false);
-    
-    useEffect(() => {
-        if (isOpen) {
-            setIsVisible(true);
-        } else {
-            setIsVisible(false);
-        }
-    }, [isOpen]);
-    if (!isVisible) return null;
-    return (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center z-50" onClick={onClose} >
-            <div onClick={(e) => e.stopPropagation()}
-                className={`bg-white rounded-t-3xl p-6 transform transition-transform duration-500 ease-in-out ${
-                    isOpen ? "visible opacity-100" : "invisible opacity-0"
-                } absolute bottom-0`}
-                style={{ width, height, transform: `translateY(${translateY})` }}
+export default function Modal({
+  isOpen,
+  modalHandler,
+  children,
+  width = "w-[393px]",
+  height = "h-[443px]",
+  bottom = "bottom-0",
+  deletebutton = false,
+  border = "rounded-t-3xl",
+  buttoncolor = "text-gray-500",
+  buttonisLeft = "true",
+}) {
+  if (!isOpen) return null;
+  return (
+    <div
+      className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center z-50"
+      onClick={modalHandler}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`bg-white ${border} transform transition-transform duration-500 ease-in-out ${
+          isOpen ? "visible opacity-100" : "invisible opacity-0"
+        } absolute ${bottom} ${width} ${height}`}
+      >
+        <div
+          className={`fixed ${buttonisLeft ? "top-[19px] left-[19px]" : "top-[19px] right-[19px]"}`}
+        >
+          {deletebutton && (
+            <button
+              onClick={modalHandler}
+              className={`${buttoncolor} text-R-14`}
             >
-                <div className="flex justify-end items-center mb-4">
-                {delete_button && <button onClick={onClose} className="text-gray-500">✕</button>}
-                
-                </div>
-                <div onClick={(e) => e.stopPropagation()}>{children}</div>
-            </div>
+              ✕
+            </button>
+          )}
         </div>
-    );
+        <div onClick={(e) => e.stopPropagation()}>{children}</div>
+      </div>
+    </div>
+  );
 }
