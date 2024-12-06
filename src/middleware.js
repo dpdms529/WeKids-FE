@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export default auth(async (request) => {
+  console.log("hello middleware");
+
   const cookie = await cookies();
   const email = cookie.get("email");
   cookie.delete("Authorization");
@@ -16,7 +18,5 @@ export default auth(async (request) => {
 });
 
 export const config = {
-  matcher: [
-    "/((?!api|onboard|signout|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/((?!api|onboard|signout|_next/static|_next/image|favicon.ico).*)"],
 };
