@@ -2,8 +2,9 @@
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";import CardDisplay from "@/src/ui/components/card/CardDisplay";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import { useColorStore } from "@/src/stores/cardStore";
+import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
 import { useEffect } from "react";
+import Link from "next/link";
 
 const DesignChracterColor = {
     color: "YELLOW",
@@ -13,9 +14,14 @@ const DesignChracterColor = {
 export default function CardCompleteComponent() {
     const router = useRouter();
   const { childcharacter, childcolor } = useColorStore();
+  const {clearData} = useSensitiveDataStore();  
   useEffect(() => {
     console.log(childcharacter, childcolor);
   }, []);
+
+  const clearAll = () => {
+    clearData();
+  }
     return (
         <>
         <div className="flex-grow flex items-center justify-center">
@@ -34,13 +40,15 @@ export default function CardCompleteComponent() {
       </div>
 
       <div>
+        <Link href={urlPath.HOME}>
         <CustomButton
           size={"large"}
           rounded={false}
-          onClick={() => router.push(urlPath.HOME)}
+          onClick={clearAll}
         >
           확인
         </CustomButton>
+        </Link>
       </div>
       </>
     );

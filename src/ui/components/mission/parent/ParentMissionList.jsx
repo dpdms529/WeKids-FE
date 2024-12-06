@@ -1,10 +1,12 @@
 "use client";
 import { missionColorMap } from "@/src/constants/common";
 import { formatDate } from "@/src/util/missionUtils";
-
 import CategoryBadge from "../list/CategoryBadge";
 import StateBadge from "../list/StateBadge";
 import ChildProfileSection from "./ChildProfileSection";
+import { useState } from "react";
+import MissionModal from "../MissionModal";
+import MissionAddComponent from "./MissionAddComponent";
 
 const ParentMissionList = ({ missiondata }) => {
   const bgColor =
@@ -13,7 +15,7 @@ const ParentMissionList = ({ missiondata }) => {
       : missionColorMap.NEW.background;
   //todo 필요하면 쓰세요
   //     const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // const handleMissionClick = () => {
   //   setIsModalOpen(true);
   // };
@@ -53,6 +55,7 @@ const ParentMissionList = ({ missiondata }) => {
           </p>
         </div>
       </div>
+      
     </div>
   );
 };

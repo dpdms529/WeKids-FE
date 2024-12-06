@@ -1,22 +1,19 @@
 "use client";
 import { colorTypeMap, urlPath } from "@/src/constants/common";
 import { useTransFilterStore } from "@/src/stores/transactionStore";
-import { useAccountStore, useUserTypeStore } from "@/src/stores/userStore";
+import { useAccountStore, useSelectUserStore, useUserTypeStore } from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
 import Link from "next/link";
-import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function TopBar({ name, accountNumber }) {
   const { userType } = useUserTypeStore();
   const { balance } = useTransFilterStore();
-  const { accountInfo } = useAccountStore();
+  const { selectedaccountInfo } = useSelectUserStore();
 
-  useEffect(() => {
-    console.log(accountInfo.color + "?????");
-  }, [accountInfo]);
+ 
 
   const copyToClipboard = (text) => {
     navigator.clipboard
@@ -42,7 +39,7 @@ export default function TopBar({ name, accountNumber }) {
       align="center"
       justify="between"
       direction="column"
-      className={`${colorTypeMap[accountInfo.color]?.colorClass || "default-bg"} h-[40vh]`}
+      className={`${colorTypeMap[selectedaccountInfo.color]?.colorClass || "default-bg"} h-[40vh]`}
     >
       <Flex
         align="center"
@@ -53,7 +50,7 @@ export default function TopBar({ name, accountNumber }) {
         <Link href={urlPath.HOME}>
           <ArrowLeftIcon className="w-5 h-5 text-black/80" />
         </Link>
-        <h1 className="text-black/80">{accountInfo.name}의 통장</h1>
+        <h1 className="text-black/80">{selectedaccountInfo.name}의 통장</h1>
         <Box onClick={handleSettingsClick}>
           <GearIcon className="w-5 h-5 text-black/80" />
         </Box>
@@ -61,10 +58,10 @@ export default function TopBar({ name, accountNumber }) {
       <Flex direction="column" align="center">
         <p
           className="text-R-14 underline text-black/40 text cursor-pointer"
-          onClick={() => copyToClipboard(accountInfo.accountNumber)}
+          onClick={() => copyToClipboard(selectedaccountInfo.accountNumber)}
           title="클릭하여 복사"
         >
-          {accountInfo.accountNumber}
+          {selectedaccountInfo.accountNumber}
         </p>
         <h2 className="text-black/80 text-B-32 mt-4">
           {Number(balance).toLocaleString()}원

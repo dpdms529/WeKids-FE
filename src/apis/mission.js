@@ -76,7 +76,7 @@ export const showMissionList = async ({state, category, child}) => {
       });
   
     if (!response.ok) {
-      throw new Error("Failed to fetch child accounts");
+      throw new Error("Failed to mission");
     }
   
     // response.json() 호출은 한 번만 수행
@@ -84,26 +84,34 @@ export const showMissionList = async ({state, category, child}) => {
     return data;
   };
 
-  export const missionAuth = async ({missionId, memo, image}) => {
+  export const missionAuth = async ({ missionId, memo, image }) => {
     const session = await auth();
     const authorization = session?.user?.Authorization;
-    const headers = {
-      "Content-Type": "application/json",
-      Cookie: `Authorization=${authorization}`,
-    };
-    const response = await fetch(
-      `${BASE_URL}/missions/${missionId}/submit`,
-      {
-        method: "PATCH",
-        headers,
-        body: JSON.stringify({
-            data:{
-                memo: memo
-            },
-            image: image,
-          }),
+    console.log(missionId)
+    // FormData 생성
+    const formData = new FormData();
+  
+    // 메모가 있을 경우 추가
+    if (memo) {
+      formData.append(
+        "data",
+        new Blob([JSON.stringify({ memo })], { type: "application/json" })
+      );
+    }
+  
+    // 이미지가 있을 경우 추가
+    if (image) {
+      formData.append("image", image);
+    }
+  
+    const response = await fetch(`${BASE_URL}/missions/${missionId}/submit`, {
+      method: "PATCH",
+      headers: {
+        Cookie: `Authorization=${authorization}`, // Authorization 쿠키
       },
-    );
+      body: formData, // FormData로 전송
+    });
+  
     return response.status !== 204 ? await response.json() : null;
   };
 
@@ -114,8 +122,8 @@ export const showMissionList = async ({state, category, child}) => {
       "Content-Type": "application/json",
       Cookie: `Authorization=${authorization}`,
     };
-    const response = await fetch(`${BASE_URL}/missions/${missionId}`, {
-      method: "DELETE",
+    const response = await fetch(`${BASE_URL}/missions/${missionId}/cancel`, {
+      method: "PATCH",
       headers ,
     });
     

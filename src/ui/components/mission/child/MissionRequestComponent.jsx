@@ -2,6 +2,7 @@ import imageCompression from "browser-image-compression";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import CustomButton from "../../atoms/CustomButton";
+import { missionAuth } from "@/src/apis/mission";
 
 const data = {
   1: "미션 설명이 들어갑니다. 미션 설명은 총 몇 자 인가요? 넓이 영역에 대해 한번 고려 해보셔야 할 것 같습니다. 보통 설명이 이렇게까지 길어지는 일이 있을지는 잘 모르겠습니다. 부모님이 자식에게 이 만큼 설명하는 것이 아이 연령을 고려했을 때 불필요한 일일 수도 있습니다만 저희는 최대 길이 영역을 고려하여 디자인 진행을 해야합니다",
@@ -11,17 +12,14 @@ const data = {
   5: "이곳에 미션명이 들어갑니다.",
 };
 
-const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
+const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
   const [previewURL, setPreviewURL] = useState("");
+  const [file, setFile] = useState(null);
   const fileRef = useRef();
   const [reward, setReward] = useState(1000000000);
   const [period, setPeriod] = useState(new Date());
   const [message, setMessage] = useState("");
   const [isDragging, setIsDragging] = useState(false);
-
-  const AddAndCloseModal = () => {
-    setIsModalOpen(false);
-  };
 
   const compressAndSetFile = async (file) => {
     if (file) {
@@ -81,9 +79,39 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
     fileRef.current.click();
   };
 
+  const handleMissionSubmit = async () => {
+    try {
+      console.log("Submitting mission with:", { missionId, memo: message, image: file });
+  
+      // API 호출
+      await missionAuth({
+        missionId: missionId,
+        memo: message || "", // 메시지가 없으면 빈 문자열 전달
+        image: file || null, // 이미지가 없으면 null 전달
+      });
+  
+      alert("미션이 성공적으로 제출되었습니다!");
+      setIsModalOpen(false); // 모달 닫기
+    } catch (error) {
+      console.error("미션 제출 실패:", error);
+  
+      // 에러 로그를 확인할 수 있도록 추가 정보 출력
+      if (error instanceof TypeError) {
+        console.error("타입 에러 발생:", error.message);
+      } else if (error.response) {
+        console.error("서버 응답 에러:", error.response.status, error.response.data);
+      } else {
+        console.error("기타 에러 발생:", error);
+      }
+  
+      alert("미션 제출 중 오류가 발생했습니다.");
+    }
+  };
+  
+
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      <div className=" gap-1 mb-5 pt-10 px-7 w-full text-sub02 text-R-15">
+      <div className="gap-1 mb-5 pt-10 px-7 w-full text-sub02 text-R-15">
         {data[5]}
       </div>
       <div className="flex flex-col pb-10 px-7 w-full gap-2 mb-3 overflow-auto">
@@ -180,7 +208,7 @@ const MissionRequestComponent = ({ setIsModalOpen, setFile }) => {
           <CustomButton
             size="mediumLarge"
             rounded={true}
-            onClick={AddAndCloseModal}
+            onClick={handleMissionSubmit} // 버튼 클릭 시 API 호출
             className="text-R-20 bg-main02 w-full"
           >
             미 션 완 료

@@ -1,10 +1,10 @@
 "use client";
-import PasswordTop from "@/src/ui/components/signup/PasswordTop";
-import PasswordBottom from "@/src/ui/components/signup/PasswordBottom";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { urlPath } from "@/src/constants/common";
 import { useAcceptMission } from "@/src/query/missionQuery";
+import PasswordSecondBottom from "../../signup/PasswordSecondBottom";
+import PasswordSecondTop from "../../signup/PasswordSecondTop";
 
 export default function TransferCheck({missionId, setType}) {
     const [isInput, setIsInput] = useState(Array(6).fill(false));
@@ -37,7 +37,7 @@ export default function TransferCheck({missionId, setType}) {
 
   return (
     <div className="flex flex-col h-screen max-w-[393px] bg-white overflow-auto">
-        <PasswordTop
+        <PasswordSecondTop
           isInput={isInput}
           pwd={pwd}
           setIsInput={setIsInput}
@@ -46,7 +46,7 @@ export default function TransferCheck({missionId, setType}) {
           index={6}
           isSingleInput={true}
         />
-        <PasswordBottom
+        <PasswordSecondBottom
           pwd={pwd}
           isInput={isInput}
           allow={allow}
@@ -54,7 +54,7 @@ export default function TransferCheck({missionId, setType}) {
           setPwd={setPwd}
           setAllowed={setAllowed}
           isSingleInput={true}
-          type={"childtransfer"}
+          type={"none"}
           onConfirmClick={handleSubmit}
         />
     </div>

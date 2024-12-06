@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const LimitedInputBox = ({
-  value = "",
+  text = "",
   maxLength = 7,
   placeholder = "값을 입력해주세요",
   onChange,
@@ -10,13 +10,13 @@ const LimitedInputBox = ({
   height = 51,
   className,
 }) => {
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(text);
   const [isFocused, setIsFocused] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
-    setInputValue(value);
-  }, [value]);
+    setInputValue(text);
+  }, [text]);
 
   const handleChange = (e) => {
     const newValue = e.target.value.replace(/\D/g, "").slice(0, maxLength);
@@ -32,7 +32,7 @@ const LimitedInputBox = ({
 
   const handleBlur = () => {
     setIsFocused(false);
-    setIsCompleted(value.length > 0);
+    setIsCompleted(inputValue.length > 0);
   };
 
   const getStyles = () => {
@@ -57,7 +57,9 @@ const LimitedInputBox = ({
       lineHeight: "center", // 텍스트 가로 중앙 정렬
     };
 
-    if (!value && !isFocused) {
+    if (!inputValue && !isFocused) {
+      
+      console.log(inputValue)
       // 입력 전 상태
       return {
         ...baseStyles,
@@ -66,7 +68,18 @@ const LimitedInputBox = ({
         color: "#9FA6B2",
         boxShadow: "none",
       };
-    } else if (isFocused) {
+    }else if(inputValue && !isFocused) {
+      console.log("2")
+      return {
+        ...baseStyles,
+        border: "1px solid #000000",
+        borderRadius: "12px",
+        color: "#000000",
+        boxShadow: "none",
+      };
+    }
+     else if (isFocused) {
+      console.log("3")
       // 입력 중 상태 - 떠있는 효과를 위한 그림자 추가
       return {
         ...baseStyles,
@@ -77,6 +90,7 @@ const LimitedInputBox = ({
         transform: "translateY(-2px)",
       };
     } else if (isCompleted) {
+      console.log("4")
       // 입력 완료 상태
       return {
         ...baseStyles,
@@ -85,15 +99,7 @@ const LimitedInputBox = ({
         color: "#000000",
         boxShadow: "none",
       };
-    } else {
-      return {
-        ...baseStyles,
-        border: "1px solid #A3A3A3",
-        borderRadius: "12px",
-        color: "#000000",
-        boxShadow: "none",
-      };
-    }
+    } 
   };
 
   const containerStyles = {

@@ -1,6 +1,6 @@
 export const RangeEnum = {
-  ONE_MONTH: "1개월",
   THREE_MONTHS: "3개월",
+  ONE_MONTH: "1개월",
   LAST_MONTH: "지난달",
   CUSTOM: "직접설정",
 };

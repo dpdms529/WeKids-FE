@@ -7,7 +7,7 @@ export const formatShortDate = (dateString) => {
 };
 
 
-const formatDate = (dateString) => {
+export const formattoDate = (dateString) => {
   const date = new Date(dateString);
   
   // 요일을 한글로 변환하기 위한 매핑

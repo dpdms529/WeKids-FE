@@ -47,7 +47,7 @@ export const fetchTransactions = async ({
       {
         method: "GET",
         headers: headers,
-      }
+      },
     );
 
     if (!response.ok) {
@@ -117,7 +117,7 @@ export const updateTransactionMemo = async ({ transactionId, memo }) => {
       method: "POST",
       headers,
       body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
-    }
+    },
   );
 
   if (!response.ok) {
