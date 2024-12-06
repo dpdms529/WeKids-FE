@@ -16,6 +16,7 @@ export default function TopBar({ name, accountNumber }) {
   const { userType } = useUserTypeStore();
   const { balance } = useTransFilterStore();
   const { selectedaccountInfo } = useSelectUserStore();
+  const {accountInfo} = useAccountStore();
 
   const copyToClipboard = (text) => {
     navigator.clipboard
@@ -70,7 +71,7 @@ export default function TopBar({ name, accountNumber }) {
         </h2>
       </Flex>
       <Flex justify="between" direction="row" className="gap-3 m-8 mt-4">
-        {userType === "PARENT" && (
+        {selectedaccountInfo.accountNumber == accountInfo.accountNumber && (
           <>
             <Link href={urlPath.TRANSFER}>
               <CustomButton
