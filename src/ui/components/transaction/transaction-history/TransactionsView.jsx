@@ -1,19 +1,19 @@
 "use client";
-import { formatToLocalDate } from "@/src/constants/transaction";
 import { useTransactionList } from "@/src/query/transactionQuery";
+import { Flex } from "@radix-ui/themes";
 import {
   RangeEnum,
   TypeEnum,
   useTransFilterStore,
 } from "@/src/stores/transactionStore";
 import Loader from "@/src/ui/components/atoms/Loader";
-import { formatShortDate } from "@/src/util/dateUtils";
-import { Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
-import { useAccountStore } from "@/src/stores/userStore";
-import { urlPath } from "@/src/constants/common";
+import { formatToLocalDate } from "@/src/constants/transaction";
+import { useAccountStore, useSelectUserStore } from "@/src/stores/userStore";
+import { urlPath } from "@/src/constants/common"; 
+import { formatShortDate } from "@/src/util/dateUtils";
 
 export const TransactionsView = () => {
   const size = 5; // 페이지당 데이터 수
@@ -27,16 +27,17 @@ export const TransactionsView = () => {
     balance,
     setBalance,
   } = useTransFilterStore();
-  const { accountId } = useAccountStore();
+  const {selectedaccountId} = useSelectUserStore();
 
   const now = new Date();
   const MonthsAgo = new Date();
-  MonthsAgo.setMonth(now.getMonth() - 100);
+  MonthsAgo.setMonth(now.getMonth() - 3);
   const [start, setStart] = useState(formatToLocalDate(MonthsAgo));
   const [end, setEnd] = useState(formatToLocalDate(now));
   const [typetoEng, setTypeToEng] = useState("ALL");
 
   useEffect(() => {
+    console.log(selectedaccountId)
     if (type == TypeEnum.ALL) {
       setTypeToEng("ALL");
     } else if (type == TypeEnum.DEPOSIT) {
@@ -80,7 +81,7 @@ export const TransactionsView = () => {
     hasNextPage,
     error,
   } = useTransactionList({
-    accountId: accountId,
+    accountId: selectedaccountId,
     start,
     end,
     type: typetoEng,

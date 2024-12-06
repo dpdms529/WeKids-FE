@@ -66,8 +66,8 @@ export default function PasswordSecondBottom({
   return (
     <>
       <div className="flex flex-col h-1/5 p-10">
-        <Link href={getRedirectPath()} onClick={handleClick}>
-          <CustomButton
+        
+          <CustomButton onClick={handleClick}
             rounded="true"
             className={`mt-auto w-full ${
               allow
@@ -77,7 +77,7 @@ export default function PasswordSecondBottom({
           >
             확인
           </CustomButton>
-        </Link>
+        
       </div>
       <div className="flex flex-col mt-auto w-[393px]">
         <KeyPad isDoubleButton={false} number={inputHandler} />

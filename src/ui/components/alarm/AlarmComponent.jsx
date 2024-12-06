@@ -1,26 +1,33 @@
 "use client";
 
-import { useColorStore } from "@/src/stores/cardStore";
-import AlarmCard from "../atoms/AlarmCard";
+import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
+import AlarmCard from "./AlarmCard";
 import { useUpdateAlarmChecked } from "@/src/query/alarmQuery";
 
 const AlarmComponent = ({ data }) => {
   const { mutate, isLoading: isUpdating } = useUpdateAlarmChecked();
-  const { setChildId } = useColorStore();
+  const {setChildId} = useSensitiveDataStore();
+  
 
   const OnCheckClicker = (idx) => {
-    setChildId(data[idx].targetId);
-    mutate(
-      { alarmId: idx + 1 },
-      {
-        onSuccess: () => {
-          console.log("성공!");
+    const alarm = data[idx]; // data 배열에서 해당 인덱스의 alarm 데이터 가져오기
+
+    if (alarm.type === "CARD") {
+      setChildId(alarm.targetId); // targetId를 Zustand에 저장
+    }
+    
+      mutate(
+        { alarmId: idx + 1 },
+        {
+          onSuccess: () => {
+            console.log("성공!");
+          },
+          onError: (error) => {
+            console.error("실패:", error.message);
+          },
         },
-        onError: (error) => {
-          console.error("실패:", error.message);
-        },
-      },
-    );
+      );
+    
   };
 
   return (

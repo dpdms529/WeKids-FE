@@ -14,8 +14,8 @@ export const useTransactionStore = create((set) => ({
 
 // useTransFilterStore
 export const RangeEnum = {
-  ONE_MONTH: "1개월",
   THREE_MONTHS: "3개월",
+  ONE_MONTH: "1개월",
   LAST_MONTH: "지난달",
   CUSTOM: "직접설정",
 };
@@ -37,7 +37,7 @@ export const useTransFilterStore = create((set) => ({
   balance: 0,
   setBalance: (newBalance) => set({ balance: newBalance }),
 
-  range: RangeEnum.ONE_MONTH,
+  range: RangeEnum.THREE_MONTHS,
   setRange: (newRange) => set({ range: newRange }),
 
   startDate: today,

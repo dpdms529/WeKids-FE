@@ -1,12 +1,8 @@
-"use client";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import ShareButton from "@/src/ui/components/atoms/Sharebutton";
 import { CheckIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import { urlPath } from "@/src/constants/common";
-import { useEffect } from "react";
 import Link from "next/link";
-
-
+import { urlPath } from "@/src/constants/common";
 const MESSAGES = {
   COMPLETE: {
     TITLE: (name) => `${name}님에게`,
@@ -21,19 +17,19 @@ const MESSAGES = {
   },
 };
 
-const TransferDone = ({
+const TransferResult = ({
+  transferData = {
+    sendUser: "",
+    amount: 0,
+    accountNumber: "",
+    bankName: "우리",
+    memo: "",
+  },
   type = "COMPLETE",
-  childName,
-  amount,
-  accountNumber,
 }) => {
   // type이 유효한지 확인하고, 유효하지 않으면 COMPLETE 사용
   const messageType = MESSAGES[type] ? type : "COMPLETE";
   const messages = MESSAGES[messageType];
-
-  useEffect(() => {
-    console.log(childName);
-  }, []);
 
   // type에 따라 다른 경로 설정
   const nextPath =
@@ -49,11 +45,14 @@ const TransferDone = ({
         </div>
 
         <div className="text-center space-y-2 mb-4">
-          <p className="text-B-28 text-black/80">{messages.TITLE(childName)}</p>
-          <p className="text-B-28 text-black/80">{messages.SUBTITLE(amount)}</p>
+          <p className="text-B-28 text-black/80">
+            {messages.TITLE(transferData.sendUser || "알 수 없는 사용자")}
+          </p>
+          <p className="text-B-28 text-black/80">
+            {messages.SUBTITLE(transferData.amount?.toLocaleString() || 0)}
+          </p>
           <div className="flex items-center justify-center text-R-14 text-neutral-300 pt-4">
-            {"우리은행 "}
-            {accountNumber}
+            {transferData.bankName} {transferData.accountNumber}
             <ChevronRightIcon
               width="16"
               height="16"
@@ -61,25 +60,26 @@ const TransferDone = ({
               strokeWidth={0.5}
             />
           </div>
-
-          <p className="text-R-14 text-neutral-300 pt-2 px-4 py-2 bg-[#F5F5F5] rounded-[100px] inline-block">
-            {"메모 입력"}
-          </p>
+          {transferData.memo && (
+            <p className="text-R-14 text-neutral-300 pt-2 px-4 py-2 bg-[#F5F5F5] rounded-[100px] inline-block">
+              {transferData.memo}
+            </p>
+          )}
         </div>
       </div>
 
       <div className="px-5 pb-8">
         <div className="flex gap-2">
           <ShareButton rounded={true} />
-          <Link href={urlPath.HOME}>
+          <Link href={nextPath} className="flex-1">
             <CustomButton rounded={true} size="medium" color="main">
               <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
             </CustomButton>
-            </Link>
+          </Link>
         </div>
       </div>
     </main>
   );
 };
 
-export default TransferDone;
+export default TransferResult;

@@ -5,32 +5,34 @@ import CustomButton from "../../atoms/CustomButton";
 import Image from "next/image";
 import Profile from "../../atoms/Profile";
 import MissionConfirmModal from "../MissionConfirmModal";
-import { getCurrentDateInKoreanFormat } from "@/src/constants/mission";
 import { useRouter } from "next/navigation";
-import { showMissionDetail } from "@/src/apis/mission";
+import { deleteMission, showMissionDetail } from "@/src/apis/mission";
 import { useMissionIDStore } from "@/src/stores/missionFilterStore";
 import { urlPath } from "@/src/constants/common";
 
 const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
-  const [amount, setAmount] = useState(0);
-  const [deadline, setDeadline] = useState(new Date());
+  const [amount, setAmount] = useState(0); // 초기값을 0으로 설정
+  const [deadline, setDeadline] = useState(null); // 초기값을 null로 설정
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
-  const [memo, setMemo] = useState("아이가 메시지를 작성하지 않았습니다. ");
-  const [childProfile, setChildProfile] = useState(null);
-  const [state, SetState] = useState(null);
+  const [memo, setMemo] = useState("아이가 메시지를 작성하지 않았습니다.");
+  const [image, setImage] = useState(null);
+  const [state, setState] = useState(null);
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
   const [text, setText] = useState("");
-  const [image, setImage] = useState(null);
+  const [denied, setDenied] = useState(false);
+
   const router = useRouter();
   const { setMissionId } = useMissionIDStore();
-  const deadlineDate = new Date(deadline);
+  const deadlineDate = deadline ? new Date(deadline) : null;
 
   // 예: 특정 로직 처리 후 출력
-  const formattedDeadline = `${deadlineDate.getFullYear()}년 ${
-    deadlineDate.getMonth() + 1
-  }월 ${deadlineDate.getDate()}일`;
+  const formattedDeadline = deadlineDate
+    ? `${deadlineDate.getFullYear()}년 ${
+        deadlineDate.getMonth() + 1
+      }월 ${deadlineDate.getDate()}일`
+    : "";
 
   useEffect(() => {
     const fetchMissionDetail = async () => {
@@ -38,12 +40,13 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         const missionDetail = await showMissionDetail({ missionId });
         console.log(missionDetail);
         setCategory(missionDetail.category);
-        setAmount(missionDetail.amount);
+        setAmount(missionDetail.amount); // 기본값을 0으로 설정
         setTitle(missionDetail.title);
         setContent(missionDetail.content);
-        setDeadline(missionDetail.deadline);
+        setDeadline(missionDetail.deadline || null); // 기본값을 null로 설정
         setMissionId(missionDetail.missionId);
         setImage(missionDetail.image);
+        setState(missionDetail.state || null);
         missionDetail.memo ? setMemo(missionDetail.memo) : "";
       } catch (error) {
         console.error("Failed to fetch mission details:", error);
@@ -51,26 +54,42 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
     };
 
     fetchMissionDetail();
-  }, []);
+  }, [missionId, setMissionId]);
 
   const AddAndCloseModal = (type) => {
-    // 추후에 api 연결하고 분기처리
     if (type == "accept") {
-      if (state == "SUBMIT") {
+      if (state === "SUBMIT") {
         setText(
-          `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`,
+          `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`
         );
       } else {
         router.push(urlPath.MISSION_TRANSFER);
       }
-
+      setDenied(false); // 승인 상태
       setConfirmModalOpen(true);
     } else if (type == "denied") {
       setText(`반려 버튼을 누르셨습니다. <br /> 정말 반려하시겠습니까?`);
+      setDenied(true); // 반려 상태
       setConfirmModalOpen(true);
     }
+  };
 
-    //setIsModalOpen(false);
+  const handleModalConfirm = async () => {
+    if (denied) {
+      // 반려 상태에서 미션 삭제 로직 처리
+      try {
+        await deleteMission({ missionId });
+        alert("미션이 성공적으로 반려되었습니다.");
+      } catch (error) {
+        console.error("미션 반려 실패:", error);
+        alert("미션 반려 중 오류가 발생했습니다.");
+      }
+    } else {
+      // 승인 상태에서 페이지 이동
+      router.push(urlPath.MISSION_TRANSFER);
+    }
+
+    setIsModalOpen(false); // 모달 닫기
   };
 
   return (
@@ -100,12 +119,15 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         </div>
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           미션 성공 시 총{" "}
-          <span className="text-sub02">{amount.toLocaleString()}</span> 원을
-          받을 수 있어요
+          <span className="text-sub02">
+            {amount ? amount.toLocaleString() : "0"} {/* 조건부 렌더링 */}
+          </span>{" "}
+          원을 받을 수 있어요
         </div>
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
-          🍪 <span className="text-sub02">{formattedDeadline}</span> 까지 완료할
-          수 있어요
+          🍪{" "}
+          <span className="text-sub02">{formattedDeadline || "알 수 없음"}</span>{" "}
+          까지 완료할 수 있어요
         </div>
 
         <div className="text-R-10 mt-6 text-sub02">미션 완료 인증하기</div>
@@ -137,7 +159,9 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
                 setParentOpen={setIsModalOpen}
                 setOpen={setConfirmModalOpen}
                 text={text}
-                onClick={() => router.push(urlPath.MISSION_TRANSFER)}
+                missionId={missionId}
+                denied={denied}
+                onConfirm={handleModalConfirm}
               />
             )}
           </div>

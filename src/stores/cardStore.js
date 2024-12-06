@@ -16,7 +16,7 @@ const decrypt = (encryptedData) => {
 
 // Zustand Store
 export const useSensitiveDataStore = create((set, get) => ({
-  childId: 1,
+  childId: null,
   residentRegistrationNumber: "",
   accountPassword: "1234",
   cardPassword: "",
@@ -88,7 +88,7 @@ export const useColorStore = create((set) => ({
   setColor: (color) => set({ color: color }),
   setChildCharacter: (childcharacter) =>
     set({ childcharacter: childcharacter }),
-  setDesign: (design) => set(design),
+  setDesign: (design) => set({ design: design }),
   setChildColor: (childcolor) => set({ childcolor: childcolor }),
   removeChildId: () => set({ childId: null }),
   removeColor: () => set({ color: "" }),

@@ -1,7 +1,8 @@
 "use client";
 
 import { characterInfoMap, urlPath } from "@/src/constants/common";
-import { useAccountStore, useUserCardColorStore } from "@/src/stores/userStore";
+import { useTransactionStore } from "@/src/stores/transactionStore";
+import { useAccountStore, useSelectUserStore, useUserCardColorStore } from "@/src/stores/userStore";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { Text } from "@radix-ui/themes";
 import Image from "next/image";
@@ -12,8 +13,10 @@ import toast, { Toaster } from "react-hot-toast";
 const BlueCardBox = ({ selectedAccount, isParent }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState("");
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
-  const { setAccountId, setAccountInfo } = useAccountStore();
-
+  const { accountInfo, setAccountId } = useAccountStore();
+  const {setSelectedAccount} = useTransactionStore();
+  const {setSelectedAccountId, setSelectedAccountInfo} = useSelectUserStore();
+  
   useEffect(() => {
     setAccountId(selectedAccount.accountId);
     setAccountInfo({
@@ -37,14 +40,25 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
   if (!selectedAccount) return <div>계좌를 선택해주세요.</div>;
 
   const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(selectedAccount.accountNumber);
-      toast.success("복사가 완료되었습니다!");
-    } catch (err) {
-      toast.error("복사에 실패했습니다.");
-      console.error("복사 실패:", err);
+    if (selectedAccount) {
+      try {
+        await navigator.clipboard.writeText(selectedAccount.accountNumber); // 계좌번호 복사
+        toast.success("복사가 완료되었습니다!"); // 토스트 메시지 표시
+      } catch (err) {
+        toast.error("복사에 실패했습니다."); // 복사 실패 시 메시지 표시
+        console.error("복사 실패:", err);
+      }
     }
   };
+
+  
+    const clickHandler = (e) => {
+      console.log(selectedAccount)
+      if (selectedAccount == null) {
+        e.preventDefault();
+      }
+    };
+  
 
   return (
     <div
@@ -89,7 +103,8 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
           </Link>
           {isParent && (
             <Link
-              href={urlPath.TRANSFER}
+              href={accountInfo.accountNumber != selectedAccount.accountNumber ? urlPath.TRANSFER : urlPath.ACCOUNT_LIST}
+            onClick={clickHandler}
               className="flex-1 py-4 text-center border-l border-black text-R-20 hover:bg-white/10 transition-colors"
             >
               <button>이체</button>

@@ -19,7 +19,7 @@ const TransferAmountDisplay = ({
     }
   }, [selectedAccount]);
 
-  useEffect(() => {}, []);
+  
 
   const router = useRouter();
 

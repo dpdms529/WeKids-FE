@@ -1,6 +1,6 @@
 "use client";
 import { getParentsAccounts } from "@/src/apis/parents";
-import { useColorStore } from "@/src/stores/cardStore";
+import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
 import { useAccountStore } from "@/src/stores/userStore";
 import CardRequestReview from "@/src/ui/components/card/CardRequestReview";
 import InnerText from "@/src/ui/components/card/InnerText";
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function CardReview() {
   const { accountInfo } = useAccountStore();
-  const { childId } = useColorStore();
+  const {childId} = useSensitiveDataStore();
   const [childname, setChildname] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
