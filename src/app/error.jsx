@@ -15,20 +15,20 @@ export default function Error({ error, reset }) {
         원활한 사용을 위해 페이지를 새로 고침 해주세요!
       </p>
       <Image
-          src="/images/weebeGropImg.svg"
-          width={240}
-          height={83}
-          alt="error characters"
-          className="mb-10 mt-5 pb-14"
-        />
-        <CustomButton
-          size="mediumLarge"
-          onClick={reset}
-          rounded={true}
-          className="bg-blue02 text-white"
-        >
-          새로 고침
-        </CustomButton>
+        src="/images/weebeGropImg.svg"
+        width={240}
+        height={83}
+        alt="error characters"
+        className="mb-10 mt-5 pb-14"
+      />
+      <CustomButton
+        size="mediumLarge"
+        onClick={reset}
+        rounded={true}
+        className="bg-blue02 text-white"
+      >
+        새로 고침
+      </CustomButton>
       {/* <CustomButton size="medium" onClick={() => reset()}>
         새로 고침
       </CustomButton> */}

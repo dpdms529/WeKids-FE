@@ -6,7 +6,6 @@ import StateBadge from "../list/StateBadge";
 import ChildProfileSection from "./ChildProfileSection";
 import { useState } from "react";
 
-
 const ParentMissionList = ({ missiondata, onClick }) => {
   const bgColor =
     missiondata?.state && missionColorMap[missiondata.state]
@@ -14,7 +13,7 @@ const ParentMissionList = ({ missiondata, onClick }) => {
       : missionColorMap.NEW.background;
   //todo 필요하면 쓰세요
   //     const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   // const handleMissionClick = () => {
   //   setIsModalOpen(true);
   // };
@@ -25,10 +24,8 @@ const ParentMissionList = ({ missiondata, onClick }) => {
 
   return (
     <div
-    onClick={onClick}
-      className={
-        `w-[322px] rounded-xl ${bgColor} px-5 py-3 shadow-md`
-      }
+      onClick={onClick}
+      className={`w-[322px] rounded-xl ${bgColor} px-5 py-3 shadow-md`}
     >
       <div className="flex gap-3">
         <div className="flex items-center">
@@ -54,7 +51,6 @@ const ParentMissionList = ({ missiondata, onClick }) => {
           </p>
         </div>
       </div>
-      
     </div>
   );
 };

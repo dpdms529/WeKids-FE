@@ -37,8 +37,8 @@ export const ChildMissionHome = ({ initialData }) => {
   };
   const openModal = (missionId) => {
     setOpenMissionId(missionId);
-    setIsModalOpen(!isModalOpen)
-  }
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
     <div className="overflow-hidden mt-10">
@@ -62,13 +62,11 @@ export const ChildMissionHome = ({ initialData }) => {
           ) : (
             <div className="space-y-3">
               {filteredData.map((mission) => (
-             
                 <ChildMissionList
                   key={mission.missionId}
                   missiondata={mission}
                   onClick={() => openModal(mission.missionId)}
                 />
-              
               ))}
             </div>
           )}

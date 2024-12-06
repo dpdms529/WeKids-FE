@@ -16,8 +16,8 @@ export default function TransferDonePage() {
   const [amount, setAmount] = useState(0);
 
   useEffect(() => {
-    console.log(accountInfo)
-  },[])
+    console.log(accountInfo);
+  }, []);
 
   return (
     <>

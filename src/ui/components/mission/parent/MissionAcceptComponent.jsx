@@ -23,7 +23,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
   const [text, setText] = useState("");
   const [denied, setDenied] = useState(false);
-  const [iconSrc, setIconSrc] = useState('/images/trashImg.svg');
+  const [iconSrc, setIconSrc] = useState("/images/trashImg.svg");
   const router = useRouter();
   const { setMissionId } = useMissionIDStore();
   const deadlineDate = deadline ? new Date(deadline) : null;
@@ -49,7 +49,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         setState(missionDetail.state || null);
         missionDetail.memo ? setMemo(missionDetail.memo) : "";
         const categoryData = missionCategories.find(
-          (cat) => cat.id === (missionDetail.category || "HOUSE_WORK")
+          (cat) => cat.id === (missionDetail.category || "HOUSE_WORK"),
         );
         setIconSrc(categoryData ? categoryData.icon : "/images/trashImg.svg");
       } catch (error) {
@@ -67,7 +67,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
           `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`,
         );
         setConfirmModalOpen(true);
-      } else if(state == "SUBMIT") {
+      } else if (state == "SUBMIT") {
         router.push(urlPath.MISSION_TRANSFER);
       }
       setDenied(false); // 승인 상태
@@ -108,12 +108,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         </div>
         <div className="text-sub02 text-R-15 flex flex-row">
           {title}
-          <Image
-            src={iconSrc}
-            width={19}
-            height={19}
-            alt="delete icon"
-          />
+          <Image src={iconSrc} width={19} height={19} alt="delete icon" />
         </div>
       </div>
       <div className="flex flex-col w-full gap-2 mb-3 pt-1 px-7 pb-1 overflow-auto">
@@ -150,47 +145,43 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-black/60">
           {memo}
         </div>
-       
-          {state == "CANCEL" || state=="ACCEPT" ? 
-          <>
-          </>
-        :
-        <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-9">
-          <div className="flex flex-col w-full">
+
+        {state == "CANCEL" || state == "ACCEPT" ? (
+          <></>
+        ) : (
+          <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-9">
+            <div className="flex flex-col w-full">
               <CustomButton
-              size="mediumLarge"
-              rounded={true}
-              onClick={() => AddAndCloseModal("accept")}
-              className="text-R-15 bg-main02 w-full"
-            >
-              승인
-            </CustomButton>
-            {isConfirmModalOpen && (
-              <MissionConfirmModal
-                setParentOpen={setIsModalOpen}
-                setOpen={setConfirmModalOpen}
-                text={text}
-                missionId={missionId}
-                denied={denied}
-                onConfirm={handleModalConfirm}
-              />
-            )}
+                size="mediumLarge"
+                rounded={true}
+                onClick={() => AddAndCloseModal("accept")}
+                className="text-R-15 bg-main02 w-full"
+              >
+                승인
+              </CustomButton>
+              {isConfirmModalOpen && (
+                <MissionConfirmModal
+                  setParentOpen={setIsModalOpen}
+                  setOpen={setConfirmModalOpen}
+                  text={text}
+                  missionId={missionId}
+                  denied={denied}
+                  onConfirm={handleModalConfirm}
+                />
+              )}
+            </div>
+            <div className="flex flex-col w-full">
+              <CustomButton
+                size="mediumLarge"
+                rounded={true}
+                onClick={() => AddAndCloseModal("denied")}
+                className="flex text-R-15 bg-red01 hover:bg-redHover w-full"
+              >
+                반려
+              </CustomButton>
+            </div>
           </div>
-          <div className="flex flex-col w-full">
-            <CustomButton
-              size="mediumLarge"
-              rounded={true}
-              onClick={() => AddAndCloseModal("denied")}
-              className="flex text-R-15 bg-red01 hover:bg-redHover w-full"
-            >
-              반려
-            </CustomButton>
-          </div>
-        </div>
-        
-        }
-          
-        
+        )}
       </div>
     </div>
   );

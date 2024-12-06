@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { useFetchAccount } from "@/src/query/parentQuery";
 import { useRouter } from "next/navigation";
 
-
 export default function AccountList() {
   const [data, setData] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -15,7 +14,8 @@ export default function AccountList() {
   const router = useRouter();
   const { mutate, isLoading: isUpdating } = useFetchAccount();
   const clickHandler = () => {
-    if (selectedIndex !== null) { // null이 아닌 경우만 실행
+    if (selectedIndex !== null) {
+      // null이 아닌 경우만 실행
       console.log("Selected index:", selectedIndex);
       mutate(
         {
@@ -29,7 +29,7 @@ export default function AccountList() {
           onError: (error) => {
             console.error("계좌 업데이트 실패:", error.message);
           },
-        }
+        },
       );
     } else {
       console.error("선택된 계좌가 없습니다.");
@@ -44,7 +44,6 @@ export default function AccountList() {
       } catch (error) {
         console.error("데이터 가져오기 실패:", error);
       }
-      
     };
 
     fetchData();
@@ -54,7 +53,7 @@ export default function AccountList() {
 
   const toggleAccountSelection = (index, accountNumber) => {
     setSelectedIndex((prev) => (prev === index ? null : index));
-    setAccountNumber(prev => (prev === accountNumber ? null : accountNumber));
+    setAccountNumber((prev) => (prev === accountNumber ? null : accountNumber));
   };
 
   let accountList = [];
@@ -72,7 +71,7 @@ export default function AccountList() {
           account={account.accountNumber}
           balance={account.balance}
         />
-      </ParentChildSelector>
+      </ParentChildSelector>,
     );
   });
 
@@ -89,14 +88,13 @@ export default function AccountList() {
         </div>
       </div>
 
-
-      <CustomButton 
-      color={selectedIndex !== null ? "main" : "gray"} 
-      onClick={clickHandler}
-      disabled={selectedIndex === null} // 선택되지 않았으면 비활성화
->
-          가져오기
-        </CustomButton>
+      <CustomButton
+        color={selectedIndex !== null ? "main" : "gray"}
+        onClick={clickHandler}
+        disabled={selectedIndex === null} // 선택되지 않았으면 비활성화
+      >
+        가져오기
+      </CustomButton>
     </div>
   );
 }

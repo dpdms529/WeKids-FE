@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import CustomButton from "../../atoms/CustomButton";
 import { missionAuth, showMissionDetail } from "@/src/apis/mission";
 
-
 const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
   const [previewURL, setPreviewURL] = useState("");
   const [file, setFile] = useState(null);
@@ -42,9 +41,9 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
     const fetchMissionDetail = async () => {
       try {
         const missionDetail = await showMissionDetail({ missionId });
-        if(missionDetail){
+        if (missionDetail) {
           setMission(missionDetail);
-          setDeadline(new Date(missionDetail.deadline))
+          setDeadline(new Date(missionDetail.deadline));
           setMemo(missionDetail.memo || "");
           setPreviewURL(missionDetail.image || "");
           setState(missionDetail.state);
@@ -55,7 +54,6 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
           const file = new File([blob], "image.jpg", { type: blob.type });
           setFile(file);
         }
-        
       } catch (error) {
         console.error("가져오기에 실패했습니다");
       }
@@ -101,19 +99,22 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
 
   const handleMissionSubmit = async () => {
     try {
-      console.log("Submitting mission with:", { missionId, memo: memo, image: file });
-  
+      console.log("Submitting mission with:", {
+        missionId,
+        memo: memo,
+        image: file,
+      });
+
       await missionAuth({
         missionId: missionId,
         memo: memo || "",
         image: file || null,
       });
-  
-      
+
       setIsModalOpen(false);
     } catch (error) {
       console.error("서버 오류!");
-  
+
       if (error instanceof TypeError) {
         console.error("타입 에러!");
       } else if (error.response) {
@@ -121,14 +122,11 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
       } else {
         console.error("기타 오류!");
       }
-  
     }
   };
-  
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
-      
       <div className="gap-1 mb-5 pt-10 px-7 w-full text-sub02 text-R-15">
         {mission?.title}
       </div>
@@ -139,8 +137,8 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
         </div>
         <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           미션 성공 시 총{" "}
-          <span className="text-sub02">{mission?.amount.toLocaleString()}</span> 원을
-          받을 수 있어요
+          <span className="text-sub02">{mission?.amount.toLocaleString()}</span>{" "}
+          원을 받을 수 있어요
         </p>
         <p className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           🍪{" "}
@@ -222,21 +220,20 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
             className="w-full h-8 bg-transparent rounded-md resize-none outline-none p-2 text-black/80"
           ></textarea>
         </div>
-        {state == "CANCEL" || state=="ACCEPT" ? 
-          <>
-          </>
-          :
-        <div className="flex flex-col h-[40px] px-10 mt-9 items-center">
-          <CustomButton
-            size="mediumLarge"
-            rounded={true}
-            onClick={handleMissionSubmit} // 버튼 클릭 시 API 호출
-            className="text-R-20 bg-main02 w-full"
-          >
-            미 션 완 료
-          </CustomButton>
-        </div>
-      }
+        {state == "CANCEL" || state == "ACCEPT" ? (
+          <></>
+        ) : (
+          <div className="flex flex-col h-[40px] px-10 mt-9 items-center">
+            <CustomButton
+              size="mediumLarge"
+              rounded={true}
+              onClick={handleMissionSubmit} // 버튼 클릭 시 API 호출
+              className="text-R-20 bg-main02 w-full"
+            >
+              미 션 완 료
+            </CustomButton>
+          </div>
+        )}
       </div>
     </div>
   );

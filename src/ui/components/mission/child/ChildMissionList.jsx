@@ -11,7 +11,10 @@ export default function ChildMissionList({ missiondata, onClick }) {
 
   return (
     <div className="pb-1">
-      <div className={`w-[322px] rounded-xl ${bgColor} p-5 shadow-md`} onClick={onClick}>
+      <div
+        className={`w-[322px] rounded-xl ${bgColor} p-5 shadow-md`}
+        onClick={onClick}
+      >
         <div className="flex justify-between">
           <div className="flex-1 space-y-1 ">
             <h3 className="text-R-14 text-black truncate">

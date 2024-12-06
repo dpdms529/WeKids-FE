@@ -97,11 +97,11 @@ export default function MissionAddComponent({ setIsModalOpen }) {
             },
             onError: (error) => {
               console.error(
-                `실패! Child ID: ${childId}, Error: ${error.message}`
+                `실패! Child ID: ${childId}, Error: ${error.message}`,
               );
             },
-          }
-        )
+          },
+        ),
       );
 
       // 모든 호출이 완료된 후 처리

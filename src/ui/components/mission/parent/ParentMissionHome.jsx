@@ -41,8 +41,8 @@ const ParentMissionHome = ({ initialData }) => {
 
   const openModal = (missionId) => {
     setOpenMissionId(missionId);
-    setIsDetailOpen(!isModalOpen)
-  }
+    setIsDetailOpen(!isModalOpen);
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -62,13 +62,13 @@ const ParentMissionHome = ({ initialData }) => {
               />
             ))}
             {openMissionId && (
-            <MissionModal isOpen={isDetailOpen} setOpen={setIsDetailOpen}>
-              <MissionAcceptComponent
-                setIsModalOpen={setIsDetailOpen}
-                missionId={openMissionId}
-              />
-            </MissionModal>
-          )}
+              <MissionModal isOpen={isDetailOpen} setOpen={setIsDetailOpen}>
+                <MissionAcceptComponent
+                  setIsModalOpen={setIsDetailOpen}
+                  missionId={openMissionId}
+                />
+              </MissionModal>
+            )}
           </div>
         )}
       </div>

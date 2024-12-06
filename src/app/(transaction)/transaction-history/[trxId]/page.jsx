@@ -31,20 +31,19 @@ const TransactionDetailPage = ({ params }) => {
     if (!trxId) {
       return;
     }
-      console.log(memo)
-      mutate(
-        { transactionId: trxId, memo: memo || "" },
-        {
-          onSuccess: () => {
-            console.log("메모 업데이트 성공!");
-            router.push(`${urlPath.TRANSACTION_HISTORY}`);
-          },
-          onError: (error) => {
-            console.error("메모 업데이트 실패:", error.message);
-          },
+    console.log(memo);
+    mutate(
+      { transactionId: trxId, memo: memo || "" },
+      {
+        onSuccess: () => {
+          console.log("메모 업데이트 성공!");
+          router.push(`${urlPath.TRANSACTION_HISTORY}`);
         },
-      );
-    
+        onError: (error) => {
+          console.error("메모 업데이트 실패:", error.message);
+        },
+      },
+    );
   };
 
   if (isLoading || !data) {

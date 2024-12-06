@@ -30,7 +30,8 @@ export default function Identification({ setIsChecked }) {
 
   const handleCheck = async () => {
     try {
-      const residentRegistrationNumber = identification.slice(0, 6) + "-" + identification.slice(6);
+      const residentRegistrationNumber =
+        identification.slice(0, 6) + "-" + identification.slice(6);
 
       const response = await agreeAccountInquiry(residentRegistrationNumber);
       console.log("Response:", response);
