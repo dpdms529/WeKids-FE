@@ -3,16 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import CustomButton from "../../atoms/CustomButton";
 import { missionAuth, showMissionDetail } from "@/src/apis/mission";
-import toast, { Toaster } from "react-hot-toast";
 
-
-const data = {
-  1: "미션 설명이 들어갑니다. 미션 설명은 총 몇 자 인가요? 넓이 영역에 대해 한번 고려 해보셔야 할 것 같습니다. 보통 설명이 이렇게까지 길어지는 일이 있을지는 잘 모르겠습니다. 부모님이 자식에게 이 만큼 설명하는 것이 아이 연령을 고려했을 때 불필요한 일일 수도 있습니다만 저희는 최대 길이 영역을 고려하여 디자인 진행을 해야합니다",
-  2: "미션 성공 시 총 30,000원을 받을 수 있어요.",
-  3: "🍪 2024년 11월 20일 (수) 까지 완료할 수 있어요",
-  4: "아이가 메시지를 작성하지 않았습니다. ",
-  5: "이곳에 미션명이 들어갑니다.",
-};
 
 const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
   const [previewURL, setPreviewURL] = useState("");
@@ -22,6 +13,7 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
   const [memo, setMemo] = useState("");
   const [isDragging, setIsDragging] = useState(false);
   const [mission, setMission] = useState(null);
+  const [state, setState] = useState("");
 
   const compressAndSetFile = async (file) => {
     if (file) {
@@ -54,7 +46,8 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
           setMission(missionDetail);
           setDeadline(new Date(missionDetail.deadline))
           setMemo(missionDetail.memo || "");
-        setPreviewURL(missionDetail.image || "");
+          setPreviewURL(missionDetail.image || "");
+          setState(missionDetail.state);
         }
         if (missionDetail.image) {
           const response = await fetch(missionDetail.image);
@@ -229,6 +222,10 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
             className="w-full h-8 bg-transparent rounded-md resize-none outline-none p-2 text-black/80"
           ></textarea>
         </div>
+        {state == "CANCEL" || state=="ACCEPT" ? 
+          <>
+          </>
+          :
         <div className="flex flex-col h-[40px] px-10 mt-9 items-center">
           <CustomButton
             size="mediumLarge"
@@ -239,6 +236,7 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
             미 션 완 료
           </CustomButton>
         </div>
+      }
       </div>
     </div>
   );

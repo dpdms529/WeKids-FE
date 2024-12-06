@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { deleteMission, showMissionDetail } from "@/src/apis/mission";
 import { useMissionIDStore } from "@/src/stores/missionFilterStore";
 import { urlPath } from "@/src/constants/common";
+import missionCategories from "@/src/constants/mission";
 
 const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [amount, setAmount] = useState(0); // 초기값을 0으로 설정
@@ -22,7 +23,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
   const [isConfirmModalOpen, setConfirmModalOpen] = useState(false);
   const [text, setText] = useState("");
   const [denied, setDenied] = useState(false);
-
+  const [iconSrc, setIconSrc] = useState('/images/trashImg.svg');
   const router = useRouter();
   const { setMissionId } = useMissionIDStore();
   const deadlineDate = deadline ? new Date(deadline) : null;
@@ -38,7 +39,6 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
     const fetchMissionDetail = async () => {
       try {
         const missionDetail = await showMissionDetail({ missionId });
-        console.log(missionDetail);
         setCategory(missionDetail.category);
         setAmount(missionDetail.amount); // 기본값을 0으로 설정
         setTitle(missionDetail.title);
@@ -48,6 +48,10 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         setImage(missionDetail.image);
         setState(missionDetail.state || null);
         missionDetail.memo ? setMemo(missionDetail.memo) : "";
+        const categoryData = missionCategories.find(
+          (cat) => cat.id === (missionDetail.category || "HOUSE_WORK")
+        );
+        setIconSrc(categoryData ? categoryData.icon : "/images/trashImg.svg");
       } catch (error) {
         console.error("Failed to fetch mission details:", error);
       }
@@ -105,7 +109,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         <div className="text-sub02 text-R-15 flex flex-row">
           {title}
           <Image
-            src="images/trashImg.svg"
+            src={iconSrc}
             width={19}
             height={19}
             alt="delete icon"
@@ -146,9 +150,14 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         <div className="p-3 bg-main02/20 border rounded-lg text-R-12 shadow-md text-black/60">
           {memo}
         </div>
+       
+          {state == "CANCEL" || state=="ACCEPT" ? 
+          <>
+          </>
+        :
         <div className="flex flex-row gap-4 w-full justify-between h-[40px] mt-9">
           <div className="flex flex-col w-full">
-            <CustomButton
+              <CustomButton
               size="mediumLarge"
               rounded={true}
               onClick={() => AddAndCloseModal("accept")}
@@ -178,6 +187,10 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
             </CustomButton>
           </div>
         </div>
+        
+        }
+          
+        
       </div>
     </div>
   );
