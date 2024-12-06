@@ -1,4 +1,4 @@
-import SignUpPassword from "@/src/ui/components/signup/signUpPassword";
+import SignUpPassword from "@/src/ui/components/signup/SignUpPassword";
 
 export default function Page() {
   return (
