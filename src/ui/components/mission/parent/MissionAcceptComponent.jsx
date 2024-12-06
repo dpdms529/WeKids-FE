@@ -58,15 +58,15 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
 
   const AddAndCloseModal = (type) => {
     if (type == "accept") {
-      if (state === "SUBMIT") {
+      if (state != "SUBMIT") {
         setText(
           `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`,
         );
-      } else {
+        setConfirmModalOpen(true);
+      } else if(state == "SUBMIT") {
         router.push(urlPath.MISSION_TRANSFER);
       }
       setDenied(false); // 승인 상태
-      setConfirmModalOpen(true);
     } else if (type == "denied") {
       setText(`반려 버튼을 누르셨습니다. <br /> 정말 반려하시겠습니까?`);
       setDenied(true); // 반려 상태

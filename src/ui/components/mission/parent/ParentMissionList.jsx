@@ -7,7 +7,7 @@ import ChildProfileSection from "./ChildProfileSection";
 import { useState } from "react";
 
 
-const ParentMissionList = ({ missiondata }) => {
+const ParentMissionList = ({ missiondata, onClick }) => {
   const bgColor =
     missiondata?.state && missionColorMap[missiondata.state]
       ? missionColorMap[missiondata.state].background
@@ -25,8 +25,8 @@ const ParentMissionList = ({ missiondata }) => {
 
   return (
     <div
+    onClick={onClick}
       className={
-        // onClick={handleMissionClick}
         `w-[322px] rounded-xl ${bgColor} px-5 py-3 shadow-md`
       }
     >
