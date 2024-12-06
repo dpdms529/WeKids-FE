@@ -14,6 +14,7 @@ export default function ChoiceDesign({
   linkUrl,
   character = "HEARTSPRING",
   color = "PINK2",
+  memberId,
 }) {
   const [design, setDesign] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,8 +23,15 @@ export default function ChoiceDesign({
   useEffect(() => {
     const fetchDesign = async () => {
       try {
+        const session = await auth(); // 세션에서 사용자 정보를 가져옴
+        const memberId = session?.user?.id; // 사용자 ID를 가져옴
+
+        if (!memberId) {
+          throw new Error("Member ID not found");
+        }
+
         console.log("Fetching design...");
-        const data = await designFetch();
+        const data = await designFetch({ member: memberId });
         console.log(data);
         setDesign(data); // zustand에 저장
         if (setChildCharacter && setChildColor) {
@@ -36,8 +44,10 @@ export default function ChoiceDesign({
         setIsLoading(false);
       }
     };
-    fetchDesign();
-  }, []);
+    if (memberId) {
+      fetchDesign();
+    }
+  }, [memberId]);
 
   return (
     <div className="flex flex-col items-center gap-10">
