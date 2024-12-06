@@ -90,7 +90,7 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
           {isParent && (
             <Link
               href={urlPath.TRANSFER}
-              className="flex-1 py-4 text-center border-l text-R-20 hover:bg-white/10 transition-colors"
+              className="flex-1 py-4 text-center border-l border-black text-R-20 hover:bg-white/10 transition-colors"
             >
               <button>이체</button>
             </Link>
