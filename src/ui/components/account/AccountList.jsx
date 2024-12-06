@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useFetchAccount } from "@/src/query/parentQuery";
 import { useRouter } from "next/navigation";
 
+
 export default function AccountList() {
   const [data, setData] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -71,13 +72,13 @@ export default function AccountList() {
           account={account.accountNumber}
           balance={account.balance}
         />
-      </ParentChildSelector>,
+      </ParentChildSelector>
     );
   });
 
   return (
     <div className="flex flex-col w-full h-full justify-around scrollbar-hide">
-      <div className="w-full h-[500px] flex flex-col px-[25px]">
+      <div className="w-full flex flex-col px-[25px]">
         <div className="text-R-28 text-black/80">내 계좌</div>
         <div className="pointer-events-none text-black/80 h-[48px] w-full flex text-R-20 bg-stone-300 hover:bg-neutral-400 rounded-[13px] items-center justify-between px-4 my-4">
           <span>총 {data.length} 개</span>
@@ -88,7 +89,7 @@ export default function AccountList() {
         </div>
       </div>
 
-      
+
       <CustomButton 
       color={selectedIndex !== null ? "main" : "gray"} 
       onClick={clickHandler}
