@@ -6,7 +6,7 @@ import ChoiceDesign from "@/src/ui/components/card/ChoiceDesign";
 import { useColorStore } from "@/src/stores/cardStore";
 
 const Page = () => {
-  const design = useColorStore((state) => state.design);
+  const { childcharacter, childcolor } = useColorStore();
 
   return (
     <CardDesignLayout backUrl={urlPath.HOME}>
@@ -15,7 +15,8 @@ const Page = () => {
         subText="승인 대기중이에요."
         buttonText="동의 확인하기"
         linkUrl={urlPath.HOME}
-        design={design}
+        character={childcharacter}
+        color={childcolor}
       />
     </CardDesignLayout>
   );
