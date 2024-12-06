@@ -69,3 +69,29 @@ export const agreeAccountInquiry = async (identification) => {
     };
   }
 };
+
+
+export const patchAccount = async ({accountNumber}) => {
+  const session = await auth();
+  const authorization = session?.user?.Authorization;
+  const headers = {
+    "Content-Type": "application/json",
+    Cookie: `Authorization=${authorization}`,
+  };
+  
+  
+    const response = await fetch(`${BASE_URL}/parents/account`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        accountNumber: accountNumber,
+      }),
+    });
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Error fetching transaction: ${errorMessage}`);
+    }
+  
+  
+  
+};
