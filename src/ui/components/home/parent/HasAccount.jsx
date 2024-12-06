@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
+import { useAccountStore } from "@/src/stores/userStore";
 import Profile from "../../atoms/Profile";
 import BlueCardBox from "../BlueCardBox";
-import { useAccountStore } from "@/src/stores/userStore";
 import ChildNoCard from "./ChildNoCard";
 
 export default function AccountView({ accountData }) {
   const [selectedAccount, setSelectedAccount] = useState(
-    accountData?.parent || null,
+    accountData?.parent || null
   );
   const [selectedProfile, setSelectedProfile] = useState("parent");
   const { setAccountId, setAccountInfo } = useAccountStore();

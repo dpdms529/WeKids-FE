@@ -1,22 +1,42 @@
 import { fetchAccounts } from "@/src/apis/account";
 import { urlPath } from "@/src/constants/common";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
-import Link from "next/link";
 import ParentChildSelector from "../signup/ParentChildSelector";
 import SelectorAccount from "../signup/SelectorAccount";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useFetchAccount } from "@/src/query/parentQuery";
+import { useRouter } from "next/navigation";
+
 
 export default function AccountList() {
   const [data, setData] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(null);
-  const clickHandler = (e) => {
-    if (selectedIndex == null) {
-      e.preventDefault();
+  const [accountNumber, setAccountNumber] = useState(null);
+  const router = useRouter();
+  const { mutate, isLoading: isUpdating } = useFetchAccount();
+  const clickHandler = () => {
+    if (selectedIndex !== null) { // null이 아닌 경우만 실행
+      console.log("Selected index:", selectedIndex);
+      mutate(
+        {
+          accountNumber: accountNumber,
+        },
+        {
+          onSuccess: () => {
+            console.log("계좌 업데이트 성공!");
+            router.push(`${urlPath.HOME}`);
+          },
+          onError: (error) => {
+            console.error("계좌 업데이트 실패:", error.message);
+          },
+        }
+      );
+    } else {
+      console.error("선택된 계좌가 없습니다.");
     }
   };
 
   useEffect(() => {
-    console.log(selectedIndex);
     const fetchData = async () => {
       try {
         const response = await fetchAccounts();
@@ -24,6 +44,7 @@ export default function AccountList() {
       } catch (error) {
         console.error("데이터 가져오기 실패:", error);
       }
+      
     };
 
     fetchData();
@@ -31,8 +52,9 @@ export default function AccountList() {
 
   const totalBalance = data.reduce((acc, item) => acc + item.balance, 0);
 
-  const toggleAccountSelection = (index) => {
+  const toggleAccountSelection = (index, accountNumber) => {
     setSelectedIndex((prev) => (prev === index ? null : index));
+    setAccountNumber(prev => (prev === accountNumber ? null : accountNumber));
   };
 
   let accountList = [];
@@ -43,7 +65,7 @@ export default function AccountList() {
         key={index}
         isSelected={selectedIndex == index}
         className="my-2"
-        onClick={() => toggleAccountSelection(index)}
+        onClick={() => toggleAccountSelection(index, account.accountNumber)}
       >
         <SelectorAccount
           name={account.bankName}
@@ -67,9 +89,14 @@ export default function AccountList() {
         </div>
       </div>
 
-      <Link href={urlPath.HOME} onClick={clickHandler}>
-        <CustomButton color={selectedIndex !== null ? "main" : "gray"}>가져오기</CustomButton>
-      </Link>
+
+      <CustomButton 
+      color={selectedIndex !== null ? "main" : "gray"} 
+      onClick={clickHandler}
+      disabled={selectedIndex === null} // 선택되지 않았으면 비활성화
+>
+          가져오기
+        </CustomButton>
     </div>
   );
 }
