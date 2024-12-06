@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Profile from "../../atoms/Profile";
 import BlueCardBox from "../BlueCardBox";
 import { useAccountStore } from "@/src/stores/userStore";
+import ChildNoCard from "./ChildNoCard";
 
 export default function AccountView({ accountData }) {
   const [selectedAccount, setSelectedAccount] = useState(
@@ -93,7 +94,7 @@ export default function AccountView({ accountData }) {
 
       <div className="flex justify-center">
         {selectedAccount?.accountNumber ? (
-          <BlueCardBox selectedAccount={selectedAccount} />
+          <BlueCardBox selectedAccount={selectedAccount} isParent={true} />
         ) : (
           <ChildNoCard />
         )}

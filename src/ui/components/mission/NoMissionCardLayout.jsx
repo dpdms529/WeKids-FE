@@ -7,4 +7,3 @@ export const NoMissionCardLayout = ({ children }) => {
     </div>
   );
 };
-

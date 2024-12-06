@@ -1,7 +1,7 @@
 "use client";
+import { getMissionList } from "@/src/apis/mission";
 import { useMissionFilterStore } from "@/src/stores/missionFilterStore";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomButton from "../../atoms/CustomButton";
 import FilterHeader from "./FilterHeader";
 import ParentMissionList from "./ParentMissionList";
@@ -9,36 +9,31 @@ import { ParentNoMissionCard } from "./ParentNoMissionCard";
 import MissionModal from "../MissionModal";
 import MissionAddComponent from "./MissionAddComponent";
 
-const ParentMissionHome = ({ data }) => {
+const ParentMissionHome = ({ initialData }) => {
   const { selectedChild, selectedCategory } = useMissionFilterStore();
-  const [updateData, setData] = useState(data);
+  const [updateData, setData] = useState(initialData || []);
   const [isLoading, setIsLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  // useEffect(() => {
-  //   const fetchMissions = async () => {
-  //     setIsLoading(true);
-  //     try {
-  //       const queryParams = new URLSearchParams();
 
-  //       if (selectedChild && selectedChild !== "ALL") {
-  //         queryParams.append("child", selectedChild);
-  //       }
-  //       if (selectedCategory) {
-  //         queryParams.append("category", selectedCategory);
-  //       }
+  useEffect(() => {
+    const fetchFilteredMissions = async () => {
+      setIsLoading(true);
+      try {
+        const params = {
+          child: selectedChild ? selectedChild.accountId : "",
+          category: selectedCategory || "",
+        };
+        const newData = await getMissionList(params);
+        setData(newData);
+      } catch (error) {
+        console.error("Failed to fetch missions:", error);
+        setData([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  //       const response = await fetch(`/api/missions?${queryParams.toString()}`);
-  //       const newData = await response.json();
-  //       setData(newData);
-  //     } catch (error) {
-  //       console.error("Failed to fetch missions:", error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchMissions();
-  // }, [selectedChild, selectedCategory]);
+    fetchFilteredMissions();
+  }, [selectedChild, selectedCategory]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -61,12 +56,17 @@ const ParentMissionHome = ({ data }) => {
       </div>
 
       <div className="sticky bottom-0 bg-white w-full p-4 flex justify-center">
-        <CustomButton onClick={() => setIsModalOpen(true)} size="medium" color="main" rounded={true}>
+        <CustomButton
+          onClick={() => setIsModalOpen(true)}
+          size="medium"
+          color="main"
+          rounded={true}
+        >
           미션 등록
         </CustomButton>
         <MissionModal isOpen={isModalOpen} setOpen={setIsModalOpen}>
-         <MissionAddComponent setIsModalOpen={setIsModalOpen} />
-      </MissionModal>
+          <MissionAddComponent setIsModalOpen={setIsModalOpen} />
+        </MissionModal>
       </div>
     </div>
   );

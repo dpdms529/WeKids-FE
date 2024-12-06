@@ -9,8 +9,6 @@ import missionCategories from "@/src/constants/mission";
 import { getParentsAccounts } from "@/src/apis/parents";
 import { useCreateMission } from "@/src/query/missionQuery";
 
-
-
 export default function MissionAddComponent({ setIsModalOpen }) {
   const [child, setChild] = useState([]);
   const [childlist, setChildList] = useState([]);
@@ -26,12 +24,12 @@ export default function MissionAddComponent({ setIsModalOpen }) {
   const { mutate, isLoading: isUpdating } = useCreateMission();
 
   useEffect(() => {
-    console.log(child)
-    console.log(category)
-    console.log(title)
-    console.log(content)
-    console.log(amount)
-    console.log(deadline)
+    console.log(child);
+    console.log(category);
+    console.log(title);
+    console.log(content);
+    console.log(amount);
+    console.log(deadline);
     if (child.length && category && title && content && amount && deadline) {
       setChecked(true);
     } else {
@@ -39,19 +37,16 @@ export default function MissionAddComponent({ setIsModalOpen }) {
     }
   }, [child, category, title, content, amount, deadline]);
 
-
   useEffect(() => {
     const getParentsAccount = async () => {
       try {
         setLoading(true); // 로딩 상태 시작
         const data = await getParentsAccounts();
         setChildList(data.children);
-        
       } catch (err) {
         setError(err.message); // 에러 처리
       } finally {
         setLoading(false); // 로딩 상태 종료
-        
       }
     };
     getParentsAccount();
@@ -65,13 +60,13 @@ export default function MissionAddComponent({ setIsModalOpen }) {
 
   const handleRewardChange = (e) => {
     const inputValue = e.target.value;
-  
+
     // 쉼표를 제거한 숫자 값
     const numericValue = inputValue.replace(/,/g, "");
-  
+
     // 숫자 값만 포맷팅
     const formattedValue = formatReward(numericValue);
-  
+
     // 화면에 보여줄 값은 포맷팅된 값, 실제 저장할 값은 숫자 형태로 저장
     setAmount(numericValue); // 실제 저장 (2000)
     setFormattedAmount(formattedValue); // 화면 표시용 (2,000)
@@ -89,24 +84,27 @@ export default function MissionAddComponent({ setIsModalOpen }) {
     if (checked) {
       const apiCalls = child.map((childId) =>
         mutate(
-          { childId: childId,
+          {
+            childId: childId,
             title: title,
             content: content,
             deadline: deadline,
             amount: amount,
             category: category,
-           }, // 각 childId로 API 호출
+          }, // 각 childId로 API 호출
           {
             onSuccess: () => {
               console.log(`성공! Child ID: ${childId}`);
             },
             onError: (error) => {
-              console.error(`실패! Child ID: ${childId}, Error: ${error.message}`);
+              console.error(
+                `실패! Child ID: ${childId}, Error: ${error.message}`,
+              );
             },
-          }
-        )
+          },
+        ),
       );
-    
+
       // 모든 호출이 완료된 후 처리
       Promise.all(apiCalls)
         .then(() => {
@@ -120,8 +118,6 @@ export default function MissionAddComponent({ setIsModalOpen }) {
       toast("빈칸을 모두 채워주세요!");
     }
   };
-
-  
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">
@@ -167,12 +163,12 @@ export default function MissionAddComponent({ setIsModalOpen }) {
             className={`${amount != "" ? "bg-main02/20" : "bg-grey01/20"} rounded-lg text-R-12 shadow-md text-black/80`}
           >
             <input
-            type="text"
-            className="w-full h-8 bg-transparent rounded-md outline-none p-2"
-            placeholder="미션 완료 시 아이가 수령할 금액을 입력해주세요."
-            value={formattedAmount} // 화면에 표시될 값
-            onChange={handleRewardChange} // 값 변경 핸들러
-          />
+              type="text"
+              className="w-full h-8 bg-transparent rounded-md outline-none p-2"
+              placeholder="미션 완료 시 아이가 수령할 금액을 입력해주세요."
+              value={formattedAmount} // 화면에 표시될 값
+              onChange={handleRewardChange} // 값 변경 핸들러
+            />
           </div>
         </div>
         <div className="flex flex-col w-full">

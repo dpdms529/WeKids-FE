@@ -1,4 +1,3 @@
-
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Modal from "@/src/ui/components/atoms/Modal";
 import Profile from "@/src/ui/components/atoms/Profile";
@@ -17,8 +16,7 @@ const TransferModal = ({
   const submitTransfer = () => {
     modalHandler();
     setTransfer(true);
-  }
-  
+  };
 
   return (
     <Modal

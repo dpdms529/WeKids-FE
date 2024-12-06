@@ -1,16 +1,15 @@
 "use client";
 import StateBadge from "../list/StateBadge";
 
-const ChildMissionHeader = ({ onStateChange, selectedState }) => {
-  const missionStates = ["ACC", "NEW", "SUB", "REJ", "DONE"];
+const ChildMissionHeader = ({ onStateChange, selectedStates }) => {
+  const missionStates = ["ACCEPT", "NEW", "SUBMIT", "CANCEL", "OUTDATED"];
 
   const handleStateClick = (state) => {
-    const newState = selectedState === state ? null : state;
-    onStateChange(newState);
+    onStateChange(state); // 상태 추가/제거 토글
   };
 
   return (
-    <div className="w-[314px] mx-auto mb-7 mt-8">
+    <div className="w-[314px] mx-auto mb-7">
       <div className="flex justify-between gap-1">
         {missionStates.map((state) => (
           <StateBadge
@@ -21,8 +20,8 @@ const ChildMissionHeader = ({ onStateChange, selectedState }) => {
             radius="rounded-md"
             height="h-[30px]"
             px="px-3"
-            isSelected={selectedState === state}
-            onClick={() => handleStateClick(state)}
+            isSelected={selectedStates.includes(state)} // 배열에 포함 여부 확인
+            onClick={() => handleStateClick(state)} // 클릭 핸들러
           />
         ))}
       </div>

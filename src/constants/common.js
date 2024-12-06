@@ -59,23 +59,28 @@ export const colorTypeMap = {
 };
 
 export const missionColorMap = {
-  ACC: {
+  ACCEPT: {
+    text: "ACC",
     background: "bg-blue01/80",
     iconBg: "bg-main02",
   },
   NEW: {
+    text: "NEW",
     background: "bg-main02/20",
     iconBg: "bg-pink01",
   },
-  SUB: {
+  SUBMIT: {
+    text: "SUB",
     background: "bg-purple01/20",
     iconBg: "bg-purple01",
   },
-  REJ: {
+  CANCEL: {
+    text: "REJ",
     background: "bg-red01/20",
     iconBg: "bg-red01",
   },
-  DONE: {
+  OUTDATED: {
+    text: "DONE",
     background: "bg-gray01/20",
     iconBg: "bg-neutral-400",
   },

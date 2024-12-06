@@ -1,30 +1,31 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { urlPath } from "@/src/constants/common";import CardDisplay from "@/src/ui/components/card/CardDisplay";
+import { urlPath } from "@/src/constants/common";
+import CardDisplay from "@/src/ui/components/card/CardDisplay";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { useColorStore, useSensitiveDataStore } from "@/src/stores/cardStore";
 import { useEffect } from "react";
 import Link from "next/link";
 
 const DesignChracterColor = {
-    color: "YELLOW",
-    character: "HEARTSPRING",
-  };
+  color: "YELLOW",
+  character: "HEARTSPRING",
+};
 
 export default function CardCompleteComponent() {
-    const router = useRouter();
+  const router = useRouter();
   const { childcharacter, childcolor } = useColorStore();
-  const {clearData} = useSensitiveDataStore();  
+  const { clearData } = useSensitiveDataStore();
   useEffect(() => {
     console.log(childcharacter, childcolor);
   }, []);
 
   const clearAll = () => {
     clearData();
-  }
-    return (
-        <>
-        <div className="flex-grow flex items-center justify-center">
+  };
+  return (
+    <>
+      <div className="flex-grow flex items-center justify-center">
         <CardDisplay
           selectedCharacter={
             childcharacter != ""
@@ -41,15 +42,11 @@ export default function CardCompleteComponent() {
 
       <div>
         <Link href={urlPath.HOME}>
-        <CustomButton
-          size={"large"}
-          rounded={false}
-          onClick={clearAll}
-        >
-          확인
-        </CustomButton>
+          <CustomButton size={"large"} rounded={false} onClick={clearAll}>
+            확인
+          </CustomButton>
         </Link>
       </div>
-      </>
-    );
+    </>
+  );
 }

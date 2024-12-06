@@ -81,33 +81,40 @@ const MissionRequestComponent = ({ setIsModalOpen, missionId }) => {
 
   const handleMissionSubmit = async () => {
     try {
-      console.log("Submitting mission with:", { missionId, memo: message, image: file });
-  
+      console.log("Submitting mission with:", {
+        missionId,
+        memo: message,
+        image: file,
+      });
+
       // API 호출
       await missionAuth({
         missionId: missionId,
         memo: message || "", // 메시지가 없으면 빈 문자열 전달
         image: file || null, // 이미지가 없으면 null 전달
       });
-  
+
       alert("미션이 성공적으로 제출되었습니다!");
       setIsModalOpen(false); // 모달 닫기
     } catch (error) {
       console.error("미션 제출 실패:", error);
-  
+
       // 에러 로그를 확인할 수 있도록 추가 정보 출력
       if (error instanceof TypeError) {
         console.error("타입 에러 발생:", error.message);
       } else if (error.response) {
-        console.error("서버 응답 에러:", error.response.status, error.response.data);
+        console.error(
+          "서버 응답 에러:",
+          error.response.status,
+          error.response.data,
+        );
       } else {
         console.error("기타 에러 발생:", error);
       }
-  
+
       alert("미션 제출 중 오류가 발생했습니다.");
     }
   };
-  
 
   return (
     <div className="flex flex-col w-full justify-center items-center h-full">

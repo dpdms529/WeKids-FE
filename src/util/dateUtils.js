@@ -6,29 +6,22 @@ export const formatShortDate = (dateString) => {
   ).padStart(2, "0")}`;
 };
 
+export const formatDate = (dateString) => {
+  // 날짜 문자열에서 년, 월, 일 추출
+  const [year, month, day] = dateString.split("-").map(Number);
 
-export const formattoDate = (dateString) => {
-  const date = new Date(dateString);
-  
-  // 요일을 한글로 변환하기 위한 매핑
+  // 새로운 Date 객체 생성
+  const date = new Date(year, month - 1, day);
+
   const weekDays = {
-    0: '일',
-    1: '월',
-    2: '화',
-    3: '수',
-    4: '목',
-    5: '금',
-    6: '토'
+    0: "일",
+    1: "월",
+    2: "화",
+    3: "수",
+    4: "목",
+    5: "금",
+    6: "토",
   };
 
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const weekDay = weekDays[date.getDay()];
-
-  return `${year}년 ${month}월 ${day}일 (${weekDay}) 까지`;
+  return `${year}년 ${month}월 ${day}일 (${weekDays[date.getDay()]}) 까지`;
 };
-
-// 사용 예시
-// const localDate = "2024-11-20T00:00:00";
-// console.log(formatDate(localDate)); // "2024년 11월 20일 (수) 까지"

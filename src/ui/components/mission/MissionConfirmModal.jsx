@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect } from "react";
 import CustomButton from "../atoms/CustomButton";
 
@@ -42,4 +42,3 @@ const MissionConfirmModal = ({ setParentOpen, setOpen, text, onConfirm }) => {
 };
 
 export default MissionConfirmModal;
-

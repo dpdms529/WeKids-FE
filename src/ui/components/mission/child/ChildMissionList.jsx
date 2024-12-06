@@ -1,4 +1,5 @@
 import { missionColorMap } from "@/src/constants/common";
+import { formatDate } from "@/src/util/missionUtils";
 import CategoryBadge from "../list/CategoryBadge";
 import StateBadge from "../list/StateBadge";
 
@@ -6,7 +7,7 @@ export default function ChildMissionList({ missiondata }) {
   const bgColor =
     missiondata?.state && missionColorMap[missiondata.state]
       ? missionColorMap[missiondata.state].background
-      : missionColorMap.NEW.background;
+      : missionColorMap["NEW"].background;
 
   return (
     <div className={`w-[322px] rounded-xl ${bgColor} p-5 shadow-md`}>
@@ -23,7 +24,7 @@ export default function ChildMissionList({ missiondata }) {
         </div>
       </div>
       <p className="text-R-10 text-sub02/60 text-right mt-3">
-        🍪 {missiondata.deadline}
+        🍪 {formatDate(missiondata.deadline)}
       </p>
     </div>
   );

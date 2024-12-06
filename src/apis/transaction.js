@@ -2,10 +2,15 @@
 import { auth } from "@/auth";
 import { BASE_URL } from "../constants/url";
 
-export const submitTransfer = async ({parentAccountNumber, childAccountNumber
-  , amount, sender, receiver, simplePassword
+export const submitTransfer = async ({
+  parentAccountNumber,
+  childAccountNumber,
+  amount,
+  sender,
+  receiver,
+  simplePassword,
 }) => {
-  console.log(parentAccountNumber)
+  console.log(parentAccountNumber);
   const session = await auth();
   const authorization = session?.user?.Authorization;
   const headers = {
@@ -14,12 +19,17 @@ export const submitTransfer = async ({parentAccountNumber, childAccountNumber
   };
   const response = await fetch(`${BASE_URL}/transactions`, {
     method: "POST",
-    headers ,
-    body: JSON.stringify({parentAccountNumber, childAccountNumber
-      , amount, sender, receiver, simplePassword
+    headers,
+    body: JSON.stringify({
+      parentAccountNumber,
+      childAccountNumber,
+      amount,
+      sender,
+      receiver,
+      simplePassword,
     }),
   });
-  
+
   return response.status !== 204 ? await response.json() : null;
 };
 

@@ -8,28 +8,26 @@ import { useEffect, useState } from "react";
 
 export default function CardReview() {
   const { accountInfo } = useAccountStore();
-  const {childId} = useSensitiveDataStore();
+  const { childId } = useSensitiveDataStore();
   const [childname, setChildname] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log(childId)
+    console.log(childId);
     const getParentsAccount = async () => {
       try {
         setLoading(true); // 로딩 상태 시작
         const data = await getParentsAccounts();
-        if(data){
+        if (data) {
           console.log(data);
           const child = data.children.find((c) => c.childId === childId);
           setChildname(child.name);
         }
-        
       } catch (err) {
         setError(err.message); // 에러 처리
       } finally {
         setLoading(false); // 로딩 상태 종료
-        
       }
     };
 
@@ -38,7 +36,11 @@ export default function CardReview() {
 
   return (
     <CardRequestReview>
-      <InnerText name1={accountInfo ? accountInfo.name : ""} name2={childname ? childname : ""} isChild={false} />
+      <InnerText
+        name1={accountInfo ? accountInfo.name : ""}
+        name2={childname ? childname : ""}
+        isChild={false}
+      />
     </CardRequestReview>
   );
 }

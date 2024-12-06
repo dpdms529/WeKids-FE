@@ -1,7 +1,11 @@
 "use client";
 import { colorTypeMap, urlPath } from "@/src/constants/common";
 import { useTransFilterStore } from "@/src/stores/transactionStore";
-import { useAccountStore, useSelectUserStore, useUserTypeStore } from "@/src/stores/userStore";
+import {
+  useAccountStore,
+  useSelectUserStore,
+  useUserTypeStore,
+} from "@/src/stores/userStore";
 import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import { ArrowLeftIcon, GearIcon } from "@radix-ui/react-icons";
 import { Box, Flex } from "@radix-ui/themes";
@@ -12,8 +16,6 @@ export default function TopBar({ name, accountNumber }) {
   const { userType } = useUserTypeStore();
   const { balance } = useTransFilterStore();
   const { selectedaccountInfo } = useSelectUserStore();
-
- 
 
   const copyToClipboard = (text) => {
     navigator.clipboard

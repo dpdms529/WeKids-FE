@@ -53,7 +53,6 @@ export const alarmData = {
   },
 };
 
-
 export const generateYears = (startYear, endYear) => {
   return Array.from(
     { length: endYear - startYear + 1 },

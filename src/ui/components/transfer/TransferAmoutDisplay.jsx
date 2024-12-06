@@ -19,8 +19,6 @@ const TransferAmountDisplay = ({
     }
   }, [selectedAccount]);
 
-  
-
   const router = useRouter();
 
   const btnHandler = (action) => {
