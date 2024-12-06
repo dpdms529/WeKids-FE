@@ -60,7 +60,7 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
     if (type == "accept") {
       if (state === "SUBMIT") {
         setText(
-          `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`
+          `아이가 미션을 완료하지 않았습니다. <br /> 인증을 완료하시겠습니까?`,
         );
       } else {
         router.push(urlPath.MISSION_TRANSFER);
@@ -126,7 +126,9 @@ const MissionAcceptComponent = ({ setIsModalOpen, missionId }) => {
         </div>
         <div className="p-3 text-center bg-main02/20 border rounded-lg text-R-12 shadow-md text-sub02/60">
           🍪{" "}
-          <span className="text-sub02">{formattedDeadline || "알 수 없음"}</span>{" "}
+          <span className="text-sub02">
+            {formattedDeadline || "알 수 없음"}
+          </span>{" "}
           까지 완료할 수 있어요
         </div>
 

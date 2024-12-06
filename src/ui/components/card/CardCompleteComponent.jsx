@@ -15,17 +15,17 @@ const DesignChracterColor = {
 export default function CardCompleteComponent() {
   const router = useRouter();
   const { childcharacter, childcolor } = useColorStore();
-  const {clearData} = useSensitiveDataStore();  
+  const { clearData } = useSensitiveDataStore();
   useEffect(() => {
     console.log(childcharacter, childcolor);
   }, []);
 
   const clearAll = () => {
     clearData();
-  }
-    return (
-        <>
-        <div className="flex-grow flex items-center justify-center">
+  };
+  return (
+    <>
+      <div className="flex-grow flex items-center justify-center">
         <CardDisplay
           selectedCharacter={
             childcharacter != ""
@@ -42,13 +42,9 @@ export default function CardCompleteComponent() {
 
       <div>
         <Link href={urlPath.HOME}>
-        <CustomButton
-          size={"large"}
-          rounded={false}
-          onClick={clearAll}
-        >
-          확인
-        </CustomButton>
+          <CustomButton size={"large"} rounded={false} onClick={clearAll}>
+            확인
+          </CustomButton>
         </Link>
       </div>
     </>

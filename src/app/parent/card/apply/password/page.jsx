@@ -12,7 +12,8 @@ export default function Page() {
   const [pwd, setPwd] = useState("");
   const [allow, setAllowed] = useState(false);
   const router = useRouter();
-  const { getChildId, getCardPassword, getResidentRegistrationNumber } = useSensitiveDataStore();
+  const { getChildId, getCardPassword, getResidentRegistrationNumber } =
+    useSensitiveDataStore();
   const { mutate, isLoading } = useRegisterPassword();
   const handleSubmit = () => {
     if (allow) {
@@ -31,12 +32,10 @@ export default function Page() {
           onError: (error) => {
             console.error("비밀번호 등록 실패:", error.message);
           },
-        }
+        },
       );
     }
   };
-
-  
 
   return (
     <div className="flex flex-col h-screen max-w-[393px] bg-white overflow-auto">

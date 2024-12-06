@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function CardReview() {
   const { accountInfo } = useAccountStore();
-  const {childId} = useSensitiveDataStore();
+  const { childId } = useSensitiveDataStore();
   const [childname, setChildname] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

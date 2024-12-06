@@ -17,12 +17,26 @@ export default function TransferDonePage() {
 
   return (
     <>
-    {
-    type=="CONFIRM"  ? <TransferComplete missionId={missionId} type={type} setChildName={setChildName} setAmount={setAmount} childName={childName} amount={amount} accountInfo={accountInfo.accountNumber} setType={setType} />
-    : type=="SEND" ? <TransferCheck missionId={missionId} setType={setType} />
-    : <TransferDone childName={childName} amount={amount} accountNumber={accountInfo.accountNumber} />
-    }
-
-</>
-)
+      {type == "CONFIRM" ? (
+        <TransferComplete
+          missionId={missionId}
+          type={type}
+          setChildName={setChildName}
+          setAmount={setAmount}
+          childName={childName}
+          amount={amount}
+          accountInfo={accountInfo.accountNumber}
+          setType={setType}
+        />
+      ) : type == "SEND" ? (
+        <TransferCheck missionId={missionId} setType={setType} />
+      ) : (
+        <TransferDone
+          childName={childName}
+          amount={amount}
+          accountNumber={accountInfo.accountNumber}
+        />
+      )}
+    </>
+  );
 }

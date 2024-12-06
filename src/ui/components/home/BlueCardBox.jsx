@@ -2,7 +2,11 @@
 
 import { characterInfoMap, urlPath } from "@/src/constants/common";
 import { useTransactionStore } from "@/src/stores/transactionStore";
-import { useAccountStore, useSelectUserStore, useUserCardColorStore } from "@/src/stores/userStore";
+import {
+  useAccountStore,
+  useSelectUserStore,
+  useUserCardColorStore,
+} from "@/src/stores/userStore";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { Text } from "@radix-ui/themes";
 import Image from "next/image";
@@ -14,9 +18,9 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState("");
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
   const { accountInfo, setAccountId } = useAccountStore();
-  const {setSelectedAccount} = useTransactionStore();
-  const {setSelectedAccountId, setSelectedAccountInfo} = useSelectUserStore();
-  
+  const { setSelectedAccount } = useTransactionStore();
+  const { setSelectedAccountId, setSelectedAccountInfo } = useSelectUserStore();
+
   useEffect(() => {
     setAccountId(selectedAccount.accountId);
     setAccountInfo({
@@ -51,14 +55,12 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
     }
   };
 
-  
-    const clickHandler = (e) => {
-      console.log(selectedAccount)
-      if (selectedAccount == null) {
-        e.preventDefault();
-      }
-    };
-  
+  const clickHandler = (e) => {
+    console.log(selectedAccount);
+    if (selectedAccount == null) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <div
@@ -103,8 +105,12 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
           </Link>
           {isParent && (
             <Link
-              href={accountInfo.accountNumber != selectedAccount.accountNumber ? urlPath.TRANSFER : urlPath.ACCOUNT_LIST}
-            onClick={clickHandler}
+              href={
+                accountInfo.accountNumber != selectedAccount.accountNumber
+                  ? urlPath.TRANSFER
+                  : urlPath.ACCOUNT_LIST
+              }
+              onClick={clickHandler}
               className="flex-1 py-4 text-center border-l border-black text-R-20 hover:bg-white/10 transition-colors"
             >
               <button>이체</button>

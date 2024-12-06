@@ -35,10 +35,7 @@ const Page = () => {
   };
 
   return (
-    <TransferResult
-      transferData={transferData}
-      onComplete={completeTransfer}
-    />
+    <TransferResult transferData={transferData} onComplete={completeTransfer} />
   );
 };
 

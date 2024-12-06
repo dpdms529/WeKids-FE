@@ -66,18 +66,17 @@ export default function PasswordSecondBottom({
   return (
     <>
       <div className="flex flex-col h-1/5 p-10">
-        
-          <CustomButton onClick={handleClick}
-            rounded="true"
-            className={`mt-auto w-full ${
-              allow
-                ? "bg-main02"
-                : "bg-stone-300 hover:bg-stone-300 pointer-events-none"
-            }`}
-          >
-            확인
-          </CustomButton>
-        
+        <CustomButton
+          onClick={handleClick}
+          rounded="true"
+          className={`mt-auto w-full ${
+            allow
+              ? "bg-main02"
+              : "bg-stone-300 hover:bg-stone-300 pointer-events-none"
+          }`}
+        >
+          확인
+        </CustomButton>
       </div>
       <div className="flex flex-col mt-auto w-[393px]">
         <KeyPad isDoubleButton={false} number={inputHandler} />

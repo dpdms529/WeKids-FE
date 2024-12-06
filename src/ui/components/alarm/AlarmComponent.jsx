@@ -6,8 +6,7 @@ import { useUpdateAlarmChecked } from "@/src/query/alarmQuery";
 
 const AlarmComponent = ({ data }) => {
   const { mutate, isLoading: isUpdating } = useUpdateAlarmChecked();
-  const {setChildId} = useSensitiveDataStore();
-  
+  const { setChildId } = useSensitiveDataStore();
 
   const OnCheckClicker = (idx) => {
     const alarm = data[idx]; // data 배열에서 해당 인덱스의 alarm 데이터 가져오기
@@ -15,19 +14,18 @@ const AlarmComponent = ({ data }) => {
     if (alarm.type === "CARD") {
       setChildId(alarm.targetId); // targetId를 Zustand에 저장
     }
-    
-      mutate(
-        { alarmId: idx + 1 },
-        {
-          onSuccess: () => {
-            console.log("성공!");
-          },
-          onError: (error) => {
-            console.error("실패:", error.message);
-          },
+
+    mutate(
+      { alarmId: idx + 1 },
+      {
+        onSuccess: () => {
+          console.log("성공!");
         },
-      );
-    
+        onError: (error) => {
+          console.error("실패:", error.message);
+        },
+      },
+    );
   };
 
   return (

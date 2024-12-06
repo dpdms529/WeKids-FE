@@ -6,7 +6,6 @@ import { urlPath } from "@/src/constants/common";
 import { useEffect } from "react";
 import Link from "next/link";
 
-
 const MESSAGES = {
   COMPLETE: {
     TITLE: (name) => `${name}님에게`,
@@ -75,7 +74,7 @@ const TransferDone = ({
             <CustomButton rounded={true} size="medium" color="main">
               <span className="text-R-20">{MESSAGES.BUTTONS.CONFIRM}</span>
             </CustomButton>
-            </Link>
+          </Link>
         </div>
       </div>
     </main>

@@ -21,8 +21,8 @@ export const useUserStore = create(
     {
       name: "user-storage",
       storage: createJSONStorage(() => sessionStorage),
-    }
-  )
+    },
+  ),
 );
 
 export const useUserCardColorStore = create((set) => ({
@@ -84,8 +84,8 @@ export const useAccountStore = create(
           sessionStorage.removeItem(name);
         },
       },
-    }
-  )
+    },
+  ),
 );
 
 export const useSelectUserStore = create(

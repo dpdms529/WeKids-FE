@@ -94,7 +94,7 @@ export default function AccountView({ accountData }) {
 
       <div className="flex justify-center">
         {selectedAccount?.accountNumber ? (
-          <BlueCardBox selectedAccount={selectedAccount} isParent={true}/>
+          <BlueCardBox selectedAccount={selectedAccount} isParent={true} />
         ) : (
           <ChildNoCard />
         )}

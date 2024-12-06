@@ -34,26 +34,26 @@ export default function TransferCheck({ missionId, setType }) {
 
   return (
     <div className="flex flex-col h-screen max-w-[393px] bg-white overflow-auto">
-        <PasswordSecondTop
-          isInput={isInput}
-          pwd={pwd}
-          setIsInput={setIsInput}
-          setPwd={setPwd}
-          setAllowed={setAllowed}
-          index={6}
-          isSingleInput={true}
-        />
-        <PasswordSecondBottom
-          pwd={pwd}
-          isInput={isInput}
-          allow={allow}
-          setIsInput={setIsInput}
-          setPwd={setPwd}
-          setAllowed={setAllowed}
-          isSingleInput={true}
-          type={"none"}
-          onConfirmClick={handleSubmit}
-        />
+      <PasswordSecondTop
+        isInput={isInput}
+        pwd={pwd}
+        setIsInput={setIsInput}
+        setPwd={setPwd}
+        setAllowed={setAllowed}
+        index={6}
+        isSingleInput={true}
+      />
+      <PasswordSecondBottom
+        pwd={pwd}
+        isInput={isInput}
+        allow={allow}
+        setIsInput={setIsInput}
+        setPwd={setPwd}
+        setAllowed={setAllowed}
+        isSingleInput={true}
+        type={"none"}
+        onConfirmClick={handleSubmit}
+      />
     </div>
   );
 }

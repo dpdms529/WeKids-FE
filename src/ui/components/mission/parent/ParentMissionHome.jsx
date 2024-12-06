@@ -56,12 +56,17 @@ const ParentMissionHome = ({ initialData }) => {
       </div>
 
       <div className="sticky bottom-0 bg-white w-full p-4 flex justify-center">
-        <CustomButton onClick={() => setIsModalOpen(true)} size="medium" color="main" rounded={true}>
+        <CustomButton
+          onClick={() => setIsModalOpen(true)}
+          size="medium"
+          color="main"
+          rounded={true}
+        >
           미션 등록
         </CustomButton>
         <MissionModal isOpen={isModalOpen} setOpen={setIsModalOpen}>
-         <MissionAddComponent setIsModalOpen={setIsModalOpen} />
-      </MissionModal>
+          <MissionAddComponent setIsModalOpen={setIsModalOpen} />
+        </MissionModal>
       </div>
     </div>
   );

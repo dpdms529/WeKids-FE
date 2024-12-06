@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import { formatToLocalDate } from "@/src/constants/transaction";
 import { useAccountStore, useSelectUserStore } from "@/src/stores/userStore";
-import { urlPath } from "@/src/constants/common"; 
+import { urlPath } from "@/src/constants/common";
 import { formatShortDate } from "@/src/util/dateUtils";
 
 export const TransactionsView = () => {
@@ -27,7 +27,7 @@ export const TransactionsView = () => {
     balance,
     setBalance,
   } = useTransFilterStore();
-  const {selectedaccountId} = useSelectUserStore();
+  const { selectedaccountId } = useSelectUserStore();
 
   const now = new Date();
   const MonthsAgo = new Date();
@@ -37,7 +37,7 @@ export const TransactionsView = () => {
   const [typetoEng, setTypeToEng] = useState("ALL");
 
   useEffect(() => {
-    console.log(selectedaccountId)
+    console.log(selectedaccountId);
     if (type == TypeEnum.ALL) {
       setTypeToEng("ALL");
     } else if (type == TypeEnum.DEPOSIT) {

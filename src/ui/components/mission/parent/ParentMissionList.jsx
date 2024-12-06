@@ -56,7 +56,6 @@ const ParentMissionList = ({ missiondata }) => {
           </p>
         </div>
       </div>
-      
     </div>
   );
 };

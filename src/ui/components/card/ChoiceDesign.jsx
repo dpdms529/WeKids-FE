@@ -19,10 +19,10 @@ export default function ChoiceDesign({
   const [design, setDesign] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { setChildCharacter, setChildColor } = useColorStore();
-  const {childId} = useSensitiveDataStore();
+  const { childId } = useSensitiveDataStore();
 
   useEffect(() => {
-    console.log(childId)
+    console.log(childId);
     const fetchDesign = async () => {
       try {
         const session = await auth(); // 세션에서 사용자 정보를 가져옴
