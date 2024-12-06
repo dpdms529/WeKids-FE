@@ -33,6 +33,7 @@ export default function TransferDetail({userdata}) {
 
   useEffect(() => {
     if (first) {
+      console.log(selectedAccount);
         console.log(userdata);
       setTransferAmount(0);
       setFirst(false);

@@ -18,7 +18,7 @@ export default function MissionDetail({type}) {
         미션 등록하기
       </CustomButton>
       <MissionModal isOpen={isModalOpen} setOpen={setIsModalOpen}>
-        {type == "request" ? <MissionRequestComponent setIsModalOpen={setIsModalOpen} /> : <MissionAddComponent setIsModalOpen={setIsModalOpen} /> }
+        {type == "request" ? <MissionRequestComponent missionId={2} setIsModalOpen={setIsModalOpen} /> : <MissionAddComponent setIsModalOpen={setIsModalOpen} /> }
         
       </MissionModal>
     </>

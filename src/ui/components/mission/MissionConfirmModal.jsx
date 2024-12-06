@@ -1,12 +1,14 @@
+'use client'
+import { useEffect } from "react";
 import CustomButton from "../atoms/CustomButton";
 
-export default function MissionConfirmModal({ setParentOpen, setOpen, text, onClick }) {
+const MissionConfirmModal = ({ setParentOpen, setOpen, text, onConfirm }) => {
   const handleConfirm = () => {
-    setParentOpen(false);
-    setOpen(false);
-    if(onClick){
-      onClick();
+    if (onConfirm) {
+      onConfirm(); // 상위 컴포넌트에서 처리할 로직 실행
     }
+    setParentOpen(false); // 부모 컴포넌트 모달 상태 닫기
+    setOpen(false); // 현재 모달 닫기
   };
 
   return (
@@ -37,4 +39,7 @@ export default function MissionConfirmModal({ setParentOpen, setOpen, text, onCl
       </div>
     </div>
   );
-}
+};
+
+export default MissionConfirmModal;
+

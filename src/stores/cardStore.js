@@ -16,7 +16,7 @@ const decrypt = (encryptedData) => {
 
 // Zustand Store
 export const useSensitiveDataStore = create((set, get) => ({
-  childId: 1,
+  childId: null,
   residentRegistrationNumber: "",
   accountPassword: "1234",
   cardPassword: "",

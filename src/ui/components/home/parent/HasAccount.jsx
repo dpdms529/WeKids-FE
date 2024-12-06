@@ -10,11 +10,12 @@ export default function AccountView({ accountData }) {
     accountData?.parent || null,
   );
   const [selectedProfile, setSelectedProfile] = useState("parent");
-  const { setAccountInfo } = useAccountStore();
+  const { setAccountId, setAccountInfo } = useAccountStore();
 
   useEffect(() => {
     if (accountData) {
       setSelectedAccount(accountData.parent);
+      setAccountId(accountData.accountId);
       setAccountInfo({
         accountNumber: accountData.parent.accountNumber,
         name: accountData.parent.name,
