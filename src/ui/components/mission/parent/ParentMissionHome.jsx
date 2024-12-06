@@ -13,6 +13,7 @@ const ParentMissionHome = ({ initialData }) => {
   const { selectedChild, selectedCategory } = useMissionFilterStore();
   const [updateData, setData] = useState(initialData || []);
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchFilteredMissions = async () => {

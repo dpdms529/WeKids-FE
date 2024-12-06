@@ -17,13 +17,12 @@ import toast, { Toaster } from "react-hot-toast";
 const BlueCardBox = ({ selectedAccount, isParent }) => {
   const [backgroundColorClass, setBackgroundColorClass] = useState("");
   const setCardColor = useUserCardColorStore((state) => state.setCardColor);
-  const { accountInfo, setAccountId } = useAccountStore();
-  const { setSelectedAccount } = useTransactionStore();
+  const { accountInfo } = useAccountStore();
   const { setSelectedAccountId, setSelectedAccountInfo } = useSelectUserStore();
 
   useEffect(() => {
-    setAccountId(selectedAccount.accountId);
-    setAccountInfo({
+    setSelectedAccountId(selectedAccount.accountId);
+    setSelectedAccountInfo({
       name: selectedAccount.name,
       accountNumber: selectedAccount.accountNumber,
       color: selectedAccount.color,
@@ -39,7 +38,7 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
       setCardColor(bgClass);
       setBackgroundColorClass(bgClass);
     }
-  }, [selectedAccount, setCardColor, setAccountId, setAccountInfo]);
+  }, [selectedAccount]);
 
   if (!selectedAccount) return <div>계좌를 선택해주세요.</div>;
 
@@ -56,7 +55,6 @@ const BlueCardBox = ({ selectedAccount, isParent }) => {
   };
 
   const clickHandler = (e) => {
-    console.log(selectedAccount);
     if (selectedAccount == null) {
       e.preventDefault();
     }
