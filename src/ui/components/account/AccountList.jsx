@@ -87,13 +87,13 @@ export default function AccountList() {
         </div>
       </div>
       <div className="sticky bottom-0">
-      <CustomButton
-        color={selectedIndex !== null ? "main" : "gray"}
-        onClick={clickHandler}
-        disabled={selectedIndex === null} // 선택되지 않았으면 비활성화
-      >
-        가져오기
-      </CustomButton>
+        <CustomButton
+          color={selectedIndex !== null ? "main" : "gray"}
+          onClick={clickHandler}
+          disabled={selectedIndex === null} // 선택되지 않았으면 비활성화
+        >
+          가져오기
+        </CustomButton>
       </div>
     </div>
   );

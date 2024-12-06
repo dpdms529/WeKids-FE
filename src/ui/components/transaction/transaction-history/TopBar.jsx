@@ -16,7 +16,7 @@ export default function TopBar({ name, accountNumber }) {
   const { userType } = useUserTypeStore();
   const { balance } = useTransFilterStore();
   const { selectedaccountInfo } = useSelectUserStore();
-  const {accountInfo} = useAccountStore();
+  const { accountInfo } = useAccountStore();
 
   const copyToClipboard = (text) => {
     navigator.clipboard
