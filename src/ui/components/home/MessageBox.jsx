@@ -9,7 +9,7 @@ export const MessageBox = ({ subtitle, description, imgUrl }) => {
         <p className="text-B-18 text-left pt-4">
           <span className="text-sub02">{firstPart}</span>
           <br />
-          <span className="text-main02">{secondPart}</span>
+          <span className="text-main02 whitespace-nowrap">{secondPart}</span>
         </p>
         <div className="pl-2 pt-10">
           <ArrowRightIcon className="w-6 h-6 text-neutral-400" />
