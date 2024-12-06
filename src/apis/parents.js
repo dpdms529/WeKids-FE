@@ -29,7 +29,7 @@ export const getParentsAccounts = async () => {
   return data;
 };
 
-export const agreeAccountInquiry = async (identification) => {
+export const agreeAccountInquiry = async (residentRegistrationNumber) => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
 
@@ -37,9 +37,6 @@ export const agreeAccountInquiry = async (identification) => {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
   };
-
-  const residentRegistrationNumber =
-    identification.slice(0, 6) + "-" + identification.slice(6);
 
   try {
     const response = await fetch(`${BASE_URL}/parents/agree-account-inquiry`, {

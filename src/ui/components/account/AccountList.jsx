@@ -4,7 +4,7 @@ import CustomButton from "@/src/ui/components/atoms/CustomButton";
 import Link from "next/link";
 import ParentChildSelector from "../signup/ParentChildSelector";
 import SelectorAccount from "../signup/SelectorAccount";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AccountList() {
   const [data, setData] = useState([]);
@@ -50,13 +50,13 @@ export default function AccountList() {
           account={account.accountNumber}
           balance={account.balance}
         />
-      </ParentChildSelector>,
+      </ParentChildSelector>
     );
   });
 
   return (
     <div className="flex flex-col w-full h-full justify-around scrollbar-hide">
-      <div className="w-full h-[500px] flex flex-col px-[25px]">
+      <div className="w-full flex flex-col px-[25px]">
         <div className="text-R-28 text-black/80">내 계좌</div>
         <div className="pointer-events-none text-black/80 h-[48px] w-full flex text-R-20 bg-stone-300 hover:bg-neutral-400 rounded-[13px] items-center justify-between px-4 my-4">
           <span>총 {data.length} 개</span>
@@ -68,9 +68,7 @@ export default function AccountList() {
       </div>
 
       <Link href={urlPath.HOME} onClick={clickHandler}>
-        <CustomButton color={selectedIndex !== null ? "main" : "gray"}>
-          가져오기
-        </CustomButton>
+        <CustomButton color={selectedIndex !== null ? "main" : "gray"}>가져오기</CustomButton>
       </Link>
     </div>
   );
