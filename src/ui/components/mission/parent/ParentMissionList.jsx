@@ -5,18 +5,16 @@ import CategoryBadge from "../list/CategoryBadge";
 import StateBadge from "../list/StateBadge";
 import ChildProfileSection from "./ChildProfileSection";
 import { useState } from "react";
-import MissionModal from "../MissionModal";
-import MissionAddComponent from "./MissionAddComponent";
+
 
 const ParentMissionList = ({ missiondata }) => {
   const bgColor =
     missiondata?.state && missionColorMap[missiondata.state]
       ? missionColorMap[missiondata.state].background
-      : missionColorMap["NEW"].background;
-
+      : missionColorMap.NEW.background;
   //todo 필요하면 쓰세요
   //     const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   // const handleMissionClick = () => {
   //   setIsModalOpen(true);
   // };
@@ -33,7 +31,7 @@ const ParentMissionList = ({ missiondata }) => {
       }
     >
       <div className="flex gap-3">
-        <div className="flex items-cente">
+        <div className="flex items-center">
           <ChildProfileSection
             profileUrl={missiondata.childProfile}
             childName={missiondata.childName}
@@ -52,10 +50,11 @@ const ParentMissionList = ({ missiondata }) => {
             <p className="text-L-12 text-sub02">{missiondata.content}</p>
           </div>
           <p className="text-R-10 text-sub02/60 mt-2">
-            🍪 {formatDate(missiondata.deadline)}까지
+            🍪 {formatDate(missiondata.deadline)}
           </p>
         </div>
       </div>
+      
     </div>
   );
 };
