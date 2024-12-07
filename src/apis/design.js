@@ -16,8 +16,8 @@ export const designCreate = async (data) => {
   const response = await fetch(`${BASE_URL}/design`, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify(data),
     credentials: "include",
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {

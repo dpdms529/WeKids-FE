@@ -13,6 +13,7 @@ export const fetchCardName = async (id) => {
   const response = await fetch(`${BASE_URL}/api/cards/${id}`, {
     method: "GET",
     headers: headers,
+    credentials: "include",
   });
   if (!response.ok) {
     throw new Error("Failed to fetch card name");
@@ -40,13 +41,13 @@ export const registerPassword = async ({
     const response = await fetch(`${BASE_URL}/accounts/cards/issue`, {
       method: "POST",
       headers: headers,
+      credentials: "include",
       body: JSON.stringify({
         cardPassword: cardPassword,
         accountPassword: accountPassword,
         residentRegistrationNumber: residentRegistrationNumber,
         childId: childId,
       }),
-      credentials: "include",
     });
 
     const responseText = await response.text();

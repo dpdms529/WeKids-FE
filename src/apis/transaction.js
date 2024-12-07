@@ -19,7 +19,8 @@ export const submitTransfer = async ({
   };
   const response = await fetch(`${BASE_URL}/transactions`, {
     method: "POST",
-    headers,
+    headers: headers,
+    credentials: "include",
     body: JSON.stringify({
       parentAccountNumber,
       childAccountNumber,
@@ -33,14 +34,7 @@ export const submitTransfer = async ({
   return response.status !== 204 ? await response.json() : null;
 };
 
-export const fetchTransactions = async ({
-  page,
-  start,
-  end,
-  size = 5,
-  type,
-  accountId,
-}) => {
+export const fetchTransactions = async ({ page, start, end, size = 5, type, accountId }) => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
   const headers = {
@@ -57,7 +51,8 @@ export const fetchTransactions = async ({
       {
         method: "GET",
         headers: headers,
-      },
+        credentials: "include",
+      }
     );
 
     if (!response.ok) {
@@ -96,6 +91,7 @@ export const fetchTransactionById = async (transactionId) => {
     const response = await fetch(`${BASE_URL}/transactions/${transactionId}`, {
       method: "GET",
       headers: headers,
+      credentials: "include",
     });
 
     if (!response.ok) {
@@ -120,14 +116,12 @@ export const updateTransactionMemo = async ({ transactionId, memo }) => {
     Cookie: `Authorization=${authorization}`,
   };
   console.log("Request data:", { transactionId, memo });
-  const response = await fetch(
-    `${BASE_URL}/transactions/${transactionId}/memo`,
-    {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
-    },
-  );
+  const response = await fetch(`${BASE_URL}/transactions/${transactionId}/memo`, {
+    method: "POST",
+    headers,
+    credentials: "include",
+    body: JSON.stringify({ memo }), // memo 값을 JSON body로 전달
+  });
 
   if (!response.ok) {
     throw new Error(`Failed to update memo: ${response.statusText}`);

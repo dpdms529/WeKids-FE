@@ -16,6 +16,7 @@ export const getParentsAccounts = async () => {
   const response = await fetch(`${BASE_URL}/parents`, {
     method: "GET",
     headers: headers,
+    credentials: "include",
   });
 
   if (!response.ok) {
@@ -42,6 +43,7 @@ export const agreeAccountInquiry = async (residentRegistrationNumber) => {
     const response = await fetch(`${BASE_URL}/parents/agree-account-inquiry`, {
       method: "POST",
       headers: headers,
+      credentials: "include",
       body: JSON.stringify({
         residentRegistrationNumber: residentRegistrationNumber,
       }),
@@ -77,7 +79,8 @@ export const patchAccount = async ({ accountNumber }) => {
 
   const response = await fetch(`${BASE_URL}/parents/account`, {
     method: "POST",
-    headers,
+    headers: headers,
+    credentials: "include",
     body: JSON.stringify({
       accountNumber: accountNumber,
     }),

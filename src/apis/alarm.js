@@ -15,6 +15,7 @@ export const fetchAlarmData = async () => {
   const response = await fetch(`${BASE_URL}/alarms`, {
     method: "GET",
     headers: headers,
+    credentials: "include",
   });
 
   // 응답 상태 확인
@@ -40,6 +41,7 @@ export const CountAlarmData = async () => {
   const response = await fetch(`${BASE_URL}/alarms/count`, {
     method: "GET",
     headers: headers,
+    credentials: "include",
   });
 
   // 응답 상태 확인
@@ -65,6 +67,7 @@ export const CheckAlarmData = async ({ alarmId }) => {
   const response = await fetch(`${BASE_URL}/alarms/${alarmId}/check`, {
     method: "PATCH",
     headers,
+    credentials: "include",
   });
   return response.status !== 204 ? await response.json() : null;
 };

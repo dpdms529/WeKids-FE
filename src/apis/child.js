@@ -15,6 +15,7 @@ export const getChildAccounts = async () => {
   const response = await fetch(`${BASE_URL}/children`, {
     method: "GET",
     headers: headers,
+    credentials: "include",
   });
 
   // if (!response.ok) {

@@ -15,6 +15,7 @@ export const fetchAccounts = async () => {
   const response = await fetch(`${BASE_URL}/accounts/baas`, {
     method: "GET",
     headers: headers,
+    credentials: "include",
   });
 
   if (!response.ok) {
@@ -38,6 +39,7 @@ export const fetchChildAccounts = async () => {
   const response = await fetch(`${BASE_URL}/accounts/children`, {
     method: "GET",
     headers: headers,
+    credentials: "include",
   });
 
   if (!response.ok) {

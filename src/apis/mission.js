@@ -2,14 +2,7 @@
 import { auth } from "@/auth";
 import { BASE_URL } from "../constants/url";
 
-export const createMission = async ({
-  title,
-  content,
-  deadline,
-  amount,
-  category,
-  childId,
-}) => {
+export const createMission = async ({ title, content, deadline, amount, category, childId }) => {
   const session = await auth();
   const authorization = session?.user?.Authorization;
 
@@ -20,7 +13,8 @@ export const createMission = async ({
 
   const response = await fetch(`${BASE_URL}/missions`, {
     method: "POST",
-    headers,
+    headers: headers,
+    credentials: "include",
     body: JSON.stringify({
       title,
       content,
@@ -51,13 +45,11 @@ export const showMissionList = async ({ state, category, child }) => {
 
   const url = `${BASE_URL}/missions`;
 
-  const response = await fetch(
-    `${url}?state=${state}&category=${category}&child=${child}`,
-    {
-      method: "GET",
-      headers: headers,
-    },
-  );
+  const response = await fetch(`${url}?state=${state}&category=${category}&child=${child}`, {
+    method: "GET",
+    headers: headers,
+    credentials: "include",
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch child accounts");
@@ -75,11 +67,13 @@ export const showMissionDetail = async ({ missionId }) => {
   const headers = {
     "Content-Type": "application/json",
     Cookie: `Authorization=${authorization}`,
+    s,
   };
 
   const response = await fetch(`${BASE_URL}/missions/${missionId}`, {
     method: "GET",
     headers: headers,
+    credentials: "include",
   });
 
   if (!response.ok) {
@@ -100,10 +94,7 @@ export const missionAuth = async ({ missionId, memo, image }) => {
 
   // 메모가 있을 경우 추가
   if (memo) {
-    formData.append(
-      "data",
-      new Blob([JSON.stringify({ memo })], { type: "application/json" }),
-    );
+    formData.append("data", new Blob([JSON.stringify({ memo })], { type: "application/json" }));
   }
 
   // 이미지가 있을 경우 추가
@@ -116,6 +107,7 @@ export const missionAuth = async ({ missionId, memo, image }) => {
     headers: {
       Cookie: `Authorization=${authorization}`, // Authorization 쿠키
     },
+    credentials: "include",
     body: formData, // FormData로 전송
   });
 
@@ -131,7 +123,8 @@ export const deleteMission = async ({ missionId }) => {
   };
   const response = await fetch(`${BASE_URL}/missions/${missionId}/cancel`, {
     method: "PATCH",
-    headers,
+    headers: headers,
+    credentials: "include",
   });
 
   return response.status !== 204 ? await response.json() : null;
@@ -146,7 +139,8 @@ export const missionAccept = async ({ missionId, simplePassword }) => {
   };
   const response = await fetch(`${BASE_URL}/missions/${missionId}/accept`, {
     method: "PATCH",
-    headers,
+    headers: headers,
+    credentials: "include",
     body: JSON.stringify({
       simplePassword: simplePassword,
     }),
@@ -171,13 +165,11 @@ export const getMissionList = async (params = {}) => {
     child: child.toString(),
   });
 
-  const response = await fetch(
-    `${BASE_URL}/missions?${queryParams.toString()}`,
-    {
-      method: "GET",
-      headers: headers,
-    },
-  );
+  const response = await fetch(`${BASE_URL}/missions?${queryParams.toString()}`, {
+    method: "GET",
+    headers: headers,
+    credentials: "include",
+  });
 
   if (!response.ok) {
     console.log("Status:", response.status);
@@ -190,10 +182,7 @@ export const getMissionList = async (params = {}) => {
   const data = await response.json();
 
   console.log("Received mission list:", data); // 받은 데이터 로깅
-  console.log(
-    "Number of missions:",
-    Array.isArray(data) ? data.length : "Not an array",
-  ); // 배열인 경우 길이 출력
+  console.log("Number of missions:", Array.isArray(data) ? data.length : "Not an array"); // 배열인 경우 길이 출력
 
   if (Array.isArray(data) && data.length > 0) {
     console.log("First mission:", data[0]); // 첫 번째 미션 데이터 출력
