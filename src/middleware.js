@@ -4,21 +4,19 @@ import { NextResponse } from "next/server";
 
 export default auth(async (request) => {
   const cookie = await cookies();
-  // const cookieStore = request.headers.get("Cookie");
-  // const cookies = new Map(cookieStore?.split("; ").map((c) => c.split("=")));
 
-  // const email = request.cookies.get("email");
-  // const authorization = request.cookies.get("Authorization");
-  // console.log(email, authorization);
+  const email = cookie.get("email");
+  const authorization = cookie.get("Authorization");
+  console.log(email, authorization);
 
   cookie.delete("Authorization");
 
-  // if (!request.auth?.user && request.nextUrl.pathname !== "/onboard") {
-  //   if (!email) {
-  //     const newUrl = new URL("/onboard", request.nextUrl.origin);
-  //     return NextResponse.redirect(newUrl);
-  //   }
-  // }
+  if (!request.auth?.user && request.nextUrl.pathname !== "/onboard") {
+    if (!email) {
+      const newUrl = new URL("/onboard", request.nextUrl.origin);
+      return NextResponse.redirect(newUrl);
+    }
+  }
 });
 
 export const config = {
