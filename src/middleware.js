@@ -10,7 +10,7 @@ export default auth(async (request) => {
   const name = request.headers.get("Name");
   const authorization = request.headers.get("Authorization");
   console.log(email, name, authorization);
-  cookies.delete("Authorization");
+  // cookies.delete("Authorization");
 
   if (!request.auth?.user && request.nextUrl.pathname !== "/onboard") {
     if (!email) {
