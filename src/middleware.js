@@ -1,16 +1,17 @@
 import { auth } from "@/auth";
-// import { cookies } from "next/headers";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export default auth(async (request) => {
-  // const cookie = await cookies();
-  const cookieStore = request.headers.get("Cookie");
-  const cookies = new Map(cookieStore?.split("; ").map((c) => c.split("=")));
-  const email = cookies.get("email");
-  // const name = response.headers.get("Name");
-  const authorization = cookies.get("Authorization");
+  const cookie = await cookies();
+  // const cookieStore = request.headers.get("Cookie");
+  // const cookies = new Map(cookieStore?.split("; ").map((c) => c.split("=")));
+
+  const email = cookie.get("email");
+  const authorization = cookie.get("Authorization");
   console.log(email, authorization);
-  // cookies.delete("Authorization");
+
+  cookie.delete("Authorization");
 
   if (!request.auth?.user && request.nextUrl.pathname !== "/onboard") {
     if (!email) {
