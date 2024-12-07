@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 
 export default auth(async (request) => {
   // const cookie = await cookies();
-  const cookieStore = request.headers.get("cookie");
-  const cookies = new Map(cookieStore?.split("; ").map((c) => c.split("=")));
-  const email = cookies.get("email");
-  const name = cookies.get("name");
-  const authorization = cookies.get("Authorization");
+  // const cookieStore = request.headers.get("Cookie");
+  // const cookies = new Map(cookieStore?.split("; ").map((c) => c.split("=")));
+  const email = request.headers.get("Email");
+  const name = request.headers.get("Name");
+  const authorization = request.headers.get("Authorization");
   console.log(email, name, authorization);
   cookies.delete("Authorization");
 
@@ -21,7 +21,5 @@ export default auth(async (request) => {
 });
 
 export const config = {
-  matcher: [
-    "/((?!api|onboard|signout|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/((?!api|onboard|signout|_next/static|_next/image|favicon.ico).*)"],
 };
