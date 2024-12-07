@@ -3,10 +3,11 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export default auth(async (request) => {
-  console.log("hello middleware");
-
   const cookie = await cookies();
   const email = cookie.get("email");
+  const name = cookie.get("name");
+  const authorization = cookie.get("Authorization");
+  console.log(email, name, authorization);
   cookie.delete("Authorization");
 
   if (!request.auth?.user && request.nextUrl.pathname !== "/onboard") {
