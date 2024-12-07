@@ -3,15 +3,15 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export default auth(async (request) => {
-  const cookie = await cookies();
+  // const cookie = await cookies();
   // const cookieStore = request.headers.get("Cookie");
   // const cookies = new Map(cookieStore?.split("; ").map((c) => c.split("=")));
 
-  const email = cookie.get("email");
-  const authorization = cookie.get("Authorization");
+  const email = request.cookies.get("email");
+  const authorization = request.cookies.get("Authorization");
   console.log(email, authorization);
 
-  cookie.delete("Authorization");
+  request.cookies.delete("Authorization");
 
   if (!request.auth?.user && request.nextUrl.pathname !== "/onboard") {
     if (!email) {
